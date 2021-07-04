@@ -5,17 +5,18 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const LoginForm = ({ onSubmit, setIsChecked }) => {
+const LoginForm = ({ onSubmit }) => {
 
     const [credentials,setCredentials] = React.useState({        
         username: '',
-        password: ''
+        password: '',
+        remember: false
     });
-    
+
+    const [isChecked, setIsChecked] = React.useState(false);
     const { username,password } = credentials;
 
     const handleChange = ev =>{
-
         setCredentials(oldCredentials => ({
             ...oldCredentials,
             [ev.target.name]: ev.target.value,
@@ -24,10 +25,11 @@ const LoginForm = ({ onSubmit, setIsChecked }) => {
     }
 
     const handleSubmit = (ev) =>{
-        ev.preventDefault();        
+        ev.preventDefault();
+        credentials.remember = isChecked;
         onSubmit(credentials);
     }
-    
+
     return (
        <Grid>
            <form
@@ -100,7 +102,6 @@ const LoginForm = ({ onSubmit, setIsChecked }) => {
 };
 
 LoginForm.propTypes = {
-    setIsChecked: T.func.isRequired,
     onSubmit: T.func.isRequired,
 
 };
