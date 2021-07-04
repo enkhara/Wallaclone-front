@@ -1,4 +1,4 @@
-import LoginForm from './components/auth/LoginForm';
+import LoginPage from './components/auth/LoginPage';
 
 import './reset.css';
 import './App.css';
@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     
-      <LoginForm/>
+      <LoginPage/>
   
   );
 }
