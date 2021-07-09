@@ -10,7 +10,7 @@ const LoginForm = ({ onSubmit }) => {
     const [credentials,setCredentials] = React.useState({        
         username: '',
         password: '',
-        remember: false
+        
     });
 
     const [isChecked, setIsChecked] = React.useState(false);
@@ -26,7 +26,7 @@ const LoginForm = ({ onSubmit }) => {
 
     const handleSubmit = (ev) =>{
         ev.preventDefault();
-        credentials.remember = isChecked;
+        // credentials.remember = isChecked;
         onSubmit(credentials);
     }
 

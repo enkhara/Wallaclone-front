@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
+import {login} from '../../api/auth'
 
 const LoginPage = () => {
 
@@ -7,7 +8,10 @@ const LoginPage = () => {
     
     const handleSubmit = (credentials) => {
 
-        console.log(credentials);
+        login(credentials).then(console.log('logeado'))
+
+
+        console.log('credenciales antes de la llamada',credentials);
 
         //COMPROBAR EN LA BBDD USUARIO Y CONTRASEÑA CON REDUX Y LOADING
 
