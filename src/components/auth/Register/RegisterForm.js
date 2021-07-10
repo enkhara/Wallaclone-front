@@ -14,10 +14,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 const RegisterForm = ({ onSubmit }) => {
 	const [credentials, setCredentials] = React.useState({
 		username: '',
+		email:'',
 		password: '',
 	});
 
-	const { username, password } = credentials;
+	const { username, email, password } = credentials;
 
 	const handleChange = (ev) => {
 		setCredentials((oldCredentials) => ({
@@ -57,6 +58,15 @@ const RegisterForm = ({ onSubmit }) => {
 						required
 						name="username"
 						value={username}
+						onChange={handleChange}
+					/>
+					<TextField
+						label="email"
+						placeholder="Enter email"
+						fullWidth
+						required
+						name="email"
+						value={email}
 						onChange={handleChange}
 					/>
 					<TextField
