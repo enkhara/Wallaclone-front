@@ -88,7 +88,7 @@ const RegisterForm = ({ onSubmit }) => {
 						variant="contained"
 						disabled={!username || !password}
 					>
-						Sign in
+						Register
 					</Button>
 					<Typography>
 						Do you have an account?
