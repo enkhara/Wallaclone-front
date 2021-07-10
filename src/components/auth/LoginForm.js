@@ -92,7 +92,7 @@ const LoginForm = ({ onSubmit }) => {
                         </Typography>
                         <Typography>
                             Don't have an account yet? 
-                            <Link href="#">  Sign Up 
+                            <Link href="/register">  Sign Up 
                             </Link>
                         </Typography>
                 </Paper>
