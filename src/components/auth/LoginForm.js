@@ -26,7 +26,6 @@ const LoginForm = ({ onSubmit }) => {
 
     const handleSubmit = (ev) =>{
         ev.preventDefault();
-        // credentials.remember = isChecked;
         onSubmit(credentials);
     }
 

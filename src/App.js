@@ -4,11 +4,18 @@ import LoginPage from './components/auth/LoginPage';
 import RegisterPage from './components/auth/Register/RegisterPage';
 import AdvertsPage from './components/Adverts/AdvertsPage/AdvertsPage';
 
+
+import { Provider } from 'react-redux';
+import store from './store/store';
+
 import './reset.css';
 import './App.css';
 
 function App() {
 	return (
+
+	<Provider store={store}>
+
 		<Switch>
 			<Route exact path="/login">
 				<LoginPage />
@@ -18,10 +25,12 @@ function App() {
 				<RegisterPage />
 			</Route>
 
-			<Route exact path="/">
+			{/* <Route exact path="/">
 				<AdvertsPage />
-			</Route>
+			</Route> */}
 		</Switch>
+	</Provider>
+	
 	);
 }
 

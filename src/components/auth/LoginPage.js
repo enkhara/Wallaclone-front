@@ -8,7 +8,7 @@ const LoginPage = () => {
     
     const handleSubmit = (credentials) => {
 
-        login(credentials).then(console.log('logeado'))
+       // login(credentials).then(console.log('logeado'))
 
 
         console.log('credenciales antes de la llamada',credentials);
