@@ -14,22 +14,21 @@ import './App.css';
 function App() {
 	return (
 
-	<Provider store={store}>
+		<Provider store={store}>
+			<Switch>
+				<Route exact path="/login">
+					<LoginPage />
+				</Route>
 
-		<Switch>
-			<Route exact path="/login">
-				<LoginPage />
-			</Route>
+				<Route exact path="/register">
+					<RegisterPage />
+				</Route>
 
-			<Route exact path="/register">
-				<RegisterPage />
-			</Route>
-
-			{/* <Route exact path="/">
-				<AdvertsPage />
-			</Route> */}
-		</Switch>
-	</Provider>
+				<Route exact path="/">
+					<AdvertsPage />
+				</Route>
+			</Switch>
+		</Provider>
 	
 	);
 }
