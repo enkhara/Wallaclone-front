@@ -1,25 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
-import {login} from '../../api/auth'
+import { loginAction } from '../../store/actions';
+
+
 
 const LoginPage = () => {
 
-   
-    
-    const handleSubmit = (credentials) => {
-
-       // login(credentials).then(console.log('logeado'))
-
-
-        console.log('credenciales antes de la llamada',credentials);
-
-        //COMPROBAR EN LA BBDD USUARIO Y CONTRASEÑA CON REDUX Y LOADING
-
-        //CORRECTO
-
-
-    }
+    const dispatch = useDispatch();
+    const handleSubmit = async (credentials) => (await dispatch(loginAction(credentials)));
     return (
+        
         <LoginForm 
             onSubmit={handleSubmit}
         />

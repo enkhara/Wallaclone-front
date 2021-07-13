@@ -1,7 +1,10 @@
-import client,{configureClient, resetClient} from './client'
+import client, { configureClient, resetClient } from './client';
 import storage from '../utils/storage';
 
+
 const authPath = '/apiv1/auth';
+
+
 
 export const login = ({ remember, ...credentials }) => {
     return client
@@ -16,9 +19,10 @@ export const login = ({ remember, ...credentials }) => {
           storage.set('auth', accessToken);
         }
       });
-  };
+};
   
-  export const logout = () => {
+
+export const logout = () => {
     return Promise.resolve().then(resetClient).then(storage.clear);
-  };
+};
   

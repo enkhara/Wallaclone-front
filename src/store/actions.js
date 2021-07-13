@@ -1,4 +1,4 @@
-
+import { login, logout } from '../api/auth';
 import {
     AUTH_LOGGED,
     AUTH_LOGIN_REQUEST,
@@ -35,40 +35,40 @@ import {
 
 // });
 
-// export const authLoginRequest = () => {
-//     return {
-//       type: AUTH_LOGIN_REQUEST,
-//     };
-//   };
+export const authLoginRequest = () => {
+    return {
+      type: AUTH_LOGIN_REQUEST,
+    };
+  };
   
-// export const authLoginSuccess = () => {
-//     return {
-//       type: AUTH_LOGIN_SUCCESS,
+export const authLoginSuccess = () => {
+    return {
+      type: AUTH_LOGIN_SUCCESS,
 
-//     };
-// };
+    };
+};
   
-// export const authLoginFailure = error => {
-//     return {
-//       type: AUTH_LOGIN_FAILURE,
-//       payload: error,
-//       error:true
+export const authLoginFailure = error => {
+    return {
+      type: AUTH_LOGIN_FAILURE,
+      payload: error,
+      error:true
      
-//     };
-// };
+    };
+};
   
-// export function loginAction(credentials,isChecked){
-//    return async(dispatch) =>{
-//         dispatch(authLoginRequest());
-//         try {
-//             await login(credentials,isChecked);
-//             dispatch(authLoginSuccess());
-//         } catch (error) {
-//             dispatch(authLoginFailure(error));
-//         }
+export function loginAction(credentials){
+   return async(dispatch) =>{
+        dispatch(authLoginRequest());
+        try {
+            await login(credentials);
+            dispatch(authLoginSuccess());
+        } catch (error) {
+            dispatch(authLoginFailure(error));
+        }
 
-//    }
-// };
+   }
+};
 
 
 // //Create new advert
