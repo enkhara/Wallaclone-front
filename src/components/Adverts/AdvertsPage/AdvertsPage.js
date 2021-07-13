@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -14,44 +14,18 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { useStyles } from '../../shared/useStyles';
 
 
 
-const useStyles = makeStyles((theme) => ({
-	navBar: {
-	  backgroundColor: "#fff"
-	},
 
-	blogsContainer: {
-	  paddingTop: theme.spacing(3)
-	},
-
-	card: {
-	  maxWidth: "100%",
-	},
-	media: {
-	  height: 240
-	},
-	cardActions: {
-	  display: "flex",
-	  margin: "0 10px",
-	  justifyContent: "space-between"
-	},
-	author: {
-	  display: "flex"
-	},
-	paginationContainer: {
-	  display: "flex",
-	  justifyContent: "center"
-	}
-  }));
 
 const AdvertsPage = () => {
 	// return <Layout />;
 	const classes = useStyles();
 
 	return(
-		<main>
+		<React.Fragment>
 			<AppBar className={classes.navBar} position="static">
 				<Toolbar>
 					<Typography variant="h4" color="primary" >
@@ -211,7 +185,7 @@ const AdvertsPage = () => {
 				</Grid>
 			
 			</Container>
-		</main>
+		</React.Fragment>
 	
 
 	)

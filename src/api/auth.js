@@ -9,7 +9,6 @@ export const login = ({ remember, ...credentials }) => {
       .post(`${authPath}/signin`, credentials)
       .then(({ token }) => {
         configureClient({ token });
-        console.log(token);
         return token;
       })
       .then(token => {
