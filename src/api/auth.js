@@ -4,19 +4,17 @@ import storage from '../utils/storage';
 
 const authPath = '/apiv1/auth';
 
-
-
 export const login = ({ remember, ...credentials }) => {
     return client
       .post(`${authPath}/signin`, credentials)
-      .then(({ accessToken }) => {
-        configureClient({ accessToken });
-        console.log(accessToken);
-        return accessToken;
+      .then(({ token }) => {
+        configureClient({ token });
+        console.log(token);
+        return token;
       })
-      .then(accessToken => {
+      .then(token => {
         if (remember) {
-          storage.set('auth', accessToken);
+          storage.set('auth', token);
         }
       });
 };
