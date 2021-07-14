@@ -1,3 +1,4 @@
+import T from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 import LoginPage from './components/auth/LoginPage';
@@ -11,7 +12,7 @@ import store from './store/store';
 import './reset.css';
 import './App.css';
 
-function App() {
+function App({ isInitiallyLogged }) {
 	return (
 
 		<Provider store={store}>
@@ -32,5 +33,15 @@ function App() {
 	
 	);
 }
+
+App.propTypes = {
+	isInitiallyLogged: T.bool,
+};
+  
+App.defaultProps = {
+	isInitiallyLogged: false,
+};
+  
+
 
 export default App;

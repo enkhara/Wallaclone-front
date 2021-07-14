@@ -10,7 +10,6 @@ const accessToken = storage.get('auth');
 
 configureClient({ accessToken });
 
-
 ReactDOM.render(
 	<Router>
       	<App

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
 
@@ -26,13 +26,18 @@ const AdvertsPage = () => {
 
 	return(
 		<React.Fragment>
-			<AppBar className={classes.navBar} position="static">
-				<Toolbar>
-					<Typography variant="h4" color="primary" >
-						Wallaclone
-					</Typography>
-				</Toolbar>
-			</AppBar>
+			<div className={classes.root}>
+				<AppBar position="static">
+					<Toolbar>
+						<Typography variant="h6" className={classes.title}>
+							Wallaclone
+						</Typography>
+						<IconButton color="inherit">
+                			<AccountCircle className={classes.iconLogin}/>
+              			</IconButton>
+					</Toolbar>
+				</AppBar>
+    		</div>
 			<Container maxWidth="lg" className={classes.blogsContainer}>
 
 			<Grid container spacing={3}>
