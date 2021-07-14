@@ -2,6 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
 
+	navBar: {
+		flexGrow: 1,
+		  backgroundColor: "#fff",
+
+	},
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
@@ -9,10 +14,6 @@ export const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 	},
 	
-	iconLogin:{
-		fontSize:'2rem'
-
-	},
 
 	blogsContainer: {
 	  paddingTop: theme.spacing(3)

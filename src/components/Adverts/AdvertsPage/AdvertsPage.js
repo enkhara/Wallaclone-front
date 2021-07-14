@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -23,18 +24,23 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 const AdvertsPage = () => {
 	// return <Layout />;
 	const classes = useStyles();
-
 	return(
 		<React.Fragment>
+						
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
 						<Typography variant="h6" className={classes.title}>
 							Wallaclone
 						</Typography>
-						<IconButton color="inherit">
-                			<AccountCircle className={classes.iconLogin}/>
-              			</IconButton>
+                		<AccountCircle className={classes.iconLogin}/>
+						{/* STYLE COMPONENT */}
+						<Link to={`./login`} style={{color:'#fff', marginRight:'5px'}}> 
+                    		Login
+           				 </Link>
+						<Link to={`./register`} style={{color:'#fff'}}>
+                    		Register
+           				</Link>
 					</Toolbar>
 				</AppBar>
     		</div>
@@ -153,9 +159,9 @@ const AdvertsPage = () => {
 					<Card className={classes.card}>
 					<CardActionArea>
 						<CardMedia
-						className={classes.media}
-						image="https://images.pexels.com/photos/325111/pexels-photo-325111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-						title="Contemplative Reptile"
+							className={classes.media}
+							image="https://images.pexels.com/photos/325111/pexels-photo-325111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+							title="Contemplative Reptile"
 						/>
 						<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
