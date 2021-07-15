@@ -10,7 +10,8 @@ export const useStyles = makeStyles((theme) => ({
 	title: {
 		flexGrow: 1,
 	},
-	
+
+
 
 	blogsContainer: {
 	  paddingTop: theme.spacing(3)

@@ -5,9 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useStyles } from '../shared/useStyles';
 
-
 const Header = () => {
+
 	const classes = useStyles();
+
 	return (
 		<header className={classes.root}>
 			<AppBar position="static">
@@ -15,13 +16,16 @@ const Header = () => {
 					<Typography variant="h6" className={classes.title}>
 						Wallaclone
 					</Typography>
-                	<AccountCircle className={classes.iconLogin}/>
-					{/* STYLE COMPONENT */}
-					<div>
-						<Link to={`./login`} style={{color:'#fff', marginRight:'5px'}}> 
-								Login
+					<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                		<AccountCircle className={classes.iconLogin}/>
+						<Link 
+							to={`./login`} 
+							style={{color:'#fff', margin:'7px', textDecoration:'none'}}> 
+							Login
 						</Link>
-						<Link to={`./register`} style={{color:'#fff'}}>
+						<Link 
+							to={`./register`} 
+							style={{color:'#fff', textDecoration:'none'}}>
 							Register
 						</Link>
 
