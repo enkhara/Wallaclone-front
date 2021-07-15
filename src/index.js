@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import store from './store/store';
 import storage from './utils/storage';
 import { configureClient } from './api/client';
 
@@ -11,11 +11,11 @@ const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
 ReactDOM.render(
-	<Router>
+	<Provider store={store}>
       	<App
 		  isInitiallyLogged={!!accessToken}
 		/>
   
-	</Router>,
+	</Provider>,
 	document.getElementById('root')
 );

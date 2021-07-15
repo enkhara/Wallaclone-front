@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -15,35 +12,17 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-
-
+import Header from '../../layout/Header';
 
 
 
 const AdvertsPage = () => {
-	// return <Layout />;
+
 	const classes = useStyles();
 	return(
 		<React.Fragment>
 						
-			<div className={classes.root}>
-				<AppBar position="static">
-					<Toolbar>
-						<Typography variant="h6" className={classes.title}>
-							Wallaclone
-						</Typography>
-                		<AccountCircle className={classes.iconLogin}/>
-						{/* STYLE COMPONENT */}
-						<Link to={`./login`} style={{color:'#fff', marginRight:'5px'}}> 
-                    		Login
-           				 </Link>
-						<Link to={`./register`} style={{color:'#fff'}}>
-                    		Register
-           				</Link>
-					</Toolbar>
-				</AppBar>
-    		</div>
+			<Header/>
 			<Container maxWidth="lg" className={classes.blogsContainer}>
 
 			<Grid container spacing={3}>

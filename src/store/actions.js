@@ -3,22 +3,24 @@ import {
     AUTH_LOGIN_REQUEST,
     AUTH_LOGIN_SUCCESS,
     AUTH_LOGIN_FAILURE,
+    AUTH_LOGGED
     
 } from './types';
 
 //Login
-// export function loggedAction(isLogged){
-//     return (dispatch) =>{
-//         dispatch(authLogged(isLogged));
-//     }
+export const authLogged = (isLogged) =>({
+    type: AUTH_LOGGED,
+    payload: isLogged
+
+});
+
+export function loggedAction(isLogged){
+    return (dispatch) =>{
+        dispatch(authLogged(isLogged));
+    }
     
-// }
+}
 
-// export const authLogged = (isLogged) =>({
-//     type: AUTH_LOGGED,
-//     payload: isLogged
-
-// });
 
 export const authLoginRequest = () => {
     return {

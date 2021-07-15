@@ -1,21 +1,31 @@
+import React from 'react';
 import T from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
 
+import { Switch, Route } from 'react-router-dom';
 import LoginPage from './components/auth/LoginPage';
 import RegisterPage from './components/auth/Register/RegisterPage';
 import AdvertsPage from './components/Adverts/AdvertsPage/AdvertsPage';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
-import { Provider } from 'react-redux';
-import store from './store/store';
+import { useDispatch } from 'react-redux';
+import { loggedAction } from './store/actions';
+
 
 import './reset.css';
 import './App.css';
 
 function App({ isInitiallyLogged }) {
+
+	const dispatch = useDispatch();
+
+    React.useEffect(()=>{
+        dispatch(loggedAction(isInitiallyLogged));
+    },[dispatch,isInitiallyLogged]);    
+
 	return (
 
-		<Provider store={store}>
+		<Router>
 			<Switch>
 				<Route exact path="/login">
 					<LoginPage />
@@ -29,8 +39,8 @@ function App({ isInitiallyLogged }) {
 					<AdvertsPage />
 				</Route>
 			</Switch>
-		</Provider>
-	
+		
+		</Router>
 	);
 }
 
@@ -42,6 +52,5 @@ App.defaultProps = {
 	isInitiallyLogged: false,
 };
   
-
 
 export default App;
