@@ -13,8 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import Header from '../../layout/Header/Header';
+import ShareAdvert from '../../shareAdvert';
 
-
+//<ShareAdvert Url={url_del_post} Titulo={titulo_del_post} Resumen={resumen_del_post} /> 
 
 const AdvertsPage = () => {
 
@@ -58,7 +59,8 @@ const AdvertsPage = () => {
 						</Box>
 						<IconButton aria-label="add to favorites">
           					<FavoriteBorderIcon />
-        				</IconButton>
+						</IconButton>
+						<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 					</CardActions>
 					</Card>
 				</Grid>
@@ -94,7 +96,8 @@ const AdvertsPage = () => {
 						</Box>
 						<IconButton aria-label="add to favorites">
           					<FavoriteBorderIcon />
-        				</IconButton>
+						</IconButton>
+						<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 					</CardActions>
 					</Card>
 				</Grid>
@@ -130,7 +133,8 @@ const AdvertsPage = () => {
 						</Box>
 						<IconButton aria-label="add to favorites">
           					<FavoriteBorderIcon />
-        				</IconButton>
+						</IconButton>
+						<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 					</CardActions>
 					</Card>
 				</Grid>
@@ -167,8 +171,9 @@ const AdvertsPage = () => {
 						<Box>
 						<IconButton aria-label="add to favorites">
           					<FavoriteBorderIcon />
-        				</IconButton>
+						</IconButton>
 						</Box>
+						<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 					</CardActions>
 					</Card>
 				</Grid>
