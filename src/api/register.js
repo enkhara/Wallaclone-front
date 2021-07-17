@@ -1,10 +1,10 @@
-import client from './client'
-
+import client from './client';
 
 const authPath = '/apiv1/auth';
 
-export const register=({...credentials})=>{
-
-    return client.post(`${authPath}/signup`, credentials)
-
+const register = ({ ...credentials }) => {
+	console.log(`credentials en api/register.js ${credentials}`);
+	return client.post(`${authPath}/signup`, credentials);
 };
+
+export default register;
