@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
-import { adverts, logged, ui } from './advertsReducer';
+import { adverts, logged, registered, ui } from './advertsReducer';
 
-export default combineReducers({
-    adverts: adverts,logged, ui
-    
+const reducer = combineReducers({
+	adverts,
+	logged,
+	registered,
+	ui,
 });
+
+export default reducer;
