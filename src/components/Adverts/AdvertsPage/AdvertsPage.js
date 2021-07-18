@@ -12,9 +12,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
-import Header from '../../layout/Header/Header';
+import { Header } from '../../layout';
 import ShareAdvert from '../../shareAdvert';
-
 //<ShareAdvert Url={url_del_post} Titulo={titulo_del_post} Resumen={resumen_del_post} /> 
 
 const AdvertsPage = () => {
