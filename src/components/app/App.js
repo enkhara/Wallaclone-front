@@ -1,25 +1,13 @@
 import React from 'react';
-import T from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
 import { LoginPage, PrivateRoute, RegisterPage } from '../../components/auth';
-import AdvertsPage from '../Adverts/AdvertsPage/AdvertsPage';
-
+import { AdvertsPage } from '../Adverts';
 import NotfoundPage from './NotFoundPage';
-// import { BrowserRouter as Router } from 'react-router-dom';
-
-// import { useDispatch } from 'react-redux';
-// import { loggedAction } from '../../store/actions';
 
 import './reset.css';
 import './App.css';
 
-// function App({ isInitiallyLogged }) {
-// 	const dispatch = useDispatch();
 
-// 	React.useEffect(() => {
-// 		dispatch(loggedAction(isInitiallyLogged));
-// 	}, [dispatch, isInitiallyLogged]);
 function App() {
 	return (
 		<Switch>
@@ -42,12 +30,6 @@ function App() {
 	);
 }
 
-App.propTypes = {
-	isInitiallyLogged: T.bool,
-};
 
-App.defaultProps = {
-	isInitiallyLogged: false,
-};
 
 export default App;

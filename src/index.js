@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-
 import { configureClient } from './api/client';
 import configureStore from './store/store';
 import storage from './utils/storage';

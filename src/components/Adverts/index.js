@@ -1,0 +1,1 @@
+export { default as AdvertsPage } from './AdvertsPage';
