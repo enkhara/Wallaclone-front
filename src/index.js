@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux';
-import store from './store/store';
-import storage from './utils/storage';
+import { createBrowserHistory } from 'history';
 import { configureClient } from './api/client';
+import configureStore from './store/store';
+import storage from './utils/storage';
+
+import Root from './Root';
 
 const accessToken = storage.get('auth');
-
 configureClient({ accessToken });
+const history = createBrowserHistory();
+
+const store = configureStore({
+	preloadedState: { logged: !!accessToken },
+	history,
+});
 
 ReactDOM.render(
-	<Provider store={store}>
-      	<App
-		  isInitiallyLogged={!!accessToken}
-		/>
-  
-	</Provider>,
+	<Root store={store} history={history} />,
 	document.getElementById('root')
 );

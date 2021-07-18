@@ -6,10 +6,33 @@ import { useSelector } from 'react-redux';
 import { getIsLogged } from '../../../store/selectors';
 import MenuLoginRegister from './MenuLoginRegister';
 import Logout from './Logout';
+import { AuthButton } from '../../auth/index';
 
+// const Header = () => {
+// 	const isLogged = useSelector( getIsLogged );
+// 	const classes = useStyles();
+// 	return (
+// 		<header className={classes.root}>
+// 			<AppBar position="static">
+// 				<Toolbar>
+// 					<Typography variant="h6" className={classes.title}>
+// 						Wallaclone
+// 					</Typography>
+// 					{ !isLogged
+// 					?
+// 						<MenuLoginRegister/>
+// 					:
+// 						<Logout/>
+
+// 					}
+// 				</Toolbar>
+// 			</AppBar>
+//     	</header>
+// 	);
+// };
 
 const Header = () => {
-	const isLogged = useSelector( getIsLogged );
+	const isLogged = useSelector(getIsLogged);
 	const classes = useStyles();
 	return (
 		<header className={classes.root}>
@@ -18,18 +41,11 @@ const Header = () => {
 					<Typography variant="h6" className={classes.title}>
 						Wallaclone
 					</Typography>
-					{ !isLogged 
-					?
-						<MenuLoginRegister/>
-					:	
-						<Logout/>
-						
-					}
+					<AuthButton />
 				</Toolbar>
 			</AppBar>
-    	</header>
+		</header>
 	);
 };
-
 
 export default Header;

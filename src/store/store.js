@@ -1,19 +1,21 @@
-import { createStore,applyMiddleware,compose } from 'redux';
-import thunk from 'redux-thunk';
-import reducer from '../store/reducers';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
+import reducer from './reducers/index';
 
-const store = createStore(
-    reducer,
-    compose( applyMiddleware(thunk),
-        typeof window === 'object' &&
-            typeof window.__REDUX_DEVTOOLS_EXTENSION__  !== 'undefined' 
-            ? 
-                window.__REDUX_DEVTOOLS_EXTENSION__() 
-            : 
-                f => f
-    )
+import * as auth from '../api/auth';
+import * as adverts from '../api/adverts';
 
+const api = { auth, adverts };
 
-);
+const configureStore = ({ preloadedState, history }) => {
+	const middleware = [thunkMiddleware.withExtraArgument({ api, history })];
+	const store = createStore(
+		reducer,
+		preloadedState,
+		composeWithDevTools(applyMiddleware(...middleware))
+	);
+	return store;
+};
 
-export default store;
+export default configureStore;
