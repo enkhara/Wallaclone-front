@@ -1,4 +1,5 @@
 import React from 'react';
+import T from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -22,7 +23,7 @@ const Advert = ( {_id,image,name,price,reserved,sale,sell,tags} ) => {
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={`${process.env.REACT_APP_API_BASE_URL}${image}`}                    
+                        image={`${process.env.REACT_APP_API_BASE_URL}/${image}`}                    
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -55,5 +56,17 @@ const Advert = ( {_id,image,name,price,reserved,sale,sell,tags} ) => {
 		
     )
 }
+
+Advert.propTypes = {
+    name:T.string,
+    price:T.number,
+    sale:T.bool,
+    tags:T.array,
+    reserved:T.bool,
+    sell:T.bool
+
+    
+};
+ 
 
 export default Advert;

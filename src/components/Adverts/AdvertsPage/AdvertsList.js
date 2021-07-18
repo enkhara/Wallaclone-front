@@ -1,4 +1,5 @@
 import React from 'react';
+import T from 'prop-types';
 import Advert from './Advert';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -19,5 +20,10 @@ const AdvertsList = ({ adverts }) =>{
         </Container>
     );
 }
+
+AdvertsList.propTypes = {
+    adverts:T.array.isRequired
+};
+
 
 export default AdvertsList;
