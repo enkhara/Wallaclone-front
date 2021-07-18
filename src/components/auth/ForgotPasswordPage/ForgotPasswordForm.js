@@ -1,15 +1,9 @@
 import React from 'react';
 import T from 'prop-types';
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-} from '@material-ui/core';
+import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-const ForgotPassworForm = ({ onSubmit }) => {
+const ForgotPasswordForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = React.useState({
     email: '',
   });
@@ -46,9 +40,11 @@ const ForgotPassworForm = ({ onSubmit }) => {
               <LockOutlinedIcon />
             </Avatar>
             <h2>You have problems to enter?</h2>
-			<h4>Enter your email and we will send you a link to enter your account</h4>
+            <h4>
+              Enter your email and we will send you a link to enter your account
+            </h4>
           </Grid>
-       
+
           <TextField
             label="email"
             placeholder="Enter email"
@@ -58,7 +54,6 @@ const ForgotPassworForm = ({ onSubmit }) => {
             value={email}
             onChange={handleChange}
           />
-        
 
           <Button
             type="submit"
@@ -70,15 +65,14 @@ const ForgotPassworForm = ({ onSubmit }) => {
           >
             Send access link
           </Button>
-        
         </Paper>
       </form>
     </Grid>
   );
 };
 
-ForgotPassworForm.propTypes = {
+ForgotPasswordForm.propTypes = {
   onSubmit: T.func.isRequired,
 };
 
-export default ForgotPassworForm;
+export default ForgotPasswordForm;
