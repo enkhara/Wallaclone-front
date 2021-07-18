@@ -11,8 +11,6 @@ export const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 	},
 
-
-
 	blogsContainer: {
 	  paddingTop: theme.spacing(3)
 	},

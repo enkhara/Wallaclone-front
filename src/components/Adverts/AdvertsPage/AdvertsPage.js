@@ -14,8 +14,8 @@ const AdvertsPage = () => {
 	
   	React.useEffect(() => {
     	dispatch(advertsLoadAction());
-  	}, []);
-	  
+  	}, [dispatch]);
+
 	return(
 		<React.Fragment>			
 			<Header/>
