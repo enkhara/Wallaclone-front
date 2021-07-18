@@ -43,7 +43,7 @@ const NewPasswordForm = ({ onSubmit }) => {
             <Avatar style={{ backgroundColor: '#1dba849e' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <h2>Register</h2>
+            <h2>Register your new password</h2>
           </Grid>
           <TextField
             label="new password"
@@ -72,7 +72,7 @@ const NewPasswordForm = ({ onSubmit }) => {
             variant="contained"
             disabled={equalpassword}
           >
-            Register
+            New password
           </Button>
           <Typography>
             Do you have an account?

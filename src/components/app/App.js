@@ -24,8 +24,12 @@ function App() {
         <RegisterPage />
       </Route>
 
-      <Route exact path="/Forgot-password">
+      <Route exact path="/forgot-password">
         <ForgotPasswordPage />
+      </Route>
+
+      <Route exact path="/:new-password">
+        <NewPasswordPage />
       </Route>
 
       <Route exact path="/">

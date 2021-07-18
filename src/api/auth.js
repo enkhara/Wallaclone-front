@@ -23,7 +23,7 @@ export const register = ({ ...credentials }) => {
 };
 
 export const forgotPassword = ({ ...credentials }) => {
-  return client.post(`${authPath}/forgot-password`, credentials);
+  return client.put(`${authPath}/forgot-password`, credentials);
 };
 
 export const logout = () => {

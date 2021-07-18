@@ -1,7 +1,9 @@
 import React from 'react';
 import NewPasswordForm from './NewPasswordForm';
+import { useParams } from 'react-router-dom';
 
 const NewPasswordPage = () => {
+  console.log(useParams);
   const [error, setError] = React.useState(null);
 
   const handleSubmit = async (credentials) => {
