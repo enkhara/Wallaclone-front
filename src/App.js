@@ -4,6 +4,7 @@ import T from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import LoginPage from './components/auth/LoginPage';
 import RegisterPage from './components/auth/Register/RegisterPage';
+import ForgotPasswordPage from './components/auth/ForgotPassword/ForgotPasswordPage'
 import AdvertsPage from './components/Adverts/AdvertsPage/AdvertsPage';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -33,6 +34,9 @@ function App({ isInitiallyLogged }) {
 
 				<Route exact path="/register">
 					<RegisterPage />
+				</Route>
+				<Route exact path="/forgotPassword">
+					<ForgotPasswordPage />
 				</Route>
 
 				<Route exact path="/">
