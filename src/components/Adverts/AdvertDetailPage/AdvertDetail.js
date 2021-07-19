@@ -29,13 +29,16 @@ function AdvertDetail({ name, sale, desc, price, tags, image, onDelete }) {
 					<CardMedia
 						className={classes.media}
 						image={
-							`${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}` ||
+							`${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}` ||
 							placeholder
 						}
 					/>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
 							{name}
+						</Typography>
+						<Typography gutterBottom variant="h5" component="h2">
+							{desc}
 						</Typography>
 						<Typography variant="body2" color="textSecondary" component="p">
 							{`${price}€`}

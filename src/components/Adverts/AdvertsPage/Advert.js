@@ -26,7 +26,7 @@ const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
 				<CardActionArea>
 					<CardMedia
 						className={classes.media}
-						image={`${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`}
+						image={`${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`}
 					/>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">

@@ -10,7 +10,7 @@ export const getLatestAdverts = () => {
 const mapAdvert = ({ image, ...advert }) => ({
 	...advert,
 	image: image
-		? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
+		? `${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`
 		: image,
 });
 
