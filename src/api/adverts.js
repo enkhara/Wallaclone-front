@@ -14,6 +14,10 @@ const mapAdvert = ({ image, ...advert }) => ({
 		: image,
 });
 
+export const getAllTags = () => {
+	return client.get(`${BASE_URL}/advertisements/tags`);
+};
+
 export const getAdvert = (advertId) => {
 	const advert = client.get(`${BASE_URL}/advertisements/${advertId}`);
 	console.log(`advert API ${advert}`);
