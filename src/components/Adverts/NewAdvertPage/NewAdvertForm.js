@@ -8,11 +8,10 @@ import {
 	Button,
 	Radio,
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { FormLabel, FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
-
+import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 
 function NewAdvertForm({ onSubmit }) {
@@ -62,7 +61,7 @@ function NewAdvertForm({ onSubmit }) {
 				>
 					<Grid align="center">
 						<Avatar style={{ backgroundColor: '#1dba849e' }}>
-							<LockOutlinedIcon />
+							<AddIcon />
 						</Avatar>
 						<h2>Create new advert</h2>
 					</Grid>
