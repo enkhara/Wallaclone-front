@@ -1,3 +1,4 @@
+import { alertMessage } from '../components/alerts/alertMessage';
 import { getAdvertsLoaded, getAdvertDetail, getTagsLoaded } from './selectors';
 import {
 	AUTH_LOGIN_REQUEST,
@@ -95,7 +96,12 @@ export const registerAction = (credentials) => {
 		try {
 			await api.auth.register(credentials);
 			dispatch(authRegisterSuccess());
-
+			const message={
+				title:'Congratulations!',
+				text:'You have successfully registered',
+				icon:'success'
+			};
+			alertMessage(message);
 			const { from } = { from: { pathname: '/login' } };
 			history.replace(from);
 		} catch (error) {

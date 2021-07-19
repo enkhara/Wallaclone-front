@@ -30,7 +30,6 @@ const RegisterForm = ({ onSubmit }) => {
 
 	const handleSubmit = (ev) => {
 		ev.preventDefault();
-		//credentials.remember = isChecked;
 		onSubmit(credentials);
 		console.log(credentials);
 	};
@@ -63,7 +62,7 @@ const RegisterForm = ({ onSubmit }) => {
 						onChange={handleChange}
 					/>
 					<TextField
-						label="email"
+						type="email"
 						placeholder="Enter email"
 						fullWidth
 						required
