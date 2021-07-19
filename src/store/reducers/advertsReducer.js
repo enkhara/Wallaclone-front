@@ -5,12 +5,12 @@ import {
 	AUTH_LOGOUT,
 	ADVERTS_LOADED_REQUEST,
 	ADVERTS_LOADED_SUCCESS,
-	ADVERTS_CREATED_REQUEST,
-	ADVERTS_CREATED_SUCCESS,
-	ADVERTS_DELETED_REQUEST,
-	ADVERTS_DELETED_SUCCESS,
-	ADVERTS_DETAIL_REQUEST,
-	ADVERTS_DETAIL_SUCCESS,
+	ADVERT_CREATED_REQUEST,
+	ADVERT_CREATED_SUCCESS,
+	ADVERT_DELETED_REQUEST,
+	ADVERT_DELETED_SUCCESS,
+	ADVERT_DETAIL_REQUEST,
+	ADVERT_DETAIL_SUCCESS,
 	UI_RESET_ERROR,
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_SUCCESS,
@@ -20,10 +20,10 @@ export const initialState = {
 	logged: false,
 	registered: false,
 	adverts: {
-		data: [],
 		loaded: false,
-		deleteAdvert: null,
-		detailAdvert: [],
+		data: [],
+		// deleteAdvert: null,
+		// detailAdvert: [],
 	},
 	ui: {
 		loading: false,
@@ -53,23 +53,41 @@ export function registered(state = initialState.registered, action) {
 	}
 }
 
+// export function adverts(state = initialState.adverts, action) {
+// 	switch (action.type) {
+// 		case ADVERTS_LOADED_SUCCESS:
+// 			return { ...state, loaded: true, data: action.payload };
+// 		case ADVERTS_CREATED_SUCCESS:
+// 			return { ...state, loaded: false, data: [...state.data, action.payload] };
+// 		case ADVERT_DETAIL_SUCCESS:
+// 			return { ...state, loaded: false, detailAdvert: action.payload };
+// 		case ADVERT_DELETED_REQUEST:
+// 			return { ...state, deleteAdvert: action.payload };
+// 		case ADVERT_DELETED_SUCCESS:
+// 			return {
+// 				...state,
+// 				data: state.data.filter((advert) => advert.id !== state.deleteAdvert),
+// 				deleteAdvert: null,
+// 			};
+
+// 		default:
+// 			return state;
+// 	}
+// }
+
 export function adverts(state = initialState.adverts, action) {
+	//console.log('en advert reducer', state);
 	switch (action.type) {
 		case ADVERTS_LOADED_SUCCESS:
 			return { ...state, loaded: true, data: action.payload };
-		case ADVERTS_CREATED_SUCCESS:
-			return { ...state, loaded: false, data: [...state.data, action.payload] };
-		case ADVERTS_DETAIL_SUCCESS:
-			return { ...state, loaded: false, detailAdvert: action.payload };
-		case ADVERTS_DELETED_REQUEST:
-			return { ...state, deleteAdvert: action.payload };
-		case ADVERTS_DELETED_SUCCESS:
+		case ADVERT_CREATED_SUCCESS:
+		case ADVERT_DETAIL_SUCCESS:
+		case ADVERT_DELETED_SUCCESS:
 			return {
 				...state,
-				data: state.data.filter((advert) => advert.id !== state.deleteAdvert),
-				deleteAdvert: null,
+				loaded: false,
+				data: [...state.data, action.payload],
 			};
-
 		default:
 			return state;
 	}
@@ -82,14 +100,14 @@ export function ui(state = initialState.ui, action) {
 	switch (action.type) {
 		case AUTH_LOGIN_REQUEST:
 		case ADVERTS_LOADED_REQUEST:
-		case ADVERTS_CREATED_REQUEST:
-		case ADVERTS_DETAIL_REQUEST:
+		case ADVERT_CREATED_REQUEST:
+		case ADVERT_DETAIL_REQUEST:
 		case AUTH_REGISTER_REQUEST:
 			return { ...state, loading: true, error: null };
 		case AUTH_LOGIN_SUCCESS:
 		case ADVERTS_LOADED_SUCCESS:
-		case ADVERTS_CREATED_SUCCESS:
-		case ADVERTS_DETAIL_SUCCESS:
+		case ADVERT_CREATED_SUCCESS:
+		case ADVERT_DETAIL_SUCCESS:
 		case AUTH_REGISTER_SUCCESS:
 		case UI_RESET_ERROR:
 			return { ...state, error: null };
