@@ -37,9 +37,6 @@ function AdvertDetail({ name, sale, desc, price, tags, image, onDelete }) {
 						<Typography gutterBottom variant="h5" component="h2">
 							{name}
 						</Typography>
-						<Typography gutterBottom variant="h5" component="h2">
-							{desc}
-						</Typography>
 						<Typography variant="body2" color="textSecondary" component="p">
 							{`${price}€`}
 						</Typography>
