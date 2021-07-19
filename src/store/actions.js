@@ -1,4 +1,4 @@
-import { getAdvertsLoaded, getAdvertDetail } from './selectors';
+import { getAdvertsLoaded, getAdvertDetail, getTagsLoaded } from './selectors';
 import {
 	AUTH_LOGIN_REQUEST,
 	AUTH_LOGIN_SUCCESS,
@@ -11,6 +11,9 @@ import {
 	ADVERTS_LOADED_REQUEST,
 	ADVERTS_LOADED_SUCCESS,
 	ADVERTS_LOADED_FAILURE,
+	TAGS_LOADED_REQUEST,
+	TAGS_LOADED_SUCCESS,
+	TAGS_LOADED_FAILURE,
 	ADVERT_DETAIL_REQUEST,
 	ADVERT_DETAIL_SUCCESS,
 	ADVERT_DETAIL_FAILURE,
@@ -182,6 +185,50 @@ export const advertDetailAction = (advertId) => {
 			return advert;
 		} catch (error) {
 			dispatch(advertDetailFailure(error));
+		}
+	};
+};
+
+/*******************************TAGS*********************************** */
+export const tagsLoadedRequest = () => {
+	return {
+		type: TAGS_LOADED_REQUEST,
+	};
+};
+
+export const tagsLoadedSuccess = (tags) => {
+	console.log('ACTION TAGSLOADEDSUCCESS', tags);
+	return {
+		type: TAGS_LOADED_SUCCESS,
+		payload: tags,
+	};
+};
+
+export const tagsLoadedFailure = (error) => {
+	return {
+		type: TAGS_LOADED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const tagsLoadedAction = () => {
+	return async function (dispatch, getState, { api }) {
+		console.log('hello state tags', getState());
+		const tagsLoaded = getTagsLoaded(getState());
+		console.log('tagsloaded', tagsLoaded);
+		if (tagsLoaded) {
+			return;
+		}
+		dispatch(tagsLoadedRequest());
+		try {
+			console.log('entrando en el try');
+			const tags = await api.adverts.getAllTags();
+			console.log('API CALL TAGS', tags);
+			dispatch(tagsLoadedSuccess(tags));
+		} catch (error) {
+			//TODO: pasarle el history y manejar en caso de rror la redireccion para quitarla del componente
+			dispatch(advertsLoadedFailure(error));
 		}
 	};
 };

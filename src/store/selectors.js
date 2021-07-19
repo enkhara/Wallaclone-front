@@ -1,5 +1,3 @@
-import { adverts } from './reducers/advertsReducer';
-
 export const getIsLogged = (state) => state.logged;
 
 export const getUi = (state) => {
@@ -19,3 +17,7 @@ export const getAdvertDetail = (state, advertId) => {
 	console.log(`advert Selector ${advert}`);
 	return advert;
 };
+
+export const getTags = (state) => state.tags;
+
+export const getTagsLoaded = (state) => !!state.tags.length;
