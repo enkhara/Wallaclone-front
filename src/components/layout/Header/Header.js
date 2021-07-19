@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../../shared/useStyles';
 import { AuthButton } from '../../auth/index';
 
-
 const Header = () => {
 	const classes = useStyles();
 	return (
