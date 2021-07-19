@@ -15,5 +15,17 @@ const mapAdvert = ({ image, ...advert }) => ({
 });
 
 export const getAdvert = (advertId) => {
-	return client.get(`${BASE_URL}/${advertId}`).then(mapAdvert);
+	const advert = client.get(`${BASE_URL}/advertisements/${advertId}`);
+	console.log(`advert API ${advert}`);
+	return advert;
+};
+
+export const getUSer = (userId) => {
+	const user = client.get(`${BASE_URL}/${userId}`);
+	console.log(user);
+	return user;
+};
+
+export const deleteAdvert = (advertId) => {
+	return client.delete(`${BASE_URL}/advertisements/${advertId}`);
 };
