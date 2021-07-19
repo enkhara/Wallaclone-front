@@ -5,6 +5,9 @@ import {
 	AUTH_LOGIN_FAILURE,
 	AUTH_LOGOUT,
 	UI_RESET_ERROR,
+	ADVERT_CREATED_SUCCESS,
+	ADVERT_CREATED_REQUEST,
+	ADVERT_CREATED_FAILURE,
 	AUTH_REGISTER_SUCCESS,
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_FAILURE,
@@ -229,6 +232,46 @@ export const tagsLoadedAction = () => {
 		} catch (error) {
 			//TODO: pasarle el history y manejar en caso de rror la redireccion para quitarla del componente
 			dispatch(advertsLoadedFailure(error));
+		}
+	};
+};
+
+/**************************ADVERT CREATION***************************** */
+
+export const advertCreatedRequest = () => {
+	return {
+		type: ADVERT_CREATED_REQUEST,
+	};
+};
+
+export const advertCreatedSuccess = (advert) => {
+	return {
+		type: ADVERT_CREATED_SUCCESS,
+		payload: advert,
+	};
+};
+
+export const advertCreatedFailure = (error) => {
+	return {
+		type: ADVERT_CREATED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const advertCreatedAction = (advert) => {
+	return async function (dispatch, getState, { api, history }) {
+		dispatch(advertCreatedRequest());
+		try {
+			const createdAdvert = await api.adverts.createdAdvert(advert);
+
+			dispatch(advertCreatedSuccess(createdAdvert));
+			history.push(`/adverts/${createdAdvert.id}`);
+		} catch (error) {
+			dispatch(advertCreatedFailure(error));
+			if (error?.statusCode === 401) {
+				history.push('/login');
+			}
 		}
 	};
 };
