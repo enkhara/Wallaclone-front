@@ -1,5 +1,8 @@
 import React from 'react';
 import T from 'prop-types';
+
+import { advert } from '../propTypes';
+
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,59 +17,66 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
 
-const Advert = ( {_id,image,name,price,reserved,sale,sell,tags} ) => {
-   
-    const classes = useStyles();
-    return (
-        <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={`${process.env.REACT_APP_API_BASE_URL}/${image}`}                    
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {`${price}€`}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions className={classes.cardActions}>
-                    <Box className={classes.author}>
-                        <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80" />
-                        <Box ml={2}>
-                            <Typography variant="subtitle2" component="p">
-                                                Guy Clemons
-                            </Typography>
-                            <Typography variant="subtitle2" color="textSecondary" component="p">
-                                May 14, 2020
-                            </Typography>
-                        </Box>
-                    </Box>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteBorderIcon />
-                    </IconButton>
-                        <ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
-                </CardActions>
-            </Card>
-        </Grid>
-		
-    )
-}
+const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
+	const classes = useStyles();
 
-Advert.propTypes = {
-    name:T.string,
-    price:T.number,
-    sale:T.bool,
-    tags:T.array,
-    reserved:T.bool,
-    sell:T.bool
-
-    
+	return (
+		<Grid item xs={12} sm={6} md={4}>
+			<Card className={classes.card}>
+				<CardActionArea>
+					<CardMedia
+						className={classes.media}
+						image={`${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`}
+					/>
+					<CardContent>
+						<Typography gutterBottom variant="h5" component="h2">
+							{name}
+						</Typography>
+						<Typography variant="body2" color="textSecondary" component="p">
+							{`${price}€`}
+						</Typography>
+					</CardContent>
+				</CardActionArea>
+				<CardActions className={classes.cardActions}>
+					<Box className={classes.author}>
+						<Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80" />
+						<Box ml={2}>
+							<Typography variant="subtitle2" component="p">
+								Guy Clemons
+							</Typography>
+							<Typography
+								variant="subtitle2"
+								color="textSecondary"
+								component="p"
+							>
+								May 14, 2020
+							</Typography>
+						</Box>
+					</Box>
+					<IconButton aria-label="add to favorites">
+						<FavoriteBorderIcon />
+					</IconButton>
+					<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
+				</CardActions>
+			</Card>
+		</Grid>
+	);
 };
- 
+
+Advert.prototype = {
+	...advert,
+	image: T.string,
+	reserved: T.bool,
+	sell: T.bool,
+};
+
+// Advert.propTypes = {
+// 	name: T.string,
+// 	price: T.number,
+// 	sale: T.bool,
+// 	tags: T.array,
+// 	reserved: T.bool,
+// 	sell: T.bool,
+// };
 
 export default Advert;
