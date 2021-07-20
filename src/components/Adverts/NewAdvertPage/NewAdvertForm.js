@@ -19,15 +19,24 @@ function NewAdvertForm({ onSubmit }) {
 		advertName: '',
 		desc: '',
 		price: 0,
-		sale: true,
+		transaction: '',
 		tags: [],
 	});
 
+	const { advertName, desc, price, transaction, tags, image } = advert;
+	console.log(advert);
+
 	const handleChange = (event) => {
+		console.log(
+			event.target.name,
+			'===>',
+			event.target.type,
+			event.target.checked
+		);
 		setAdvert((oldAdvert) => ({
 			...oldAdvert,
 			[event.target.name]:
-				event.target.type === 'checkbox'
+				event.target.type === 'checked'
 					? event.target.checked
 					: event.target.value,
 		}));
@@ -38,8 +47,9 @@ function NewAdvertForm({ onSubmit }) {
 
 		let newAdvert = new FormData();
 		newAdvert.append('name', advert.advertName);
+		newAdvert.append('desc', advert.desc);
 		newAdvert.append('price', advert.price);
-		newAdvert.append('sale', advert.sale);
+		newAdvert.append('transaction', advert.transaction);
 		newAdvert.append('tags', advert.tags);
 		if (advert.image) {
 			newAdvert.append('photo', advert.image);
@@ -53,10 +63,10 @@ function NewAdvertForm({ onSubmit }) {
 				<Paper
 					elevation={10}
 					style={{
-						padding: 30,
+						padding: '30px',
 						height: '500px',
-						margin: '100px auto',
-						width: 350,
+						margin: '50px auto',
+						width: '500px',
 					}}
 				>
 					<Grid align="center">
@@ -71,8 +81,9 @@ function NewAdvertForm({ onSubmit }) {
 						fullWidth
 						required
 						name="advertName"
-						value={advert.advertName}
+						value={advertName}
 						onChange={handleChange}
+						autoFocus={true}
 					/>
 					<TextField
 						label="image"
@@ -80,7 +91,7 @@ function NewAdvertForm({ onSubmit }) {
 						type="file"
 						fullWidth
 						name="image"
-						value={advert.image}
+						value={image}
 						onChange={handleChange}
 					/>
 					<TextField
@@ -90,20 +101,21 @@ function NewAdvertForm({ onSubmit }) {
 						fullWidth
 						required
 						name="desc"
-						value={advert.desc}
+						value={desc}
 						onChange={handleChange}
 					/>
 					<FormControl component="fieldset">
 						<FormLabel component="legend">Transaction</FormLabel>
 						<RadioGroup
 							aria-label="transaction"
-							name="transaction1"
-							value={advert.sale}
+							name="transaction"
+							value={transaction}
 							onChange={handleChange}
+							row
 						>
-							<FormControlLabel value="Sell" control={<Radio />} label="Sell" />
+							<FormControlLabel value="sell" control={<Radio />} label="Sell" />
 							<FormControlLabel
-								value="Wanted"
+								value="wanted"
 								control={<Radio />}
 								label="Wanted"
 							/>
@@ -112,7 +124,7 @@ function NewAdvertForm({ onSubmit }) {
 					<SelectTags
 						multiple
 						name="tags"
-						value={advert.tags}
+						value={tags}
 						onChange={handleChange}
 					/>
 					<Button
@@ -121,9 +133,7 @@ function NewAdvertForm({ onSubmit }) {
 						color="primary"
 						fullWidth
 						variant="contained"
-						disabled={
-							!advert.advertName || !advert.price || advert.tags.length === 0
-						}
+						disabled={!advertName || !transaction || price || tags.length === 0}
 					>
 						Created Advert
 					</Button>
