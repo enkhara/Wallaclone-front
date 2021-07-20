@@ -15,7 +15,7 @@ const mapAdvert = ({ image, ...advert }) => ({
 });
 
 export const getAllTags = () => {
-	return client.get(`${BASE_URL}/advertisements/tags`);
+	return client.get(`${BASE_URL}/tags/allTags`);
 };
 
 export const getAdvert = (advertId) => {
@@ -32,4 +32,12 @@ export const getUSer = (userId) => {
 
 export const deleteAdvert = (advertId) => {
 	return client.delete(`${BASE_URL}/advertisements/${advertId}`);
+};
+
+export const createdAdvert = (newAdvert) => {
+	return client.post(`${BASE_URL}/advertisements`, newAdvert);
+};
+
+export const updateAdvert = (advertId, advert) => {
+	return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
 };
