@@ -25,8 +25,6 @@ export const initialState = {
 	adverts: {
 		loaded: false,
 		data: [],
-		// deleteAdvert: null,
-		// detailAdvert: [],
 	},
 	tags: [],
 	ui: {
@@ -57,30 +55,8 @@ export function registered(state = initialState.registered, action) {
 	}
 }
 
-// export function adverts(state = initialState.adverts, action) {
-// 	switch (action.type) {
-// 		case ADVERTS_LOADED_SUCCESS:
-// 			return { ...state, loaded: true, data: action.payload };
-// 		case ADVERTS_CREATED_SUCCESS:
-// 			return { ...state, loaded: false, data: [...state.data, action.payload] };
-// 		case ADVERT_DETAIL_SUCCESS:
-// 			return { ...state, loaded: false, detailAdvert: action.payload };
-// 		case ADVERT_DELETED_REQUEST:
-// 			return { ...state, deleteAdvert: action.payload };
-// 		case ADVERT_DELETED_SUCCESS:
-// 			return {
-// 				...state,
-// 				data: state.data.filter((advert) => advert.id !== state.deleteAdvert),
-// 				deleteAdvert: null,
-// 			};
-
-// 		default:
-// 			return state;
-// 	}
-// }
 
 export function adverts(state = initialState.adverts, action) {
-	//console.log('en advert reducer', state);
 	switch (action.type) {
 		case ADVERTS_LOADED_SUCCESS:
 			return { ...state, loaded: true, data: action.payload };

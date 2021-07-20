@@ -17,11 +17,11 @@ function LoginPage() {
 		<div>
 			<LoginForm onSubmit={handleSubmit} />
 			{isLoading && <p>...login in wallaclone</p>}
-			{error && (
-				<div onClick={() => dispatch(resetError())} style={{ color: 'red' }}>
-					{error.message}
-				</div>
-			)}
+			{error && 
+				(<div 
+					onClick={() => dispatch(resetError())} 
+				/>)
+			}
 		</div>
 	);
 }

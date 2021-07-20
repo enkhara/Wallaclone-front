@@ -63,6 +63,7 @@ const RegisterForm = ({ onSubmit }) => {
 					/>
 					<TextField
 						type="email"
+						label="Email"
 						placeholder="Enter email"
 						fullWidth
 						required

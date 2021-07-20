@@ -1,4 +1,4 @@
-import { alertMessage } from '../components/alerts/alertMessage';
+import Swal from 'sweetalert2';
 import { getAdvertsLoaded, getAdvertDetail, getTagsLoaded } from './selectors';
 import {
 	AUTH_LOGIN_REQUEST,
@@ -59,6 +59,7 @@ export const loginAction = (credentials) => {
 			history.replace(from);
 		} catch (error) {
 			dispatch(authLoginFailure(error));
+			Swal.fire('Invalid login or password','Try again!','error');
 		}
 	};
 };
@@ -93,19 +94,24 @@ export const authRegisterSuccess = () => {
 export const registerAction = (credentials) => {
 	return async function (dispatch, getState, { api, history }) {
 		dispatch(authRegisterRequest());
+
 		try {
 			await api.auth.register(credentials);
 			dispatch(authRegisterSuccess());
-			const message={
-				title:'Congratulations!',
-				text:'You have successfully registered',
-				icon:'success'
-			};
-			alertMessage(message);
+			Swal.fire('Congratulations!','You have successfully registered','success');
 			const { from } = { from: { pathname: '/login' } };
 			history.replace(from);
 		} catch (error) {
 			dispatch(authRegisterFailure(error));
+
+			const { keyValue } = error.data.error;
+			let repeat = '';
+			if(keyValue.email){
+				repeat = 'Email is already taken';
+			}else{
+				repeat = 'Username is already taken';
+			}
+			Swal.fire(`${repeat}`,'Try again!','error');
 		}
 	};
 };
@@ -152,6 +158,7 @@ export const advertsLoadAction = () => {
 };
 
 export const resetError = () => {
+
 	return {
 		type: UI_RESET_ERROR,
 	};
