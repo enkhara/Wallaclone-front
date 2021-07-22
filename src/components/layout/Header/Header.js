@@ -2,9 +2,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../../shared/useStyles';
-import { AuthButton } from '../../auth/index';
+import { useSelector } from 'react-redux';
+import { getIsLogged } from '../../../store/selectors';
+import MenuLoginRegister from './MenuLoginRegister';
+import Logout from './Logout';
+
 
 const Header = () => {
+	const isLogged = useSelector( getIsLogged );
 	const classes = useStyles();
 	return (
 		<header className={classes.root}>
@@ -13,11 +18,18 @@ const Header = () => {
 					<Typography variant="h6" className={classes.title}>
 						Wallaclone
 					</Typography>
-					<AuthButton />
+					{ !isLogged 
+					?
+						<MenuLoginRegister/>
+					:	
+						<Logout/>
+
+					}
 				</Toolbar>
 			</AppBar>
-		</header>
+    	</header>
 	);
 };
+
 
 export default Header;
