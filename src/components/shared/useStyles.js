@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
+	header: {
+		marginBottom: '100px'
+	},
 
 	navBar: {
 		flexGrow: 1,

@@ -12,7 +12,7 @@ const Header = () => {
 	const isLogged = useSelector( getIsLogged );
 	const classes = useStyles();
 	return (
-		<header className={classes.root}>
+		<header className={classes.header}>
 			<AppBar position="static">
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
