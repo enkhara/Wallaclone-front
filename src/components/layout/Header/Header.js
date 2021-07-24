@@ -12,8 +12,8 @@ const Header = () => {
 	const isLogged = useSelector( getIsLogged );
 	const classes = useStyles();
 	return (
-		<header className={classes.header}>
-			<AppBar position="static">
+		<header>
+			<AppBar position="static" className={classes.navBar}>
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
 						Wallaclone

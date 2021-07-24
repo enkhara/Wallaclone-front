@@ -22,42 +22,28 @@ const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
 	const classes = useStyles();
 	return (
 		<Grid item xs={12} sm={6} md={4}>
-			<Link to={`/adverts/${name}/${_id}`}>	
+			<Link 
+				to={`/adverts/${name}/${_id}`} 
+				style={{textDecoration:'none'}}>	
 				<Card className={classes.card}>
 					<CardActionArea>
 						<CardMedia
 							className={classes.media}
 							image={`${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`}
 						/>
-						<CardContent>
-							<Typography gutterBottom variant="h5" component="h2">
-								{name}
+						<CardContent >
+							<Typography component="h2" className={classes.priceAdvert}>
+								{`${price} €`}
 							</Typography>
-							<Typography variant="body2" color="textSecondary" component="p">
-								{`${price}€`}
+							<Typography component="p">
+								{name}
 							</Typography>
 						</CardContent>
 					</CardActionArea>
 					<CardActions className={classes.cardActions}>
-						<Box className={classes.author}>
-							<Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80" />
-							<Box ml={2}>
-								<Typography variant="subtitle2" component="p">
-									Guy Clemons
-								</Typography>
-								<Typography
-									variant="subtitle2"
-									color="textSecondary"
-									component="p"
-								>
-									May 14, 2020
-								</Typography>
-							</Box>
-						</Box>
 						<IconButton aria-label="add to favorites">
 							<FavoriteBorderIcon />
 						</IconButton>
-						<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
 					</CardActions>
 				</Card>
 			</Link>
