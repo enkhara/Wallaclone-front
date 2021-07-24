@@ -1,5 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
+import Swal from 'sweetalert2';
 import {
   Grid,
   Paper,
@@ -13,8 +14,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const NewPasswordForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = React.useState({});
+  const [comparisonPass, setComparisonPass] = React.useState(false);
 
-  const { newpassword, equalpassword, repeatPassword } = credentials;
+  const { newpassword, repeatPassword } = credentials;
 
   const handleChange = (ev) => {
     setCredentials((oldCredentials) => ({
@@ -24,7 +26,13 @@ const NewPasswordForm = ({ onSubmit }) => {
   };
 
   const handleSubmit = (ev) => {
-    onSubmit(credentials);
+    ev.preventDefault();
+    if (newpassword === repeatPassword) {
+      setComparisonPass(true);
+      onSubmit(credentials.newpassword);
+    } else {
+      Swal.fire('Passwords should match');
+    }
   };
 
   return (
@@ -70,7 +78,7 @@ const NewPasswordForm = ({ onSubmit }) => {
             color="primary"
             fullWidth
             variant="contained"
-            disabled={equalpassword}
+            disabled={comparisonPass}
           >
             New password
           </Button>
