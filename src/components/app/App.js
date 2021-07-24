@@ -28,7 +28,7 @@ function App() {
         <ForgotPasswordPage />
       </Route>
 
-      <Route exact path="/new-password/:id/:tokenVerification">
+      <Route exact path="/new-password/:id/:token">
         <NewPasswordPage />
       </Route>
 
