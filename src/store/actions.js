@@ -27,6 +27,9 @@ import {
   AUTH_FORGOT_PASSWORD_FAILURE,
   AUTH_FORGOT_PASSWORD_REQUEST,
   AUTH_FORGOT_PASSWORD_SUCCESS,
+  AUTH_NEW_PASSWORD_REQUEST,
+  AUTH_NEW_PASSWORD_SUCCESS,
+  AUTH_NEW_PASSWORD_FAILURE,
 } from './types';
 
 /** Login Pasando el history */
@@ -365,6 +368,49 @@ export const forgotPasswordAction = (email, history) => {
       dispatch(forgotPasswordSuccess());
     } catch (error) {
       dispatch(forgotPasswordFailure(error));
+    }
+  };
+};
+
+/***************************new_password*************************************************/
+// Reset Password actions
+export const newPasswordRequest = (newPassword) => {
+  return {
+    type: AUTH_NEW_PASSWORD_REQUEST,
+    payload: newPassword,
+  };
+};
+
+export const newPasswordSuccess = (newPassword) => {
+  return {
+    type: AUTH_NEW_PASSWORD_SUCCESS,
+    payload: newPassword,
+  };
+};
+export const newPasswordFailure = (error) => {
+  return {
+    type: AUTH_NEW_PASSWORD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+// Reset Password middleware
+export const newPasswordAction = (
+  credentials, id, verificationToken,
+  history,
+  location,
+) => {
+  return async function (dispatch, getState,{ api, history }) {
+    dispatch(newPasswordRequest(credentials));
+    try {
+      await newPassword(credentials, id, verificationToken);
+      // Redirect
+      const { from } = location.state || { from: { pathname: '/login' } };
+      history.replace(from);
+      dispatch(newPasswordSuccess(cre));
+    } catch (error) {
+      dispatch(newPasswordFailure(error));
     }
   };
 };
