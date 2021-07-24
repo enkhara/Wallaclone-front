@@ -52,7 +52,7 @@ function NewAdvertForm({ onSubmit }) {
 		newAdvert.append('transaction', advert.transaction);
 		newAdvert.append('tags', advert.tags);
 		if (advert.image) {
-			newAdvert.append('photo', advert.image);
+			newAdvert.append('image', advert.image);
 		}
 		onSubmit(newAdvert);
 	};

@@ -1,9 +1,10 @@
 import axios from 'axios';
+import storage from '../utils/storage';
 
 const client = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
-console.log('en client', client);
 
 const setAuthorizationHeader = (token) => {
+	console.log('guarda el token en la cabecera', token);
 	client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
@@ -24,6 +25,24 @@ client.interceptors.response.use(
 		});
 	}
 );
+
+client.interceptors.request.use(
+	function(config) {
+	  const token = storage.get("auth"); 
+	  if (token) {
+		config.headers["Authorization"] = 'Bearer ' + token;
+	  }
+	  return config;
+	},
+	function(error) {
+	  //return Promise.reject(error);
+	  return Promise.reject({
+		 		message: error.response.statusText,
+		 		...error.response,
+		 		...error.response.data,
+		})
+	}
+  );
 
 export const configureClient = ({ accessToken }) => {
 	if (accessToken) {

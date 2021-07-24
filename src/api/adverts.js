@@ -35,7 +35,7 @@ export const deleteAdvert = (advertId) => {
 };
 
 export const createdAdvert = (newAdvert) => {
-	return client.post(`${BASE_URL}/advertisements`, newAdvert);
+	return client.post(`${BASE_URL}/advertisements`, newAdvert);	
 };
 
 export const updateAdvert = (advertId, advert) => {
