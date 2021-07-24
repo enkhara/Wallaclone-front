@@ -12,9 +12,7 @@ const AdvertsList = ({ adverts }) => {
 		<Container maxWidth="lg" className={classes.blogsContainer}>
 			<Grid container spacing={10}>
 				{adverts.map((advert) => (
-					
-						<Advert key={advert._id} {...advert} />
-					
+					<Advert key={advert._id} {...advert} />
 				))}
 			</Grid>
 		</Container>

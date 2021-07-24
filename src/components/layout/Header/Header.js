@@ -11,7 +11,7 @@ import Logout from './Logout';
 const Header = () => {
 	const isLogged = useSelector( getIsLogged );
 	const classes = useStyles();
-	return (
+	return (	
 		<header>
 			<AppBar position="static" className={classes.navBar}>
 				<Toolbar>

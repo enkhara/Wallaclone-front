@@ -22,14 +22,18 @@ export const useStyles = makeStyles((theme) => ({
 
 	card: {
 	  	maxWidth: "100%",
+		padding: '6px',
+		  
 	},
 	media: {
-	  	height: 240
+	  	height: 230,
+		borderRadius: 3
 	},
 	cardActions: {
 	  	display: 'flex',
     	alignItems: 'center',
     	justifyContent: 'flex-end',
+
 	},
 	author: {
 	  	display: "flex"

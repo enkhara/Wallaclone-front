@@ -32,7 +32,7 @@ const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
 							image={`${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`}
 						/>
 						<CardContent >
-							<Typography component="h2" className={classes.priceAdvert}>
+							<Typography component="p" className={classes.priceAdvert}>
 								{`${price} €`}
 							</Typography>
 							<Typography component="p">
