@@ -79,12 +79,11 @@ export const advertsLogoutFailure = (error)=>({
 
 export function authLogoutAction(){
     return async (dispatch, getState, { api, history })=>{
-		console.log('holasadfasfasfdasfd')
+
         try {
             dispatch(authLogoutSuccess());
             await api.auth.logout();
-            const { from } = history.location.state || { from: { pathname: '/' } };
-			history.replace(from);
+			history.push('/');
         } catch (error) {
             dispatch(advertsLogoutFailure(error));
         }
