@@ -4,22 +4,23 @@ import Advert from './Advert';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useStyles } from '../../shared/useStyles';
-import { Link } from 'react-router-dom';
+
 
 const AdvertsList = ({ adverts }) => {
 	const classes = useStyles();
 	return (
 		<Container maxWidth="lg" className={classes.blogsContainer}>
-			<Grid container spacing={3}>
+			<Grid container spacing={10}>
 				{adverts.map((advert) => (
-					<Link to={`/adverts/${advert.name}/${advert._id}`}>
-						<Advert key={advert._id} {...advert} />
-					</Link>
+					<Advert key={advert._id} {...advert} />
 				))}
 			</Grid>
 		</Container>
 	);
 };
+
+
+
 
 AdvertsList.propTypes = {
 	adverts: T.array.isRequired,

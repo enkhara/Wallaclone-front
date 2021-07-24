@@ -5,6 +5,7 @@ import {
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
 	AUTH_LOGOUT,
+	AUTH_LOGOUT_FAILURE,
 	UI_RESET_ERROR,
 	ADVERT_CREATED_SUCCESS,
 	ADVERT_CREATED_REQUEST,
@@ -54,7 +55,6 @@ export const loginAction = (credentials) => {
 		try {
 			await api.auth.login(credentials);
 			dispatch(authLoginSuccess());
-
 			const { from } = history.location.state || { from: { pathname: '/' } };
 			history.replace(from);
 		} catch (error) {
@@ -64,11 +64,32 @@ export const loginAction = (credentials) => {
 	};
 };
 
-export const authLogout = () => {
-	return {
-		type: AUTH_LOGOUT,
-	};
-};
+//logout
+
+export const authLogoutSuccess = () => ({
+    type: AUTH_LOGOUT
+});
+
+export const advertsLogoutFailure = (error)=>({
+    type:  AUTH_LOGOUT_FAILURE,
+    payload:error,
+    error:true
+
+});
+
+export function authLogoutAction(){
+    return async (dispatch, getState, { api, history })=>{
+
+        try {
+            dispatch(authLogoutSuccess());
+            await api.auth.logout();
+			history.push('/');
+        } catch (error) {
+            dispatch(advertsLogoutFailure(error));
+        }
+    }
+
+}
 /** Register */
 
 export const authRegisterRequest = () => {
