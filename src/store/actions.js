@@ -360,11 +360,11 @@ export const forgotPasswordAction = (email, history) => {
   return async function (dispatch, getState, { api, history }) {
     dispatch(forgotPasswordRequest());
     try {
-      const emailUser = await api.auth.forgotPassword(email);
+      await api.auth.forgotPassword(email);
       Swal.fire(
         'You will receive an email if this email address is in our database'
       );
-      history.push('/login');
+      history.push('/new-password/:id/:token');
       dispatch(forgotPasswordSuccess());
     } catch (error) {
       dispatch(forgotPasswordFailure(error));
@@ -374,17 +374,16 @@ export const forgotPasswordAction = (email, history) => {
 
 /***************************new_password*************************************************/
 // Reset Password actions
-export const newPasswordRequest = (newPassword) => {
+export const newPasswordRequest = () => {
   return {
     type: AUTH_NEW_PASSWORD_REQUEST,
-    payload: newPassword,
   };
 };
 
-export const newPasswordSuccess = (newPassword) => {
+export const newPasswordSuccess = (credentials) => {
   return {
     type: AUTH_NEW_PASSWORD_SUCCESS,
-    payload: newPassword,
+    payload: credentials,
   };
 };
 export const newPasswordFailure = (error) => {
@@ -396,19 +395,25 @@ export const newPasswordFailure = (error) => {
 };
 
 // Reset Password middleware
+
 export const newPasswordAction = (
-  credentials, id, verificationToken,
+  credentials,
+  id,
+  token,
   history,
-  location,
+  location
 ) => {
-  return async function (dispatch, getState,{ api, history }) {
-    dispatch(newPasswordRequest(credentials));
+  return async function (dispatch, getState, { api, history }) {
+    dispatch(newPasswordRequest());
+
     try {
-      await newPassword(credentials, id, verificationToken);
+      await api.auth.newPassword(credentials, id, token);
+      Swal.fire('updated password!!');
+
       // Redirect
       const { from } = location.state || { from: { pathname: '/login' } };
       history.replace(from);
-      dispatch(newPasswordSuccess(cre));
+      dispatch(newPasswordSuccess());
     } catch (error) {
       dispatch(newPasswordFailure(error));
     }
