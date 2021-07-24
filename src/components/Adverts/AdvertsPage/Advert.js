@@ -2,7 +2,6 @@ import React from 'react';
 import T from 'prop-types';
 
 import { advert } from '../propTypes';
-
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -41,9 +40,7 @@ const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
 						</CardContent>
 					</CardActionArea>
 					<CardActions className={classes.cardActions}>
-						<IconButton aria-label="add to favorites">
-							<FavoriteBorderIcon />
-						</IconButton>
+						<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
 					</CardActions>
 				</Card>
 			</Link>
