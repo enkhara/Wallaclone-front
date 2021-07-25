@@ -17,11 +17,12 @@ function AdvertPage() {
 	const { advertId } = useParams();
 	console.log('en advertDetail', advertId);
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
+	console.log(`Advert en detail${advert}`);
 	const { error } = useSelector(getUi);
 
 	React.useEffect(() => {
 		dispatch(advertDetailAction(advertId));
-	}, [dispatch,advertId]);
+	}, [dispatch, advertId]);
 
 	const handleDelete = () => {
 		dispatch(advertDeletedAction(advertId));
