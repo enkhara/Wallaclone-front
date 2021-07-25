@@ -7,6 +7,7 @@ import { useStyles } from '../../shared/useStyles';
 
 
 const AdvertsList = ({ adverts }) => {
+	
 	const classes = useStyles();
 	return (
 		<Container maxWidth="lg" className={classes.blogsContainer}>

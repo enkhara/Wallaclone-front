@@ -25,7 +25,7 @@ function AdvertDetail({ name, transaction, desc, price, tags, image, updatedAt, 
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 	
 	return (
-		<Grid item xs={12} sm={6} md={4}>
+		<Grid item xs={12} sm={6} md={1}>
 			<Card className={classes.card}>
 				<CardActionArea>
 					<CardMedia
