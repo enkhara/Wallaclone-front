@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../../layout';
 import { getAdverts } from '../../../store/selectors';
@@ -10,10 +10,22 @@ import AdvertsList from './AdvertsList';
 
 const AdvertsPage = () => {	
 	const dispatch = useDispatch();
-  	const adverts = useSelector(getAdverts);
+	const adverts = useSelector(getAdverts);
+	// paginación
+	const [limit, setLimit] = useState(9);
+    const [skip, setSkip] = useState(0);
 	
-  	React.useEffect(() => {
-    	dispatch(advertsLoadAction());
+	const nextPage = () => {
+		setSkip(skip + limit)
+	}
+
+	const previousPage = () => {
+		setSkip(skip - limit)
+	}
+
+	React.useEffect(() => {
+		const filterinicial = ''; // traemos todos los anuncios del back
+		dispatch(advertsLoadAction()); //filterinicial, limit, skip));
   	}, [dispatch]);
 
 	return(

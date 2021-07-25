@@ -177,7 +177,7 @@ export const advertsLoadAction = () => {
 
     dispatch(advertsLoadedRequest());
     try {
-      const adverts = await api.adverts.getLatestAdverts();
+      const adverts = await api.adverts.getLatestAdverts(); //(filters, limit, skip);
       dispatch(advertsLoadedSuccess(adverts));
     } catch (error) {
       dispatch(advertsLoadedFailure(error));

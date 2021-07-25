@@ -17,7 +17,7 @@ import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
 import { Link } from 'react-router-dom';
 
-const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
+const Advert = ({ _id, image, name, price, transaction, tags, reserved, sold}) => {
 	const classes = useStyles();
 	return (
 		<Grid item xs={12} sm={6} md={4}>
@@ -36,6 +36,9 @@ const Advert = ({ _id, image, name, price, reserved, sale, sell, tags }) => {
 							</Typography>
 							<Typography component="p">
 								{name}
+							</Typography>
+							<Typography component="p">
+								{transaction}
 							</Typography>
 						</CardContent>
 					</CardActionArea>

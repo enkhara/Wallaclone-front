@@ -4,7 +4,7 @@ import storage from '../utils/storage';
 const client = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
 const setAuthorizationHeader = (token) => {
-	console.log('guarda el token en la cabecera', token);
+	//console.log('guarda el token en la cabecera', token);
 	client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 

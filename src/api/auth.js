@@ -12,7 +12,7 @@ export const login = ({ remember, ...credentials }) => {
     })
     .then((token) => {
       if (remember) {
-        console.log('guarda el token en storage')
+        //console.log('guarda el token en storage')
         storage.set('auth', token);
       }
     });

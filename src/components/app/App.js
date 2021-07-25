@@ -38,9 +38,14 @@ function App() {
 
       <PrivateRoute exact path="/adverts/new" component={NewAdvertPage} />
 
-      <Route exact path="/">
+	  <Route exact path="/">
+        <Redirect to="/adverts" />
+	 </Route>
+		  
+      <Route exact path="/adverts">
         <AdvertsPage />
-      </Route>
+	  </Route>
+		  
       <Route exact path="/404">
         <NotfoundPage />
       </Route>

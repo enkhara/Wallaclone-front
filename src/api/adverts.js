@@ -2,6 +2,11 @@ import client from './client';
 
 export const BASE_URL = '/apiv1';
 
+// export const getLatestAdverts = (filters, limit, skip) => {
+// 	const url = `${BASE_URL}/advertisements?${filters}&limit=${limit}&skip=${skip}`;
+// 	return client.get(url);
+// };
+
 export const getLatestAdverts = () => {
 	const url = `${BASE_URL}/advertisements`;
 	return client.get(url);
