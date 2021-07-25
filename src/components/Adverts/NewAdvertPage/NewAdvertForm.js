@@ -27,12 +27,6 @@ function NewAdvertForm({ onSubmit }) {
 	console.log(advert);
 
 	const handleChange = (event) => {
-		console.log(
-			event.target.name,
-			'===>',
-			event.target.type,
-			event.target.checked
-		);
 		setAdvert((oldAdvert) => ({
 			...oldAdvert,
 			[event.target.name]:
@@ -60,11 +54,11 @@ function NewAdvertForm({ onSubmit }) {
 		newAdvert.append('desc', advert.desc);
 		newAdvert.append('price', advert.price);
 		newAdvert.append('transaction', advert.transaction);
-		newAdvert.append('tags', advert.tags);
+		advert.tags.forEach((tag) => newAdvert.append('tags[]', tag));
 		if (image) {
 			newAdvert.append('image', image);
 		}
-		console.log(`newAdvert en NewAdvertForm ${newAdvert}`);
+
 		onSubmit(newAdvert);
 	};
 
