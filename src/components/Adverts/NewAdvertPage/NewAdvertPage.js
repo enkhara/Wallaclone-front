@@ -11,7 +11,6 @@ function NewAdvertPage() {
 	const dispatch = useDispatch();
 
 	const handleSubmit = async (newAdvert) => {
-		console.log(`NewAdvert en NewAdvertPage ${newAdvert}`);
 		await dispatch(advertCreatedAction(newAdvert));
 	};
 

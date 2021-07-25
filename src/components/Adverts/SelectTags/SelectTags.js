@@ -13,7 +13,6 @@ function SelectTags(props) {
 		dispatch(tagsLoadedAction());
 	}, []);
 
-	console.log('TAGS en selectTags', tags);
 	return <CheckboxGroup options={tags} {...props} />;
 }
 
