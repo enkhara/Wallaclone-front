@@ -21,7 +21,7 @@ function AdvertPage() {
 
 	React.useEffect(() => {
 		dispatch(advertDetailAction(advertId));
-	}, []);
+	}, [dispatch,advertId]);
 
 	const handleDelete = () => {
 		dispatch(advertDeletedAction(advertId));
