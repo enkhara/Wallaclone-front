@@ -35,5 +35,22 @@ export const useStyles = makeStyles((theme) => ({
     	alignItems: 'center',
     	justifyContent: 'flex-end',
 
+	},
+	containerNewAdvert:{
+		display:'flex', 
+		justifyContent:'center', 
+		alignItems:'center', 
+		marginTop:'1px', 
+		backgroundColor:'#fff', 
+		color:'rgb(2,0,36)', 
+		padding:'10px',
+		cursor:'pointer',
+		color:'blue', 
+		textDecoration:'none', 
+		marginRight:'50px',
+		fontSize: '1.1rem'
+	},
+	buttonNewAdvert:{
+		marginRight:'5px'
 	}
   }));

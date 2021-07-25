@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import Box from '@material-ui/core/Box';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { useStyles } from '../../shared/useStyles';
 
 const ButtonNewAdvert = () => {
+    const classes = useStyles();
     return (
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-            <AccountCircle/>
-            
-            <Link 
-                to={`./register`} 
-                style={{color:'#fff', textDecoration:'none'}}>
-                Register
-            </Link>
-        </div>
+        <Link 
+            className={classes.containerNewAdvert}
+            to={`./adverts/new`} 
+        >
+            <AddCircleOutlineIcon className={classes.buttonNewAdvert}/>
+            Add new advert 
+           
+
+        </Link>
+      
     );
 };
 

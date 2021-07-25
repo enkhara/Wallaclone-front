@@ -22,14 +22,12 @@ const Header = () => {
 					</Typography>	
 					{ !isLogged 
 					?
+						<MenuLoginRegister/>
+					:	
 						<React.Fragment>
 							<ButtonNewAdvert/>
-							<MenuLoginRegister/>
+							<Logout/>
 						</React.Fragment>
-
-					:	
-						<Logout/>
-
 					}
 				</Toolbar>
 			</AppBar>
