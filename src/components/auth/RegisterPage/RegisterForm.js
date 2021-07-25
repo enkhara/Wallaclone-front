@@ -42,7 +42,7 @@ const RegisterForm = ({ onSubmit }) => {
 					style={{
 						padding: 30,
 						height: '500px',
-						margin: '100px auto',
+						margin: '50px auto',
 						width: 350,
 					}}
 				>

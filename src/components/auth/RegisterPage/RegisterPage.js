@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RegisterForm from './RegisterForm';
 import { registerAction, resetError } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
+import { Header } from '../../layout';
 
 //** REDUX */
 function RegisterPage() {
@@ -17,15 +18,12 @@ function RegisterPage() {
 
 	return (
 		<div>
+			<Header />
 			<RegisterForm onSubmit={handleSubmit} />
 			{isLoading && <p>...registering in wallaclone</p>}
-			{error && (
-				<div onClick={() => dispatch(resetError())}/>
-			)}
-			
+			{error && <div onClick={() => dispatch(resetError())} />}
 		</div>
 	);
 }
- 
 
 export default RegisterPage;
