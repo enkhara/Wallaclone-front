@@ -1,4 +1,4 @@
-import client from './client';
+import client, { configureClient, setAuthorizationHeader } from './client';
 
 export const BASE_URL = '/apiv1';
 
@@ -35,9 +35,18 @@ export const deleteAdvert = (advertId) => {
 };
 
 export const createdAdvert = (newAdvert) => {
+	configureClient(getToken);
+	console.log('clinet', client.defaults);
 	return client.post(`${BASE_URL}/advertisements`, newAdvert);
 };
 
+const getToken = async function () {
+	return localStorage.getItem('token');
+};
+
 export const updateAdvert = (advertId, advert) => {
+	console.log('client', client);
+	//setAuthorizationHeader(token);
+	configureClient(getToken);
 	return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
 };
