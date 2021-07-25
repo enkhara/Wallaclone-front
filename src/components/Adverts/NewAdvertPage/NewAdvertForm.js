@@ -23,7 +23,7 @@ function NewAdvertForm({ onSubmit }) {
 		tags: [],
 	});
 
-	const { advertName, desc, price, transaction, tags, image } = advert;
+	const { advertName, desc, price, transaction, tags } = advert;
 	console.log(advert);
 
 	const handleChange = (event) => {
@@ -42,6 +42,16 @@ function NewAdvertForm({ onSubmit }) {
 		}));
 	};
 
+	const [image, setImage] = React.useState('');
+
+	const handleChangeImage = (event) => {
+		if (event.target.files[0]) {
+			setImage(event.target.files[0]);
+		} else {
+			setImage([]);
+		}
+	};
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
@@ -51,9 +61,10 @@ function NewAdvertForm({ onSubmit }) {
 		newAdvert.append('price', advert.price);
 		newAdvert.append('transaction', advert.transaction);
 		newAdvert.append('tags', advert.tags);
-		if (advert.image) {
-			newAdvert.append('image', advert.image);
+		if (image) {
+			newAdvert.append('image', image);
 		}
+		console.log(`newAdvert en NewAdvertForm ${newAdvert}`);
 		onSubmit(newAdvert);
 	};
 
@@ -86,13 +97,23 @@ function NewAdvertForm({ onSubmit }) {
 						autoFocus={true}
 					/>
 					<TextField
+						label="price"
+						placeholder="Enter price"
+						fullWidth
+						required
+						type="number"
+						name="price"
+						value={price}
+						onChange={handleChange}
+						autoFocus={true}
+					/>
+					<TextField
 						label="image"
 						placeholder="Select image"
 						type="file"
 						fullWidth
 						name="image"
-						value={image}
-						onChange={handleChange}
+						onChange={handleChangeImage}
 					/>
 					<TextField
 						label="desc"
@@ -133,7 +154,9 @@ function NewAdvertForm({ onSubmit }) {
 						color="primary"
 						fullWidth
 						variant="contained"
-						disabled={!advertName || !transaction || price || tags.length === 0}
+						disabled={
+							!advertName || !transaction || !price || tags.length === 0
+						}
 					>
 						Created Advert
 					</Button>
