@@ -8,11 +8,11 @@ export const login = ({ remember, ...credentials }) => {
 		.post(`${authPath}/signin`, credentials)
 		.then(({ token }) => {
 			configureClient({ token });
-			console.log(`token en login ${token}`);
 			return token;
 		})
 		.then((token) => {
 			if (remember) {
+				console.log('guarda el token en storage');
 				storage.set('auth', token);
 			}
 		});
@@ -29,4 +29,16 @@ export const forgotPassword = ({ ...credentials }) => {
 
 export const logout = () => {
 	return Promise.resolve().then(resetClient).then(storage.clear);
+};
+
+export const newPassword = (credentials, id, token) => {
+	console.log('credentials en api/nwepassword', credentials, id, token);
+	return client.put(
+		`${authPath}/new-password`,
+		{ newPassword: credentials, id: id },
+		{
+			headers: { Authorization: `${token}` },
+		}
+	);
+	// return client.put(`${authPath}/forgot-password`, credentials);
 };

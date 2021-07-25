@@ -35,11 +35,8 @@ export const deleteAdvert = (advertId) => {
 };
 
 export const createdAdvert = (newAdvert) => {
-	configureClient(getToken);
-	console.log('clinet', client.defaults);
 	return client.post(`${BASE_URL}/advertisements`, newAdvert);
 };
-
 const getToken = async function () {
 	return localStorage.getItem('token');
 };

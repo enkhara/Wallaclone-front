@@ -1,28 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import NewPasswordForm from './NewPasswordForm';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { newPasswordAction } from '../../../store/actions';
 
 const NewPasswordPage = () => {
-  console.log(useParams);
-  const [error, setError] = React.useState(null);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const { id, token } = useParams();
 
   const handleSubmit = async (credentials) => {
-    setError(null);
-    try {
-    } catch (error) {
-      setError(error);
-    }
-
-    console.log(credentials);
-
-    //COMPROBAR EN LA BBDD USUARIO Y CONTRASEÑA CON REDUX Y LOADING
-
-    //CORRECTO
+    dispatch(newPasswordAction(credentials, id, token, history, location));
   };
   return (
     <div>
       <NewPasswordForm onSubmit={handleSubmit} />
-      {error && <div className="registerPage-error">{error.message}</div>}
     </div>
   );
 };
