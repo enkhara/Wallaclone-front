@@ -5,9 +5,9 @@ import { Button } from '../../shared';
 const EmptyList = () => (
 	<div style={{ textAlign: 'center' }}>
 		<p>Be the first Advert!</p>
-		{/* <Button as={Link} to="/adverts/new" variant="primary">
-        Advert
-      </Button> */}
+		<Button as={Link} to="/adverts/new" variant="primary">
+			Advert
+		</Button>
 	</div>
 );
 export default EmptyList;
