@@ -14,7 +14,6 @@ export const getAdvertsLoaded = (state) => state.adverts.loaded;
 
 export const getAdvertDetail = (state, advertId) => {
 	const advert = state.adverts.data.find((advert) => advert._id === advertId);
-	console.log(`advert Selector ${advert}`);
 	return advert;
 };
 

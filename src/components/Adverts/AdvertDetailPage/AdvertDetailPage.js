@@ -15,9 +15,7 @@ import AdvertDetail from './AdvertDetail';
 function AdvertPage() {
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
-	console.log('en advertDetail', advertId);
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
-	console.log(`Advert en detail${advert}`);
 	const { error } = useSelector(getUi);
 
 	React.useEffect(() => {
@@ -35,7 +33,7 @@ function AdvertPage() {
 	if (error?.statusCode === 404) {
 		return <Redirect to="/404" />;
 	}
-
+	console.log(`En advertPageDetail ${advert}`);
 	return (
 		<React.Fragment>
 			<Header />

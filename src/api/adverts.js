@@ -25,7 +25,6 @@ export const getAllTags = () => {
 
 export const getAdvert = (advertId) => {
 	const advert = client.get(`${BASE_URL}/advertisements/${advertId}`);
-	console.log(`advert API ${advert}`);
 	return advert;
 };
 

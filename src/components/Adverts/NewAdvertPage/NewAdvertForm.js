@@ -24,7 +24,6 @@ function NewAdvertForm({ onSubmit }) {
 	});
 
 	const { advertName, desc, price, transaction, tags } = advert;
-	console.log(advert);
 
 	const handleChange = (event) => {
 		setAdvert((oldAdvert) => ({
