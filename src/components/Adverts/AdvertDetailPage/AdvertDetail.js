@@ -20,25 +20,34 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
 
-function AdvertDetail({ name, transaction, desc, price, tags, image, updatedAt, userId, onDelete }) {
+function AdvertDetail({
+	name,
+	transaction,
+	desc,
+	price,
+	tags,
+	image,
+	updatedAt,
+	userId,
+	onDelete,
+}) {
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
-	
+
 	return (
 		<Grid item xs={12} sm={6} md={1}>
 			<Card className={classes.card}>
 				<CardActionArea>
 					<CardMedia
 						className={classes.media}
-						image={ image ?
-							`${URLIMG}/images/adverts/${image}` : placeholder }
+						image={image ? `${URLIMG}/images/adverts/${image}` : placeholder}
 					/>
-					
+
 					<CardContent>
 						<Typography gutterBottom variant="h4" component="h2">
 							{name}
 						</Typography>
-					
+
 						<Typography gutterBottom variant="h5" component="p">
 							Description: {desc}
 						</Typography>
@@ -46,13 +55,13 @@ function AdvertDetail({ name, transaction, desc, price, tags, image, updatedAt, 
 							Price: {`${price}€`}
 						</Typography> */}
 						<Typography component="p" className={classes.priceAdvert}>
-								Price: {`${price} €`}
+							Price: {`${price} €`}
 						</Typography>
 						<Typography gutterBottom variant="h5" component="p">
 							Type: {transaction}
 						</Typography>
 						<Typography gutterBottom variant="h5" component="p">
-							Tags: {'#'+tags.join(', #')}
+							Tags: {'#' + tags.join(', #')}
 						</Typography>
 					</CardContent>
 				</CardActionArea>
@@ -64,14 +73,14 @@ function AdvertDetail({ name, transaction, desc, price, tags, image, updatedAt, 
 							<Typography variant="subtitle2" component="p">
 								{userId.username ? userId.username : 'Desconocido'}
 							</Typography>
-							 <Typography
+							<Typography
 								variant="subtitle2"
 								color="textSecondary"
 								component="time"
 							>
 								{format(new Date(updatedAt), 'dd/MM/yyyy')}
 							</Typography>
-							</Box>
+						</Box>
 						<Box>
 							<Typography
 								variant="subtitle3"
@@ -79,14 +88,13 @@ function AdvertDetail({ name, transaction, desc, price, tags, image, updatedAt, 
 								component="time"
 							>
 								{formatDistanceToNow(new Date(updatedAt))}
-							</Typography> 
-							
+							</Typography>
 						</Box>
 					</Box>
 					<IconButton aria-label="add to favorites">
 						<FavoriteBorderIcon />
 					</IconButton>
-					<ShareAdvert Url='http://localhost:3000/username/desc_anuncio' />
+					<ShareAdvert Url="http://localhost:3000/username/desc_anuncio" />
 				</CardActions>
 			</Card>
 			<ConfirmationButton confirmation="Are you sure?" onConfirm={onDelete}>
