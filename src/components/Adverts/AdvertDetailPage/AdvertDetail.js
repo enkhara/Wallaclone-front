@@ -40,7 +40,7 @@ function AdvertDetail({
 				<CardActionArea>
 					<CardMedia
 						className={classes.media}
-						image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+						image={image ? `${URLIMG}/images/adverts/${image}` : placeholder}
 					/>
 
 					<CardContent>
