@@ -223,9 +223,9 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			console.log(`advert ACTION ${advert.result.name}`);
-			dispatch(advertDetailSuccess(advert));
-			return advert;
+			//console.log(`advert ACTION ${advert}`);
+			dispatch(advertDetailSuccess(advert.result));
+			return advert.result;
 		} catch (error) {
 			dispatch(advertDetailFailure(error));
 		}
@@ -240,7 +240,6 @@ export const tagsLoadedRequest = () => {
 };
 
 export const tagsLoadedSuccess = (tags) => {
-	console.log('ACTION TAGSLOADEDSUCCESS', tags);
 	return {
 		type: TAGS_LOADED_SUCCESS,
 		payload: tags,
@@ -257,17 +256,13 @@ export const tagsLoadedFailure = (error) => {
 
 export const tagsLoadedAction = () => {
 	return async function (dispatch, getState, { api }) {
-		console.log('hello state tags', getState());
 		const tagsLoaded = getTagsLoaded(getState());
-		console.log('tagsloaded', tagsLoaded);
 		if (tagsLoaded) {
 			return;
 		}
 		dispatch(tagsLoadedRequest());
 		try {
-			console.log('entrando en el try');
 			const tags = await api.adverts.getAllTags();
-			console.log('API CALL TAGS', tags);
 			dispatch(tagsLoadedSuccess(tags));
 		} catch (error) {
 			//TODO: pasarle el history y manejar en caso de rror la redireccion para quitarla del componente
