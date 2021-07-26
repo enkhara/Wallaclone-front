@@ -36,7 +36,7 @@ const Advert = ({
 							className={classes.media}
 							image={
 								image
-									? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
+									? `${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`
 									: placeholder
 							}
 						/>
@@ -50,7 +50,7 @@ const Advert = ({
 						</CardContent>
 					</CardActionArea>
 					<CardActions className={classes.cardActions}>
-						<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
+						<ShareAdvert Url='http://localhost:3000/username/desc_anuncio' />
 					</CardActions>
 				</Card>
 			</Link>

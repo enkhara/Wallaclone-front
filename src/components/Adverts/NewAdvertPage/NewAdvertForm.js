@@ -16,14 +16,14 @@ import SelectTags from '../SelectTags';
 
 function NewAdvertForm({ onSubmit }) {
 	const [advert, setAdvert] = React.useState({
-		advertName: '',
+		name: '',
 		desc: '',
 		price: 0,
 		transaction: '',
 		tags: [],
 	});
 
-	const { advertName, desc, price, transaction, tags } = advert;
+	const { name, desc, price, transaction, tags } = advert;
 
 	const handleChange = (event) => {
 		setAdvert((oldAdvert) => ({
@@ -49,7 +49,7 @@ function NewAdvertForm({ onSubmit }) {
 		event.preventDefault();
 
 		let newAdvert = new FormData();
-		newAdvert.append('name', advert.advertName);
+		newAdvert.append('name', advert.name);
 		newAdvert.append('desc', advert.desc);
 		newAdvert.append('price', advert.price);
 		newAdvert.append('transaction', advert.transaction);
@@ -84,8 +84,8 @@ function NewAdvertForm({ onSubmit }) {
 						placeholder="Enter product name"
 						fullWidth
 						required
-						name="advertName"
-						value={advertName}
+						name="name"
+						value={name}
 						onChange={handleChange}
 						autoFocus={true}
 					/>
@@ -148,7 +148,7 @@ function NewAdvertForm({ onSubmit }) {
 						fullWidth
 						variant="contained"
 						disabled={
-							!advertName || !transaction || !price || tags.length === 0
+							!name || !transaction || !price || tags.length === 0
 						}
 					>
 						Created Advert
