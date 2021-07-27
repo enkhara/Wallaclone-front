@@ -36,7 +36,7 @@ const Advert = ({
 							className={classes.media}
 							image={
 								image
-									? `${process.env.REACT_APP_API_BASE_URL}/images/adverts/${image}`
+									? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
 									: placeholder
 							}
 						/>
