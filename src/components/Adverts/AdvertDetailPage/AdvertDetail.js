@@ -17,7 +17,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
@@ -140,7 +140,7 @@ function AdvertDetail({
 								<FavoriteBorderIcon style={{fontSize:'2rem'}}/>
 							</IconButton>
 							<IconButton aria-label="add to favorites" style={{padding:'0px'}}>
-								<ChatBubbleOutlineIcon style={{fontSize:'2rem'}}/>
+								<ChatIcon style={{fontSize:'2rem'}}/>
 							</IconButton>
 
 						</Box>
