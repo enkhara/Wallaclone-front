@@ -30,6 +30,12 @@ export const useStyles = makeStyles((theme) => ({
 	  	height: 210,
 		borderRadius: 3
 	},
+	mediaDetailAdvert: {
+		height: 340,
+	  	borderRadius: 3,
+		marginTop:'1rem',
+		marginBottom:'1rem',
+  	},
 	cardActions: {
 	  	display: 'flex',
     	alignItems: 'center',
@@ -45,12 +51,39 @@ export const useStyles = makeStyles((theme) => ({
 		color:'rgb(2,0,36)', 
 		padding:'10px',
 		cursor:'pointer',
-		color:'blue', 
 		textDecoration:'none', 
 		marginRight:'50px',
 		fontSize: '1.1rem'
 	},
 	buttonNewAdvert:{
 		marginRight:'5px'
+	},
+	author: {
+		display: "flex",
+		alignItems:'center',
+		justifyContent:'center',
+		padding:0,
+		margin:0 
+	},
+	headerDetail :{
+		display: "flex",
+		justifyContent:'space-between',
+		padding:0,
+		margin:0
+	  },
+	priceDetailAdvert: {
+		fontWeight: 700,
+    	fontSize: '1.75rem',
+    	
+	},
+	nameDetailAdvert:{
+		fontWeight: 400,
+    	fontSize: '1.6rem',
+		letterSpacing:'1.5px',
+	},
+	tagDetailAdvert:{
+		width: '100%',
+		
 	}
+		
   }));
