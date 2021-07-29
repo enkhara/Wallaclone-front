@@ -38,87 +38,15 @@ function AdvertDetail({
 
 	return (
 		
-		// <Grid>
-		// 	<Paper
-		// 		elevation={10}
-		// 		style={{
-		// 			padding: 30,
-		// 			height: '750px',
-		// 			margin: '50px auto',
-		// 			width: 550,
-		// 		}}
-		// 	>
-		// 		<Card className={classes.card}>
-		// 			<CardActionArea>
-		// 				<CardMedia
-		// 					className={classes.media}
-		// 					image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
-		// 				/>
-		// 				<CardContent>
-		// 					<Typography gutterBottom variant="h4" component="h2">
-		// 						{name}
-		// 					</Typography>
-
-		// 					<Typography gutterBottom variant="h5" component="p">
-		// 						Description: {desc}
-		// 					</Typography>
-		// 					<Typography component="p" className={classes.priceAdvert}>
-		// 						Price: {`${price} €`}
-		// 					</Typography>
-		// 					<Typography gutterBottom variant="h5" component="p">
-		// 						Type: {transaction}
-		// 					</Typography>
-		// 					<Typography gutterBottom variant="h5" component="p">
-		// 						Tags: {'#' + tags.join(', #')}
-		// 					</Typography>
-		// 				</CardContent>
-		// 			</CardActionArea>
-		// 			<CardActions className={classes.cardActions}>
-		// 				<Box className={classes.author}>
-		// 					{/* <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80" /> */}
-		// 					<Avatar src="/broken-image.jpg" />
-		// 					<Box ml={2}>
-		// 						<Typography variant="subtitle2" component="p">
-		// 							{userId.username ? userId.username : 'Desconocido'}
-		// 						</Typography>
-		// 						<Typography
-		// 							variant="subtitle2"
-		// 							color="textSecondary"
-		// 							component="time"
-		// 						>
-		// 							{format(new Date(updatedAt), 'dd/MM/yyyy')}
-		// 						</Typography>
-		// 					</Box>
-		// 					<Box>
-		// 						<Typography
-		// 							variant="subtitle3"
-		// 							color="textSecondary"
-		// 							component="time"
-		// 						>
-		// 							{formatDistanceToNow(new Date(updatedAt))}
-		// 						</Typography>
-		// 					</Box>
-		// 				</Box>
-		// 				<IconButton aria-label="add to favorites">
-		// 					<FavoriteBorderIcon />
-		// 				</IconButton>
-		// 				<ShareAdvert Url="http://localhost:3000/username/desc_anuncio" />
-		// 			</CardActions>
-		// 		</Card>
-		// 		<ConfirmationButton confirmation="Are you sure?" onConfirm={onDelete}>
-		// 			Delete
-		// 		</ConfirmationButton>
-		// 	</Paper>
-		// </Grid>
-
-		<Grid>
+		<Grid >
+			
 			<Paper
 				elevation={10}
 				style={{
 					padding: 20,
-					height: '750px',
+					height: '800px',
 					margin: '50px auto',
-					width: 800,
+					width: 600,
 				}}
 			>
 				<Box>
@@ -150,21 +78,24 @@ function AdvertDetail({
 						className={classes.mediaDetailAdvert}
 						image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 					/>
-				
-							<Typography component="p" className={classes.priceDetailAdvert}>
-								{`${price} €`}
-							</Typography>
-							<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
-							<Box className={classes.tagDetailAdvert}>
-								<Typography component="p">{transaction}</Typography>
-							</Box>
-							<Typography component="p">{desc}</Typography>
-		
-                    <ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
+
+						<Typography component="p" className={classes.priceDetailAdvert}>
+							{`${price} €`}
+						</Typography>
+						<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
+						<Box className={classes.tagDetailAdvert}>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Tags </span>{tags.join(' - ')}</Typography>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Transaction </span>{transaction}</Typography>
+						</Box>
+						<Box className={classes.tagDetailAdvert} >
+							<Typography component="p" style={{color:'#b2b3b4',fontWeight:'700'}}>{desc}</Typography>
+						</Box>
+		                <ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 				</Box>
 			</Paper>
+				
 		</Grid>
-
+		
 
 
 	);

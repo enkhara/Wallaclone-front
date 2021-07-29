@@ -18,7 +18,7 @@ class shareAdvert extends Component {
                 </FacebookShareButton>
 
                 <TwitterShareButton url={this.props.Url} title={this.props.Title}>
-                    <TwitterIcon round size={32} />
+                    <TwitterIcon round size={32} style={{margin:'0 0.5rem'}}/>
                 </TwitterShareButton>
 
                 <WhatsappShareButton url={this.props.Url} title={this.props.title}>
