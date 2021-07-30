@@ -88,9 +88,11 @@ function AdvertDetail({
 							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Transaction </span>{transaction}</Typography>
 						</Box>
 						<Box className={classes.tagDetailAdvert} >
-							<Typography component="p" style={{color:'#b2b3b4',fontWeight:'700'}}>{desc}</Typography>
+							<Typography component="p" style={{fontWeight:'500'}}>{desc}</Typography>
 						</Box>
-		                <ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
+						<Box className={classes.socialDetailAdvert} >
+		                	<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
+						</Box>
 				</Box>
 			</Paper>
 				

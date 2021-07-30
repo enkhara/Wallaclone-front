@@ -94,6 +94,16 @@ export const useStyles = makeStyles((theme) => ({
 		paddingTop:'2rem',
 		paddingBottom:'2rem',
 	
-	}
+	},
+	socialDetailAdvert :{
+		width: '100%',
+		height: '50px',
+		display:'flex',
+		justifyContent:'center',
+		alignItems:'center',
+		paddingTop:'4rem',
+		
+	
+	},
 		
   }));
