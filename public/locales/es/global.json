@@ -3,7 +3,17 @@
     "Login": "Acceder",
     "Register": "Registro"
   },
-  "loginPage": {},
+  "login": {
+    "Sign in": "Accesso",
+    "Username": "Usuario",
+    "Enter username": "introducer usuario",
+    "Password": "Contraseña",
+    "Enter password": "Introducir contraseña",
+    "Remember me": "Recuérdame",
+    "Forgot your password?": "¿Olvidaste tu contraseña?",
+    "Don t have an account yet?": "¿Aún no tienes una cuenta?",
+    "Sign Up": "Registrarse"
+  },
 
   "register": {
     "Register": "Registrarse ",
