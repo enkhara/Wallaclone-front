@@ -1,0 +1,19 @@
+{
+  "header": {
+    "Login": "Login",
+    "Register": "Register"
+  },
+  "loginPage": {},
+
+  "register": {
+    "Register": "Register",
+    "Username": "Username",
+    "Enter username": "Enter username",
+    "Email": "Email",
+    "Enter email": "Enter email",
+    "Password": "Password",
+    "Enter password": "Enter password",
+    "Do you have an account?": "Do you have an account?",
+    "Sign In": "Sign In"
+  }
+}

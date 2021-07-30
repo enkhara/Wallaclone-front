@@ -1,0 +1,19 @@
+{
+  "header": {
+    "Login": "Acceder",
+    "Register": "Registro"
+  },
+  "loginPage": {},
+
+  "register": {
+    "Register": "Registrarse ",
+    "Username": "Usuario",
+    "Enter username": "introducer usuario",
+    "Email": "Correo electronico",
+    "Enter email": "Introducir correo",
+    "Password": "Contraseña",
+    "Enter password": "Introducir contraseña",
+    "Do you have an account?": "¿Tiene usted una cuenta?",
+    "Sign In": "Acceder"
+  }
+}
