@@ -383,6 +383,8 @@ export const forgotPasswordAction = (email, history) => {
       dispatch(forgotPasswordSuccess());
     } catch (error) {
       dispatch(forgotPasswordFailure(error));
+      const errorMessage = JSON.stringify(error.message);
+      Swal.fire(`${errorMessage}`);
     }
   };
 };
@@ -431,6 +433,8 @@ export const newPasswordAction = (
       dispatch(newPasswordSuccess());
     } catch (error) {
       dispatch(newPasswordFailure(error));
+      const errorMessage = JSON.stringify(error.message);
+      Swal.fire(`${errorMessage}`);
     }
   };
 };
