@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Box from '@material-ui/core/Box';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useStyles } from '../../shared/useStyles';
 

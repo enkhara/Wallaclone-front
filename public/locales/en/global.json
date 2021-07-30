@@ -1,0 +1,37 @@
+{
+  "header": {
+    "Login": "Login",
+    "Register": "Register"
+  },
+  "login": {
+    "Sign in": "Sign in",
+    "Username": "Username",
+    "Enter username": "Enter username",
+    "Password": "Password",
+    "Enter password": "Enter password",
+    "Remember me": "Remember me",
+    "Forgot your password?": "Forgot your password?",
+    "Don t have an account yet?": "Don t have an account yet?",
+    "Sign Up": "Sign Up"
+  },
+
+  "register": {
+    "Register": "Register",
+    "Username": "Username",
+    "Enter username": "Enter username",
+    "Email": "Email",
+    "Enter email": "Enter email",
+    "Password": "Password",
+    "Enter password": "Enter password",
+    "Do you have an account?": "Do you have an account?",
+    "Sign In": "Sign In"
+  },
+
+  "forgot": {
+    "You have problems to enter?": "You have problems to enter?",
+    " Enter your email and we will send you a link to enter your account": " Enter your email and we will send you a link to enter your account",
+    "Email": "Email",
+    "Enter email": "Enter email",
+    "Send access link": "Send access link"
+  }
+}
