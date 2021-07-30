@@ -45,7 +45,7 @@ function AdvertDetail({
 				style={{
 					padding: 20,
 					height: '800px',
-					margin: '50px auto',
+					margin: '35px auto',
 					width: 600,
 				}}
 			>

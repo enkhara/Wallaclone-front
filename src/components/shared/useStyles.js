@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     	margin: '20px 0 2px',
 	},
 	cardContent:{
-		height:"160px"
+		height:"200px"
 	},
 	blogsContainer: {
 	  	paddingTop: theme.spacing(15)
@@ -28,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
 		  
 	},
 	media: {
-	  	height: 210,
+	  	height: 200,
 		borderRadius: 3
 	},
 	mediaDetailAdvert: {
