@@ -25,5 +25,12 @@
     "Enter password": "Introducir contraseña",
     "Do you have an account?": "¿Tiene usted una cuenta?",
     "Sign In": "Acceder"
+  },
+  "forgot": {
+    "You have problems to enter?": "¿Tienes problemas para entrar?",
+    "Enter your email and we will send you a link to enter your account": "Ingrese su correo electrónico y le enviaremos un enlace para ingresar a su cuenta",
+    "Email": "Correo electronico",
+    "Enter email": "Introducir correo",
+    "Send access link": "Enviar enlace de acceso"
   }
 }

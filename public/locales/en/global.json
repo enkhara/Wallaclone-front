@@ -25,5 +25,13 @@
     "Enter password": "Enter password",
     "Do you have an account?": "Do you have an account?",
     "Sign In": "Sign In"
+  },
+
+  "forgot": {
+    "You have problems to enter?": "You have problems to enter?",
+    " Enter your email and we will send you a link to enter your account": " Enter your email and we will send you a link to enter your account",
+    "Email": "Email",
+    "Enter email": "Enter email",
+    "Send access link": "Send access link"
   }
 }
