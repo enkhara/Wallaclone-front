@@ -71,6 +71,8 @@ const AdvertsPage = () => {
 	return(
 		<React.Fragment>			
 			<Header />
+			
+
 			<div className="col-md-6">
         		<h4>Adverts List</h4>
 				<div>Nº de páginas: {count} </div>

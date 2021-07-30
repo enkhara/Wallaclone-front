@@ -26,7 +26,8 @@ const Header = () => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <Link href="/" color="inherit">
-              Wallaclone
+              {/* <img src="logo.png"></img> */}
+              W a l l a c l o n e
             </Link>
           </Typography>
           <div>
