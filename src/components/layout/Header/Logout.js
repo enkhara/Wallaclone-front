@@ -2,8 +2,11 @@ import { useDispatch } from 'react-redux';
 import { authLogoutAction } from '../../../store/actions';
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 const Logout = () => {
+
+    const {t, i18n}=useTranslation(['global']);
 
     const dispatch = useDispatch();
 
@@ -31,7 +34,7 @@ const Logout = () => {
                 color="inherit"
                 onClick={handleOpenModal}
             >
-                Logout
+                {t('header.Logout')}
             </Button>
 
         </div>

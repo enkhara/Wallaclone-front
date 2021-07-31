@@ -1,7 +1,10 @@
 {
   "header": {
     "Login": "Acceder",
-    "Register": "Registro"
+    "Register": "Registro",
+    "Add new advert":"Agregar nuevo anuncio",
+    "Language":"Idioma",
+    "Logout":"Salir"
   },
   "login": {
     "Sign in": "Accesso",

@@ -1,7 +1,11 @@
 {
   "header": {
     "Login": "Login",
-    "Register": "Register"
+    "Register": "Register",
+    "Add new advert":"Add new advert",
+    "Language":" Language",
+    "Logout":"Logout"
+
   },
   "login": {
     "Sign in": "Sign in",

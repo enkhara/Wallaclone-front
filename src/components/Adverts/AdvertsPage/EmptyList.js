@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../shared';
 
+
 const EmptyList = () => (
 	<div style={{ textAlign: 'center' }}>
 		<p>Be the first Advert!</p>
