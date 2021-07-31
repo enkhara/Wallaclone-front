@@ -425,11 +425,12 @@ export const newPasswordAction = (
 
     try {
       await api.auth.newPassword(credentials, id, token);
-      Swal.fire('updated password!!');
-
+      await Swal.fire('updated password!!');
+      window.open('about:blank', '_self');
+      window.close();
       // Redirect
-      const { from } = location.state || { from: { pathname: '/login' } };
-      history.replace(from);
+      // const { from } = location.state || { from: { pathname: '/login' } };
+      // history.replace(from);
       dispatch(newPasswordSuccess());
     } catch (error) {
       dispatch(newPasswordFailure(error));

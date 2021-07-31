@@ -55,6 +55,7 @@ const NewPasswordForm = ({ onSubmit }) => {
           </Grid>
           <TextField
             label="new password"
+            type="password"
             placeholder="Enter new password"
             fullWidth
             required
@@ -64,6 +65,7 @@ const NewPasswordForm = ({ onSubmit }) => {
           />
           <TextField
             label="repeat Password"
+            type="password"
             placeholder="Enter repeat Password"
             fullWidth
             required
