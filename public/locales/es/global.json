@@ -32,5 +32,14 @@
     "Email": "Correo electronico",
     "Enter email": "Introducir correo",
     "Send access link": "Enviar enlace de acceso"
+  },
+  "newpassword":{
+    "Register your new password":"Registre su nueva contraseña",
+    "New password":"Nueva contraseña",
+    "Enter new password":"Introducir nueva contraseña",
+    "Repeat Password":"Repita la contraseña",
+    "Enter repeat Password":"Introducir nueva contraseña",
+    "Do you have an account?": "¿Tiene usted una cuenta?",
+    "Sign In":"Acceder"
   }
 }
