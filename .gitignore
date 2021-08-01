@@ -26,3 +26,6 @@ yarn-error.log*
 .idea
 
 .vscode
+
+# implementacion de chat
+src/components/Chat
