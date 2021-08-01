@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { BorderBottom } from '@material-ui/icons';
 
 export const useStyles = makeStyles((theme) => ({
 
@@ -11,12 +12,12 @@ export const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 	},
 	priceAdvert: {
-		fontWeight: 500,
+		fontWeight: 700,
     	fontSize: '1.50rem',
     	margin: '20px 0 2px',
 	},
 	cardContent:{
-		height:"160px"
+		height:"200px"
 	},
 	blogsContainer: {
 	  	paddingTop: theme.spacing(15)
@@ -27,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
 		  
 	},
 	media: {
-	  	height: 210,
+	  	height: 200,
 		borderRadius: 3
 	},
 	mediaDetailAdvert: {
@@ -80,10 +81,29 @@ export const useStyles = makeStyles((theme) => ({
 		fontWeight: 400,
     	fontSize: '1.6rem',
 		letterSpacing:'1.5px',
+		marginBottom:'0.7rem'
 	},
 	tagDetailAdvert:{
 		width: '100%',
+		height: '50px',
+		display:'flex',
+		justifyContent:'space-between',
+		alignItems:'center',
+		borderBottom: '1px #ECEFF1 solid',
+		borderTop: '1px #ECEFF1 solid',
+		paddingTop:'2rem',
+		paddingBottom:'2rem',
+	
+	},
+	socialDetailAdvert :{
+		width: '100%',
+		height: '50px',
+		display:'flex',
+		justifyContent:'center',
+		alignItems:'center',
+		paddingTop:'4rem',
 		
-	}
+	
+	},
 		
   }));

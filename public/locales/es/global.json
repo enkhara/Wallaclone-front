@@ -1,0 +1,48 @@
+{
+  "header": {
+    "Login": "Acceder",
+    "Register": "Registro",
+    "Add new advert":"Agregar nuevo anuncio",
+    "Language":"Idioma",
+    "Logout":"Salir"
+  },
+  "login": {
+    "Sign in": "Accesso",
+    "Username": "Usuario",
+    "Enter username": "introducer usuario",
+    "Password": "Contraseña",
+    "Enter password": "Introducir contraseña",
+    "Remember me": "Recuérdame",
+    "Forgot your password?": "¿Olvidaste tu contraseña?",
+    "Don t have an account yet?": "¿Aún no tienes una cuenta?",
+    "Sign Up": "Registrarse"
+  },
+
+  "register": {
+    "Register": "Registrarse ",
+    "Username": "Usuario",
+    "Enter username": "introducer usuario",
+    "Email": "Correo electronico",
+    "Enter email": "Introducir correo",
+    "Password": "Contraseña",
+    "Enter password": "Introducir contraseña",
+    "Do you have an account?": "¿Tiene usted una cuenta?",
+    "Sign In": "Acceder"
+  },
+  "forgot": {
+    "You have problems to enter?": "¿Tienes problemas para entrar?",
+    "Enter your email and we will send you a link to enter your account": "Ingrese su correo electrónico y le enviaremos un enlace para ingresar a su cuenta",
+    "Email": "Correo electronico",
+    "Enter email": "Introducir correo",
+    "Send access link": "Enviar enlace de acceso"
+  },
+  "newpassword":{
+    "Register your new password":"Registre su nueva contraseña",
+    "New password":"Nueva contraseña",
+    "Enter new password":"Introducir nueva contraseña",
+    "Repeat Password":"Repita la contraseña",
+    "Enter repeat Password":"Introducir nueva contraseña",
+    "Do you have an account?": "¿Tiene usted una cuenta?",
+    "Sign In":"Acceder"
+  }
+}

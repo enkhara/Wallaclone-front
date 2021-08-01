@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { configureClient } from './api/client';
 import configureStore from './store/store';
 import storage from './utils/storage';
+import './i18n/i18next-config';
 
 import Root from './Root';
 
@@ -12,11 +13,13 @@ configureClient({ accessToken });
 const history = createBrowserHistory();
 
 const store = configureStore({
-	preloadedState: { logged: !!accessToken },
-	history,
+  preloadedState: { logged: !!accessToken },
+  history,
 });
 
 ReactDOM.render(
-	<Root store={store} history={history} />,
-	document.getElementById('root')
+  <Suspense fallback="loading">
+    <Root store={store} history={history} />
+  </Suspense>,
+  document.getElementById('root')
 );

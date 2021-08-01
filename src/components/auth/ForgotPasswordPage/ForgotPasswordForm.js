@@ -2,8 +2,10 @@ import React from 'react';
 import T from 'prop-types';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPasswordForm = ({ onSubmit }) => {
+  const [t, i18n] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     email: '',
   });
@@ -39,15 +41,17 @@ const ForgotPasswordForm = ({ onSubmit }) => {
             <Avatar style={{ backgroundColor: '#1dba849e' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <h2>You have problems to enter?</h2>
+            <h2>{t('forgot.You have problems to enter?')}</h2>
             <h4>
-              Enter your email and we will send you a link to enter your account
+              {t(
+                'forgot.Enter your email and we will send you a link to enter your account'
+              )}
             </h4>
           </Grid>
 
           <TextField
-            label="email"
-            placeholder="Enter email"
+            label={t('forgot.Email')}
+            placeholder={t('forgot.Enter email')}
             fullWidth
             required
             name="email"
@@ -63,7 +67,7 @@ const ForgotPasswordForm = ({ onSubmit }) => {
             variant="contained"
             disabled={!email}
           >
-            Send access link
+            {t('forgot.Send access link')}
           </Button>
         </Paper>
       </form>
