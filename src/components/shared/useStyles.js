@@ -101,7 +101,7 @@ export const useStyles = makeStyles((theme) => ({
 		display:'flex',
 		justifyContent:'center',
 		alignItems:'center',
-		paddingTop:'3rem',
+		paddingTop:'3.5rem',
 		
 	
 	},

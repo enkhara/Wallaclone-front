@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-
+import Container from '@material-ui/core/Container';
 import ConfirmationButton from '../../shared/ConfirmationButton';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
@@ -41,19 +41,20 @@ function AdvertDetail({
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
 	return (
-		
-		<Grid >
-			
-			<Paper
-				elevation={10}
-				style={{
+	
+		<Grid 
+			item xs={12} sm={12} md={12}
+			elevation={10}
+			style={{
+				height: '830px',
+				margin: '40px auto',
+				width: '600px',
+			}}
+		>
+				<Card style={{
 					padding: 20,
 					height: '810px',
-					margin: '50px auto',
-					width: '600px',
-				}}
-			>
-				<Box>
+				}}>
 					<CardActions className={classes.headerDetail}>
 						<Box className={classes.author}>
 							<Avatar/>
@@ -79,7 +80,7 @@ function AdvertDetail({
 					<CardMedia
 						className={classes.mediaDetailAdvert}
 						image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
-					/>
+						/>
 
 						<Typography component="p" className={classes.priceDetailAdvert}>
 							{`${price} €`}
@@ -104,7 +105,7 @@ function AdvertDetail({
 								variant="contained"
 								color="secondary"
 								startIcon={<DeleteIcon />}
-							>
+								>
 								Delete
       						</Button>
 						</Box>
@@ -112,8 +113,8 @@ function AdvertDetail({
 						<Box className={classes.socialDetailAdvert}>
 		                	<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 						</Box>
-				</Box>
-			</Paper>
+				</Card>
+			
 				
 		</Grid>
 		
