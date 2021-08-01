@@ -101,7 +101,19 @@ export const useStyles = makeStyles((theme) => ({
 		display:'flex',
 		justifyContent:'center',
 		alignItems:'center',
-		paddingTop:'4rem',
+		paddingTop:'3rem',
+		
+	
+	},
+	
+	updateAndDeleteDetailAdvert :{
+		width: '100%',
+		height: '50px',
+		display:'flex',
+		justifyContent:'space-evenly',
+		alignItems:'center',
+		paddingTop:'2rem',
+
 		
 	
 	},
