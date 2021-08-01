@@ -21,6 +21,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
+import { useTranslation } from 'react-i18next';
 
 function AdvertDetail({
 	name,
@@ -33,6 +34,7 @@ function AdvertDetail({
 	userId,
 	onDelete,
 }) {
+	const [t,i18n] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
