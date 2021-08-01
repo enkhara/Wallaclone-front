@@ -48,7 +48,7 @@ function AdvertDetail({
 				elevation={10}
 				style={{
 					padding: 20,
-					height: '800px',
+					height: '810px',
 					margin: '50px auto',
 					width: '600px',
 				}}
