@@ -46,5 +46,26 @@
     "Enter repeat Password":"Enter repeat Password",
     "Do you have an account?": "Do you have an account?",
     "Sign In": "Sign In"
+  }, 
+  "adverts":{
+    "Be the first Advert!":"Be the first Advert!",
+    "Advert":"Advert",
+    "Adverts List":"Adverts List",
+    "Nº of pages":"Nº of pages: ",
+    "Adverts per Page":"Adverts per Page: ",
+    "Create new advert":"Create new advert",
+    "Advert Name":"Advert Name",
+    "Enter product name":"Enter product name",
+    "price":"Price",
+    "Enter price":"Enter price",
+    "Image":"Image",
+    "Select image":"Select image",
+    "Descrption":"Descrption",
+    "Enter description":"Enter description",
+    "Transaction":"Transaction",
+    "Created Advert":"Created Advert",
+    "Sell":"Sell",
+    "Wanted":"Wanted",
+    "Tags":"Tags"
   }
 }

@@ -21,6 +21,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
+import { useTranslation } from 'react-i18next';
 
 function AdvertDetail({
 	name,
@@ -33,6 +34,7 @@ function AdvertDetail({
 	userId,
 	onDelete,
 }) {
+	const [t,i18n] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
@@ -84,8 +86,8 @@ function AdvertDetail({
 						</Typography>
 						<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
 						<Box className={classes.tagDetailAdvert}>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Tags </span>{tags.join(' - ')}</Typography>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Transaction </span>{transaction}</Typography>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Tags')}</span>{tags.join(' - ')}</Typography>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Transaction')}</span>{transaction}</Typography>
 						</Box>
 						<Box className={classes.tagDetailAdvert} >
 							<Typography component="p" style={{fontWeight:'500'}}>{desc}</Typography>
