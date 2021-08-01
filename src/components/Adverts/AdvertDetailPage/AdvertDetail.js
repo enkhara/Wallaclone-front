@@ -1,5 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import ConfirmationButton from '../../shared/ConfirmationButton';
 import placeholder from '../../../assets/images/placeholder.png';
@@ -37,7 +38,6 @@ function AdvertDetail({
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
 	return (
-		
 		// <Grid>
 		// 	<Paper
 		// 		elevation={10}
@@ -122,27 +122,34 @@ function AdvertDetail({
 				}}
 			>
 				<Box>
-
 					<CardActions className={classes.headerDetail}>
 						<Box className={classes.author}>
-							<Avatar/>
+							<Avatar />
 							<Box ml={2}>
 								<Typography variant="subtitle2" component="p">
 									{userId.username ? userId.username : 'Desconocido'}
 								</Typography>
-								<Typography variant="subtitle2" color="textSecondary" component="p">
+								<Typography
+									variant="subtitle2"
+									color="textSecondary"
+									component="p"
+								>
 									{formatDistanceToNow(new Date(updatedAt))}
 								</Typography>
 							</Box>
 						</Box>
 						<Box>
 							<IconButton aria-label="add to favorites">
-								<FavoriteBorderIcon style={{fontSize:'2rem'}}/>
+								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 							</IconButton>
-							<IconButton aria-label="add to favorites" style={{padding:'0px'}}>
-								<ChatIcon style={{fontSize:'2rem'}}/>
-							</IconButton>
-
+							<Link to={`/chat`} style={{ textDecoration: 'none' }}>
+								<IconButton
+									aria-label="add to favorites"
+									style={{ padding: '0px' }}
+								>
+									<ChatIcon style={{ fontSize: '2rem' }} />
+								</IconButton>
+							</Link>
 						</Box>
 					</CardActions>
 
@@ -150,23 +157,22 @@ function AdvertDetail({
 						className={classes.mediaDetailAdvert}
 						image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 					/>
-				
-							<Typography component="p" className={classes.priceDetailAdvert}>
-								{`${price} €`}
-							</Typography>
-							<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
-							<Box className={classes.tagDetailAdvert}>
-								<Typography component="p">{transaction}</Typography>
-							</Box>
-							<Typography component="p">{desc}</Typography>
-		
-                    <ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
+
+					<Typography component="p" className={classes.priceDetailAdvert}>
+						{`${price} €`}
+					</Typography>
+					<Typography component="h2" className={classes.nameDetailAdvert}>
+						{name}
+					</Typography>
+					<Box className={classes.tagDetailAdvert}>
+						<Typography component="p">{transaction}</Typography>
+					</Box>
+					<Typography component="p">{desc}</Typography>
+
+					<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
 				</Box>
 			</Paper>
 		</Grid>
-
-
-
 	);
 }
 
