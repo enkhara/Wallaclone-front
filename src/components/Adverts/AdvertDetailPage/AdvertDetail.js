@@ -84,8 +84,8 @@ function AdvertDetail({
 						</Typography>
 						<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
 						<Box className={classes.tagAndDescDetailAdvert}>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Tags </span>{tags.join(' - ')}</Typography>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Transaction </span>{transaction}</Typography>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Tags')}</span>{tags.join(' - ')}</Typography>
+							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Transaction')}</span>{transaction}</Typography>
 						</Box>
 						<Box className={classes.tagAndDescDetailAdvert} >
 							<Typography component="p" style={{fontWeight:'500'}}>{desc}</Typography>
