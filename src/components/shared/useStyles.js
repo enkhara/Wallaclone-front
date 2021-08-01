@@ -83,7 +83,7 @@ export const useStyles = makeStyles((theme) => ({
 		letterSpacing:'1.5px',
 		marginBottom:'0.7rem'
 	},
-	tagDetailAdvert:{
+	tagAndDescDetailAdvert:{
 		width: '100%',
 		height: '50px',
 		display:'flex',
@@ -104,6 +104,22 @@ export const useStyles = makeStyles((theme) => ({
 		paddingTop:'4rem',
 		
 	
+	},
+	favoriteIcon: {
+		marginRight: '5px',
+		transition: 'all 600ms',
+		"&:hover":{
+			backgroundColor:'#fa5969'
+		}
+	},
+	chatIcon: {
+		transition: 'all 600ms',
+		padding:'0',
+		height:'56px',
+		width:'56px',
+		"&:hover":{
+			backgroundColor:'#13C1AC'
+		}
 	},
 		
   }));

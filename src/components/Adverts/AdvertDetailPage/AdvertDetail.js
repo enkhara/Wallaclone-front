@@ -45,12 +45,11 @@ function AdvertDetail({
 				style={{
 					padding: 20,
 					height: '800px',
-					margin: '35px auto',
+					margin: '50px auto',
 					width: 600,
 				}}
 			>
 				<Box>
-
 					<CardActions className={classes.headerDetail}>
 						<Box className={classes.author}>
 							<Avatar/>
@@ -64,13 +63,12 @@ function AdvertDetail({
 							</Box>
 						</Box>
 						<Box>
-							<IconButton aria-label="add to favorites">
+							<IconButton className={classes.favoriteIcon}>
 								<FavoriteBorderIcon style={{fontSize:'2rem'}}/>
 							</IconButton>
-							<IconButton aria-label="add to favorites" style={{padding:'0px'}}>
+							<IconButton className={classes.chatIcon}>
 								<ChatIcon style={{fontSize:'2rem'}}/>
 							</IconButton>
-
 						</Box>
 					</CardActions>
 
@@ -83,14 +81,14 @@ function AdvertDetail({
 							{`${price} €`}
 						</Typography>
 						<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
-						<Box className={classes.tagDetailAdvert}>
+						<Box className={classes.tagAndDescDetailAdvert}>
 							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Tags </span>{tags.join(' - ')}</Typography>
 							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>Transaction </span>{transaction}</Typography>
 						</Box>
-						<Box className={classes.tagDetailAdvert} >
+						<Box className={classes.tagAndDescDetailAdvert} >
 							<Typography component="p" style={{fontWeight:'500'}}>{desc}</Typography>
 						</Box>
-						<Box className={classes.socialDetailAdvert} >
+						<Box className={classes.socialDetailAdvert}>
 		                	<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
 						</Box>
 				</Box>
