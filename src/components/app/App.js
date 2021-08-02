@@ -47,7 +47,7 @@ function App() {
 				<AdvertsPage />
 			</Route>
 
-			<Route exact path="/chat">
+			<Route exact path="/chat/:advertId">
 				<Chat />
 			</Route>
 
