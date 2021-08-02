@@ -33,6 +33,7 @@ function AdvertDetail({
 	updatedAt,
 	userId,
 	onDelete,
+	_id,
 }) {
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
@@ -69,7 +70,7 @@ function AdvertDetail({
 							<IconButton aria-label="add to favorites">
 								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 							</IconButton>
-							<Link to={`/chat`} style={{ textDecoration: 'none' }}>
+							<Link to={`/chat/${_id}`} style={{ textDecoration: 'none' }}>
 								<IconButton
 									aria-label="add to favorites"
 									style={{ padding: '0px' }}

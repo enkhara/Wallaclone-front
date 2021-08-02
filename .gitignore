@@ -29,3 +29,4 @@ yarn-error.log*
 
 # implementacion de chat
 src/components/Chat
+src/components/shared/UserAvatar.js
