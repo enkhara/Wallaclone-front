@@ -5,8 +5,9 @@ import reducer from './reducers/index';
 
 import * as auth from '../api/auth';
 import * as adverts from '../api/adverts';
+import * as user from '../api/user';
 
-const api = { auth, adverts };
+const api = { auth, adverts, user };
 
 const configureStore = ({ preloadedState, history }) => {
 	const middleware = [thunkMiddleware.withExtraArgument({ api, history })];
