@@ -83,7 +83,7 @@ export const useStyles = makeStyles((theme) => ({
 		letterSpacing:'1.5px',
 		marginBottom:'0.7rem'
 	},
-	tagDetailAdvert:{
+	tagAndDescDetailAdvert:{
 		width: '100%',
 		height: '50px',
 		display:'flex',
@@ -101,9 +101,37 @@ export const useStyles = makeStyles((theme) => ({
 		display:'flex',
 		justifyContent:'center',
 		alignItems:'center',
-		paddingTop:'4rem',
+		paddingTop:'3.5rem',
 		
 	
+	},
+	
+	updateAndDeleteDetailAdvert :{
+		width: '100%',
+		height: '50px',
+		display:'flex',
+		justifyContent:'space-evenly',
+		alignItems:'center',
+		paddingTop:'2rem',
+
+		
+	
+	},
+	favoriteIcon: {
+		marginRight: '5px',
+		transition: 'all 600ms',
+		"&:hover":{
+			backgroundColor:'#fa5969'
+		}
+	},
+	chatIcon: {
+		transition: 'all 600ms',
+		padding:'0',
+		height:'56px',
+		width:'56px',
+		"&:hover":{
+			backgroundColor:'#13C1AC'
+		}
 	},
 		
   }));

@@ -6,13 +6,17 @@ import { advertsLoadAction } from '../../../store/actions';
 import EmptyList from './EmptyList';
 import AdvertsList from './AdvertsList';
 import Pagination from '@material-ui/lab/Pagination';
+import { useTranslation } from 'react-i18next';
 
 const AdvertsPage = () => {
+	const [t, i18n] = useTranslation('global');
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
+
 	// paginación
 	// const [limit, setLimit] = useState(9);
 	// const [skip, setSkip] = useState(0);
+
 	// const nextPage = () => {
 	// 	setSkip(skip + limit)
 	// }
@@ -32,8 +36,10 @@ const AdvertsPage = () => {
 		const searchTitle = e.target.value;
 		setSearchTitle(searchTitle);
 	};
+
 	const getRequestParams = (searchTitle, page, pageSize) => {
 		let params = {};
+
 		if (searchTitle) {
 			params['title'] = searchTitle;
 		}
@@ -64,10 +70,15 @@ const AdvertsPage = () => {
 		<React.Fragment>
 			<Header />
 			<div className="col-md-6">
-				<h4>Adverts List</h4>
-				<div>Nº de páginas: {count} </div>
+				<h4>{t('adverts.Adverts List')}</h4>
+				<div>
+					<div>
+						{t('adverts.Nº of pages')}
+						{count}
+					</div>
+				</div>
 				<div className="mt-3">
-					{'Adverts per Page: '}
+					{t('adverts.Adverts per Page')}
 					<select onChange={handlePageSizeChange} value={pageSize}>
 						{pageSizes.map((size) => (
 							<option key={size} value={size}>
@@ -75,7 +86,6 @@ const AdvertsPage = () => {
 							</option>
 						))}
 					</select>
-
 					{/* <Pagination
 						className="my-3"
 						count={count}
