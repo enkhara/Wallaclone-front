@@ -47,9 +47,9 @@ function App() {
 				<AdvertsPage />
 			</Route>
 
-			<Route exact path="/chat/:advertId">
+			<PrivateRoute exact path="/chat/:advertId">
 				<Chat />
-			</Route>
+			</PrivateRoute>
 
 			<Route exact path="/404">
 				<NotfoundPage />

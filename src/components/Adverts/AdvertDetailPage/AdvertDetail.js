@@ -24,6 +24,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../../shareAdvert';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function AdvertDetail({
 	name,
@@ -37,13 +38,16 @@ function AdvertDetail({
 	onDelete,
 	_id,
 }) {
-	const [t,i18n] = useTranslation('global');
+	const [t, i18n] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
-	return (	
-		<Grid 
-			item xs={12} sm={12} md={12}
+	return (
+		<Grid
+			item
+			xs={12}
+			sm={12}
+			md={12}
 			elevation={10}
 			style={{
 				height: '830px',
@@ -51,71 +55,101 @@ function AdvertDetail({
 				width: '600px',
 			}}
 		>
-				<Card style={{
+			<Card
+				style={{
 					padding: 20,
 					height: '810px',
-				}}>
-					<CardActions className={classes.headerDetail}>
-						<Box className={classes.author}>
-							<Avatar />
-							<Box ml={2}>
-								<Typography variant="subtitle2" component="p">
-									{userId.username ? userId.username : 'Desconocido'}
-								</Typography>
-								<Typography
-									variant="subtitle2"
-									color="textSecondary"
-									component="p"
-								>
-									{formatDistanceToNow(new Date(updatedAt))}
-								</Typography>
-							</Box>
-						</Box>
-						<Box>
-							<IconButton className={classes.favoriteIcon}>
-								<FavoriteBorderIcon style={{fontSize:'2rem'}}/>
-							</IconButton>
-							<IconButton className={classes.chatIcon}>
-								<ChatIcon style={{fontSize:'2rem'}}/>
-							</IconButton>
-						</Box>
-					</CardActions>
-					<CardMedia
-						className={classes.mediaDetailAdvert}
-						image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
-					/>
-						<Typography component="p" className={classes.priceDetailAdvert}>
-							{`${price} €`}
-						</Typography>
-						<Typography component="h2" className={classes.nameDetailAdvert}>{name}</Typography>
-						<Box className={classes.tagAndDescDetailAdvert}>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Tags')}</span>{tags.join(' - ')}</Typography>
-							<Typography component="p"><span style={{color:'#b2b3b4', marginRight:'1rem', fontWeight:'700'}}>{t('adverts.Transaction')}</span>{transaction}</Typography>
-						</Box>
-						<Box className={classes.tagAndDescDetailAdvert} >
-							<Typography component="p" style={{fontWeight:'500'}}>{desc}</Typography>
-						</Box>
-						<Box className={classes.updateAndDeleteDetailAdvert}>
-							<Button
-								variant="contained"
-								color="primary"
-								startIcon={<CreateIcon />}
+				}}
+			>
+				<CardActions className={classes.headerDetail}>
+					<Box className={classes.author}>
+						<Avatar />
+						<Box ml={2}>
+							<Typography variant="subtitle2" component="p">
+								{userId.username ? userId.username : 'Desconocido'}
+							</Typography>
+							<Typography
+								variant="subtitle2"
+								color="textSecondary"
+								component="p"
 							>
-								Update
-      						</Button>
-							<Button
-								variant="contained"
-								color="secondary"
-								startIcon={<DeleteIcon />}
-								>
-								Delete
-      						</Button>
+								{formatDistanceToNow(new Date(updatedAt))}
+							</Typography>
 						</Box>
-						
-						<Box className={classes.socialDetailAdvert}>
-		                	<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
-						</Box>
-				</Card>
+					</Box>
+					<Box>
+						<IconButton className={classes.favoriteIcon}>
+							<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+						</IconButton>
+						<Link to={`/chat/${_id}`} style={{ textDecoration: 'none' }}>
+							<IconButton className={classes.chatIcon}>
+								<ChatIcon style={{ fontSize: '2rem' }} />
+							</IconButton>
+						</Link>
+					</Box>
+				</CardActions>
+				<CardMedia
+					className={classes.mediaDetailAdvert}
+					image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+				/>
+				<Typography component="p" className={classes.priceDetailAdvert}>
+					{`${price} €`}
+				</Typography>
+				<Typography component="h2" className={classes.nameDetailAdvert}>
+					{name}
+				</Typography>
+				<Box className={classes.tagAndDescDetailAdvert}>
+					<Typography component="p">
+						<span
+							style={{
+								color: '#b2b3b4',
+								marginRight: '1rem',
+								fontWeight: '700',
+							}}
+						>
+							{t('adverts.Tags')}
+						</span>
+						{tags.join(' - ')}
+					</Typography>
+					<Typography component="p">
+						<span
+							style={{
+								color: '#b2b3b4',
+								marginRight: '1rem',
+								fontWeight: '700',
+							}}
+						>
+							{t('adverts.Transaction')}
+						</span>
+						{transaction}
+					</Typography>
+				</Box>
+				<Box className={classes.tagAndDescDetailAdvert}>
+					<Typography component="p" style={{ fontWeight: '500' }}>
+						{desc}
+					</Typography>
+				</Box>
+				<Box className={classes.updateAndDeleteDetailAdvert}>
+					<Button
+						variant="contained"
+						color="primary"
+						startIcon={<CreateIcon />}
+					>
+						Update
+					</Button>
+					<Button
+						variant="contained"
+						color="secondary"
+						startIcon={<DeleteIcon />}
+					>
+						Delete
+					</Button>
+				</Box>
+
+				<Box className={classes.socialDetailAdvert}>
+					<ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} />
+				</Box>
+			</Card>
 		</Grid>
 	);
 }
