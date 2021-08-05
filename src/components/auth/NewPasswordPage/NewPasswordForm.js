@@ -11,8 +11,10 @@ import {
   Link,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { useTranslation } from 'react-i18next';
 
 const NewPasswordForm = ({ onSubmit }) => {
+  const [t, i18n] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({});
   const [comparisonPass, setComparisonPass] = React.useState(false);
 
@@ -51,11 +53,12 @@ const NewPasswordForm = ({ onSubmit }) => {
             <Avatar style={{ backgroundColor: '#1dba849e' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <h2>Register your new password</h2>
+            <h2>{t('newpassword.Register your new password')}</h2>
           </Grid>
           <TextField
-            label="new password"
-            placeholder="Enter new password"
+            label={t('newpassword.New password')}
+            type="password"
+            placeholder={t('newpassword.Enter new password')}
             fullWidth
             required
             name="newpassword"
@@ -63,8 +66,9 @@ const NewPasswordForm = ({ onSubmit }) => {
             onChange={handleChange}
           />
           <TextField
-            label="repeat Password"
-            placeholder="Enter repeat Password"
+            label={t('newpassword.Repeat Password')}
+            type="password"
+            placeholder={t('newpassword.Enter repeat Password')}
             fullWidth
             required
             name="repeatPassword"
@@ -80,11 +84,11 @@ const NewPasswordForm = ({ onSubmit }) => {
             variant="contained"
             disabled={comparisonPass}
           >
-            New password
+            {t('newpassword.New password')}
           </Button>
           <Typography>
-            Do you have an account?
-            <Link href="/login"> Sign In</Link>
+            {t('newpassword.Do you have an account?')}
+            <Link href="/login">{t('newpassword.Sign In')}</Link>
           </Typography>
         </Paper>
       </form>

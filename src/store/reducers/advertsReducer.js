@@ -16,11 +16,15 @@ import {
 	UI_RESET_ERROR,
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_SUCCESS,
-	ADVERT_DELETED_FAILURE,
+	USER_LOGGED_SUCCESS,
+	USER_LOGGED_REQUEST,
+	USER_LOGOUT_SUCCESS,
+	USER_LOGOUT_REQUEST,
 } from '../types';
 
 export const initialState = {
 	logged: false,
+	user: null,
 	registered: false,
 	adverts: {
 		loaded: false,
@@ -41,6 +45,16 @@ export function logged(state = initialState.logged, action) {
 			return true;
 		case AUTH_LOGOUT:
 			return false;
+		default:
+			return state;
+	}
+}
+export function user(state = initialState.user, action) {
+	switch (action.type) {
+		case USER_LOGGED_SUCCESS:
+			return { ...action.payload };
+		case USER_LOGOUT_SUCCESS:
+			return null;
 		default:
 			return state;
 	}
@@ -98,13 +112,17 @@ export function ui(state = initialState.ui, action) {
 		case ADVERT_DETAIL_REQUEST:
 		case ADVERT_DELETED_REQUEST:
 		case AUTH_REGISTER_REQUEST:
+		case USER_LOGOUT_REQUEST:
+		case USER_LOGGED_REQUEST:
 			return { ...state, loading: true, error: null };
 		case AUTH_LOGIN_SUCCESS:
 		case ADVERTS_LOADED_SUCCESS:
 		case ADVERT_CREATED_SUCCESS:
 		case ADVERT_DETAIL_SUCCESS:
 		case AUTH_REGISTER_SUCCESS:
+		case USER_LOGGED_SUCCESS:
 		case UI_RESET_ERROR:
+		case USER_LOGOUT_SUCCESS:
 			return { ...state, error: null };
 		default:
 			return state;

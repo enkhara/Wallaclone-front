@@ -1,14 +1,17 @@
 {
   "header": {
     "Login": "Acceder",
-    "Register": "Registro"
+    "Register": "Registro",
+    "Add new advert":"Agregar nuevo anuncio",
+    "Language":"Idioma",
+    "Logout":"Salir"
   },
   "login": {
     "Sign in": "Accesso",
     "Username": "Usuario",
-    "Enter username": "introducer usuario",
+    "Enter username": "Ingrese usuario",
     "Password": "Contraseña",
-    "Enter password": "Introducir contraseña",
+    "Enter password": "Ingrese contraseña",
     "Remember me": "Recuérdame",
     "Forgot your password?": "¿Olvidaste tu contraseña?",
     "Don t have an account yet?": "¿Aún no tienes una cuenta?",
@@ -18,11 +21,11 @@
   "register": {
     "Register": "Registrarse ",
     "Username": "Usuario",
-    "Enter username": "introducer usuario",
+    "Enter username": "Ingrese usuario",
     "Email": "Correo electronico",
-    "Enter email": "Introducir correo",
+    "Enter email": "Ingrese correo",
     "Password": "Contraseña",
-    "Enter password": "Introducir contraseña",
+    "Enter password": "Ingrese contraseña",
     "Do you have an account?": "¿Tiene usted una cuenta?",
     "Sign In": "Acceder"
   },
@@ -30,7 +33,37 @@
     "You have problems to enter?": "¿Tienes problemas para entrar?",
     "Enter your email and we will send you a link to enter your account": "Ingrese su correo electrónico y le enviaremos un enlace para ingresar a su cuenta",
     "Email": "Correo electronico",
-    "Enter email": "Introducir correo",
+    "Enter email": "Ingrese correo",
     "Send access link": "Enviar enlace de acceso"
+  },
+  "newpassword":{
+    "Register your new password":"Registre su nueva contraseña",
+    "New password":"Nueva contraseña",
+    "Enter new password":"Ingrese nueva contraseña",
+    "Repeat Password":"Repita la contraseña",
+    "Enter repeat Password":"Ingrese nueva contraseña",
+    "Do you have an account?": "¿Tiene usted una cuenta?",
+    "Sign In":"Acceder"
+  }, 
+  "adverts":{
+    "Be the first Advert!":"¡Sé el primer anunciar!",
+    "Advert":"Anuncio",
+    "Adverts List":"lista de Anuncios",
+    "Nº of pages":"Nº de páginas: ",
+    "Adverts per Page":"Anuncios por página: ",
+    "Create new advert":"Crea un nuevo anuncio",
+    "Advert Name":"Ingrese el nombre del producto",
+    "Enter product name":"Ingrese el nombre del producto",
+    "price":"Precio",
+    "Enter price":"Ingrese precio",
+    "Image":"Imagen",
+    "Select image":"Selecione imagen",
+    "Descrption":"Descripción",
+    "Enter description":"Ingrese descripcón",
+    "Transaction":"Transacción",
+    "Created Advert":"Crear anuncio",
+    "Sell":"Vender",
+    "Wanted":"Búsqueda",
+    "Tags":"Etiqueta"
   }
 }

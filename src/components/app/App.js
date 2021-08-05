@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import {
-  LoginPage,
-  PrivateRoute,
-  RegisterPage,
-  ForgotPasswordPage,
-  NewPasswordPage,
+	LoginPage,
+	PrivateRoute,
+	RegisterPage,
+	ForgotPasswordPage,
+	NewPasswordPage,
 } from '../../components/auth';
 import { AdvertsPage, AdvertPage, NewAdvertPage, EditAdvertPage } from '../Adverts';
+import Chat from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 
 import './reset.css';
@@ -41,7 +42,11 @@ function App() {
 
 	   <Route exact path="/">
         <Redirect to="/adverts" />
-	   </Route>
+		  </Route>
+		  
+	   <PrivateRoute exact path="/chat/:advertId">
+			<Chat />
+		</PrivateRoute>
 		  
       <Route exact path="/adverts">
         <AdvertsPage />
@@ -53,6 +58,7 @@ function App() {
       <Redirect to="/404" />
     </Switch>
   );
+
 }
 
 export default App;

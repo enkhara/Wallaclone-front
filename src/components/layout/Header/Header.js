@@ -30,11 +30,15 @@ const Header = () => {
               W a l l a c l o n e
             </Link>
           </Typography>
+        
+       
           <div>
-            <button onClick={() => TranslationClick('es')}></button>
-            <button onClick={() => TranslationClick('en')}></button>
+          {t('header.Language')}
+          
+            <button onClick={() => TranslationClick('es')}>ES</button>
+            <button onClick={() => TranslationClick('en')}>EN</button>
           </div>
-
+        
           {!isLogged ? (
             <MenuLoginRegister />
           ) : (
