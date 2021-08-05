@@ -39,7 +39,7 @@ const Header = () => {
             <MenuLoginRegister />
           ) : (
             <React.Fragment>
-              <ButtonNewAdvert />
+                <ButtonNewAdvert />
               <Logout />
             </React.Fragment>
           )}

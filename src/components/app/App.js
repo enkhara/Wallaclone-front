@@ -7,7 +7,7 @@ import {
   ForgotPasswordPage,
   NewPasswordPage,
 } from '../../components/auth';
-import { AdvertsPage, AdvertPage, NewAdvertPage } from '../Adverts';
+import { AdvertsPage, AdvertPage, NewAdvertPage, EditAdvertPage } from '../Adverts';
 import NotfoundPage from './NotFoundPage';
 
 import './reset.css';
@@ -37,14 +37,15 @@ function App() {
       </Route>
 
       <PrivateRoute exact path="/adverts/new" component={NewAdvertPage} />
+      <PrivateRoute exact path="/adverts/edit/:advertId" component={EditAdvertPage} />
 
-	  <Route exact path="/">
+	   <Route exact path="/">
         <Redirect to="/adverts" />
-	 </Route>
+	   </Route>
 		  
       <Route exact path="/adverts">
         <AdvertsPage />
-	  </Route>
+	    </Route>
 		  
       <Route exact path="/404">
         <NotfoundPage />

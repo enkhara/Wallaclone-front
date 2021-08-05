@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
-import ShareAdvert from '../../shareAdvert';
+import ShareAdvert from '../shareAdvert';
 
 function AdvertDetail({
 	name,
@@ -30,6 +30,7 @@ function AdvertDetail({
 	tags,
 	image,
 	updatedAt,
+	createdAt,
 	userId,
 	onDelete,
 }) {
@@ -59,7 +60,7 @@ function AdvertDetail({
 									{userId.username ? userId.username : 'Desconocido'}
 								</Typography>
 								<Typography variant="subtitle2" color="textSecondary" component="p">
-									{formatDistanceToNow(new Date(updatedAt))}
+									{formatDistanceToNow(new Date(createdAt))}
 								</Typography>
 							</Box>
 						</Box>

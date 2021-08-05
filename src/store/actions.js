@@ -10,6 +10,9 @@ import {
   ADVERT_CREATED_SUCCESS,
   ADVERT_CREATED_REQUEST,
   ADVERT_CREATED_FAILURE,
+  ADVERT_EDIT_SUCCESS,
+  ADVERT_EDIT_REQUEST,
+  ADVERT_EDIT_FAILURE,
   AUTH_REGISTER_SUCCESS,
   AUTH_REGISTER_REQUEST,
   AUTH_REGISTER_FAILURE,
@@ -177,7 +180,7 @@ export const advertsLoadAction = () => {
 
     dispatch(advertsLoadedRequest());
     try {
-      const adverts = await api.adverts.getLatestAdverts(); //(filters, limit, skip);
+      const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
       dispatch(advertsLoadedSuccess(adverts));
     } catch (error) {
       dispatch(advertsLoadedFailure(error));
@@ -312,6 +315,51 @@ export const advertCreatedAction = (advert) => {
     }
   };
 };
+
+/**
+ * ADVERT EDIT
+ */
+
+export const advertEditRequest = () => {
+  return {
+    type: ADVERT_EDIT_REQUEST,
+  };
+};
+
+export const advertEditSuccess = (advert) => {
+  return {
+    type: ADVERT_EDIT_SUCCESS,
+    payload: advert,
+  };
+};
+
+export const advertEditFailure = (error) => {
+  return {
+    type: ADVERT_EDIT_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const advertEditAction = (advertId, advert) => {
+  return async function (dispatch, getState, { api, history }) {
+    dispatch(advertEditRequest());
+    try {
+      const updateAdvert = await api.adverts.updateAdvert(advertId, advert);
+
+      dispatch(advertEditSuccess(updateAdvert.result));
+      history.push(
+        `/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+      );
+    } catch (error) {
+      dispatch(advertEditFailure(error));
+      if (error?.statusCode === 401) {
+        history.push('/login');
+      }
+    }
+  };
+};
+
 
 /*******************ADVERT DELETE ************************* */
 
