@@ -12,6 +12,8 @@ export const getAdverts = (state) =>
 
 export const getAdvertsLoaded = (state) => state.adverts.loaded;
 
+export const getUser = (state) => state.user;
+
 export const getUserLoaded = (state) => !!state.user;
 
 export const getAdvertDetail = (state, advertId) => {
