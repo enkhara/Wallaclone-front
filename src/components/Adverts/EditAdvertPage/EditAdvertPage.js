@@ -6,7 +6,7 @@ import EditAdvertForm from './EditAdvertForm';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { advertDetailAction, advertEditAction } from '../../../store/actions';
+import { advertDetailAction, advertUpdateAction } from '../../../store/actions';
 import { getAdvertDetail } from '../../../store/selectors';
 
 function EditAdvertPage() {
@@ -19,7 +19,7 @@ function EditAdvertPage() {
 	}, [dispatch, advertId]);
 	
 	const handleSubmit = async (advertId, advert) => {
-		await dispatch(advertEditAction(advertId, advert));
+		await dispatch(advertUpdateAction(advertId, advert));
 	};
 
 	return (

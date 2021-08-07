@@ -33,6 +33,7 @@ function InputFile({ type, value, onChange, ...props }) {
       <input
         ref={inputRef}
         type="file"
+        accept="image/*"
         style={{ display: 'none' }}
         onChange={handleChange}
         {...props}

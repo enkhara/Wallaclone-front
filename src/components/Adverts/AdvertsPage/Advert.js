@@ -45,6 +45,7 @@ const Advert = ({
 								{`${price} €`}
 							</Typography>
 							<Typography component="p">{name}</Typography>
+							{/* <Typography component="p">{tags.length ? tags.join(' - ') : tags}</Typography> */}
 							<Typography component="p">{tags.join(' - ')}</Typography>
 							<Typography component="p">{transaction}</Typography>
 							<Typography component="p">{desc}</Typography>

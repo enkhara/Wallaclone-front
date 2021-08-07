@@ -8,6 +8,8 @@ import { getAdvertDetail, getUi } from '../../../store/selectors';
 import {
 	advertDeletedAction,
 	advertDetailAction,
+	advertUpdateAction,
+	resetError
 } from '../../../store/actions';
 
 import AdvertDetail from './AdvertDetail';
@@ -16,7 +18,8 @@ function AdvertPage() {
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
-	const { error } = useSelector(getUi);
+	//const { error } = useSelector(getUi);
+	const { isLoading, error } = useSelector(getUi);
 
 	React.useEffect(() => {
 		dispatch(advertDetailAction(advertId));
@@ -24,6 +27,10 @@ function AdvertPage() {
 
 	const handleDelete = () => {
 		dispatch(advertDeletedAction(advertId));
+	};
+
+	const handleUpdate = () => {
+		dispatch(advertUpdateAction(advertId));
 	};
 
 	if (error?.statusCode === 401) {
@@ -37,9 +44,12 @@ function AdvertPage() {
 	return (
 		<React.Fragment>
 			<Header />
-			{advert && <AdvertDetail {...advert} onDelete={handleDelete} />}
+			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onUpdate={handleUpdate} />}
+			{/* {isLoading && <p> ...loading advert</p>}
+			{error && <div onClick={() => dispatch(resetError())} />} */}
 		</React.Fragment>
 	);
 }
 
 export default AdvertPage;
+

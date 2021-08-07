@@ -36,10 +36,11 @@ function AdvertDetail({
 	updatedAt,
 	createdAt,
 	userId,
-	onDelete,
-	_id,
+    onDelete,
+	onUpdate, 
+	_id
 }) {
-	const [t, i18n] = useTranslation('global');
+	const [t] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
@@ -137,15 +138,17 @@ function AdvertDetail({
 						color="primary"
 						startIcon={<CreateIcon />}
 					>
-						Update
+						{t('adverts.Update')}
 					</Button>
-					<Button
+					<ConfirmationButton
 						variant="contained"
 						color="secondary"
+						confirmation={t("adverts.Confirm advert deletion")}
+						onConfirm={onDelete}
 						startIcon={<DeleteIcon />}
 					>
-						Delete
-					</Button>
+						{t('adverts.Delete')}
+					</ConfirmationButton>
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>
@@ -160,6 +163,7 @@ AdvertDetail.propTypes = {
 	...advert,
 	image: T.string,
 	onDelete: T.func.isRequired,
+	onUpdate: T.func.isRequired,
 };
 
 AdvertDetail.defaultProps = {

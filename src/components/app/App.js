@@ -8,7 +8,7 @@ import {
 	NewPasswordPage,
 } from '../../components/auth';
 import { AdvertsPage, AdvertPage, NewAdvertPage, EditAdvertPage } from '../Adverts';
-import Chat from '../Chat/Chat';
+//import Chat from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 
 import './reset.css';
@@ -44,9 +44,9 @@ function App() {
         <Redirect to="/adverts" />
 		  </Route>
 		  
-	   <PrivateRoute exact path="/chat/:advertId">
+	   {/* <PrivateRoute exact path="/chat/:advertId">
 			<Chat />
-		</PrivateRoute>
+		</PrivateRoute> */}
 		  
       <Route exact path="/adverts">
         <AdvertsPage />

@@ -4,7 +4,7 @@ import { useStyles } from '../../shared/useStyles';
 import { useTranslation } from 'react-i18next';
 
 const ButtonNewAdvert = () => {
-  const [t, i18n]= useTranslation('global')
+  const [t]= useTranslation('global')
   const classes = useStyles();
   return (
     <Link className={classes.containerNewAdvert} to={`/adverts/new`}>
