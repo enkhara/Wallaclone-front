@@ -5,7 +5,6 @@
     "Add new advert":"Add new advert",
     "Language":" Language",
     "Logout":"Logout"
-
   },
   "login": {
     "Sign in": "Sign in",
@@ -18,7 +17,6 @@
     "Don t have an account yet?": "Don t have an account yet?",
     "Sign Up": "Sign Up"
   },
-
   "register": {
     "Register": "Register",
     "Username": "Username",
@@ -30,7 +28,6 @@
     "Do you have an account?": "Do you have an account?",
     "Sign In": "Sign In"
   },
-
   "forgot": {
     "You have problems to enter?": "You have problems to enter?",
     " Enter your email and we will send you a link to enter your account": " Enter your email and we will send you a link to enter your account",
@@ -62,10 +59,16 @@
     "Select image":"Select image",
     "Descrption":"Descrption",
     "Enter description":"Enter description",
+    "Transaction Type":"Transaction Type",
     "Transaction":"Transaction",
     "Created Advert":"Created Advert",
     "Sell":"Sell",
     "Wanted":"Wanted",
-    "Tags":"Tags"
+    "Tags":"Tags",
+    "Select one or more tags":"Select one or more tags:", 
+    "Delete": "Delete",
+    "Update": "Edit", 
+    "Confirm advert deletion":"Confirm advert deletion",
+    "User Confirmation":"User Confirmation"
   }
 }

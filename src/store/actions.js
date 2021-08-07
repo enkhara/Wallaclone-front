@@ -6,6 +6,7 @@ import {
   getAdvertDetail,
   getTagsLoaded,
 } from './selectors';
+
 import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
@@ -16,6 +17,9 @@ import {
   ADVERT_CREATED_SUCCESS,
   ADVERT_CREATED_REQUEST,
   ADVERT_CREATED_FAILURE,
+  ADVERT_UPDATE_SUCCESS,
+  ADVERT_UPDATE_REQUEST,
+  ADVERT_UPDATE_FAILURE,
   AUTH_REGISTER_SUCCESS,
   AUTH_REGISTER_REQUEST,
   AUTH_REGISTER_FAILURE,
@@ -184,7 +188,7 @@ export const advertsLoadAction = () => {
 
     dispatch(advertsLoadedRequest());
     try {
-      const adverts = await api.adverts.getLatestAdverts(); //(filters, limit, skip);
+      const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
       dispatch(advertsLoadedSuccess(adverts));
     } catch (error) {
       dispatch(advertsLoadedFailure(error));
@@ -320,6 +324,50 @@ export const advertCreatedAction = (advert) => {
   };
 };
 
+/**
+ * ADVERT EDIT
+ */
+
+export const advertUpdateRequest = () => {
+  return {
+    type: ADVERT_UPDATE_REQUEST,
+  };
+};
+
+export const advertUpdateSuccess = (advert) => {
+  return {
+    type: ADVERT_UPDATE_SUCCESS,
+    payload: advert,
+  };
+};
+
+export const advertUpdateFailure = (error) => {
+  return {
+    type: ADVERT_UPDATE_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const advertUpdateAction = (advertId, advert) => {
+  return async function (dispatch, getState, { api, history }) {
+    dispatch(advertUpdateRequest());
+    try {
+      const updateAdvert = await api.adverts.updateAdvert(advertId, advert);
+
+      dispatch(advertUpdateSuccess(updateAdvert.result));
+      history.push(
+        `/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+      );
+    } catch (error) {
+      dispatch(advertUpdateFailure(error));
+      if (error?.statusCode === 401) {
+        history.push('/login');
+      }
+    }
+  };
+};
+
 /*******************ADVERT DELETE ************************* */
 
 export const advertDeletedRequest = () => {
@@ -328,10 +376,10 @@ export const advertDeletedRequest = () => {
   };
 };
 
-export const advertDeletedSuccess = (advert) => {
+export const advertDeletedSuccess = (advertId) => {
   return {
     type: ADVERT_DELETED_SUCCESS,
-    payload: advert,
+    payload: advertId,
   };
 };
 
@@ -347,11 +395,20 @@ export const advertDeletedAction = (advertId) => {
   return async function (dispatch, getState, { api, history }) {
     dispatch(advertDeletedRequest());
     try {
-      const advert = await api.adverts.deleteAdvert(advertId);
-      dispatch(advertDeletedSuccess(advert));
+      // const advert = await api.adverts.deleteAdvert(advertId);
+      // dispatch(advertDeletedSuccess(advert));
+      await api.adverts.deleteAdvert(advertId);
+      dispatch(advertDeletedSuccess(advertId));
       history.push('/');
+      Swal.fire(
+        'Advert deleted',
+        'El anuncio ha sido borrado con éxito',
+        'success'
+      );
     } catch (error) {
       dispatch(advertDeletedFailure(error));
+      const errorMessage = JSON.stringify(error.message);
+      Swal.fire(`${errorMessage}`, error.data.error, 'error');
     }
   };
 };

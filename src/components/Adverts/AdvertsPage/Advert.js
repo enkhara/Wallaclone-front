@@ -12,7 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../../shared/useStyles';
-import ShareAdvert from '../../shareAdvert';
+import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
 
 const Advert = ({
@@ -45,6 +45,7 @@ const Advert = ({
 								{`${price} €`}
 							</Typography>
 							<Typography component="p">{name}</Typography>
+							{/* <Typography component="p">{tags.length ? tags.join(' - ') : tags}</Typography> */}
 							<Typography component="p">{tags.join(' - ')}</Typography>
 							<Typography component="p">{transaction}</Typography>
 							<Typography component="p">{desc}</Typography>
