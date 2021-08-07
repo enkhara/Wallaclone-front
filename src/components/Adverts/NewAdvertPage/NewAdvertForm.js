@@ -1,5 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
+import { InputFile } from '../../shared';
 import {
   Grid,
   Paper,
@@ -16,7 +17,7 @@ import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
 
 function NewAdvertForm({ onSubmit }) {
-  const [t, i18n] = useTranslation('global');
+  const [t] = useTranslation('global');
   const [advert, setAdvert] = React.useState({
     name: '',
     desc: '',
@@ -39,12 +40,12 @@ function NewAdvertForm({ onSubmit }) {
 
   const [image, setImage] = React.useState('');
 
-  const handleChangeImage = (event) => {
-    if (event.target.files[0]) {
-      setImage(event.target.files[0]);
-    } else {
-      setImage([]);
-    }
+   const handleChangeImage = (event) => {
+     if (event.target.files[0]) {
+       setImage(event.target.files[0]);
+     } else {
+       setImage([]);
+     }
   };
 
   const handleSubmit = (event) => {
@@ -70,7 +71,7 @@ function NewAdvertForm({ onSubmit }) {
           elevation={10}
           style={{
             padding: '30px',
-            height: '500px',
+            height: '700px',
             margin: '50px auto',
             width: '500px',
           }}
@@ -91,6 +92,26 @@ function NewAdvertForm({ onSubmit }) {
             onChange={handleChange}
             autoFocus={true}
           />
+          
+          {/* <TextField
+            label={t('adverts.Image')}
+            placeholder={t('adverts.Select image')}
+            type="file"
+            fullWidth
+            name="image"
+            onChange={handleChangeImage}
+          /> */}
+         
+          <TextField
+            label={t('adverts.Descrption')}
+            placeholder={t('adverts.Enter description')}
+            type="text"
+            fullWidth
+            required
+            name="desc"
+            value={desc}
+            onChange={handleChange}
+          />
           <TextField
             label={t('adverts.price')}
             placeholder={t('adverts.Enter price')}
@@ -102,29 +123,12 @@ function NewAdvertForm({ onSubmit }) {
             onChange={handleChange}
             autoFocus={true}
           />
-          <TextField
-            label={t('adverts.Image')}
-            placeholder={t('adverts.Select image')}
-            type="file"
-            fullWidth
-            name="image"
-            onChange={handleChangeImage}
-          />
-          <TextField
-            label={t('adverts.Descrption')}
-            placeholder={t('adverts.Enter description')}
-            type="text"
-            fullWidth
-            required
-            name="desc"
-            value={desc}
-            onChange={handleChange}
-          />
           <FormControl component="fieldset">
-            <FormLabel component="legend">{t('adverts.Transaction')}</FormLabel>
+            <FormLabel component="legend">{t('adverts.Transaction Type')}</FormLabel>
             <RadioGroup
               aria-label="transaction"
               name="transaction"
+              required
               value={transaction}
               onChange={handleChange}
               row
@@ -141,12 +145,19 @@ function NewAdvertForm({ onSubmit }) {
               />
             </RadioGroup>
           </FormControl>
+          <FormLabel component="legend">{t('adverts.Select one or more tags')}</FormLabel>
           <SelectTags
             multiple
             name="tags"
             value={tags}
             onChange={handleChange}
           />
+          <FormLabel component="legend">{t('adverts.Select image')}</FormLabel>
+          <InputFile 
+            placeholder={t('adverts.Select image')}
+            name="image"
+            onChange={handleChangeImage}
+           />
           <Button
             type="submit"
             style={{ margin: '30px 0' }}

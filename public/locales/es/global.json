@@ -17,7 +17,6 @@
     "Don t have an account yet?": "¿Aún no tienes una cuenta?",
     "Sign Up": "Registrarse"
   },
-
   "register": {
     "Register": "Registrarse ",
     "Username": "Usuario",
@@ -57,13 +56,19 @@
     "price":"Precio",
     "Enter price":"Ingrese precio",
     "Image":"Imagen",
-    "Select image":"Selecione imagen",
+    "Select image":"Seleccione imagen",
     "Descrption":"Descripción",
-    "Enter description":"Ingrese descripcón",
+    "Enter description":"Ingrese descripción",
+    "Transaction Type":"Tipo de Transacción",
     "Transaction":"Transacción",
     "Created Advert":"Crear anuncio",
     "Sell":"Vender",
     "Wanted":"Búsqueda",
-    "Tags":"Etiqueta"
+    "Tags":"Etiquetas",
+    "Select one or more tags":"Seleccione una o más etiquetas:",
+    "Delete": "Eliminar",
+    "Update": "Editar", 
+    "Confirm advert deletion":"Confirme la eliminación del anuncio", 
+    "User Confirmation":"Confirmacion del Usuario"
   }
 }

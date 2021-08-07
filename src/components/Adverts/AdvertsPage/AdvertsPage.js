@@ -5,11 +5,11 @@ import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
 import EmptyList from './EmptyList';
 import AdvertsList from './AdvertsList';
-import Pagination from '@material-ui/lab/Pagination';
+//import Pagination from '@material-ui/lab/Pagination';
 import { useTranslation } from 'react-i18next';
 
 const AdvertsPage = () => {
-	const [t, i18n] = useTranslation('global');
+	const [t] = useTranslation('global');
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
 
@@ -26,6 +26,7 @@ const AdvertsPage = () => {
 	// }
 	const [searchTitle, setSearchTitle] = useState('');
 	const [page, setPage] = useState(1);
+
 	//const [count, setCount] = useState(0);
 	const [pageSize, setPageSize] = useState(3);
 

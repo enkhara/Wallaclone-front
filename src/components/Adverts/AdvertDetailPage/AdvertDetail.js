@@ -22,7 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from '../../shared/useStyles';
-import ShareAdvert from '../../shareAdvert';
+import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -34,11 +34,13 @@ function AdvertDetail({
 	tags,
 	image,
 	updatedAt,
+	createdAt,
 	userId,
-	onDelete,
-	_id,
+    onDelete,
+	onUpdate, 
+	_id
 }) {
-	const [t, i18n] = useTranslation('global');
+	const [t] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 
@@ -61,6 +63,7 @@ function AdvertDetail({
 					height: '810px',
 				}}
 			>
+				
 				<CardActions className={classes.headerDetail}>
 					<Box className={classes.author}>
 						<Avatar />
@@ -73,7 +76,7 @@ function AdvertDetail({
 								color="textSecondary"
 								component="p"
 							>
-								{formatDistanceToNow(new Date(updatedAt))}
+								{formatDistanceToNow(new Date(createdAt))}
 							</Typography>
 						</Box>
 					</Box>
@@ -135,15 +138,17 @@ function AdvertDetail({
 						color="primary"
 						startIcon={<CreateIcon />}
 					>
-						Update
+						{t('adverts.Update')}
 					</Button>
-					<Button
+					<ConfirmationButton
 						variant="contained"
 						color="secondary"
+						confirmation={t("adverts.Confirm advert deletion")}
+						onConfirm={onDelete}
 						startIcon={<DeleteIcon />}
 					>
-						Delete
-					</Button>
+						{t('adverts.Delete')}
+					</ConfirmationButton>
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>
@@ -158,6 +163,7 @@ AdvertDetail.propTypes = {
 	...advert,
 	image: T.string,
 	onDelete: T.func.isRequired,
+	onUpdate: T.func.isRequired,
 };
 
 AdvertDetail.defaultProps = {

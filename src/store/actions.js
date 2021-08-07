@@ -6,45 +6,49 @@ import {
 	getAdvertDetail,
 	getTagsLoaded,
 } from './selectors';
-import {
-	AUTH_LOGIN_REQUEST,
-	AUTH_LOGIN_SUCCESS,
-	AUTH_LOGIN_FAILURE,
-	AUTH_LOGOUT,
-	AUTH_LOGOUT_FAILURE,
-	UI_RESET_ERROR,
-	ADVERT_CREATED_SUCCESS,
-	ADVERT_CREATED_REQUEST,
-	ADVERT_CREATED_FAILURE,
-	AUTH_REGISTER_SUCCESS,
-	AUTH_REGISTER_REQUEST,
-	AUTH_REGISTER_FAILURE,
-	ADVERTS_LOADED_REQUEST,
-	ADVERTS_LOADED_SUCCESS,
-	ADVERTS_LOADED_FAILURE,
-	TAGS_LOADED_REQUEST,
-	TAGS_LOADED_SUCCESS,
-	TAGS_LOADED_FAILURE,
-	ADVERT_DETAIL_REQUEST,
-	ADVERT_DETAIL_SUCCESS,
-	ADVERT_DETAIL_FAILURE,
-	ADVERT_DELETED_REQUEST,
-	ADVERT_DELETED_SUCCESS,
-	ADVERT_DELETED_FAILURE,
-	AUTH_FORGOT_PASSWORD_FAILURE,
-	AUTH_FORGOT_PASSWORD_REQUEST,
-	AUTH_FORGOT_PASSWORD_SUCCESS,
-	AUTH_NEW_PASSWORD_REQUEST,
-	AUTH_NEW_PASSWORD_SUCCESS,
-	AUTH_NEW_PASSWORD_FAILURE,
-	USER_LOGOUT_REQUEST,
-	USER_LOGOUT_SUCCESS,
-	USER_LOGOUT_FAILURE,
-	USER_LOGGED_SUCCESS,
-	USER_LOGGED_REQUEST,
-	USER_LOGGED_FAILURE,
-} from './types';
 
+import {
+  AUTH_LOGIN_REQUEST,
+  AUTH_LOGIN_SUCCESS,
+  AUTH_LOGIN_FAILURE,
+  AUTH_LOGOUT,
+  AUTH_LOGOUT_FAILURE,
+  UI_RESET_ERROR,
+  ADVERT_CREATED_SUCCESS,
+  ADVERT_CREATED_REQUEST,
+  ADVERT_CREATED_FAILURE,
+  ADVERT_UPDATE_SUCCESS,
+  ADVERT_UPDATE_REQUEST,
+  ADVERT_UPDATE_FAILURE,
+  AUTH_REGISTER_SUCCESS,
+  AUTH_REGISTER_REQUEST,
+  AUTH_REGISTER_FAILURE,
+  ADVERTS_LOADED_REQUEST,
+  ADVERTS_LOADED_SUCCESS,
+  ADVERTS_LOADED_FAILURE,
+  TAGS_LOADED_REQUEST,
+  TAGS_LOADED_SUCCESS,
+  TAGS_LOADED_FAILURE,
+  ADVERT_DETAIL_REQUEST,
+  ADVERT_DETAIL_SUCCESS,
+  ADVERT_DETAIL_FAILURE,
+  ADVERT_DELETED_REQUEST,
+  ADVERT_DELETED_SUCCESS,
+  ADVERT_DELETED_FAILURE,
+  AUTH_FORGOT_PASSWORD_FAILURE,
+  AUTH_FORGOT_PASSWORD_REQUEST,
+  AUTH_FORGOT_PASSWORD_SUCCESS,
+  AUTH_NEW_PASSWORD_REQUEST,
+  AUTH_NEW_PASSWORD_SUCCESS,
+  AUTH_NEW_PASSWORD_FAILURE,
+  USER_LOGOUT_REQUEST,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_FAILURE,
+  USER_LOGGED_SUCCESS,
+  USER_LOGGED_REQUEST,
+  USER_LOGGED_FAILURE,
+} from './types';
+	
 /** Login Pasando el history */
 
 export const authLoginRequest = () => {
@@ -184,20 +188,20 @@ export const advertsLoadedFailure = (error) => {
 };
 
 export const advertsLoadAction = () => {
-	return async function (dispatch, getState, { api }) {
-		const advertsLoaded = getAdvertsLoaded(getState());
-		if (advertsLoaded) {
-			return;
-		}
+  return async function (dispatch, getState, { api }) {
+    const advertsLoaded = getAdvertsLoaded(getState());
+    if (advertsLoaded) {
+      return;
+    }
 
-		dispatch(advertsLoadedRequest());
-		try {
-			const adverts = await api.adverts.getLatestAdverts(); //(filters, limit, skip);
-			dispatch(advertsLoadedSuccess(adverts));
-		} catch (error) {
-			dispatch(advertsLoadedFailure(error));
-		}
-	};
+    dispatch(advertsLoadedRequest());
+    try {
+      const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
+      dispatch(advertsLoadedSuccess(adverts));
+    } catch (error) {
+      dispatch(advertsLoadedFailure(error));
+    }
+  };
 };
 
 export const resetError = () => {
@@ -328,6 +332,51 @@ export const advertCreatedAction = (advert) => {
 	};
 };
 
+/**
+ * ADVERT EDIT
+ */
+
+export const advertUpdateRequest = () => {
+  return {
+    type: ADVERT_UPDATE_REQUEST,
+  };
+};
+
+export const advertUpdateSuccess = (advert) => {
+  return {
+    type: ADVERT_UPDATE_SUCCESS,
+    payload: advert,
+  };
+};
+
+export const advertUpdateFailure = (error) => {
+  return {
+    type: ADVERT_UPDATE_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const advertUpdateAction = (advertId, advert) => {
+  return async function (dispatch, getState, { api, history }) {
+    dispatch(advertUpdateRequest());
+    try {
+      const updateAdvert = await api.adverts.updateAdvert(advertId, advert);
+
+      dispatch(advertUpdateSuccess(updateAdvert.result));
+      history.push(
+        `/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+      );
+    } catch (error) {
+      dispatch(advertUpdateFailure(error));
+      if (error?.statusCode === 401) {
+        history.push('/login');
+      }
+    }
+  };
+};
+
+
 /*******************ADVERT DELETE ************************* */
 
 export const advertDeletedRequest = () => {
@@ -336,10 +385,10 @@ export const advertDeletedRequest = () => {
 	};
 };
 
-export const advertDeletedSuccess = (advert) => {
+export const advertDeletedSuccess = (advertId) => {
 	return {
 		type: ADVERT_DELETED_SUCCESS,
-		payload: advert,
+		payload: advertId,
 	};
 };
 
@@ -351,15 +400,20 @@ export const advertDeletedFailure = (error) => {
 	};
 };
 
-export const advertDeletedAction = (advertId) => {
+export const advertDeletedAction = advertId => {
 	return async function (dispatch, getState, { api, history }) {
 		dispatch(advertDeletedRequest());
 		try {
-			const advert = await api.adverts.deleteAdvert(advertId);
-			dispatch(advertDeletedSuccess(advert));
+			// const advert = await api.adverts.deleteAdvert(advertId);
+			// dispatch(advertDeletedSuccess(advert));
+			await api.adverts.deleteAdvert(advertId);
+			dispatch(advertDeletedSuccess(advertId));
 			history.push('/');
+			Swal.fire('Advert deleted', 'El anuncio ha sido borrado con éxito', 'success');
 		} catch (error) {
 			dispatch(advertDeletedFailure(error));
+			const errorMessage = JSON.stringify(error.message);
+			Swal.fire(`${errorMessage}`, error.data.error, 'error');
 		}
 	};
 };

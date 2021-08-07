@@ -7,7 +7,13 @@ export const BASE_URL = '/apiv1';
 // 	return client.get(url);
 // };
 
-export const getLatestAdverts = () => {
+// obtiene el nº de limit de anuncios ordenados por fecha de creación descendente
+export const getLatestAdverts = (limit) => {
+	const url = `${BASE_URL}/advertisements?sort=-createdAt&limit=${limit}`;
+	return client.get(url);
+};
+
+export const getAllAdverts = () => {
 	const url = `${BASE_URL}/advertisements`;
 	return client.get(url);
 };
@@ -34,6 +40,10 @@ export const deleteAdvert = (advertId) => {
 
 export const createdAdvert = (newAdvert) => {
 	return client.post(`${BASE_URL}/advertisements`, newAdvert);
+};
+
+const getToken = async function () {
+	return localStorage.getItem('token');
 };
 
 export const updateAdvert = (advertId, advert) => {
