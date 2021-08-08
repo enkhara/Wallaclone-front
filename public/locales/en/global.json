@@ -76,5 +76,10 @@
     "Update": "Edit",
     "Confirm advert deletion": "Confirm advert deletion",
     "User Confirmation": "User Confirmation"
+  },
+  "chat": {
+    "Send": "Send",
+    "Open a conversation to start a chat.": "Open a conversation to start a chat.",
+    "type your message": "type your message"
   }
 }

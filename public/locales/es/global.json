@@ -76,5 +76,10 @@
     "Update": "Editar",
     "Confirm advert deletion": "Confirme la eliminación del anuncio",
     "User Confirmation": "Confirmacion del Usuario"
+  },
+  "chat": {
+    "Send": "Enviar",
+    "Open a conversation to start a chat.": "Abre una conversación para iniciar el chat.",
+    "type your message": "Escribe tu mensaje"
   }
 }
