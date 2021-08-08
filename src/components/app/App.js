@@ -56,7 +56,7 @@ function App() {
 
 			<PrivateRoute exact path="/user" component={UserPageWithUser} />
 
-			<PrivateRoute exact path="/chat/:advertId">
+			<PrivateRoute exact path="/chat">
 				<ChatWithUser />
 			</PrivateRoute>
 
