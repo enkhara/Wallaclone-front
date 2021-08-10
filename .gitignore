@@ -28,8 +28,6 @@ yarn-error.log*
 .vscode
 
 # implementacion de chat
-src/components/Chat
 src/components/shared/UserAvatar.js
 
 # componente User, sustituido por un hoc 
-src/components/User/User.js
