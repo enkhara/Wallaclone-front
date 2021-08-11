@@ -50,14 +50,14 @@
     "Adverts List":"lista de Anuncios",
     "Nº of pages":"Nº de páginas: ",
     "Adverts per Page":"Anuncios por página: ",
-    "Create new advert":"Crea un nuevo anuncio",
+    "Create new advert":"Crea tu nuevo anuncio",
     "Advert Name":"Ingrese el nombre del producto",
     "Enter product name":"Ingrese el nombre del producto",
     "price":"Precio",
     "Enter price":"Ingrese precio",
     "Image":"Imagen",
     "Select image":"Seleccione imagen",
-    "Descrption":"Descripción",
+    "Description":"Descripción",
     "Enter description":"Ingrese descripción",
     "Transaction Type":"Tipo de Transacción",
     "Transaction":"Transacción",
@@ -69,6 +69,11 @@
     "Delete": "Eliminar",
     "Update": "Editar", 
     "Confirm advert deletion":"Confirme la eliminación del anuncio", 
-    "User Confirmation":"Confirmacion del Usuario"
+    "User Confirmation":"Confirmacion del Usuario", 
+    "Edit Advert":"Edición de anuncio",
+    "Update Advert":"Actualizar Anuncio", 
+    "Change image": "Cambiar imagen:", 
+    "Change product name":"Modifica nombre anuncio",
+    "Change description": "Modifica descripcion"
   }
 }

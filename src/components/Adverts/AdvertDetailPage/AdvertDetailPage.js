@@ -8,7 +8,7 @@ import { getAdvertDetail, getUi } from '../../../store/selectors';
 import {
 	advertDeletedAction,
 	advertDetailAction,
-	advertUpdateAction,
+	advertEditAction,
 	resetError
 } from '../../../store/actions';
 
@@ -29,8 +29,9 @@ function AdvertPage() {
 		dispatch(advertDeletedAction(advertId));
 	};
 
-	const handleUpdate = () => {
-		dispatch(advertUpdateAction(advertId));
+	const handleEdit = () => {
+		dispatch(advertEditAction(advertId));
+		//return <Redirect to={`/adverts/edit/${advertId}`} />;
 	};
 
 	if (error?.statusCode === 401) {
@@ -40,13 +41,13 @@ function AdvertPage() {
 	if (error?.statusCode === 404) {
 		return <Redirect to="/404" />;
 	}
-	console.log(`En advertPageDetail ${advert}`);
+	
 	return (
 		<React.Fragment>
 			<Header />
-			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onUpdate={handleUpdate} />}
-			{/* {isLoading && <p> ...loading advert</p>}
-			{error && <div onClick={() => dispatch(resetError())} />} */}
+			{isLoading && <p> ...loading advert</p>}
+			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />}
+			{error && <div onClick={() => dispatch(resetError())} />} 
 		</React.Fragment>
 	);
 }

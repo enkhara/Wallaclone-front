@@ -57,7 +57,7 @@
     "Enter price":"Enter price",
     "Image":"Image",
     "Select image":"Select image",
-    "Descrption":"Descrption",
+    "Description":"Description",
     "Enter description":"Enter description",
     "Transaction Type":"Transaction Type",
     "Transaction":"Transaction",
@@ -69,6 +69,11 @@
     "Delete": "Delete",
     "Update": "Edit", 
     "Confirm advert deletion":"Confirm advert deletion",
-    "User Confirmation":"User Confirmation"
+    "User Confirmation":"User Confirmation", 
+    "Edit Advert":"Advert Edition",
+    "Update Advert":"Advert Update", 
+    "Change image": "Change image", 
+    "Change product name":"Change product name", 
+    "Change description": "Change description"
   }
 }

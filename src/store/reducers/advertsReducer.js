@@ -7,6 +7,8 @@ import {
 	ADVERTS_LOADED_SUCCESS,
 	ADVERT_CREATED_REQUEST,
 	ADVERT_CREATED_SUCCESS,
+	ADVERT_EDIT_REQUEST,
+	ADVERT_EDIT_SUCCESS,
 	ADVERT_UPDATE_REQUEST,
 	ADVERT_UPDATE_SUCCESS,
 	TAGS_LOADED_REQUEST,
@@ -77,12 +79,22 @@ export function adverts(state = initialState.adverts, action) {
 			return { ...state, loaded: true, data: action.payload };
 		case ADVERT_CREATED_SUCCESS:
 		case ADVERT_DETAIL_SUCCESS:
-		case ADVERT_UPDATE_SUCCESS:
+		case ADVERT_EDIT_SUCCESS:
 			return {
 				...state,
 				loaded: false,
 				data: [...state.data, action.payload],
 			};
+		case ADVERT_UPDATE_SUCCESS:
+			return state.map((advert) => {
+				if (advert.id === action.payload) {
+					return {
+						...state,
+						loaded: false,
+						data: [...state.data, action.payload],
+					}
+				} 
+			})
 		case ADVERT_DELETED_SUCCESS:
 			// en data de adverts devuelvo los datos de los anuncios sin el anuncio borrado
             return {

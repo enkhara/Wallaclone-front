@@ -133,5 +133,11 @@ export const useStyles = makeStyles((theme) => ({
 			backgroundColor:'#13C1AC'
 		}
 	},
+	textArea: {
+		'& .MuiTextField-root': {
+			margin: theme.spacing(1),
+			width: '25ch',
+		  },
+	},
 		
   }));

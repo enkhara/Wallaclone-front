@@ -17,6 +17,9 @@ import {
   ADVERT_CREATED_SUCCESS,
   ADVERT_CREATED_REQUEST,
   ADVERT_CREATED_FAILURE,
+  ADVERT_EDIT_SUCCESS,
+  ADVERT_EDIT_REQUEST,
+  ADVERT_EDIT_FAILURE,
   ADVERT_UPDATE_SUCCESS,
   ADVERT_UPDATE_REQUEST,
   ADVERT_UPDATE_FAILURE,
@@ -330,8 +333,52 @@ export const advertCreatedAction = (advert) => {
 	};
 };
 
+
 /**
  * ADVERT EDIT
+ */
+
+export const advertEditRequest = () => {
+	return {
+		type: ADVERT_EDIT_REQUEST,
+	};
+};
+
+export const advertEditSuccess = (advert) => {
+	return {
+		type: ADVERT_EDIT_SUCCESS,
+		payload: advert,
+	};
+};
+
+export const advertEditFailure = (error) => {
+	return {
+		type: ADVERT_EDIT_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const advertEditAction = (advertId) => {
+	return async function (dispatch, getState, { api, history }) {
+		const advertEdited = getAdvertDetail(getState(), advertId);
+		 if (advertEdited) {
+		 	return;
+		 }
+		dispatch(advertEditRequest());
+		try {
+			const advert = await api.adverts.getAdvert(advertId);
+			//console.log(`advert ACTION ${advert}`);
+			dispatch(advertEditSuccess(advert.result));
+			return advert.result;
+		} catch (error) {
+			dispatch(advertEditFailure(error));
+		}
+	};
+};
+
+/**
+ * ADVERT UPDATE
  */
 
 export const advertUpdateRequest = () => {

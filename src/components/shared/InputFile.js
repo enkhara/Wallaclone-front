@@ -22,8 +22,9 @@ function InputFile({ type, value, onChange, ...props }) {
     inputRef.current.click();
   };
 
-  const handleChange = ev => {
-    const file = ev.target.files[0];
+  const handleChange = (ev, image) => {
+    console.log('en handleChange de inputFile');
+    const file = image || ev.target.files[0];
     loadSrcFromFile(file);
     onChange(ev);
   };

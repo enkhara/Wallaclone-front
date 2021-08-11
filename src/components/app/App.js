@@ -38,7 +38,7 @@ function App() {
       </Route>
 
       <PrivateRoute exact path="/adverts/new" component={NewAdvertPage} />
-      <PrivateRoute exact path="/adverts/edit/:advertId" component={EditAdvertPage} />
+      <PrivateRoute exact path="/advert/edit/:advertId" component={EditAdvertPage} />
 
 	   <Route exact path="/">
         <Redirect to="/adverts" />
