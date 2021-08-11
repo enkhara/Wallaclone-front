@@ -1,6 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import { InputFile } from '../../shared';
+import { useStyles } from '../../shared/useStyles';
 import {
   Grid,
   Paper,
@@ -17,7 +18,10 @@ import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
 
 function NewAdvertForm({ onSubmit }) {
+  
   const [t] = useTranslation('global');
+  const classes = useStyles();
+
   const [advert, setAdvert] = React.useState({
     name: '',
     desc: '',
@@ -71,7 +75,7 @@ function NewAdvertForm({ onSubmit }) {
           elevation={10}
           style={{
             padding: '30px',
-            height: '700px',
+            height: '800px',
             margin: '50px auto',
             width: '500px',
           }}
@@ -92,20 +96,13 @@ function NewAdvertForm({ onSubmit }) {
             onChange={handleChange}
             autoFocus={true}
           />
-          
-          {/* <TextField
-            label={t('adverts.Image')}
-            placeholder={t('adverts.Select image')}
-            type="file"
-            fullWidth
-            name="image"
-            onChange={handleChangeImage}
-          /> */}
-         
           <TextField
-            label={t('adverts.Descrption')}
+            className={classes.textArea}
+						id="outlined-multiline-flexible"
+            label={t('adverts.Description')}
             placeholder={t('adverts.Enter description')}
-            type="text"
+            multiline
+						rows={4}
             fullWidth
             required
             name="desc"

@@ -6,6 +6,12 @@
     "Language": " Language",
     "Logout": "Logout"
   },
+  "sideBar": {
+    "Profile": "Profile",
+    "Products": "Products",
+    "Chat": "Chat",
+    "Favorites": "Favorites"
+  },
   "login": {
     "Sign in": "Sign in",
     "Username": "Username",
@@ -44,6 +50,7 @@
     "Do you have an account?": "Do you have an account?",
     "Sign In": "Sign In"
   },
+
   "adverts": {
     "Be the first Advert!": "Be the first Advert!",
     "Advert": "Advert",
@@ -57,7 +64,7 @@
     "Enter price": "Enter price",
     "Image": "Image",
     "Select image": "Select image",
-    "Descrption": "Descrption",
+    "Description": "Description",
     "Enter description": "Enter description",
     "Transaction Type": "Transaction Type",
     "Transaction": "Transaction",
@@ -69,7 +76,17 @@
     "Delete": "Delete",
     "Update": "Edit",
     "Confirm advert deletion": "Confirm advert deletion",
-    "User Confirmation": "User Confirmation"
+    "User Confirmation": "User Confirmation",
+    "Edit Advert": "Advert Edition",
+    "Update Advert": "Advert Update",
+    "Change image": "Change image",
+    "Change product name": "Change product name",
+    "Change description": "Change description"
+  },
+  "chat": {
+    "Send": "Send",
+    "Open a conversation to start a chat.": "Open a conversation to start a chat.",
+    "type your message": "type your message"
   },
 
   "message": {

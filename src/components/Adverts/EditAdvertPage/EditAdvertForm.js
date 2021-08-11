@@ -9,15 +9,18 @@ import {
 	Radio,
 } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useStyles } from '../../shared/useStyles';
 import { FormLabel, FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+import placeholder from '../../../assets/images/placeholder.png';
 
 import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 import { InputFile } from '../../shared';
+import { useTranslation } from 'react-i18next';
 
 const GreenCheckbox = withStyles({
 	root: {
@@ -28,56 +31,68 @@ const GreenCheckbox = withStyles({
 	},
 	checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-  
-function EditAdvertForm({ onSubmit }) {
-	const [advert, setAdvert] = React.useState({
-		name: '',
-		desc: '',
-		price: 0,
-		transaction: '',
-		tags: [],
-		sold: '',
-		reserved: '',
-	});
+function EditAdvertForm({
+	name,
+	transaction,
+	desc,
+	price,
+	tags,
+	image,
+	reserved,
+	sold, 
+	updatedAt,
+	createdAt,
+	userId,
+	_id,
+	onSubmit })
+{
+	//const { name, desc, price, transaction, tags, sold, reserved, image } = advert;
+	const [t] = useTranslation('global');
+	const classes = useStyles();
+	const URLIMG = process.env.REACT_APP_API_BASE_URL;
+	const setAdvert = React.useState('')
+	const [value, setValue] = React.useState('');
+	const [imagen, setImagen] = React.useState(image);
 
-	const { name, desc, price, transaction, tags, sold, reserved} = advert;
+	console.log('imagen', image ? `${URLIMG}images/adverts/${image}` : placeholder);
+	//console.log('advert', advert)
 
 	const handleChange = (event) => {
-		setAdvert((oldAdvert) => ({
-			...oldAdvert,
-			[event.target.name]:
-				event.target.type === 'checked'
-					? event.target.checked
-					: event.target.value,
-		}));
-	};
+	 	setAdvert((oldAdvert) => ({
+	 		...oldAdvert,
+	 		[event.target.name]:
+	 			event.target.type === 'checked'
+	 				? event.target.checked
+	 				: event.target.value,
+	 	}));
+	 };
 
-	const [image, setImage] = React.useState('');
-
-	const handleChangeImage = (event) => {
-		if (event.target.files[0]) {
-			setImage(event.target.files[0]);
+	const handleChangeImage = (event, image) => {
+		const file = image || event.target.files[0];
+		if (file) {
+			setImagen(file);
 		} else {
-			setImage([]);
+			setImagen([]);
 		}
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		let newAdvert = new FormData();
-		newAdvert.append('name', advert.name);
-		newAdvert.append('desc', advert.desc);
-		newAdvert.append('price', advert.price);
-		newAdvert.append('transaction', advert.transaction);
-		newAdvert.append('sold', advert.sold);
-		newAdvert.append('reserved', advert.reserved);
-		advert.tags.forEach((tag) => newAdvert.append('tags[]', tag));
-		if (image) {
-			newAdvert.append('image', image);
+		let updateAdvert = new FormData();
+
+		updateAdvert.append('name', name);
+		updateAdvert.append('desc', desc);
+		updateAdvert.append('price', price);
+		updateAdvert.append('transaction', transaction);
+		updateAdvert.append('sold', sold);
+		updateAdvert.append('reserved', reserved);
+		updateAdvert.tags.forEach((tag) => updateAdvert.append('tags[]', tag));
+		if (imagen) {
+			updateAdvert.append('image', imagen);
 		}
 
-		onSubmit(newAdvert);
+		onSubmit(updateAdvert);
 	};
 
 	return (
@@ -87,7 +102,7 @@ function EditAdvertForm({ onSubmit }) {
 					elevation={10}
 					style={{
 						padding: '30px',
-						height: '500px',
+						height: '800px',
 						margin: '50px auto',
 						width: '500px',
 					}}
@@ -96,88 +111,94 @@ function EditAdvertForm({ onSubmit }) {
 						<Avatar style={{ backgroundColor: '#1dba849e' }}>
 							<AddIcon />
 						</Avatar>
-						<h2>Edit advert</h2>
+						<h2>{t('adverts.Edit Advert')}</h2>
 					</Grid>
 					<TextField
-						label="advertName"
-						placeholder="Product name"
+						label={t('adverts.Advert Name')}
+						placeholder={t('adverts.Change product name')}
 						fullWidth
 						required
 						name="name"
-						value={name}
+						defaultValue={name}
+						//value={value}
 						onChange={handleChange}
 						autoFocus={true}
 					/>
+					<TextField className={classes.textArea}
+						id="outlined-multiline-flexible"
+						label={t('adverts.Description')}
+						placeholder={t('adverts.Change description')}
+						multiline
+						rows={4}
+						fullWidth
+						required
+						name="desc"
+						defaultValue={desc}
+						//value={value}
+						onChange={handleChange}
+					/>
 					<TextField
-						label="price"
-						placeholder="Price"
+						label={t('adverts.price')}
+						placeholder={t('adverts.price')}
 						fullWidth
 						required
 						type="number"
 						name="price"
-						value={price}
+						defaultValue={price}
+						//value={value}
 						onChange={handleChange}
 						autoFocus={true}
 					/>
-					{/* <TextField
-						label="image"
-						placeholder="Change image"
-						type="file"
-						fullWidth
-						name="image"
-						onChange={handleChangeImage}
-					/> */}
-					<InputFile name="image"
-						placeholder="Change image"
-						onChange={handleChangeImage} />
-					<TextField
-						label="desc"
-						placeholder="Edit description"
-						type="text"
-						fullWidth
-						required
-						name="desc"
-						value={desc}
-						onChange={handleChange}
-					/>
 					<FormControl component="fieldset">
-						<FormLabel component="legend">Transaction</FormLabel>
+					<FormLabel component="legend">{t('adverts.Transaction Type')}</FormLabel>
+						
 						<RadioGroup
 							aria-label="transaction"
 							name="transaction"
-							value={transaction}
+							defaultValue={transaction}
 							onChange={handleChange}
 							row
 						>
-							<FormControlLabel value="sell" control={<Radio />} label="Sell" />
+							<FormControlLabel
+								value="sell"
+								control={<Radio />}
+								label="Sell" />
 							<FormControlLabel
 								value="wanted"
 								control={<Radio />}
 								label="Wanted"
 							/>
 						</RadioGroup>
-
 					</FormControl>
-					<SelectTags
+					
+					<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
+					<InputFile name="image"
+						placeholder={t('adverts.Change image')}
+						useref={image}
+						// useref={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+						onChange={handleChangeImage} 
+					/>
+					
+					{/* <SelectTags
 						multiple
 						name="tags"
-						value={tags}
-						onChange={handleChange}
-					/>
+						defaultValue={tags}
+						//onChange={handleChange}
+					/> */}
 					 <FormControlLabel
 						control={<GreenCheckbox
-							checked={reserved}
-							onChange={handleChange}
-							name="reserved" />}
+						checked={reserved}
+					    onChange={handleChange}
+						name="reserved" />}
         				label="Reserved"
 					/>
 					<FormControlLabel
 						control={<GreenCheckbox
-							checked={sold}
-							onChange={handleChange}
-							name="sold" />}
+						checked={sold}
+						onChange={handleChange}
+						name="sold" />}
         				label="Sold"
-      				/>
+      				/> 
 					<Button
 						type="submit"
 						style={{ margin: '30px 0' }}
@@ -188,7 +209,7 @@ function EditAdvertForm({ onSubmit }) {
 							!name || !transaction || !price || tags.length === 0
 						}
 					>
-						Edit Advert
+						{t('adverts.Update Advert')}
 					</Button>
 				</Paper>
 			</form>

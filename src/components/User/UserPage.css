@@ -1,0 +1,6 @@
+.userSpace {
+	height: 300px;
+	display: flex;
+	max-width: 1000px;
+	margin: auto;
+}

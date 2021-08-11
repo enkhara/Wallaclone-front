@@ -37,13 +37,13 @@ function AdvertDetail({
 	createdAt,
 	userId,
     onDelete,
-	onUpdate, 
+	onEdit, 
 	_id
 }) {
 	const [t] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
-
+	
 	return (
 		<Grid
 			item
@@ -133,13 +133,17 @@ function AdvertDetail({
 					</Typography>
 				</Box>
 				<Box className={classes.updateAndDeleteDetailAdvert}>
-					<Button
-						variant="contained"
-						color="primary"
-						startIcon={<CreateIcon />}
-					>
-						{t('adverts.Update')}
-					</Button>
+					
+					<Link className={classes.containerNewAdvert} to={`/advert/edit/${_id}`}> 
+						<Button 
+							variant="contained"
+							color="primary"
+							onClick={onEdit}
+							startIcon={<CreateIcon />}
+						>
+							{t('adverts.Update')}
+						</Button>
+					</Link> 
 					<ConfirmationButton
 						variant="contained"
 						color="secondary"
@@ -163,7 +167,7 @@ AdvertDetail.propTypes = {
 	...advert,
 	image: T.string,
 	onDelete: T.func.isRequired,
-	onUpdate: T.func.isRequired,
+	onEdit: T.func.isRequired,
 };
 
 AdvertDetail.defaultProps = {

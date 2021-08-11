@@ -11,10 +11,10 @@ export const login = ({ remember, ...credentials }) => {
 			return token;
 		})
 		.then((token) => {
-			if (remember) {
+			//if (remember) {
 				console.log('guarda el token en storage');
 				storage.set('auth', token);
-			}
+			//}
 		});
 };
 
