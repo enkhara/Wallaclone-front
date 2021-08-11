@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { user } from './reducers/advertsReducer';
 import {
 	getAdvertsLoaded,
-	getUserLoaded,
+	getUser,
 	getAdvertDetail,
 	getTagsLoaded,
 } from './selectors';
@@ -166,6 +166,8 @@ export const registerAction = (credentials) => {
 /** fin register */
 
 /** Fin login pasando history */
+
+/**************************GET ADVERTS***********************/
 
 export const advertsLoadedRequest = () => {
 	return {
@@ -578,7 +580,7 @@ export const userLoggedSuccess = (user) => {
 
 export const userLoggedAction = () => {
 	return async function (dispatch, getState, { api }) {
-		const user = getUserLoaded(getState());
+		const user = getUser(getState());
 		if (user) {
 			return;
 		}
@@ -588,8 +590,8 @@ export const userLoggedAction = () => {
 			dispatch(userLoggedSuccess(user));
 		} catch (err) {
 			dispatch(userLoggedFailure(err));
+			console.error('error en user token', err);
 		}
-		return;
 	};
 };
 

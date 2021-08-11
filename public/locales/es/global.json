@@ -2,9 +2,15 @@
   "header": {
     "Login": "Acceder",
     "Register": "Registro",
-    "Add new advert":"Agregar nuevo anuncio",
-    "Language":"Idioma",
-    "Logout":"Salir"
+    "Add new advert": "Agregar nuevo anuncio",
+    "Language": "Idioma",
+    "Logout": "Salir"
+  },
+  "sideBar": {
+    "Profile": "Perfil",
+    "Products": "Productos",
+    "Chat": "Chat",
+    "Favorites": "Favoritos"
   },
   "login": {
     "Sign in": "Accesso",
@@ -35,12 +41,12 @@
     "Enter email": "Ingrese correo",
     "Send access link": "Enviar enlace de acceso"
   },
-  "newpassword":{
-    "Register your new password":"Registre su nueva contraseña",
-    "New password":"Nueva contraseña",
-    "Enter new password":"Ingrese nueva contraseña",
-    "Repeat Password":"Repita la contraseña",
-    "Enter repeat Password":"Ingrese nueva contraseña",
+  "newpassword": {
+    "Register your new password": "Registre su nueva contraseña",
+    "New password": "Nueva contraseña",
+    "Enter new password": "Ingrese nueva contraseña",
+    "Repeat Password": "Repita la contraseña",
+    "Enter repeat Password": "Ingrese nueva contraseña",
     "Do you have an account?": "¿Tiene usted una cuenta?",
     "Sign In":"Acceder"
   }, 
@@ -75,5 +81,10 @@
     "Change image": "Cambiar imagen:", 
     "Change product name":"Modifica nombre anuncio",
     "Change description": "Modifica descripcion"
+  },
+  "chat": {
+    "Send": "Enviar",
+    "Open a conversation to start a chat.": "Abre una conversación para iniciar el chat.",
+    "type your message": "Escribe tu mensaje"
   }
 }

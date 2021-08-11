@@ -7,8 +7,8 @@ export const getUserLogged = () => {
 	return user;
 };
 /**implementar en back la ruta correcta y en front */
-export const getUSer = (userId) => {
-	const user = client.get(`${BASE_URL}/${userId}`);
+export const getUser = (userId) => {
+	const user = client.get(`${BASE_URL}/users/${userId}`);
 	console.log(user);
 	return user;
 };
