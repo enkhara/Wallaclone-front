@@ -8,50 +8,59 @@ import {
 } from './selectors';
 
 import {
-  AUTH_LOGIN_REQUEST,
-  AUTH_LOGIN_SUCCESS,
-  AUTH_LOGIN_FAILURE,
-  AUTH_LOGOUT,
-  AUTH_LOGOUT_FAILURE,
-  UI_RESET_ERROR,
-  ADVERT_CREATED_SUCCESS,
-  ADVERT_CREATED_REQUEST,
-  ADVERT_CREATED_FAILURE,
-  ADVERT_EDIT_SUCCESS,
-  ADVERT_EDIT_REQUEST,
-  ADVERT_EDIT_FAILURE,
-  ADVERT_UPDATE_SUCCESS,
-  ADVERT_UPDATE_REQUEST,
-  ADVERT_UPDATE_FAILURE,
-  AUTH_REGISTER_SUCCESS,
-  AUTH_REGISTER_REQUEST,
-  AUTH_REGISTER_FAILURE,
-  ADVERTS_LOADED_REQUEST,
-  ADVERTS_LOADED_SUCCESS,
-  ADVERTS_LOADED_FAILURE,
-  TAGS_LOADED_REQUEST,
-  TAGS_LOADED_SUCCESS,
-  TAGS_LOADED_FAILURE,
-  ADVERT_DETAIL_REQUEST,
-  ADVERT_DETAIL_SUCCESS,
-  ADVERT_DETAIL_FAILURE,
-  ADVERT_DELETED_REQUEST,
-  ADVERT_DELETED_SUCCESS,
-  ADVERT_DELETED_FAILURE,
-  AUTH_FORGOT_PASSWORD_FAILURE,
-  AUTH_FORGOT_PASSWORD_REQUEST,
-  AUTH_FORGOT_PASSWORD_SUCCESS,
-  AUTH_NEW_PASSWORD_REQUEST,
-  AUTH_NEW_PASSWORD_SUCCESS,
-  AUTH_NEW_PASSWORD_FAILURE,
-  USER_LOGOUT_REQUEST,
-  USER_LOGOUT_SUCCESS,
-  USER_LOGOUT_FAILURE,
-  USER_LOGGED_SUCCESS,
-  USER_LOGGED_REQUEST,
-  USER_LOGGED_FAILURE,
+	AUTH_LOGIN_REQUEST,
+	AUTH_LOGIN_SUCCESS,
+	AUTH_LOGIN_FAILURE,
+	AUTH_LOGOUT,
+	AUTH_LOGOUT_FAILURE,
+	UI_RESET_ERROR,
+	ADVERT_CREATED_SUCCESS,
+	ADVERT_CREATED_REQUEST,
+	ADVERT_CREATED_FAILURE,
+	ADVERT_EDIT_SUCCESS,
+	ADVERT_EDIT_REQUEST,
+	ADVERT_EDIT_FAILURE,
+	ADVERT_UPDATE_SUCCESS,
+	ADVERT_UPDATE_REQUEST,
+	ADVERT_UPDATE_FAILURE,
+	AUTH_REGISTER_SUCCESS,
+	AUTH_REGISTER_REQUEST,
+	AUTH_REGISTER_FAILURE,
+	ADVERTS_LOADED_REQUEST,
+	ADVERTS_LOADED_SUCCESS,
+	ADVERTS_LOADED_FAILURE,
+	TAGS_LOADED_REQUEST,
+	TAGS_LOADED_SUCCESS,
+	TAGS_LOADED_FAILURE,
+	ADVERT_DETAIL_REQUEST,
+	ADVERT_DETAIL_SUCCESS,
+	ADVERT_DETAIL_FAILURE,
+	ADVERT_DELETED_REQUEST,
+	ADVERT_DELETED_SUCCESS,
+	ADVERT_DELETED_FAILURE,
+	AUTH_FORGOT_PASSWORD_FAILURE,
+	AUTH_FORGOT_PASSWORD_REQUEST,
+	AUTH_FORGOT_PASSWORD_SUCCESS,
+	AUTH_NEW_PASSWORD_REQUEST,
+	AUTH_NEW_PASSWORD_SUCCESS,
+	AUTH_NEW_PASSWORD_FAILURE,
+	USER_LOGOUT_REQUEST,
+	USER_LOGOUT_SUCCESS,
+	USER_LOGOUT_FAILURE,
+	USER_LOGGED_SUCCESS,
+	USER_LOGGED_REQUEST,
+	USER_LOGGED_FAILURE,
+	MESSAGE_CREATED_REQUEST,
+	MESSAGE_CREATED_SUCCESS,
+	MESSAGE_CREATED_FAILURE,
+	MESSAGE_LOAD_REQUEST,
+	MESSAGE_LOAD_SUCCESS,
+	MESSAGE_LOAD_FAILURE,
+	CONVERSATION_LOAD_REQUEST,
+	CONVERSATION_LOAD_SUCCESS,
+	CONVERSATION_LOAD_FAILURE,
 } from './types';
-	
+
 /** Login Pasando el history */
 
 export const authLoginRequest = () => {
@@ -191,20 +200,20 @@ export const advertsLoadedFailure = (error) => {
 };
 
 export const advertsLoadAction = () => {
-  return async function (dispatch, getState, { api }) {
-    const advertsLoaded = getAdvertsLoaded(getState());
-    if (advertsLoaded) {
-      return;
-    }
+	return async function (dispatch, getState, { api }) {
+		const advertsLoaded = getAdvertsLoaded(getState());
+		if (advertsLoaded) {
+			return;
+		}
 
-    dispatch(advertsLoadedRequest());
-    try {
-      const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
-      dispatch(advertsLoadedSuccess(adverts));
-    } catch (error) {
-      dispatch(advertsLoadedFailure(error));
-    }
-  };
+		dispatch(advertsLoadedRequest());
+		try {
+			const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(advertsLoadedSuccess(adverts));
+		} catch (error) {
+			dispatch(advertsLoadedFailure(error));
+		}
+	};
 };
 
 export const resetError = () => {
@@ -335,7 +344,6 @@ export const advertCreatedAction = (advert) => {
 	};
 };
 
-
 /**
  * ADVERT EDIT
  */
@@ -364,9 +372,9 @@ export const advertEditFailure = (error) => {
 export const advertEditAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
 		const advertEdited = getAdvertDetail(getState(), advertId);
-		 if (advertEdited) {
-		 	return;
-		 }
+		if (advertEdited) {
+			return;
+		}
 		dispatch(advertEditRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
@@ -384,45 +392,44 @@ export const advertEditAction = (advertId) => {
  */
 
 export const advertUpdateRequest = () => {
-  return {
-    type: ADVERT_UPDATE_REQUEST,
-  };
+	return {
+		type: ADVERT_UPDATE_REQUEST,
+	};
 };
 
 export const advertUpdateSuccess = (advert) => {
-  return {
-    type: ADVERT_UPDATE_SUCCESS,
-    payload: advert,
-  };
+	return {
+		type: ADVERT_UPDATE_SUCCESS,
+		payload: advert,
+	};
 };
 
 export const advertUpdateFailure = (error) => {
-  return {
-    type: ADVERT_UPDATE_FAILURE,
-    payload: error,
-    error: true,
-  };
+	return {
+		type: ADVERT_UPDATE_FAILURE,
+		payload: error,
+		error: true,
+	};
 };
 
 export const advertUpdateAction = (advertId, advert) => {
-  return async function (dispatch, getState, { api, history }) {
-    dispatch(advertUpdateRequest());
-    try {
-      const updateAdvert = await api.adverts.updateAdvert(advertId, advert);
+	return async function (dispatch, getState, { api, history }) {
+		dispatch(advertUpdateRequest());
+		try {
+			const updateAdvert = await api.adverts.updateAdvert(advertId, advert);
 
-      dispatch(advertUpdateSuccess(updateAdvert.result));
-      history.push(
-        `/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
-      );
-    } catch (error) {
-      dispatch(advertUpdateFailure(error));
-      if (error?.statusCode === 401) {
-        history.push('/login');
-      }
-    }
-  };
+			dispatch(advertUpdateSuccess(updateAdvert.result));
+			history.push(
+				`/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+			);
+		} catch (error) {
+			dispatch(advertUpdateFailure(error));
+			if (error?.statusCode === 401) {
+				history.push('/login');
+			}
+		}
+	};
 };
-
 
 /*******************ADVERT DELETE ************************* */
 
@@ -447,7 +454,7 @@ export const advertDeletedFailure = (error) => {
 	};
 };
 
-export const advertDeletedAction = advertId => {
+export const advertDeletedAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
 		dispatch(advertDeletedRequest());
 		try {
@@ -456,7 +463,11 @@ export const advertDeletedAction = advertId => {
 			await api.adverts.deleteAdvert(advertId);
 			dispatch(advertDeletedSuccess(advertId));
 			history.push('/');
-			Swal.fire('Advert deleted', 'El anuncio ha sido borrado con éxito', 'success');
+			Swal.fire(
+				'Advert deleted',
+				'El anuncio ha sido borrado con éxito',
+				'success'
+			);
 		} catch (error) {
 			dispatch(advertDeletedFailure(error));
 			const errorMessage = JSON.stringify(error.message);
@@ -614,5 +625,109 @@ export const userLogoutSuccess = () => {
 	return {
 		type: USER_LOGOUT_SUCCESS,
 		payload: null,
+	};
+};
+
+/***************************CONVERSATION LOAD**********************/
+
+export const conversationLoadedRequest = () => {
+	return {
+		type: CONVERSATION_LOAD_REQUEST,
+	};
+};
+
+export const conversationLoadedSuccess = (conversations) => {
+	return {
+		type: CONVERSATION_LOAD_SUCCESS,
+		payload: conversations,
+	};
+};
+
+export const conversationLoadedFailure = (error) => {
+	return {
+		type: CONVERSATION_LOAD_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const conversationLoadAction = (userId) => {
+	return async function (dispatch, getState, { api }) {
+		dispatch(conversationLoadedRequest());
+		try {
+			const conversations = await api.chat.getConversation(userId); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(conversationLoadedSuccess(conversations));
+		} catch (error) {
+			dispatch(conversationLoadedFailure(error));
+		}
+	};
+};
+
+/******************************MESSAGES LOAD******************************/
+export const messagesLoadedRequest = () => {
+	return {
+		type: MESSAGE_LOAD_REQUEST,
+	};
+};
+
+export const messagesLoadedSuccess = (messages) => {
+	return {
+		type: MESSAGE_LOAD_SUCCESS,
+		payload: messages,
+	};
+};
+
+export const messagesLoadedFailure = (error) => {
+	return {
+		type: MESSAGE_LOAD_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const messagesLoadAction = (conversationId) => {
+	return async function (dispatch, getState, { api }) {
+		dispatch(messagesLoadedRequest());
+		try {
+			const messages = await api.chat.getMessages(conversationId); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(messagesLoadedSuccess(messages));
+		} catch (error) {
+			dispatch(messagesLoadedFailure(error));
+		}
+	};
+};
+
+/****************************MESSAGE CREATED*************************************/
+
+export const messagesCreatedRequest = () => {
+	return {
+		type: MESSAGE_CREATED_REQUEST,
+	};
+};
+
+export const messagesCreatedSuccess = (messages) => {
+	return {
+		type: MESSAGE_CREATED_SUCCESS,
+		payload: messages,
+	};
+};
+
+export const messagesCreatedFailure = (error) => {
+	return {
+		type: MESSAGE_CREATED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const messagesCreatedAction = (newMessage) => {
+	return async function (dispatch, getState, { api }) {
+		dispatch(messagesCreatedRequest());
+		try {
+			const message = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(messagesCreatedSuccess(message));
+		} catch (error) {
+			dispatch(messagesCreatedFailure(error));
+		}
 	};
 };
