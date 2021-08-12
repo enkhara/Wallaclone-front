@@ -1,26 +1,42 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+
+
+const NavLink = styled(Link)`
+    
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1rem 0.5rem;
+    margin-right: 1rem;
+    border-bottom: 3.5px solid transparent;
+
+
+    &:last-of-type {
+      margin-right:0;
+    }
+    &:hover{
+      border-bottom: 3.5px solid #ffffff;
+    }
+`;
 
 const MenuLoginRegister = () => {
   const { t, i18n } = useTranslation(['global']);
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Link
+    <>
+      <NavLink
         to={`/login`}
-        style={{ color: '#fff', margin: '7px', textDecoration: 'none' }}
       >
         {t('header.Login')}
-      </Link>
-      <Link to={`/register`} style={{ color: '#fff', textDecoration: 'none' }}>
+      </NavLink>
+      <NavLink 
+        to={`/register`}
+      >
         {t('header.Register')}
-      </Link>
-    </div>
+      </NavLink>
+    </>
   );
 };
 

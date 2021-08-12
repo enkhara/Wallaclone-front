@@ -9,7 +9,6 @@ import { getUser } from '../../store/selectors';
 const User = ({ children }) => {
 	const dispatch = useDispatch();
 	const user = useSelector(getUser);
-
 	useEffect(() => {
 		dispatch(userLoggedAction());
 	}, [dispatch]);

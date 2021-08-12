@@ -23,8 +23,8 @@ export const useStyles = makeStyles((theme) => ({
 	  	paddingTop: theme.spacing(15)
 	},
 	card: {
-	  	maxWidth: "100%",
-		padding: '6px',
+		width:'auto',
+		padding: '6px'
 		  
 	},
 	media: {

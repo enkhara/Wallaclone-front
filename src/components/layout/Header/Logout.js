@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 const Logout = () => {
 
     const {t, i18n}=useTranslation(['global']);
-
     const dispatch = useDispatch();
 
     const handleOpenModal = () =>{
@@ -27,17 +26,15 @@ const Logout = () => {
     }
 
     return (
-        <div 
-            style={{marginTop:'3px'}}
-        >
-            <Button 
-                color="inherit"
+        <> 
+            <Button
+                variant='contained'
+                color='secondary'
                 onClick={handleOpenModal}
             >
                 {t('header.Logout')}
             </Button>
-
-        </div>
+        </>
     );
 }
 
