@@ -32,7 +32,6 @@ const Chat = ({ user, ...props }) => {
 	const scrollRef = useRef();
 
 	const { error } = useSelector(getUi);
-	//console.log('currentchat', currentChat);
 
 	/******************SOCKET CLIENT******************************/
 
@@ -66,7 +65,7 @@ const Chat = ({ user, ...props }) => {
 			setMessages((prev) => [...prev, arrivalMessages]);
 	}, [arrivalMessages, currentChat]);
 
-	//console.log(socket);
+
 
 	/**************************************************************/
 
@@ -98,11 +97,9 @@ const Chat = ({ user, ...props }) => {
 			text: newMessages,
 			conversationId: currentChat._id,
 		};
-
 		const receiverId = currentChat.members.find(
 			(member) => member !== user._id
 		);
-
 		//emit => send
 		socket.current.emit('sendMessage', {
 			senderId: user._id,
@@ -114,16 +111,11 @@ const Chat = ({ user, ...props }) => {
 			const res = await createdNewMessage(message);
 			console.log('respuesta guardado mensaje', res);
 			setMessages([...messages, res]);
-			//console.log('responde de creation message', res);
 			setNewMessages('');
 		} catch (err) {
-			//console.log(err);
+			console.log(err);
 		}
 	};
-
-	//console.log('conversation en currentCaht', currentChat);
-	console.log('messages', messages);
-	//console.log('user en chat', user);
 
 	return (
 		<React.Fragment>
@@ -143,7 +135,6 @@ const Chat = ({ user, ...props }) => {
 						))}
 					</div>
 				</div>
-
 				<div className="chatBox">
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
