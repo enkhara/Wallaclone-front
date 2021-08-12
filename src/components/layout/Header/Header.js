@@ -17,7 +17,7 @@ import {
 
 const Header = () => {
 
-  const { t, i18n } = useTranslation(['global']);
+  const [t, i18n] = useTranslation(['global']);
   function TranslationClick(lang) {
     i18n.changeLanguage(lang);
   }

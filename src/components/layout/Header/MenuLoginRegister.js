@@ -23,7 +23,7 @@ const NavLink = styled(Link)`
 `;
 
 const MenuLoginRegister = () => {
-  const { t, i18n } = useTranslation(['global']);
+  const { t } = useTranslation(['global']);
   return (
     <>
       <NavLink
