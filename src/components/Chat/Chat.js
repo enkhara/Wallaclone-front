@@ -76,6 +76,8 @@ const Chat = ({ user, ...props }) => {
 	useEffect(() => {
 		//getConversation(user._id).then(setConversations);
 		dispatch(conversationLoadAction(user._id)).then(setConversations);
+
+		console.log(conversations);
 	}, [user]);
 
 	useEffect(() => {
@@ -123,6 +125,7 @@ const Chat = ({ user, ...props }) => {
 			console.log(err);
 		}
 	};
+	console.log(conversations);
 
 	return (
 		<React.Fragment>
@@ -147,7 +150,7 @@ const Chat = ({ user, ...props }) => {
 						{!!currentChat ? (
 							<>
 								<div className="chatBoxTop">
-									{messages.map((message) => (
+									{messages?.map((message) => (
 										<div key={message._id} ref={scrollRef}>
 											<Message
 												message={message}
