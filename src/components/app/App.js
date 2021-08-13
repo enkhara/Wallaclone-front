@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Layout } from '../layout';
 import {
 	LoginPage,
 	PrivateRoute,
@@ -61,7 +62,7 @@ function App() {
 			</PrivateRoute>
 
 			<Route exact path="/adverts">
-				<AdvertsPage />
+				<Layout/>
 			</Route>
 
 			<Route exact path="/404">
