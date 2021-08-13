@@ -74,15 +74,11 @@ const Chat = ({ user, ...props }) => {
 	/**************************************************************/
 
 	useEffect(() => {
-		//getConversation(user._id).then(setConversations);
 		dispatch(conversationLoadAction(user._id)).then(setConversations);
-
-		console.log(conversations);
 	}, [user]);
 
 	useEffect(() => {
 		if (currentChat) {
-			//getMessages(currentChat._id).then(setMessages);
 			dispatch(messagesLoadAction(currentChat._id)).then(setMessages);
 		}
 	}, [currentChat]);
@@ -125,7 +121,6 @@ const Chat = ({ user, ...props }) => {
 			console.log(err);
 		}
 	};
-	console.log(conversations);
 
 	return (
 		<React.Fragment>
