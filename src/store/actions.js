@@ -59,6 +59,9 @@ import {
 	CONVERSATION_LOAD_REQUEST,
 	CONVERSATION_LOAD_SUCCESS,
 	CONVERSATION_LOAD_FAILURE,
+	CONVERSATION_CREATED_REQUEST,
+	CONVERSATION_CREATED_SUCCESS,
+	CONVERSATION_CREATED_FAILURE,
 } from './types';
 
 /** Login Pasando el history */
@@ -160,7 +163,7 @@ export const registerAction = (credentials) => {
 			history.replace(from);
 		} catch (error) {
 			dispatch(authRegisterFailure(error));
-			const errorMessage = JSON.stringify(error.message);
+			const errorMessage = JSON.stringify(error.conversation);
 
 			Swal.fire(`${errorMessage}`, 'Try again!', 'error');
 		}
@@ -464,7 +467,7 @@ export const advertDeletedAction = (advertId) => {
 			);
 		} catch (error) {
 			dispatch(advertDeletedFailure(error));
-			const errorMessage = JSON.stringify(error.message);
+			const errorMessage = JSON.stringify(error.conversation);
 			Swal.fire(`${errorMessage}`, error.data.error, 'error');
 		}
 	};
@@ -504,7 +507,7 @@ export const forgotPasswordAction = (email, history) => {
 			dispatch(forgotPasswordSuccess());
 		} catch (error) {
 			dispatch(forgotPasswordFailure(error));
-			const errorMessage = JSON.stringify(error.message);
+			const errorMessage = JSON.stringify(error.conversation);
 			Swal.fire(`${errorMessage}`);
 		}
 	};
@@ -555,7 +558,7 @@ export const newPasswordAction = (
 			dispatch(newPasswordSuccess());
 		} catch (error) {
 			dispatch(newPasswordFailure(error));
-			const errorMessage = JSON.stringify(error.message);
+			const errorMessage = JSON.stringify(error.conversation);
 			Swal.fire(`${errorMessage}`);
 		}
 	};
@@ -645,11 +648,14 @@ export const conversationLoadedFailure = (error) => {
 	};
 };
 
-export const conversationLoadAction = (userId) => {
+export const conversationLoadAction = (userId, advertisementId) => {
 	return async function (dispatch, getState, { api }) {
 		dispatch(conversationLoadedRequest());
 		try {
-			const conversations = await api.chat.getConversation(userId); //antes getLatestAdverts(filters, limit, skip);
+			const conversations = await api.chat.getConversation(
+				userId,
+				advertisementId
+			); //antes getLatestAdverts(filters, limit, skip);
 			dispatch(conversationLoadedSuccess(conversations));
 			return conversations;
 		} catch (error) {
@@ -720,11 +726,49 @@ export const messagesCreatedAction = (newMessage) => {
 	return async function (dispatch, getState, { api }) {
 		dispatch(messagesCreatedRequest());
 		try {
-			const message = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
-			dispatch(messagesCreatedSuccess(message));
-			return message;
+			const conversation = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(messagesCreatedSuccess(conversation));
+			return conversation;
 		} catch (error) {
 			dispatch(messagesCreatedFailure(error));
+		}
+	};
+};
+
+/*********************************NEW CONVERSATION******************************************************/
+
+export const conversationCreatedRequest = () => {
+	return {
+		type: CONVERSATION_CREATED_REQUEST,
+	};
+};
+
+export const conversationCreatedSuccess = (conversation) => {
+	return {
+		type: CONVERSATION_CREATED_SUCCESS,
+		payload: conversation,
+	};
+};
+
+export const conversationCreatedFailure = (error) => {
+	return {
+		type: CONVERSATION_CREATED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const conversationCreatedAction = (newConversation) => {
+	return async function (dispatch, getState, { api }) {
+		dispatch(conversationCreatedRequest());
+		try {
+			const conversation = await api.chat.createdNewConversation(
+				newConversation
+			); //antes getLatestAdverts(filters, limit, skip);
+			dispatch(conversationCreatedSuccess(conversation));
+			return conversation;
+		} catch (error) {
+			dispatch(conversationCreatedFailure(error));
 		}
 	};
 };
