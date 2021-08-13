@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const MenuLoginRegister = () => {
-  const { t, i18n } = useTranslation(['global']);
+  const { t } = useTranslation(['global']);
   return (
     <div
       style={{

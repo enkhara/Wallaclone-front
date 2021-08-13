@@ -15,7 +15,7 @@ const Header = () => {
   const isLogged = useSelector(getIsLogged);
   const classes = useStyles();
 
-  const { t, i18n } = useTranslation(['global']);
+  const [t, i18n] = useTranslation(['global']);
   function TranslationClick(lang) {
     i18n.changeLanguage(lang);
   }
@@ -26,24 +26,22 @@ const Header = () => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <Link href="/" color="inherit">
-              {/* <img src="logo.png"></img> */}
-              W a l l a c l o n e
+              {/* <img src="logo.png"></img> */}W a l l a c l o n e
             </Link>
           </Typography>
-        
-       
+
           <div>
-          {t('header.Language')}
-          
+            {t('header.Language')}
+
             <button onClick={() => TranslationClick('es')}>ES</button>
             <button onClick={() => TranslationClick('en')}>EN</button>
           </div>
-        
+
           {!isLogged ? (
             <MenuLoginRegister />
           ) : (
             <React.Fragment>
-                <ButtonNewAdvert />
+              <ButtonNewAdvert />
               <Logout />
             </React.Fragment>
           )}

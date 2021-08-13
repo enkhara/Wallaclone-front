@@ -160,15 +160,9 @@ export const registerAction = (credentials) => {
 			history.replace(from);
 		} catch (error) {
 			dispatch(authRegisterFailure(error));
+			const errorMessage = JSON.stringify(error.message);
 
-			const { keyValue } = error.data.error;
-			let repeat = '';
-			if (keyValue.email) {
-				repeat = 'Email is already taken';
-			} else {
-				repeat = 'Username is already taken';
-			}
-			Swal.fire(`${repeat}`, 'Try again!', 'error');
+			Swal.fire(`${errorMessage}`, 'Try again!', 'error');
 		}
 	};
 };
