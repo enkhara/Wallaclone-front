@@ -5,20 +5,40 @@ import Grid from '@material-ui/core/Grid';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
+import { pageSizes } from './pageSizes';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
+
+const useStyles = makeStyles((theme) => ({
+	formControl: {
+		minWidth: 130,
+		marginBottom:'0.5rem',
+		marginTop:'0.5rem',
+		 
+	},
+	selectControl: {
+		fontSize:'1.2rem', 
+		fontWeight:'700',
+		paddingLeft:'0.5rem',
+		
+	}
+  }));
+
 
 const AdvertsList = ({ adverts }) => {
-	const [searchTitle, setSearchTitle] = useState('');
+	const classes = useStyles();
 
+	const [t] = useTranslation('global');
 	const [page, setPage] = useState(1);
-
 	const [pageSize, setPageSize] = useState(3);
-
-	const pageSizes = [3, 6, 9, 12, 15, 18];
 	const count = Math.ceil(adverts.length / pageSize);
-
 	const [pageNumber, setPageNumber] = useState(1);
 	const _advertsData = usePagination(adverts, pageSize);
-	const [t] = useTranslation('global');
 
 	const handlePageChange = (event, value) => {
 		setPageNumber(value);
@@ -31,17 +51,34 @@ const AdvertsList = ({ adverts }) => {
 		setPage(1);
 	};
 	
-
 	return (
-	<>
-		<main>
+		<section> 
 			<Grid container spacing={10}>
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
-					))}
+				))}
 
 			</Grid>
-			
+			<div
+				style={{display:'flex', flexDirection:'column', alignItems:'flex-end', marginTop:'2rem'}}
+			>
+				 
+        		<InputLabel style={{fontWeight:'700'}}>{t('adverts.Adverts/Page')}</InputLabel>
+				<FormControl className={classes.formControl}>
+					<Select
+						native
+						value={pageSize}
+						onChange={handlePageSizeChange}
+						className={classes.selectControl}
+					>
+          				{pageSizes.map((size) => (
+							<option key={size} value={size} >
+								{size}
+							</option>
+						))}
+           
+        			</Select>
+      			</FormControl>
 				<Pagination
 					count={count}
 					size="large"
@@ -49,34 +86,13 @@ const AdvertsList = ({ adverts }) => {
 					variant="outlined"
 					shape="rounded"
 					onChange={handlePageChange}
-					style={{backgroundColor:'yellow'}}
+					color="secondary"
 				/>
-		</main>
-		 
-
-		<div>
-				
-				<div>
-					<div>
-						{t('adverts.Nº of pages')}
-						{count}
-					{t('adverts.Adverts per Page')}
-					<select onChange={handlePageSizeChange} value={pageSize}>
-						{pageSizes.map((size) => (
-							<option key={size} value={size}>
-								{size}
-							</option>
-						))}
-					</select>
-				 
-					</div>
-				
 			</div>
-				</div>
-
-
+				
+		
 		 
-	</>
+	</section>
 	);
 };
 
@@ -85,48 +101,4 @@ AdvertsList.propTypes = {
 };
 
 export default AdvertsList;
-// const AdvertsList = ({ adverts, count, page, pageSize }) => {
-// 	const [pageNumber, setPageNumber] = useState(1);
-// 	const _advertsData = usePagination(adverts, pageSize);
-
-// 	const handlePageChange = (event, value) => {
-// 		setPageNumber(value);
-// 		_advertsData.jump(value);
-// 	};
-
-	 
-// 	return (
-// 	<>
-// 		<main>
-// 			<Grid container spacing={10}>
-// 				{_advertsData.currentData().map((advert) => (
-// 					<Advert key={advert._id} {...advert} />
-// 					))}
-
-// 			</Grid>
-			
-// 				<Pagination
-// 					count={count}
-// 					size="large"
-// 					page={pageNumber}
-// 					variant="outlined"
-// 					shape="rounded"
-// 					onChange={handlePageChange}
-// 					style={{backgroundColor:'yellow'}}
-// 				/>
-// 		</main>
-// 		<div>
-
-
-
-
-// 		</div>
-// 	</>
-// 	);
-// };
-
-// AdvertsList.propTypes = {
-// 	adverts: T.array.isRequired,
-// };
-
-// export default AdvertsList;
+ 

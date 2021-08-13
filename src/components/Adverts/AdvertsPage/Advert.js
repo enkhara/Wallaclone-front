@@ -26,34 +26,37 @@ const Advert = ({
 }) => {
 	const classes = useStyles();
 	return (
+
 		<Grid item xs={12} sm={6} md={4}>
-			<Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
-				<Card className={classes.card}>
-					<CardActionArea>
-						<CardMedia
-							className={classes.media}
-							image={
-								image
-									? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
-									: placeholder
-							}
-						/>
-						<CardContent className={classes.cardContent}>
-							<Typography component="p" className={classes.priceAdvert}>
-								{`${price} €`}
-							</Typography>
-							<Typography component="p">{name}</Typography>
-							{/* <Typography component="p">{tags.length ? tags.join(' - ') : tags}</Typography> */}
-							<Typography component="p">{tags.join(' - ')}</Typography>
-							<Typography component="p">{transaction}</Typography>
-							<Typography component="p">{desc}</Typography>
-						</CardContent>
-					</CardActionArea>
-					<CardActions className={classes.cardActions}>
-						<ShareAdvert Url='http://localhost:3000/username/desc_anuncio' />
-					</CardActions>
-				</Card>
-			</Link>
+			<article>
+				<Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
+					<Card className={classes.card}>
+						<CardActionArea>
+							<CardMedia
+								className={classes.media}
+								image={
+									image
+										? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
+										: placeholder
+								}
+							/>
+							<CardContent className={classes.cardContent}>
+								<Typography component="p" className={classes.priceAdvert}>
+									{`${price} €`}
+								</Typography>
+								<Typography component="p">{name}</Typography>
+								{/* <Typography component="p">{tags.length ? tags.join(' - ') : tags}</Typography> */}
+								<Typography component="p">{tags.join(' - ')}</Typography>
+								<Typography component="p">{transaction}</Typography>
+								<Typography component="p">{desc}</Typography>
+							</CardContent>
+						</CardActionArea>
+						<CardActions className={classes.cardActions}>
+							<ShareAdvert Url='http://localhost:3000/username/desc_anuncio' />
+						</CardActions>
+					</Card>
+				</Link>
+			</article>
 		</Grid>
 	);
 };
