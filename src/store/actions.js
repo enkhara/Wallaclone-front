@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { user } from './reducers/advertsReducer';
 import {
 	getAdvertsLoaded,
-	getUser,
+	getUserLoaded,
 	getAdvertDetail,
 	getTagsLoaded,
 } from './selectors';
@@ -62,6 +62,9 @@ import {
 	CONVERSATION_CREATED_REQUEST,
 	CONVERSATION_CREATED_SUCCESS,
 	CONVERSATION_CREATED_FAILURE,
+	USER_CONVERSATIONS_SUCCESS,
+	USER_CONVERSATIONS_REQUEST,
+	USER_CONVERSATIONS_FAILURE,
 } from './types';
 
 /** Login Pasando el history */
@@ -588,7 +591,8 @@ export const userLoggedSuccess = (user) => {
 
 export const userLoggedAction = () => {
 	return async function (dispatch, getState, { api }) {
-		const user = getUser(getState());
+		const user = getUserLoaded(getState());
+		//const tagsLoaded = getTagsLoaded(getState());
 		if (user) {
 			return;
 		}
@@ -764,11 +768,47 @@ export const conversationCreatedAction = (newConversation) => {
 		try {
 			const conversation = await api.chat.createdNewConversation(
 				newConversation
-			); //antes getLatestAdverts(filters, limit, skip);
+			);
 			dispatch(conversationCreatedSuccess(conversation));
 			return conversation;
 		} catch (error) {
 			dispatch(conversationCreatedFailure(error));
+		}
+	};
+};
+
+/*****************************USER CONVERSATIONS******************************/
+
+export const userConversationsLoadedRequest = () => {
+	return {
+		type: USER_CONVERSATIONS_REQUEST,
+	};
+};
+
+export const userConversationsLoadedSuccess = (conversations) => {
+	return {
+		type: USER_CONVERSATIONS_SUCCESS,
+		payload: conversations,
+	};
+};
+
+export const userConversationsLoadedFailure = (error) => {
+	return {
+		type: USER_CONVERSATIONS_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const userConversationsLoadAction = (userId) => {
+	return async function (dispatch, getState, { api }) {
+		dispatch(userConversationsLoadedRequest());
+		try {
+			const conversations = await api.chat.getUserConversations(userId);
+			dispatch(userConversationsLoadedSuccess(conversations));
+			return conversations;
+		} catch (error) {
+			dispatch(userConversationsLoadedFailure(error));
 		}
 	};
 };
