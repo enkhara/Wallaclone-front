@@ -5,20 +5,20 @@ import Grid from '@material-ui/core/Grid';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
+import { pageSizes } from './pageSizes';
+
 
 const AdvertsList = ({ adverts }) => {
-	const [searchTitle, setSearchTitle] = useState('');
-
+	
+	const [t] = useTranslation('global');
 	const [page, setPage] = useState(1);
-
 	const [pageSize, setPageSize] = useState(3);
-
-	const pageSizes = [3, 6, 9, 12, 15, 18];
+	
 	const count = Math.ceil(adverts.length / pageSize);
 
 	const [pageNumber, setPageNumber] = useState(1);
+	
 	const _advertsData = usePagination(adverts, pageSize);
-	const [t] = useTranslation('global');
 
 	const handlePageChange = (event, value) => {
 		setPageNumber(value);
@@ -31,35 +31,18 @@ const AdvertsList = ({ adverts }) => {
 		setPage(1);
 	};
 	
-
 	return (
-	<>
-		<main>
+		<section> 
 			<Grid container spacing={10}>
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
-					))}
+				))}
 
 			</Grid>
-			
-				<Pagination
-					count={count}
-					size="large"
-					page={pageNumber}
-					variant="outlined"
-					shape="rounded"
-					onChange={handlePageChange}
-					style={{backgroundColor:'yellow'}}
-				/>
-		</main>
-		 
-
-		<div>
-				
+			<div
+				style={{backgroundColor:'yellow', display:'flex', flexDirection:'column', alignItems:'flex-end'}}
+			>
 				<div>
-					<div>
-						{t('adverts.Nº of pages')}
-						{count}
 					{t('adverts.Adverts per Page')}
 					<select onChange={handlePageSizeChange} value={pageSize}>
 						{pageSizes.map((size) => (
@@ -68,15 +51,23 @@ const AdvertsList = ({ adverts }) => {
 							</option>
 						))}
 					</select>
-				 
-					</div>
-				
-			</div>
+
 				</div>
-
-
+				 
+				<Pagination
+					count={count}
+					size="large"
+					page={pageNumber}
+					variant="outlined"
+					shape="rounded"
+					onChange={handlePageChange}
+					color="primary"
+				/>
+			</div>
+				
+		
 		 
-	</>
+	</section>
 	);
 };
 
@@ -85,48 +76,4 @@ AdvertsList.propTypes = {
 };
 
 export default AdvertsList;
-// const AdvertsList = ({ adverts, count, page, pageSize }) => {
-// 	const [pageNumber, setPageNumber] = useState(1);
-// 	const _advertsData = usePagination(adverts, pageSize);
-
-// 	const handlePageChange = (event, value) => {
-// 		setPageNumber(value);
-// 		_advertsData.jump(value);
-// 	};
-
-	 
-// 	return (
-// 	<>
-// 		<main>
-// 			<Grid container spacing={10}>
-// 				{_advertsData.currentData().map((advert) => (
-// 					<Advert key={advert._id} {...advert} />
-// 					))}
-
-// 			</Grid>
-			
-// 				<Pagination
-// 					count={count}
-// 					size="large"
-// 					page={pageNumber}
-// 					variant="outlined"
-// 					shape="rounded"
-// 					onChange={handlePageChange}
-// 					style={{backgroundColor:'yellow'}}
-// 				/>
-// 		</main>
-// 		<div>
-
-
-
-
-// 		</div>
-// 	</>
-// 	);
-// };
-
-// AdvertsList.propTypes = {
-// 	adverts: T.array.isRequired,
-// };
-
-// export default AdvertsList;
+ 

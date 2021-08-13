@@ -16,19 +16,19 @@ const AdvertsPage = () => {
 		dispatch(advertsLoadAction()); 
 	}, [dispatch]);
 
-	
 	return (
-		<>
+		<main 
+			style={{marginTop:'2rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
+		>
 			{adverts.length ? (
 				<AdvertsList
 					adverts={adverts}
-					
 				/>
 			) : (
 				<EmptyList />
 			)}
 	
-		</>
+		</main>
 	);
 };
 
