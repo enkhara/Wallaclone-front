@@ -8,7 +8,8 @@ import AdvertsList from './AdvertsList';
 //import Pagination from '@material-ui/lab/Pagination';
 import { useTranslation } from 'react-i18next';
 
-const AdvertsPage = () => {
+const 
+AdvertsPage = () => {
 	const [t] = useTranslation('global');
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
@@ -68,7 +69,7 @@ const AdvertsPage = () => {
 	};
 
 	return (
-		<React.Fragment>
+		<div style={{width:'95%', maxWidth:'1600px', margin:'auto'}}>
 			<Header />
 			<div className="col-md-6">
 				<h4>{t('adverts.Adverts List')}</h4>
@@ -118,7 +119,7 @@ const AdvertsPage = () => {
 					shape="rounded"
 					onChange={handlePageChange}
 				/> */}
-		</React.Fragment>
+		</div>
 	);
 };
 

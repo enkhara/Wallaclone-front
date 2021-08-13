@@ -14,7 +14,7 @@ import {
 	EditAdvertPage,
 } from '../Adverts';
 import UserPageWithUser from '../User/UserPage';
-import ChatWithUser from '../Chat/Chat';
+//import ChatWithUser from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 
 import './reset.css';
@@ -57,7 +57,7 @@ function App() {
 			<PrivateRoute exact path="/user" component={UserPageWithUser} />
 
 			<PrivateRoute exact path="/chat">
-				<ChatWithUser />
+				{/* <ChatWithUser /> */}
 			</PrivateRoute>
 
 			<Route exact path="/adverts">

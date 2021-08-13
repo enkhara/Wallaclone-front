@@ -1,8 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-
 import placeholder from '../../../assets/images/placeholder.png';
-
 import { advert } from '../propTypes';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
