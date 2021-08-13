@@ -27,7 +27,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { conversationLoadAction } from '../../../store/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../../store/selectors';
 
 function AdvertDetail({
 	name,
@@ -48,6 +49,9 @@ function AdvertDetail({
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 	const dispatch = useDispatch();
 
+	const user = useSelector(getUser);
+	console.log('usuario', user);
+
 	const handleChat = async (e) => {
 		e.preventDefault();
 
@@ -56,14 +60,16 @@ function AdvertDetail({
 		const conversation = await dispatch(
 			conversationLoadAction(userId._id, _id)
 		);
+		//si no existe crearla
 		if (conversation.length !== 0) {
 			console.log('existe');
 		} else {
 			const newConversation = {
 				advertisementId: _id,
-				members: [userId._id, userId],
+				members: [userId._id],
 			};
-			dispatch();
+			//dispatch();
+			//user zone currentChat cargado
 		}
 		//datos id anuncio id usuario propietario
 		//comprobar si existe la conversacion
