@@ -651,6 +651,7 @@ export const conversationLoadAction = (userId) => {
 		try {
 			const conversations = await api.chat.getConversation(userId); //antes getLatestAdverts(filters, limit, skip);
 			dispatch(conversationLoadedSuccess(conversations));
+			return conversations;
 		} catch (error) {
 			dispatch(conversationLoadedFailure(error));
 		}
