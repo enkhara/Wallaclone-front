@@ -1,26 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
 import Navbar from "./Navbar";
-
-
-//import ButtonNewAdvert from './ButtonNewAdvert';
-import { useTranslation } from 'react-i18next';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-
- 
-} from "@material-ui/core";
+import LenguageMenu from "./LenguageMenu";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 
 const Header = () => {
-
-  const [t, i18n] = useTranslation(['global']);
-  function TranslationClick(lang) {
-    i18n.changeLanguage(lang);
-  }
 
   return (
     <header>
@@ -30,21 +15,8 @@ const Header = () => {
               <img src="/logo_wallaclone2.png" alt="Wallaclone app" />
             </Link>
           </Typography>
-          
-          <section style={{display:'flex',alignItems:'flex-end',justifyContent:'flex-end'}}>
-          {t('header.Language')}
-              <button 
-                onClick={() => TranslationClick('es')}
-                style={{backgroundImage:'url ("/spain.jpg") no-repeat'}}
-              >
-                  ES
-              </button>
-               
-              <button 
-                onClick={() => TranslationClick('en')}>
-                EN
-                </button>
-          </section>
+
+          <LenguageMenu/>
         </section>
 
         <AppBar 
