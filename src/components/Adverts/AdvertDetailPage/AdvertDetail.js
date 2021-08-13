@@ -26,6 +26,9 @@ import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { conversationLoadAction } from '../../../store/actions';
+import { useDispatch } from 'react-redux';
+
 function AdvertDetail({
 	name,
 	transaction,
@@ -36,14 +39,39 @@ function AdvertDetail({
 	updatedAt,
 	createdAt,
 	userId,
-    onDelete,
-	onEdit, 
-	_id
+	onDelete,
+	onEdit,
+	_id,
 }) {
 	const [t] = useTranslation('global');
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
-	
+	const dispatch = useDispatch();
+
+	const handleChat = async (e) => {
+		e.preventDefault();
+
+		console.log(userId._id);
+		console.log(_id);
+		const conversation = await dispatch(
+			conversationLoadAction(userId._id, _id)
+		);
+		if (conversation.length !== 0) {
+			console.log('existe');
+		} else {
+			const newConversation = {
+				advertisementId: _id,
+				members: [userId._id, userId],
+			};
+			dispatch();
+		}
+		//datos id anuncio id usuario propietario
+		//comprobar si existe la conversacion
+		//si no crearla
+		//redirigir a chat
+		//cargar la conversación en currentChat
+	};
+
 	return (
 		<Grid
 			item
@@ -63,7 +91,6 @@ function AdvertDetail({
 					height: '810px',
 				}}
 			>
-				
 				<CardActions className={classes.headerDetail}>
 					<Box className={classes.author}>
 						<Avatar />
@@ -84,11 +111,11 @@ function AdvertDetail({
 						<IconButton className={classes.favoriteIcon}>
 							<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
-						<Link to={`/chat/${_id}`} style={{ textDecoration: 'none' }}>
-							<IconButton className={classes.chatIcon}>
-								<ChatIcon style={{ fontSize: '2rem' }} />
-							</IconButton>
-						</Link>
+						{/* <Link to={`/chat/${_id}`} style={{ textDecoration: 'none' }}> */}
+						<IconButton className={classes.chatIcon} onClick={handleChat}>
+							<ChatIcon style={{ fontSize: '2rem' }} />
+						</IconButton>
+						{/* </Link> */}
 					</Box>
 				</CardActions>
 				<CardMedia
@@ -133,9 +160,11 @@ function AdvertDetail({
 					</Typography>
 				</Box>
 				<Box className={classes.updateAndDeleteDetailAdvert}>
-					
-					<Link className={classes.containerNewAdvert} to={`/advert/edit/${_id}`}> 
-						<Button 
+					<Link
+						className={classes.containerNewAdvert}
+						to={`/advert/edit/${_id}`}
+					>
+						<Button
 							variant="contained"
 							color="primary"
 							onClick={onEdit}
@@ -143,11 +172,11 @@ function AdvertDetail({
 						>
 							{t('adverts.Update')}
 						</Button>
-					</Link> 
+					</Link>
 					<ConfirmationButton
 						variant="contained"
 						color="secondary"
-						confirmation={t("adverts.Confirm advert deletion")}
+						confirmation={t('adverts.Confirm advert deletion')}
 						onConfirm={onDelete}
 						startIcon={<DeleteIcon />}
 					>
