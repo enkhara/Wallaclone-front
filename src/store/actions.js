@@ -651,6 +651,7 @@ export const conversationLoadAction = (userId) => {
 		try {
 			const conversations = await api.chat.getConversation(userId); //antes getLatestAdverts(filters, limit, skip);
 			dispatch(conversationLoadedSuccess(conversations));
+			return conversations;
 		} catch (error) {
 			dispatch(conversationLoadedFailure(error));
 		}
@@ -685,6 +686,7 @@ export const messagesLoadAction = (conversationId) => {
 		try {
 			const messages = await api.chat.getMessages(conversationId); //antes getLatestAdverts(filters, limit, skip);
 			dispatch(messagesLoadedSuccess(messages));
+			return messages;
 		} catch (error) {
 			dispatch(messagesLoadedFailure(error));
 		}
@@ -720,6 +722,7 @@ export const messagesCreatedAction = (newMessage) => {
 		try {
 			const message = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
 			dispatch(messagesCreatedSuccess(message));
+			return message;
 		} catch (error) {
 			dispatch(messagesCreatedFailure(error));
 		}

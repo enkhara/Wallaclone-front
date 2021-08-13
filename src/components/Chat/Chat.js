@@ -74,13 +74,11 @@ const Chat = ({ user, ...props }) => {
 	/**************************************************************/
 
 	useEffect(() => {
-		//getConversation(user._id).then(setConversations);
 		dispatch(conversationLoadAction(user._id)).then(setConversations);
 	}, [user]);
 
 	useEffect(() => {
 		if (currentChat) {
-			//getMessages(currentChat._id).then(setMessages);
 			dispatch(messagesLoadAction(currentChat._id)).then(setMessages);
 		}
 	}, [currentChat]);
@@ -147,7 +145,7 @@ const Chat = ({ user, ...props }) => {
 						{!!currentChat ? (
 							<>
 								<div className="chatBoxTop">
-									{messages.map((message) => (
+									{messages?.map((message) => (
 										<div key={message._id} ref={scrollRef}>
 											<Message
 												message={message}
