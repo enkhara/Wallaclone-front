@@ -26,7 +26,10 @@ import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { conversationLoadAction } from '../../../store/actions';
+import {
+	conversationLoadAction,
+	conversationCreatedAction,
+} from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
 
@@ -60,17 +63,19 @@ function AdvertDetail({
 		const conversation = await dispatch(
 			conversationLoadAction(userId._id, _id)
 		);
-		//si no existe crearla
-		if (conversation.length !== 0) {
-			console.log('existe');
-		} else {
+
+		if (conversation.length === 0) {
 			const newConversation = {
 				advertisementId: _id,
-				members: [userId._id],
+				senderId: userId._id,
+				receiverId: user._id,
 			};
-			//dispatch();
-			//user zone currentChat cargado
+			dispatch(conversationCreatedAction(newConversation));
 		}
+
+		//dispatch();
+		//user zone currentChat cargado
+
 		//datos id anuncio id usuario propietario
 		//comprobar si existe la conversacion
 		//si no crearla
