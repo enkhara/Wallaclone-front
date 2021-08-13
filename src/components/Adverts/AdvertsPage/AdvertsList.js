@@ -16,31 +16,33 @@ const AdvertsList = ({ adverts, count, page, pageSize }) => {
 
 	 
 	return (
+	<>
 		<main>
-			<Pagination
-				count={count}
-				size="large"
-				page={pageNumber}
-				variant="outlined"
-				shape="rounded"
-				onChange={handlePageChange}
-			/>
-			<Grid container spacing={9}>
-		
+			<Grid container spacing={10}>
+
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
-				))}
+					))}
 
 			</Grid>
-			<Pagination
-				count={count}
-				size="large"
-				page={pageNumber}
-				variant="outlined"
-				shape="rounded"
-				onChange={handlePageChange}
-			/>
+			
+				<Pagination
+					count={count}
+					size="large"
+					page={pageNumber}
+					variant="outlined"
+					shape="rounded"
+					onChange={handlePageChange}
+					style={{backgroundColor:'yellow'}}
+				/>
 		</main>
+		<div>
+
+
+
+
+		</div>
+	</>
 	);
 };
 

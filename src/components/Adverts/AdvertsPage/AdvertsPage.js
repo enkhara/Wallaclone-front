@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../../layout';
 import { getAdverts } from '../../../store/selectors';
@@ -8,27 +8,15 @@ import AdvertsList from './AdvertsList';
 //import Pagination from '@material-ui/lab/Pagination';
 import { useTranslation } from 'react-i18next';
 
-const 
-AdvertsPage = () => {
+const AdvertsPage = () => {
 	const [t] = useTranslation('global');
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
 
-	// paginación
-	// const [limit, setLimit] = useState(9);
-	// const [skip, setSkip] = useState(0);
-
-	// const nextPage = () => {
-	// 	setSkip(skip + limit)
-	// }
-
-	// const previousPage = () => {
-	// 	setSkip(skip - limit)
-	// }
+	 
 	const [searchTitle, setSearchTitle] = useState('');
 	const [page, setPage] = useState(1);
 
-	//const [count, setCount] = useState(0);
 	const [pageSize, setPageSize] = useState(3);
 
 	const pageSizes = [3, 6, 9, 12, 15, 18];
@@ -69,8 +57,8 @@ AdvertsPage = () => {
 	};
 
 	return (
-		<div style={{width:'95%', maxWidth:'1600px', margin:'auto'}}>
-			<Header />
+		<Fragment>
+			
 			<div className="col-md-6">
 				<h4>{t('adverts.Adverts List')}</h4>
 				<div>
@@ -88,17 +76,7 @@ AdvertsPage = () => {
 							</option>
 						))}
 					</select>
-					{/* <Pagination
-						className="my-3"
-						count={count}
-						page={page}
-						siblingCount={1}
-						boundaryCount={1}
-						variant="outlined"
-								shape="rounded"
-								color="primary"
-						onChange={handlePageChange}
-					/> */}
+				 
 				</div>
 			</div>
 			{adverts.length ? (
@@ -111,15 +89,8 @@ AdvertsPage = () => {
 			) : (
 				<EmptyList />
 			)}
-			{/* <Pagination
-					count={count}
-					size="large"
-					page={page}
-					variant="outlined"
-					shape="rounded"
-					onChange={handlePageChange}
-				/> */}
-		</div>
+			 
+		</Fragment>
 	);
 };
 
