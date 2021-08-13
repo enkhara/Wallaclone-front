@@ -17,8 +17,14 @@ import {
 } from '../../api/chat';
 import { getUi } from '../../store/selectors';
 import { Header, SideBar } from '../layout';
+import {
+	conversationLoadAction,
+	messagesCreatedAction,
+	messagesLoadAction,
+} from '../../store/actions';
 
 const Chat = ({ user, ...props }) => {
+	const dispatch = useDispatch();
 	const [conversations, setConversations] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
@@ -65,17 +71,17 @@ const Chat = ({ user, ...props }) => {
 			setMessages((prev) => [...prev, arrivalMessages]);
 	}, [arrivalMessages, currentChat]);
 
-
-
 	/**************************************************************/
 
 	useEffect(() => {
-		getConversation(user._id).then(setConversations);
+		//getConversation(user._id).then(setConversations);
+		dispatch(conversationLoadAction(user._id)).then(setConversations);
 	}, [user]);
 
 	useEffect(() => {
 		if (currentChat) {
-			getMessages(currentChat._id).then(setMessages);
+			//getMessages(currentChat._id).then(setMessages);
+			dispatch(messagesLoadAction(currentChat._id)).then(setMessages);
 		}
 	}, [currentChat]);
 
@@ -108,7 +114,8 @@ const Chat = ({ user, ...props }) => {
 		});
 
 		try {
-			const res = await createdNewMessage(message);
+			//const res = await createdNewMessage(message);
+			const res = dispatch(messagesCreatedAction(message));
 			console.log('respuesta guardado mensaje', res);
 			setMessages([...messages, res]);
 			setNewMessages('');
@@ -125,7 +132,7 @@ const Chat = ({ user, ...props }) => {
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
 						<input placeholder="Search for friends"></input>
-						{conversations.map((conversation) => (
+						{conversations?.map((conversation) => (
 							<div
 								key={conversation._id}
 								onClick={() => setCurrentChat(conversation)}
