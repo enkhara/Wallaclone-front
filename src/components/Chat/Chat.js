@@ -10,15 +10,11 @@ import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
 import Message from './Message';
 import withUser from '../hoc/withUser';
-import {
-	getConversation,
-	getMessages,
-	createdNewMessage,
-} from '../../api/chat';
-import { getUi } from '../../store/selectors';
 import { Header, SideBar } from '../layout';
+
+import { getUi } from '../../store/selectors';
 import {
-	conversationLoadAction,
+	userConversationsLoadAction,
 	messagesCreatedAction,
 	messagesLoadAction,
 } from '../../store/actions';
@@ -38,6 +34,8 @@ const Chat = ({ user, ...props }) => {
 	const scrollRef = useRef();
 
 	const { error } = useSelector(getUi);
+
+	console.log('en chat iniciado', user);
 
 	/******************SOCKET CLIENT******************************/
 
@@ -74,7 +72,7 @@ const Chat = ({ user, ...props }) => {
 	/**************************************************************/
 
 	useEffect(() => {
-		dispatch(conversationLoadAction(user._id)).then(setConversations);
+		dispatch(userConversationsLoadAction(user._id)).then(setConversations);
 	}, [user]);
 
 	useEffect(() => {
