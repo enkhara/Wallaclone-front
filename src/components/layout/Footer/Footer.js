@@ -3,13 +3,13 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { Typography } from "@material-ui/core";
-
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './footerCSS';
 
 const Footer = () => {
 
     const classes = useStyles();
-
+    const [t] = useTranslation('global');
     return (
         <footer 
             className={classes.footer}
@@ -36,7 +36,7 @@ const Footer = () => {
                 />
             </div>
             <div>
-                <p>&copy; {new Date().getFullYear()} Wallaclone App. Todos los derechos reservados.</p>
+                <p>&copy; {new Date().getFullYear()} Wallaclone App. {t('footer.All rights reserved')}</p>
             </div>
         </footer>
     );

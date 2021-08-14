@@ -11,7 +11,6 @@ import Conversation from './Conversations';
 import Message from './Message';
 import withUser from '../hoc/withUser';
 import { SideBar } from '../layout';
-
 import { getUi } from '../../store/selectors';
 import {
 	userConversationsLoadAction,

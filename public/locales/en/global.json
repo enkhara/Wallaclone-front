@@ -86,5 +86,8 @@
   },
   "message": {
     "Somenthing goes wrong !": "Somenthing goes wrong !"
+  },
+  "footer": {
+    "All rights reserved": "All rights reserved."
   }
 }
