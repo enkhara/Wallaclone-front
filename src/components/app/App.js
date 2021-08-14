@@ -57,12 +57,12 @@ function App() {
 
 			<PrivateRoute exact path="/user" component={UserPageWithUser} />
 
-			<PrivateRoute exact path="/chat">
+			<PrivateRoute exact path="/user/chat">
 				{<ChatWithUser />}
 			</PrivateRoute>
 
 			<Route exact path="/adverts">
-				<Layout/>
+				<Layout />
 			</Route>
 
 			<Route exact path="/404">
