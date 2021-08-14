@@ -8,6 +8,7 @@ import T from 'prop-types';
 import './Chat.css';
 import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
+import UserOwnAdvertChat from './UserOwnAdvertChat';
 import Message from './Message';
 import withUser from '../hoc/withUser';
 import { SideBar } from '../layout';
@@ -122,7 +123,6 @@ const Chat = ({ user, ...props }) => {
 
 	return (
 		<React.Fragment>
-			 
 			<SideBar />
 			<div className="chat">
 				<div className="chatMenu">
@@ -139,6 +139,9 @@ const Chat = ({ user, ...props }) => {
 					</div>
 				</div>
 				<div className="chatBox">
+					<div className="chatBoxAdvertOwn">
+						<UserOwnAdvertChat user={user} />
+					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
 							<>
