@@ -2,17 +2,18 @@ import React from 'react';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
-import { useStyles } from './advertCSS';
-
+import { useStyles } from './AdvertCSS';
+import {
+	Grid,
+	Card,
+	CardActionArea,
+	CardActions,
+	CardMedia,
+	CardContent,
+	Typography
+} from '@material-ui/core';
 
 const Advert = ({
 	_id,

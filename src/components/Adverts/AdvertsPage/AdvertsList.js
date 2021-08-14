@@ -5,7 +5,7 @@ import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
 import { pageSizes } from './pageSizes';
-import { useStyles } from './advertsListCSS';
+import { useStyles } from './AdvertsListCSS';
 import {
 	Grid,
 	InputLabel,
