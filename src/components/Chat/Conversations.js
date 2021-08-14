@@ -2,31 +2,34 @@ import './Chat.js';
 import Avatar from '@material-ui/core/Avatar';
 import React, { useEffect, useState } from 'react';
 
-import { getUser } from '../../api/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { advertDetailAction } from '../../store/actions';
+import { getAdvertDetail } from '../../store/selectors.js';
+
+import placeholder from '../../assets/images/placeholder.png';
 
 const Conversation = ({ conversation, currentUser }) => {
-	const [user, setUser] = useState(null);
+	const dispatch = useDispatch();
+	const advert = useSelector((state) =>
+		getAdvertDetail(state, conversation.advertisementId)
+	);
 
 	useEffect(() => {
-		const friendId = conversation.members.find((m) => m !== currentUser._id);
+		dispatch(advertDetailAction(conversation.advertisementId));
 
-		getUser(friendId).then(setUser);
-		console.log('friends en convesation component', friendId);
-	}, [currentUser, conversation]);
+		console.log('friends en convesation component', advert);
+	}, [dispatch, currentUser, conversation]);
 
 	return (
-		user && (
+		advert && (
 			<div className="conversation">
 				<Avatar
 					className="conversationImg"
-					src={
-						user.result.profilePicture
-							? user.result.profilePicture
-							: '/broken-image.jpg'
-					}
+					src={advert.image ? advert.image : placeholder}
 					alt=""
 				/>
-				<span className="conversationName">{user.result.username}</span>
+				<span className="conversationName">{advert.name}</span>
+				<span className="advertisementName">{advert.user}</span>
 			</div>
 		)
 	);
