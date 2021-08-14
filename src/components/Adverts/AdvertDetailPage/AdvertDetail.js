@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import T from 'prop-types';
 import Container from '@material-ui/core/Container';
 import ConfirmationButton from '../../shared/ConfirmationButton';
@@ -55,11 +56,10 @@ function AdvertDetail({
 	const user = useSelector(getUser);
 	console.log('usuario', user);
 
+	const history = useHistory();
+
 	const handleChat = async (e) => {
 		e.preventDefault();
-
-		console.log(userId._id);
-		console.log(_id);
 		const conversation = await dispatch(
 			conversationLoadAction(userId._id, _id)
 		);
@@ -72,15 +72,7 @@ function AdvertDetail({
 			};
 			dispatch(conversationCreatedAction(newConversation));
 		}
-
-		//dispatch();
-		//user zone currentChat cargado
-
-		//datos id anuncio id usuario propietario
-		//comprobar si existe la conversacion
-		//si no crearla
-		//redirigir a chat
-		//cargar la conversación en currentChat
+		history.push('/user/chat');
 	};
 
 	return (
