@@ -4,7 +4,7 @@ import ConfirmationButton from '../../shared/ConfirmationButton';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
 import { formatDistanceToNow, format } from 'date-fns';
- import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -12,7 +12,6 @@ import { useStyles } from './AdvertDetailCSS';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-
 import {
 	Grid,
 	Button,
@@ -27,12 +26,7 @@ import {
 	Avatar,
 	Box
 } from '@material-ui/core';
-
-
-import {
-	conversationLoadAction,
-	conversationCreatedAction,
-} from '../../../store/actions';
+import { conversationLoadAction, conversationCreatedAction } from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
 

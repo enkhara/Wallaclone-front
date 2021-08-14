@@ -1,9 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-
 import { Header } from '../../layout';
-
 import { getAdvertDetail, getUi } from '../../../store/selectors';
 import {
 	advertDeletedAction,

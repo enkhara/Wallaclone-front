@@ -2,9 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
 	
-	title: {
-		flexGrow: 1,
-	},
 	priceAdvert: {
 		fontWeight: 700,
     	fontSize: '1.50rem',
@@ -23,17 +20,16 @@ export const useStyles = makeStyles((theme) => ({
 	  	height: 200,
 		borderRadius: 3
 	},
-
 	cardActions: {
-	  	display: 'flex',
-    	alignItems: 'center',
-    	justifyContent: 'flex-end',
-
+		display: "flex",
+		justifyContent:'space-between',
+		alignItems:'center',
 	},
-	
- 
-
-	 
-
-		
-  }));
+	author: {
+		display: "flex",
+		alignItems:'center',
+		justifyContent:'center',
+		padding:0,
+		margin:0 
+	},		
+}));
