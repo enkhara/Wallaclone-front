@@ -83,5 +83,8 @@
     "Send": "Enviar",
     "Open a conversation to start a chat.": "Abre una conversación para iniciar el chat.",
     "type your message": "Escribe tu mensaje"
+  },
+  "footer": {
+    "All rights reserved": "Todos los derechos reservados."
   }
 }
