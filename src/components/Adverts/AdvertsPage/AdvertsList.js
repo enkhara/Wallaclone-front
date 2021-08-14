@@ -1,14 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import { useStyles } from '../../shared/useStyles';
-//import { Box, List, Tag, ListItem, Divider } from "@chakra-ui/core";
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
+import { useTranslation } from 'react-i18next';
+import { pageSizes } from './pageSizes';
+import { useStyles } from './advertsListCSS';
+import {
+	Grid,
+	InputLabel,
+	FormHelperText,
+	FormControl,
+	Select,
+	NativeSelect
+} from '@material-ui/core';
 
-const AdvertsList = ({ adverts, count, page, pageSize }) => {
+const AdvertsList = ({ adverts }) => {
+	const classes = useStyles();
+
+	const [t] = useTranslation('global');
+	const [page, setPage] = useState(1);
+	const [pageSize, setPageSize] = useState(3);
+	const count = Math.ceil(adverts.length / pageSize);
 	const [pageNumber, setPageNumber] = useState(1);
 	const _advertsData = usePagination(adverts, pageSize);
 
@@ -17,33 +30,54 @@ const AdvertsList = ({ adverts, count, page, pageSize }) => {
 		_advertsData.jump(value);
 	};
 
-	const classes = useStyles();
+
+	const handlePageSizeChange = (event) => {
+		setPageSize(event.target.value);
+		setPage(1);
+	};
+	
 	return (
-		<Container maxWidth="lg" className={classes.blogsContainer}>
-			<Pagination
-				count={count}
-				size="large"
-				page={pageNumber}
-				variant="outlined"
-				shape="rounded"
-				onChange={handlePageChange}
-			/>
+		<section> 
 			<Grid container spacing={10}>
-		
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
 				))}
 
 			</Grid>
-			<Pagination
-				count={count}
-				size="large"
-				page={pageNumber}
-				variant="outlined"
-				shape="rounded"
-				onChange={handlePageChange}
-			/>
-		</Container>
+			<div
+				style={{display:'flex', flexDirection:'column', alignItems:'flex-end', marginTop:'2rem'}}
+			>
+				 
+        		<InputLabel style={{fontWeight:'700'}}>{t('adverts.Adverts/Page')}</InputLabel>
+				<FormControl className={classes.formControl}>
+					<Select
+						native
+						value={pageSize}
+						onChange={handlePageSizeChange}
+						className={classes.selectControl}
+					>
+          				{pageSizes.map((size) => (
+							<option key={size} value={size} >
+								{size}
+							</option>
+						))}
+           
+        			</Select>
+      			</FormControl>
+				<Pagination
+					count={count}
+					size="large"
+					page={pageNumber}
+					variant="outlined"
+					shape="rounded"
+					onChange={handlePageChange}
+					color="secondary"
+				/>
+			</div>
+				
+		
+		 
+	</section>
 	);
 };
 
@@ -52,3 +86,4 @@ AdvertsList.propTypes = {
 };
 
 export default AdvertsList;
+ 

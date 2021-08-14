@@ -15,6 +15,7 @@ function withUser(WrappedComponent) {
 	const WithUserComponent = (props) => {
 		const dispatch = useDispatch();
 		const user = useSelector(getUser);
+		console.log('en withUser component', user);
 
 		useEffect(() => {
 			dispatch(userLoggedAction());

@@ -1,19 +1,22 @@
 import React from 'react';
 import T from 'prop-types';
-
 import placeholder from '../../../assets/images/placeholder.png';
-
 import { advert } from '../propTypes';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { useStyles } from '../../shared/useStyles';
+import { formatDistanceToNow } from 'date-fns';
 import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
+import { useStyles } from './advertCSS';
+import {
+	Grid,
+	Card,
+	CardActionArea,
+	CardActions,
+	CardMedia,
+	CardContent,
+	Typography,
+	Box,
+	Avatar
+} from '@material-ui/core';
 
 const Advert = ({
 	_id,
@@ -25,37 +28,54 @@ const Advert = ({
 	tags,
 	reserved,
 	sold,
+	userId,
+	createdAt
 }) => {
 	const classes = useStyles();
 	return (
+
 		<Grid item xs={12} sm={6} md={4}>
-			<Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
-				<Card className={classes.card}>
-					<CardActionArea>
-						<CardMedia
-							className={classes.media}
-							image={
-								image
-									? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
-									: placeholder
-							}
-						/>
-						<CardContent className={classes.cardContent}>
-							<Typography component="p" className={classes.priceAdvert}>
-								{`${price} €`}
-							</Typography>
-							<Typography component="p">{name}</Typography>
-							{/* <Typography component="p">{tags.length ? tags.join(' - ') : tags}</Typography> */}
-							<Typography component="p">{tags.join(' - ')}</Typography>
-							<Typography component="p">{transaction}</Typography>
-							<Typography component="p">{desc}</Typography>
-						</CardContent>
-					</CardActionArea>
-					<CardActions className={classes.cardActions}>
-						<ShareAdvert Url='http://localhost:3000/username/desc_anuncio' />
-					</CardActions>
-				</Card>
-			</Link>
+			<article>
+				<Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
+					<Card className={classes.card}>
+						<CardActionArea>
+							<CardMedia
+								className={classes.media}
+								image={
+									image
+										? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
+										: placeholder
+								}
+							/>
+							<CardContent className={classes.cardContent}>
+								<Typography component="p" className={classes.priceAdvert}>
+									{`${price} €`}
+								</Typography>
+								<Typography component="p">{name}</Typography>
+								<Typography component="p">{tags.join(' - ')}</Typography>
+								<Typography component="p">{transaction}</Typography>
+								<Typography component="p">{desc}</Typography>
+							</CardContent>
+						</CardActionArea>
+					 
+						<CardActions className={classes.cardActions}>
+                    		<Box className={classes.author}>
+                        		<Avatar/>
+                        		<Box ml={2}>
+                            		<Typography variant="subtitle2" component="p">
+                            			{userId.username}
+                            		</Typography>
+                            		<Typography variant="subtitle2" color="textSecondary" component="p">
+										{formatDistanceToNow(new Date(createdAt))}
+                            		</Typography>
+                        		</Box>
+                    		</Box>
+                    
+                        	<ShareAdvert Url={ "http://localhost:3000/username/desc_anuncio"}/>
+                		</CardActions>
+					</Card>
+				</Link>
+			</article>
 		</Grid>
 	);
 };
@@ -68,3 +88,5 @@ Advert.prototype = {
 };
 
 export default Advert;
+
+ 

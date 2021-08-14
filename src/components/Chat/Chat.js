@@ -10,15 +10,17 @@ import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
 import Message from './Message';
 import withUser from '../hoc/withUser';
-import {
-	getConversation,
-	getMessages,
-	createdNewMessage,
-} from '../../api/chat';
-import { getUi } from '../../store/selectors';
 import { Header, SideBar } from '../layout';
 
+import { getUi } from '../../store/selectors';
+import {
+	userConversationsLoadAction,
+	messagesCreatedAction,
+	messagesLoadAction,
+} from '../../store/actions';
+
 const Chat = ({ user, ...props }) => {
+	const dispatch = useDispatch();
 	const [conversations, setConversations] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
@@ -32,7 +34,8 @@ const Chat = ({ user, ...props }) => {
 	const scrollRef = useRef();
 
 	const { error } = useSelector(getUi);
-	//console.log('currentchat', currentChat);
+
+	console.log('en chat iniciado', user);
 
 	/******************SOCKET CLIENT******************************/
 
@@ -66,17 +69,15 @@ const Chat = ({ user, ...props }) => {
 			setMessages((prev) => [...prev, arrivalMessages]);
 	}, [arrivalMessages, currentChat]);
 
-	//console.log(socket);
-
 	/**************************************************************/
 
 	useEffect(() => {
-		getConversation(user._id).then(setConversations);
+		dispatch(userConversationsLoadAction(user._id)).then(setConversations);
 	}, [user]);
 
 	useEffect(() => {
 		if (currentChat) {
-			getMessages(currentChat._id).then(setMessages);
+			dispatch(messagesLoadAction(currentChat._id)).then(setMessages);
 		}
 	}, [currentChat]);
 
@@ -98,11 +99,9 @@ const Chat = ({ user, ...props }) => {
 			text: newMessages,
 			conversationId: currentChat._id,
 		};
-
 		const receiverId = currentChat.members.find(
 			(member) => member !== user._id
 		);
-
 		//emit => send
 		socket.current.emit('sendMessage', {
 			senderId: user._id,
@@ -111,19 +110,15 @@ const Chat = ({ user, ...props }) => {
 		});
 
 		try {
-			const res = await createdNewMessage(message);
+			//const res = await createdNewMessage(message);
+			const res = dispatch(messagesCreatedAction(message));
 			console.log('respuesta guardado mensaje', res);
 			setMessages([...messages, res]);
-			//console.log('responde de creation message', res);
 			setNewMessages('');
 		} catch (err) {
-			//console.log(err);
+			console.log(err);
 		}
 	};
-
-	//console.log('conversation en currentCaht', currentChat);
-	console.log('messages', messages);
-	//console.log('user en chat', user);
 
 	return (
 		<React.Fragment>
@@ -133,7 +128,7 @@ const Chat = ({ user, ...props }) => {
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
 						<input placeholder="Search for friends"></input>
-						{conversations.map((conversation) => (
+						{conversations?.map((conversation) => (
 							<div
 								key={conversation._id}
 								onClick={() => setCurrentChat(conversation)}
@@ -143,13 +138,12 @@ const Chat = ({ user, ...props }) => {
 						))}
 					</div>
 				</div>
-
 				<div className="chatBox">
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
 							<>
 								<div className="chatBoxTop">
-									{messages.map((message) => (
+									{messages?.map((message) => (
 										<div key={message._id} ref={scrollRef}>
 											<Message
 												message={message}

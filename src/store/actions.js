@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { user } from './reducers/advertsReducer';
 import {
   getAdvertsLoaded,
-  getUser,
+  getUserLoaded,
   getAdvertDetail,
   getTagsLoaded,
 } from './selectors';
@@ -50,6 +50,21 @@ import {
   USER_LOGGED_SUCCESS,
   USER_LOGGED_REQUEST,
   USER_LOGGED_FAILURE,
+  MESSAGE_CREATED_REQUEST,
+  MESSAGE_CREATED_SUCCESS,
+  MESSAGE_CREATED_FAILURE,
+  MESSAGE_LOAD_REQUEST,
+  MESSAGE_LOAD_SUCCESS,
+  MESSAGE_LOAD_FAILURE,
+  CONVERSATION_LOAD_REQUEST,
+  CONVERSATION_LOAD_SUCCESS,
+  CONVERSATION_LOAD_FAILURE,
+  CONVERSATION_CREATED_REQUEST,
+  CONVERSATION_CREATED_SUCCESS,
+  CONVERSATION_CREATED_FAILURE,
+  USER_CONVERSATIONS_SUCCESS,
+  USER_CONVERSATIONS_REQUEST,
+  USER_CONVERSATIONS_FAILURE,
 } from './types';
 
 /** Login Pasando el history */
@@ -235,7 +250,7 @@ export const advertDetailAction = (advertId) => {
     dispatch(advertDetailRequest());
     try {
       const advert = await api.adverts.getAdvert(advertId);
-      //console.log(`advert ACTION ${advert}`);
+      console.log(`advert ACTION ${advert}`);
       dispatch(advertDetailSuccess(advert.result));
       return advert.result;
     } catch (error) {
@@ -451,7 +466,7 @@ export const advertDeletedAction = (advertId) => {
       );
     } catch (error) {
       dispatch(advertDeletedFailure(error));
-      const errorMessage = JSON.stringify(error.message);
+      const errorMessage = JSON.stringify(error.conversation);
       Swal.fire(`${errorMessage}`, error.data.error, 'error');
     }
   };
@@ -570,7 +585,8 @@ export const userLoggedSuccess = (user) => {
 
 export const userLoggedAction = () => {
   return async function (dispatch, getState, { api }) {
-    const user = getUser(getState());
+    const user = getUserLoaded(getState());
+    //const tagsLoaded = getTagsLoaded(getState());
     if (user) {
       return;
     }
@@ -604,5 +620,189 @@ export const userLogoutSuccess = () => {
   return {
     type: USER_LOGOUT_SUCCESS,
     payload: null,
+  };
+};
+
+/***************************CONVERSATION LOAD**********************/
+
+export const conversationLoadedRequest = () => {
+  return {
+    type: CONVERSATION_LOAD_REQUEST,
+  };
+};
+
+export const conversationLoadedSuccess = (conversations) => {
+  return {
+    type: CONVERSATION_LOAD_SUCCESS,
+    payload: conversations,
+  };
+};
+
+export const conversationLoadedFailure = (error) => {
+  return {
+    type: CONVERSATION_LOAD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const conversationLoadAction = (userId, advertisementId) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(conversationLoadedRequest());
+    try {
+      const conversations = await api.chat.getConversation(
+        userId,
+        advertisementId
+      ); //antes getLatestAdverts(filters, limit, skip);
+      dispatch(conversationLoadedSuccess(conversations));
+      return conversations;
+    } catch (error) {
+      dispatch(conversationLoadedFailure(error));
+    }
+  };
+};
+
+/******************************MESSAGES LOAD******************************/
+export const messagesLoadedRequest = () => {
+  return {
+    type: MESSAGE_LOAD_REQUEST,
+  };
+};
+
+export const messagesLoadedSuccess = (messages) => {
+  return {
+    type: MESSAGE_LOAD_SUCCESS,
+    payload: messages,
+  };
+};
+
+export const messagesLoadedFailure = (error) => {
+  return {
+    type: MESSAGE_LOAD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const messagesLoadAction = (conversationId) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(messagesLoadedRequest());
+    try {
+      const messages = await api.chat.getMessages(conversationId); //antes getLatestAdverts(filters, limit, skip);
+      dispatch(messagesLoadedSuccess(messages));
+      return messages;
+    } catch (error) {
+      dispatch(messagesLoadedFailure(error));
+    }
+  };
+};
+
+/****************************MESSAGE CREATED*************************************/
+
+export const messagesCreatedRequest = () => {
+  return {
+    type: MESSAGE_CREATED_REQUEST,
+  };
+};
+
+export const messagesCreatedSuccess = (messages) => {
+  return {
+    type: MESSAGE_CREATED_SUCCESS,
+    payload: messages,
+  };
+};
+
+export const messagesCreatedFailure = (error) => {
+  return {
+    type: MESSAGE_CREATED_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const messagesCreatedAction = (newMessage) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(messagesCreatedRequest());
+    try {
+      const conversation = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
+      dispatch(messagesCreatedSuccess(conversation));
+      return conversation;
+    } catch (error) {
+      dispatch(messagesCreatedFailure(error));
+    }
+  };
+};
+
+/*********************************NEW CONVERSATION******************************************************/
+
+export const conversationCreatedRequest = () => {
+  return {
+    type: CONVERSATION_CREATED_REQUEST,
+  };
+};
+
+export const conversationCreatedSuccess = (conversation) => {
+  return {
+    type: CONVERSATION_CREATED_SUCCESS,
+    payload: conversation,
+  };
+};
+
+export const conversationCreatedFailure = (error) => {
+  return {
+    type: CONVERSATION_CREATED_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const conversationCreatedAction = (newConversation) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(conversationCreatedRequest());
+    try {
+      const conversation = await api.chat.createdNewConversation(
+        newConversation
+      );
+      dispatch(conversationCreatedSuccess(conversation));
+      return conversation;
+    } catch (error) {
+      dispatch(conversationCreatedFailure(error));
+    }
+  };
+};
+
+/*****************************USER CONVERSATIONS******************************/
+
+export const userConversationsLoadedRequest = () => {
+  return {
+    type: USER_CONVERSATIONS_REQUEST,
+  };
+};
+
+export const userConversationsLoadedSuccess = (conversations) => {
+  return {
+    type: USER_CONVERSATIONS_SUCCESS,
+    payload: conversations,
+  };
+};
+
+export const userConversationsLoadedFailure = (error) => {
+  return {
+    type: USER_CONVERSATIONS_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const userConversationsLoadAction = (userId) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(userConversationsLoadedRequest());
+    try {
+      const conversations = await api.chat.getUserConversations(userId);
+      dispatch(userConversationsLoadedSuccess(conversations));
+      return conversations;
+    } catch (error) {
+      dispatch(userConversationsLoadedFailure(error));
+    }
   };
 };

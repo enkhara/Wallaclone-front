@@ -52,13 +52,10 @@
     "Do you have an account?": "Do you have an account?",
     "Sign In": "Sign In"
   },
-
   "adverts": {
     "Be the first Advert!": "Be the first Advert!",
     "Advert": "Advert",
-    "Adverts List": "Adverts List",
-    "Nº of pages": "Nº of pages: ",
-    "Adverts per Page": "Adverts per Page: ",
+    "Adverts/Page": "Adverts/Page",
     "Create new advert": "Create new advert",
     "Advert Name": "Advert Name",
     "Enter product name": "Enter product name",
@@ -90,7 +87,6 @@
     "Open a conversation to start a chat.": "Open a conversation to start a chat.",
     "type your message": "type your message"
   },
-
   "message": {
     "Somenthing goes wrong !": "Somenthing goes wrong !",
     "Unauthorized": "Unauthorized",
