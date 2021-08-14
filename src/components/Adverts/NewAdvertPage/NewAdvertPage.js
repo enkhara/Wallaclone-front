@@ -1,7 +1,5 @@
 import React from 'react';
 import T from 'prop-types';
-
-import { Header } from '../../layout';
 import NewAdvertForm from './NewAdvertForm';
 
 import { useDispatch } from 'react-redux';
@@ -15,10 +13,9 @@ function NewAdvertPage() {
 	};
 
 	return (
-		<React.Fragment>
-			<Header />
-			<NewAdvertForm onSubmit={handleSubmit} />
-		</React.Fragment>
+	 
+		<NewAdvertForm onSubmit={handleSubmit} />
+		 
 	);
 }
 
