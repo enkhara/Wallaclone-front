@@ -9,9 +9,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
+import { useStyles } from './advertCSS';
 
 
 const Advert = ({
