@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import { Header } from '../../layout';
+import { Layout } from '../../layout';
 import { getAdvertDetail, getUi } from '../../../store/selectors';
 import {
 	advertDeletedAction,
@@ -42,7 +42,7 @@ function AdvertPage() {
 	
 	return (
 		<React.Fragment>
-			<Header />
+		 
 			{isLoading && <p> ...loading advert</p>}
 			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />}
 			{error && <div onClick={() => dispatch(resetError())} />} 
