@@ -4,7 +4,9 @@
     "Register": "Register",
     "Add new advert": "Add new advert",
     "Language": " Language",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "Are you sure?": "Are you sure?",
+    "Yes": "Yes"
   },
   "sideBar": {
     "Profile": "Profile",
@@ -90,6 +92,14 @@
   },
 
   "message": {
-    "Somenthing goes wrong !": "Somenthing goes wrong !"
+    "Somenthing goes wrong !": "Somenthing goes wrong !",
+    "Unauthorized": "Unauthorized",
+    "user already registered": "user already registered",
+    "everything was good": "everything was good",
+    "Try again!": "Try again!",
+    "Passwords should match": "Passwords should match",
+    "Congratulations!": "Congratulations!",
+    "You have successfully registered": "You have successfully registered",
+    "You will receive an email if this email address is in our database": "You will receive an email if this email address is in our database"
   }
 }
