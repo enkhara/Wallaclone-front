@@ -85,7 +85,6 @@ export const loginAction = (credentials) => {
       history.replace(from);
     } catch (error) {
       dispatch(authLoginFailure(error));
-      Swal.fire('Invalid login or password', 'Try again!', 'error');
     }
   };
 };
@@ -138,22 +137,19 @@ export const authRegisterSuccess = () => {
 export const registerAction = (credentials) => {
   return async function (dispatch, getState, { api, history }) {
     dispatch(authRegisterRequest());
+    Swal.fire(
+      'Congratulations!',
+      'You have successfully registered',
+      'success'
+    );
 
     try {
       await api.auth.register(credentials);
       dispatch(authRegisterSuccess());
-      Swal.fire(
-        'Congratulations!',
-        'You have successfully registered',
-        'success'
-      );
       const { from } = { from: { pathname: '/login' } };
       history.replace(from);
     } catch (error) {
       dispatch(authRegisterFailure(error));
-      const errorMessage = JSON.stringify(error.message);
-
-      Swal.fire(`${errorMessage}`, 'Try again!', 'error');
     }
   };
 };
@@ -495,8 +491,6 @@ export const forgotPasswordAction = (email, history) => {
       dispatch(forgotPasswordSuccess());
     } catch (error) {
       dispatch(forgotPasswordFailure(error));
-      const errorMessage = JSON.stringify(error.message);
-      Swal.fire(`${errorMessage}`);
     }
   };
 };
@@ -546,8 +540,8 @@ export const newPasswordAction = (
       dispatch(newPasswordSuccess());
     } catch (error) {
       dispatch(newPasswordFailure(error));
-      const errorMessage = JSON.stringify(error.message);
-      Swal.fire(`${errorMessage}`);
+      // const errorMessage = JSON.stringify(error.message);
+      // Swal.fire(`${errorMessage}`);
     }
   };
 };
