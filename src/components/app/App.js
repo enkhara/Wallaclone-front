@@ -1,4 +1,4 @@
-import { Header } from '../layout';
+import { Header, Footer } from '../layout';
 import AppRoutes from './AppRoutes';
 
 import './reset.css';
@@ -9,10 +9,8 @@ function App() {
 		<div style={{width:'95%', maxWidth:'1600px', margin:'auto'}}>
             <Header/>
 			<AppRoutes/>	
+            <Footer/>
         </div>
-		
-		
-
 		
 	);
 }

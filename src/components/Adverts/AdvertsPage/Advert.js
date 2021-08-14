@@ -5,7 +5,7 @@ import { advert } from '../propTypes';
 import { formatDistanceToNow } from 'date-fns';
 import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
-import { useStyles } from './AdvertCSS';
+import { useStyles } from './advertCSS';
 import {
 	Grid,
 	Card,
