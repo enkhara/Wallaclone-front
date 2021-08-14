@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useStyles } from '../../shared/useStyles';
-//import { Box, List, Tag, ListItem, Divider } from "@chakra-ui/core";
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 
 const AdvertsList = ({ adverts, count, page, pageSize }) => {
-	const [pageNumber, setPageNumber] = useState(1);
+	
+	const [pageNumber, setPageNumber] = useState(page); //1
 	const _advertsData = usePagination(adverts, pageSize);
 
 	const handlePageChange = (event, value) => {
+		//console.log('estoy en handlePageChange de AdvertList', value);
 		setPageNumber(value);
 		_advertsData.jump(value);
 	};

@@ -5,13 +5,13 @@ import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
 import EmptyList from './EmptyList';
 import AdvertsList from './AdvertsList';
-//import Pagination from '@material-ui/lab/Pagination';
 import { useTranslation } from 'react-i18next';
 
 const AdvertsPage = () => {
 	const [t] = useTranslation('global');
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
+	const ADS_PER_PAGE = 3;
 
 	// paginación
 	// const [limit, setLimit] = useState(9);
@@ -27,8 +27,8 @@ const AdvertsPage = () => {
 	const [searchTitle, setSearchTitle] = useState('');
 	const [page, setPage] = useState(1);
 
-	//const [count, setCount] = useState(0);
-	const [pageSize, setPageSize] = useState(3);
+	//const [count, setCount] = useState(Math.ceil(adverts.length / ADS_PER_PAGE));
+	const [pageSize, setPageSize] = useState(ADS_PER_PAGE); 
 
 	const pageSizes = [3, 6, 9, 12, 15, 18];
 	const count = Math.ceil(adverts.length / pageSize);
@@ -40,7 +40,7 @@ const AdvertsPage = () => {
 
 	const getRequestParams = (searchTitle, page, pageSize) => {
 		let params = {};
-
+		console.log('estoy en getRequestParams');
 		if (searchTitle) {
 			params['title'] = searchTitle;
 		}
@@ -55,14 +55,16 @@ const AdvertsPage = () => {
 
 	useEffect(() => {
 		//const filterinicial = ''; // traemos todos los anuncios del back
+		//console.log('en useEffect de AdvertsPage', page, 'pageSize', pageSize);
 		dispatch(advertsLoadAction()); //filterinicial, limit, skip));
 	}, [dispatch, page, pageSize]);
 
-	const handlePageChange = (event, value) => {
-		setPage(value);
-	};
+	// const handlePageChange = (event, value) => {
+	// 	setPage(value);
+	// };
 
 	const handlePageSizeChange = (event) => {
+		
 		setPageSize(event.target.value);
 		setPage(1);
 	};
@@ -87,17 +89,6 @@ const AdvertsPage = () => {
 							</option>
 						))}
 					</select>
-					{/* <Pagination
-						className="my-3"
-						count={count}
-						page={page}
-						siblingCount={1}
-						boundaryCount={1}
-						variant="outlined"
-								shape="rounded"
-								color="primary"
-						onChange={handlePageChange}
-					/> */}
 				</div>
 			</div>
 			{adverts.length ? (
@@ -110,14 +101,6 @@ const AdvertsPage = () => {
 			) : (
 				<EmptyList />
 			)}
-			{/* <Pagination
-					count={count}
-					size="large"
-					page={page}
-					variant="outlined"
-					shape="rounded"
-					onChange={handlePageChange}
-				/> */}
 		</React.Fragment>
 	);
 };
