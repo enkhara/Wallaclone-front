@@ -14,9 +14,9 @@ const NewPasswordPage = () => {
     dispatch(newPasswordAction(credentials, id, token, history, location));
   };
   return (
-    <div>
-      <NewPasswordForm onSubmit={handleSubmit} />
-    </div>
+    
+    <NewPasswordForm onSubmit={handleSubmit} />
+    
   );
 };
 

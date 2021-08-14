@@ -15,7 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useTranslation } from 'react-i18next';
 
 const LoginForm = ({ onSubmit }) => {
-  const [t, i18n] = useTranslation('global');
+  const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     username: '',
     password: '',

@@ -1,20 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-
-import { Header } from '../../layout';
-
+import { Layout } from '../../layout';
 import { getAdvertDetail, getUi } from '../../../store/selectors';
 import {
 	advertDeletedAction,
 	advertDetailAction,
 	advertEditAction,
-	resetError
+	resetError,
 } from '../../../store/actions';
+import withUser from '../../hoc/withUser';
 
 import AdvertDetail from './AdvertDetail';
 
-function AdvertPage() {
+function AdvertPage({ user, ...props }) {
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
@@ -41,16 +40,18 @@ function AdvertPage() {
 	if (error?.statusCode === 404) {
 		return <Redirect to="/404" />;
 	}
-	
+
 	return (
 		<React.Fragment>
-			<Header />
 			{isLoading && <p> ...loading advert</p>}
-			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />}
-			{error && <div onClick={() => dispatch(resetError())} />} 
+			{advert && (
+				<AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />
+			)}
+			{error && <div onClick={() => dispatch(resetError())} />}
 		</React.Fragment>
 	);
 }
 
-export default AdvertPage;
+const AdvertPageWithUser = withUser(AdvertPage);
 
+export default AdvertPageWithUser;

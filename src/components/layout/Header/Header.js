@@ -1,56 +1,36 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { useStyles } from '../../shared/useStyles';
-import { useSelector } from 'react-redux';
-import { getIsLogged } from '../../../store/selectors';
-import MenuLoginRegister from './MenuLoginRegister';
-import ButtonNewAdvert from './ButtonNewAdvert';
-import Logout from './Logout';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { Link } from 'react-router-dom';
+import Navbar from "./Navbar";
+import LenguageMenu from "./LenguageMenu";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+
 
 const Header = () => {
-  const isLogged = useSelector(getIsLogged);
-  const classes = useStyles();
-
-  const { t, i18n } = useTranslation(['global']);
-  function TranslationClick(lang) {
-    i18n.changeLanguage(lang);
-  }
 
   return (
     <header>
-      <AppBar position="static" className={classes.navBar}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link href="/" color="inherit">
-              {/* <img src="logo.png"></img> */}
-              W a l l a c l o n e
+        <section style={{display:'flex', alignItems:'center',justifyContent:'space-between', marginTop:'0.5rem'}}>
+          <Typography variant="h6">
+            <Link to="/">
+              <img src="/logo_wallaclone2.png" alt="Wallaclone app" />
             </Link>
           </Typography>
-        
-       
-          <div>
-          {t('header.Language')}
-          
-            <button onClick={() => TranslationClick('es')}>ES</button>
-            <button onClick={() => TranslationClick('en')}>EN</button>
-          </div>
-        
-          {!isLogged ? (
-            <MenuLoginRegister />
-          ) : (
-            <React.Fragment>
-                <ButtonNewAdvert />
-              <Logout />
-            </React.Fragment>
-          )}
+
+          <LenguageMenu/>
+        </section>
+
+        <AppBar 
+            position="static" 
+            style={{background: 'linear-gradient(rgba(16,182,189,0.5046393557422969) 0%, rgba(16,182,189,0.5046393557422969) 35%, rgba(5,128,226,0.7203256302521008) 100%)'}}
+        >
+        <Toolbar>
+          <Navbar/>
         </Toolbar>
       </AppBar>
+     
     </header>
   );
 };
 
 export default Header;
+

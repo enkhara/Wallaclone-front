@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 // import { ChangeLanguage } from '../../../utils/changeLanguage';
 
 const RegisterForm = ({ onSubmit }) => {
-  const [t, i18n] = useTranslation('global');
+  const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     username: '',
     email: '',

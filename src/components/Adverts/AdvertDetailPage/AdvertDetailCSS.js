@@ -2,30 +2,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BorderBottom } from '@material-ui/icons';
 
 export const useStyles = makeStyles((theme) => ({
-
-	
-	title: {
-		flexGrow: 1,
+	gridDetailAdvert:{
+		height: '830px',
+		margin: '40px auto',
+		width: '600px',
 	},
 	priceAdvert: {
 		fontWeight: 700,
     	fontSize: '1.50rem',
     	margin: '20px 0 2px',
 	},
-	cardContent:{
-		height:"200px"
-	},
-	blogsContainer: {
-	  	paddingTop: theme.spacing(15)
-	},
-	card: {
-		width:'auto',
-		padding: '6px'
-		  
-	},
-	media: {
-	  	height: 200,
-		borderRadius: 3
+	cardDetailAdvert:{
+		padding: 20,
+		height: '810px'
 	},
 	mediaDetailAdvert: {
 		height: 340,
@@ -33,11 +22,10 @@ export const useStyles = makeStyles((theme) => ({
 		marginTop:'1rem',
 		marginBottom:'1rem',
   	},
-	cardActions: {
-	  	display: 'flex',
-    	alignItems: 'center',
-    	justifyContent: 'flex-end',
-
+	spanDetailAdvert:{
+		color: '#b2b3b4',
+		marginRight: '1rem',
+		fontWeight: '700',
 	},
 	containerNewAdvert:{
 		display:'flex', 
@@ -52,9 +40,7 @@ export const useStyles = makeStyles((theme) => ({
 		marginRight:'50px',
 		fontSize: '1.1rem'
 	},
-	buttonNewAdvert:{
-		marginRight:'5px'
-	},
+
 	author: {
 		display: "flex",
 		alignItems:'center',
@@ -62,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
 		padding:0,
 		margin:0 
 	},
-	headerDetail :{
+	headerDetailAdvert:{
 		display: "flex",
 		justifyContent:'space-between',
 		padding:0,
@@ -109,9 +95,6 @@ export const useStyles = makeStyles((theme) => ({
 		justifyContent:'space-evenly',
 		alignItems:'center',
 		paddingTop:'2rem',
-
-		
-	
 	},
 	favoriteIcon: {
 		marginRight: '5px',
@@ -129,11 +112,6 @@ export const useStyles = makeStyles((theme) => ({
 			backgroundColor:'#13C1AC'
 		}
 	},
-	textArea: {
-		'& .MuiTextField-root': {
-			margin: theme.spacing(1),
-			width: '25ch',
-		  },
-	},
+	
 		
   }));

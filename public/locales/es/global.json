@@ -3,7 +3,6 @@
     "Login": "Acceder",
     "Register": "Registro",
     "Add new advert": "Agregar nuevo anuncio",
-    "Language": "Idioma",
     "Logout": "Salir"
   },
   "sideBar": {
@@ -53,9 +52,7 @@
   "adverts":{
     "Be the first Advert!":"¡Sé el primer anunciar!",
     "Advert":"Anuncio",
-    "Adverts List":"lista de Anuncios",
-    "Nº of pages":"Nº de páginas: ",
-    "Adverts per Page":"Anuncios por página: ",
+    "Adverts/Page":"Anuncios/Página",
     "Create new advert":"Crea tu nuevo anuncio",
     "Advert Name":"Ingrese el nombre del producto",
     "Enter product name":"Ingrese el nombre del producto",
@@ -88,5 +85,8 @@
     "Send": "Enviar",
     "Open a conversation to start a chat.": "Abre una conversación para iniciar el chat.",
     "type your message": "Escribe tu mensaje"
+  },
+  "footer": {
+    "All rights reserved": "Todos los derechos reservados."
   }
 }
