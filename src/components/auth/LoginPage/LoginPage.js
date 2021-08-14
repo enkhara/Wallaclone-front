@@ -7,7 +7,7 @@ import {
 	userLoggedAction,
 } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
-import { Header } from '../../layout';
+
 
 function LoginPage() {
 	const dispatch = useDispatch();
