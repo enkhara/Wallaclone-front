@@ -80,7 +80,9 @@
     "Update Advert":"Advert Update", 
     "Change image": "Change image", 
     "Change product name":"Change product name", 
-    "Change description": "Change description"
+    "Change description": "Change description", 
+    "Reserved": "Reserved", 
+    "Sold":"Sold"
   },
   "chat": {
     "Send": "Send",

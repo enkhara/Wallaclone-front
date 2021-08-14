@@ -46,7 +46,7 @@ function App() {
 			<PrivateRoute exact path="/adverts/new" component={NewAdvertPage} />
 			<PrivateRoute
 				exact
-				path="/adverts/edit/:advertId"
+				path="/advert/edit/:advertId"
 				component={EditAdvertPage}
 			/>
 

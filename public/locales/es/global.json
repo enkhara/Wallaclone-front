@@ -68,7 +68,7 @@
     "Transaction Type":"Tipo de Transacción",
     "Transaction":"Transacción",
     "Created Advert":"Crear anuncio",
-    "Sell":"Vender",
+    "Sell":"Venta",
     "Wanted":"Búsqueda",
     "Tags":"Etiquetas",
     "Select one or more tags":"Seleccione una o más etiquetas:",
@@ -80,7 +80,9 @@
     "Update Advert":"Actualizar Anuncio", 
     "Change image": "Cambiar imagen:", 
     "Change product name":"Modifica nombre anuncio",
-    "Change description": "Modifica descripcion"
+    "Change description": "Modifica descripcion", 
+    "Reserved": "Reservado", 
+    "Sold":"Vendido"
   },
   "chat": {
     "Send": "Enviar",
