@@ -9,7 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useStyles } from './advertDetailCSS';
+import { useStyles } from './AdvertDetailCSS';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
