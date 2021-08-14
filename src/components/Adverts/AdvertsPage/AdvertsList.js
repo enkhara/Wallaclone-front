@@ -4,7 +4,7 @@ import Advert from './Advert';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
-import { pageSizes } from './pageSizes';
+import { PAGESIZES } from './pageSizes';
 import { useStyles } from './advertsListCSS';
 import {
 	Grid,
@@ -55,7 +55,7 @@ const AdvertsList = ({ adverts }) => {
 						onChange={handlePageSizeChange}
 						className={classes.selectControl}
 					>
-          				{pageSizes.map((size) => (
+          				{PAGESIZES.map((size) => (
 							<option key={size} value={size} >
 								{size}
 							</option>

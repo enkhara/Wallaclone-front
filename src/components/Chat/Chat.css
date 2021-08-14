@@ -1,5 +1,5 @@
 .chat {
-	height: 300px;
+	height: 100vh;
 	display: flex;
 	max-width: 1000px;
 	margin: auto;
