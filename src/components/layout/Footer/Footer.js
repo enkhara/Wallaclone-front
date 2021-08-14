@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
             <div 
                 className={classes.copyright}>
-                <p>&copy; {new Date().getFullYear()} Wallaclone App. {t('footer.All rights reserved')}</p>
+                <p>&copy; {new Date().getFullYear()} Wallaclone App.{t('footer.All rights reserved')}</p>
             </div>
         </footer>
     );

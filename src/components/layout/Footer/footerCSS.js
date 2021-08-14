@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     icons: {
         fontSize:'1.6rem',
         marginTop: '0.5rem',
-        color:'rgba(16,182,189,0.5046393557422969)',
+        color:'#42aff8',
        
 
         '&:nth-of-type(2)': {
@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme) => ({
         fontSize:'0.8rem',
         fontWeight:'700',
         letterSpacing:'0.1rem',
-        color:'rgba(16,182,189,0.5046393557422969)',
+        color:'#42aff8',
       
     }
 	
