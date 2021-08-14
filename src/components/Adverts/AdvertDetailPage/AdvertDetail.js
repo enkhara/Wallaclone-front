@@ -82,19 +82,12 @@ function AdvertDetail({
 			sm={12}
 			md={12}
 			elevation={10}
-			style={{
-				height: '830px',
-				margin: '40px auto',
-				width: '600px',
-			}}
+			className={classes.gridDetailAdvert}
 		>
 			<Card
-				style={{
-					padding: 20,
-					height: '810px',
-				}}
+				 className={classes.cardDetailAdvert}
 			>
-				<CardActions className={classes.headerDetail}>
+				<CardActions className={classes.headerDetailAdvert}>
 					<Box className={classes.author}>
 						<Avatar />
 						<Box ml={2}>
@@ -114,11 +107,11 @@ function AdvertDetail({
 						<IconButton className={classes.favoriteIcon}>
 							<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
-						{/* <Link to={`/chat/${_id}`} style={{ textDecoration: 'none' }}> */}
+						 
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
-						{/* </Link> */}
+					 
 					</Box>
 				</CardActions>
 				<CardMedia
@@ -134,11 +127,7 @@ function AdvertDetail({
 				<Box className={classes.tagAndDescDetailAdvert}>
 					<Typography component="p">
 						<span
-							style={{
-								color: '#b2b3b4',
-								marginRight: '1rem',
-								fontWeight: '700',
-							}}
+							className={classes.spanDetailAdvert}
 						>
 							{t('adverts.Tags')}
 						</span>
@@ -146,11 +135,7 @@ function AdvertDetail({
 					</Typography>
 					<Typography component="p">
 						<span
-							style={{
-								color: '#b2b3b4',
-								marginRight: '1rem',
-								fontWeight: '700',
-							}}
+							className={classes.spanDetailAdvert}
 						>
 							{t('adverts.Transaction')}
 						</span>

@@ -17,7 +17,7 @@ const AdvertsPage = () => {
 
 	return (
 		<main 
-			style={{marginTop:'2rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
+			style={{marginTop:'3rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
 		>
 			{adverts.length ? (
 				<AdvertsList

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 
 const NavLink = styled(Link)`
-    
     color: #ffffff;
     font-size: 1.3rem;
     font-weight: 700;

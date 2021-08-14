@@ -42,7 +42,6 @@ function AdvertPage() {
 	
 	return (
 		<React.Fragment>
-		 
 			{isLoading && <p> ...loading advert</p>}
 			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />}
 			{error && <div onClick={() => dispatch(resetError())} />} 
