@@ -254,7 +254,7 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			//console.log(`advert ACTION ${advert}`);
+			console.log(`advert ACTION ${advert}`);
 			dispatch(advertDetailSuccess(advert.result));
 			return advert.result;
 		} catch (error) {
