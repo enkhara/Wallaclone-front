@@ -3,42 +3,19 @@ import { BorderBottom } from '@material-ui/icons';
 
 export const useStyles = makeStyles((theme) => ({
 
-	
-	title: {
-		flexGrow: 1,
-	},
 	priceAdvert: {
 		fontWeight: 700,
     	fontSize: '1.50rem',
     	margin: '20px 0 2px',
 	},
-	cardContent:{
-		height:"200px"
-	},
-	blogsContainer: {
-	  	paddingTop: theme.spacing(15)
-	},
-	card: {
-		width:'auto',
-		padding: '6px'
-		  
-	},
-	media: {
-	  	height: 200,
-		borderRadius: 3
-	},
+	
 	mediaDetailAdvert: {
 		height: 340,
 	  	borderRadius: 3,
 		marginTop:'1rem',
 		marginBottom:'1rem',
   	},
-	cardActions: {
-	  	display: 'flex',
-    	alignItems: 'center',
-    	justifyContent: 'flex-end',
-
-	},
+	 
 	containerNewAdvert:{
 		display:'flex', 
 		justifyContent:'center', 
@@ -52,9 +29,7 @@ export const useStyles = makeStyles((theme) => ({
 		marginRight:'50px',
 		fontSize: '1.1rem'
 	},
-	buttonNewAdvert:{
-		marginRight:'5px'
-	},
+
 	author: {
 		display: "flex",
 		alignItems:'center',
@@ -109,9 +84,6 @@ export const useStyles = makeStyles((theme) => ({
 		justifyContent:'space-evenly',
 		alignItems:'center',
 		paddingTop:'2rem',
-
-		
-	
 	},
 	favoriteIcon: {
 		marginRight: '5px',
@@ -129,11 +101,6 @@ export const useStyles = makeStyles((theme) => ({
 			backgroundColor:'#13C1AC'
 		}
 	},
-	textArea: {
-		'& .MuiTextField-root': {
-			margin: theme.spacing(1),
-			width: '25ch',
-		  },
-	},
+	
 		
   }));

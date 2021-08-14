@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from '../../layout';
 import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
 import EmptyList from './EmptyList';

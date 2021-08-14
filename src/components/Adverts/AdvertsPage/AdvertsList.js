@@ -1,34 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
-import Grid from '@material-ui/core/Grid';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
 import { pageSizes } from './pageSizes';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-
-
-const useStyles = makeStyles((theme) => ({
-	formControl: {
-		minWidth: 130,
-		marginBottom:'0.5rem',
-		marginTop:'0.5rem',
-		 
-	},
-	selectControl: {
-		fontSize:'1.2rem', 
-		fontWeight:'700',
-		paddingLeft:'0.5rem',
-		
-	}
-  }));
-
+import { useStyles } from './AdvertsListCSS';
+import {
+	Grid,
+	InputLabel,
+	FormHelperText,
+	FormControl,
+	Select,
+	NativeSelect
+} from '@material-ui/core';
 
 const AdvertsList = ({ adverts }) => {
 	const classes = useStyles();
