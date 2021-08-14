@@ -12,6 +12,12 @@ export const useStyles = makeStyles((theme) => ({
 		fontWeight:'700',
 		paddingLeft:'0.5rem',
 		
+	},
+	containerAdvertList:{
+		display:'flex', 
+		flexDirection:'column', 
+		alignItems:'flex-end', 
+		marginTop:'2rem'
 	}
 
 }));

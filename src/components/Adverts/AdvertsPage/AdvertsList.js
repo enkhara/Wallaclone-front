@@ -45,7 +45,7 @@ const AdvertsList = ({ adverts }) => {
 
 			</Grid>
 			<div
-				style={{display:'flex', flexDirection:'column', alignItems:'flex-end', marginTop:'2rem'}}
+				className={classes.containerAdvertList}
 			>
 				 
         		<InputLabel style={{fontWeight:'700'}}>{t('adverts.Adverts/Page')}</InputLabel>

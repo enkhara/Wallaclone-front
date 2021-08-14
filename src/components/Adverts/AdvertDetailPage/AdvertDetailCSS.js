@@ -2,20 +2,31 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BorderBottom } from '@material-ui/icons';
 
 export const useStyles = makeStyles((theme) => ({
-
+	gridDetailAdvert:{
+		height: '830px',
+		margin: '40px auto',
+		width: '600px',
+	},
 	priceAdvert: {
 		fontWeight: 700,
     	fontSize: '1.50rem',
     	margin: '20px 0 2px',
 	},
-	
+	cardDetailAdvert:{
+		padding: 20,
+		height: '810px'
+	},
 	mediaDetailAdvert: {
 		height: 340,
 	  	borderRadius: 3,
 		marginTop:'1rem',
 		marginBottom:'1rem',
   	},
-	 
+	spanDetailAdvert:{
+		color: '#b2b3b4',
+		marginRight: '1rem',
+		fontWeight: '700',
+	},
 	containerNewAdvert:{
 		display:'flex', 
 		justifyContent:'center', 
@@ -37,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
 		padding:0,
 		margin:0 
 	},
-	headerDetail :{
+	headerDetailAdvert:{
 		display: "flex",
 		justifyContent:'space-between',
 		padding:0,
