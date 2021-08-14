@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         bottom:'0',
         backgroundImage:'linear-gradient(to top, #dfe9f3 0%, white 100%)',
-        padding:'1rem'
+        padding:'0.5rem'
         
 
 	},
