@@ -13,6 +13,7 @@ import { useStyles } from '../../shared/useStyles';
 import ShareAdvert from '../shareAdvert';
 import { Link } from 'react-router-dom';
 
+
 const Advert = ({
 	_id,
 	image,

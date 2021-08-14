@@ -3,11 +3,7 @@ import { BorderBottom } from '@material-ui/icons';
 
 export const useStyles = makeStyles((theme) => ({
 
-	navBar: {
-		flexGrow: 1,
-		backgroundColor: 'rgb(2,0,36)',
-		background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(16,182,189,0.5046393557422969) 35%, rgba(5,128,226,0.7203256302521008) 100%)',
-	},
+	
 	title: {
 		flexGrow: 1,
 	},
