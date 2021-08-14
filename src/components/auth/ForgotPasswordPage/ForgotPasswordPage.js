@@ -11,8 +11,8 @@ const ForgotPasswordPage = () => {
   const { isLoading, error } = useSelector(getUi);
   const [t] = useTranslation('global');
 
-  const handleSubmit = async (credenciales) => {
-    await dispatch(forgotPasswordAction(credenciales));
+  const handleSubmit = (credenciales) => {
+    dispatch(forgotPasswordAction(credenciales));
 
     let status;
     if (error != null) {
