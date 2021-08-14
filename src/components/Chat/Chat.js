@@ -10,7 +10,7 @@ import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
 import Message from './Message';
 import withUser from '../hoc/withUser';
-import { Header, SideBar } from '../layout';
+import { SideBar } from '../layout';
 
 import { getUi } from '../../store/selectors';
 import {
@@ -122,7 +122,7 @@ const Chat = ({ user, ...props }) => {
 
 	return (
 		<React.Fragment>
-			<Header />
+			 
 			<SideBar />
 			<div className="chat">
 				<div className="chatMenu">
