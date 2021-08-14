@@ -84,9 +84,7 @@ function AdvertDetail({
 			elevation={10}
 			className={classes.gridDetailAdvert}
 		>
-			<Card
-				 className={classes.cardDetailAdvert}
-			>
+			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
 					<Box className={classes.author}>
 						<Avatar />
@@ -107,11 +105,10 @@ function AdvertDetail({
 						<IconButton className={classes.favoriteIcon}>
 							<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
-						 
+
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
-					 
 					</Box>
 				</CardActions>
 				<CardMedia
@@ -126,17 +123,13 @@ function AdvertDetail({
 				</Typography>
 				<Box className={classes.tagAndDescDetailAdvert}>
 					<Typography component="p">
-						<span
-							className={classes.spanDetailAdvert}
-						>
+						<span className={classes.spanDetailAdvert}>
 							{t('adverts.Tags')}
 						</span>
 						{tags.join(' - ')}
 					</Typography>
 					<Typography component="p">
-						<span
-							className={classes.spanDetailAdvert}
-						>
+						<span className={classes.spanDetailAdvert}>
 							{t('adverts.Transaction')}
 						</span>
 						{transaction}
