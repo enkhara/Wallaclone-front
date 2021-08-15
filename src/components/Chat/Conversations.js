@@ -9,27 +9,24 @@ import { getAdvertDetail } from '../../store/selectors.js';
 import placeholder from '../../assets/images/placeholder.png';
 
 const Conversation = ({ conversation, currentUser }) => {
-	const dispatch = useDispatch();
-	const advert = useSelector((state) =>
-		getAdvertDetail(state, conversation.advertisementId)
-	);
-
-	useEffect(() => {
-		dispatch(advertDetailAction(conversation.advertisementId), [dispatch]);
-
-		console.log('friends en convesation component', advert);
-	}, [dispatch, currentUser, conversation]);
-
 	return (
-		advert && (
+		conversation && (
 			<div className="conversation">
 				<Avatar
 					className="conversationImg"
-					src={advert.image ? advert.image : placeholder}
+					src={
+						conversation.advertisementId.image
+							? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${conversation.advertisementId.image}`
+							: placeholder
+					}
 					alt=""
 				/>
-				<span className="conversationName">{advert.name}</span>
-				<span className="advertisementName">{advert.user}</span>
+				<span className="advertisementName">
+					{conversation.advertisementId.name}
+					{conversation.advertisementId.price}
+					{conversation.advertisementId.transaction}
+				</span>
+				<span className="conversationName">{currentUser.username}</span>
 			</div>
 		)
 	);
