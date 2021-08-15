@@ -24,8 +24,8 @@ function RegisterPage() {
     status = error.status;
     if (status === 400) {
       Swal.fire(
-        t('message.Somenthing goes wrong !'),
-        t('message.user already registered'),
+        t('message.Somenthing goes wrong !') +
+          t('message.user already registered'),
         t('message.Try again!')
       );
     }
