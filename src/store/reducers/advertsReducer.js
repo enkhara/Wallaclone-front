@@ -56,7 +56,7 @@ export function logged(state = initialState.logged, action) {
 export function user(state = initialState.user, action) {
 	switch (action.type) {
 		case USER_LOGGED_SUCCESS:
-			return { ...state, ...action.payload };
+			return { ...action.payload };
 		//return { ...action.payload };
 		case USER_LOGOUT_SUCCESS:
 			return null;

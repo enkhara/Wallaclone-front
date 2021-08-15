@@ -7,15 +7,16 @@ import { getUser } from '../../api/user';
 import { useSelector, useDispatch } from 'react-redux';
 
 const ChatUserOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
-	// const [friends, setFriends] = useState([]);
-	// const [onlineFriends, setOnlineFriends] = useState([]);
+	//buscar el usuaris amb els que tenim una conversa
+	// const [speakers, setSpeakers] = useState([]);
+	// const [onlineSpeakers, setOnlineSpeakers] = useState([]);
 	// const user = useSelector(getUser);
 
 	// useEffect(() => {
-	// 	getUsersWithChat(user._id).then(setFriends);
+	// 	getUsersWithChat(user._id).then(setSpeakers);
 	// }, [currentId]);
 
-	//console.log('friends in chat users online', friends);
+	//console.log('Speakers in chat users online', Speakers);
 
 	return (
 		<div className="chatUserOnline">
