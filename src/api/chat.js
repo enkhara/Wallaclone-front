@@ -6,7 +6,7 @@ export const getConversation = (userId, advertisementId) => {
 };
 
 export const getUserConversations = (userId) => {
-	return client.get(`${BASE_URL}/conversations/userConversations/${userId}`);
+	return client.get(`${BASE_URL}/conversations/${userId}`);
 };
 
 export const getMessages = (conversationId) => {
