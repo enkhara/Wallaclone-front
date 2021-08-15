@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import T from 'prop-types';
-import ConfirmationButton from '../../shared/ConfirmationButton';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
 import { formatDistanceToNow, format } from 'date-fns';
@@ -9,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useStyles } from './advertDetailCSS';
+import { useStyles } from './AdvertDetailCSS';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -98,6 +97,8 @@ function AdvertDetail({
 								component="p"
 							>
 								{formatDistanceToNow(new Date(createdAt))}
+								{/* <span>  </span>
+								Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
 							</Typography>
 						</Box>
 					</Box>
@@ -143,7 +144,7 @@ function AdvertDetail({
 				<Box className={classes.updateAndDeleteDetailAdvert}>
 					<Link
 						className={classes.containerNewAdvert}
-						to={`/advert/edit/${_id}`}
+						to={`/adverts/edit/${_id}`}
 					>
 						<Button
 							variant="contained"
@@ -154,15 +155,14 @@ function AdvertDetail({
 							{t('adverts.Update')}
 						</Button>
 					</Link>
-					<ConfirmationButton
-						variant="contained"
-						color="secondary"
-						confirmation={t('adverts.Confirm advert deletion')}
-						onConfirm={onDelete}
+					<Button
+						variant='contained'
+						color='secondary'
+						onClick={onDelete}
 						startIcon={<DeleteIcon />}
-					>
-						{t('adverts.Delete')}
-					</ConfirmationButton>
+        			>
+         				{t('adverts.Delete')}
+        			</Button>
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>

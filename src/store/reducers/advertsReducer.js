@@ -53,11 +53,14 @@ export function logged(state = initialState.logged, action) {
 			return state;
 	}
 }
+
 export function user(state = initialState.user, action) {
 	switch (action.type) {
 		case USER_LOGGED_SUCCESS:
-			return { ...state, ...action.payload };
-		//return { ...action.payload };
+			console.log('action.payload', action.payload);
+			//return { ...state, ...action.payload };
+			return action.payload;
+	
 		case USER_LOGOUT_SUCCESS:
 			return null;
 		default:
@@ -86,9 +89,10 @@ export function adverts(state = initialState.adverts, action) {
 				loaded: false,
 				data: [...state.data, action.payload],
 			};
+		
 		case ADVERT_UPDATE_SUCCESS:
 			return state.map((advert) => {
-				if (advert.id === action.payload) {
+				if (advert._id === action.payload) {
 					return {
 						...state,
 						loaded: false,
@@ -101,7 +105,7 @@ export function adverts(state = initialState.adverts, action) {
 			return {
 				...state,
 				loaded: true,
-				data: state.data.filter((advert) => advert.id !== action.payload),
+				data: state.data.filter((advert) => advert._id !== action.payload),
 			};
 		default:
 			return state;

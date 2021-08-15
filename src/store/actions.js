@@ -3,6 +3,7 @@ import { user } from './reducers/advertsReducer';
 import {
 	getAdvertsLoaded,
 	getUserLoaded,
+	getUser, 
 	getAdvertDetail,
 	getTagsLoaded,
 } from './selectors';
@@ -372,9 +373,13 @@ export const advertEditFailure = (error) => {
 export const advertEditAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
 		const advertEdited = getAdvertDetail(getState(), advertId);
-		if (advertEdited) {
-			return;
-		}
+		const user = getUser(getState());
+		console.log('user loggado', user);
+		// if (advertEdited) {
+		// 	return;
+		// }
+		console.log('USER ADVERT', advertEdited.userId);
+		console.log('ADVERTEDITED', advertEdited);
 		dispatch(advertEditRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
@@ -456,6 +461,7 @@ export const advertDeletedFailure = (error) => {
 
 export const advertDeletedAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
+		console.log('entro en accion de borrado')
 		dispatch(advertDeletedRequest());
 		try {
 			// const advert = await api.adverts.deleteAdvert(advertId);
@@ -592,8 +598,10 @@ export const userLoggedSuccess = (user) => {
 export const userLoggedAction = () => {
 	return async function (dispatch, getState, { api }) {
 		const user = getUserLoaded(getState());
+		console.log('user userLoggedAction', user);
 		//const tagsLoaded = getTagsLoaded(getState());
 		if (user) {
+			console.log('if user entro');
 			return;
 		}
 		dispatch(userLoggedRequest());

@@ -104,17 +104,12 @@ function ConfirmationButton({ confirmation, onConfirm, ...props }) {
           	>
           	<SModal>
             	<SHeader>
-				<STitle>{ t('adverts.User Confirmation')}</STitle>
+				        <STitle>{ t('adverts.User Confirmation')}</STitle>
             	</SHeader>
             <SDescription>
               {confirmation}
             </SDescription>    
-				{/* <div>
-					{ {confirmation} }
-					<Button onClick={handleConfirmClick}>Ok</Button>
-					<Button onClick={handleCancelClick}>Cancel</Button>
-				</div> */}
-				<SButton onClick={handleConfirmClick}>Ok</SButton>
+				      <SButton onClick={handleConfirmClick}>Ok</SButton>
             	<SButton onClick={handleCancelClick}>Cancel</SButton>
           	</SModal>
        		</SModalWrapper>    
@@ -122,6 +117,7 @@ function ConfirmationButton({ confirmation, onConfirm, ...props }) {
 			)}
 		</>
 	);
+
 }
 
 ConfirmationButton.propTypes = {

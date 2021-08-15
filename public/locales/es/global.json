@@ -79,7 +79,8 @@
     "Change product name":"Modifica nombre anuncio",
     "Change description": "Modifica descripcion", 
     "Reserved": "Reservado", 
-    "Sold":"Vendido"
+    "Sold":"Vendido", 
+    "Are you sure?":"Estas seguro?"
   },
   "chat": {
     "Send": "Enviar",
@@ -88,5 +89,8 @@
   },
   "footer": {
     "All rights reserved": "Todos los derechos reservados."
+  },  
+  "logout": {
+    "Are you sure?":"Estás seguro?"
   }
 }

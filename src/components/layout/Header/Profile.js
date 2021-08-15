@@ -7,7 +7,7 @@ const Profile = () => {
     const user = useSelector(getUser);
     return (
         <div>
-            HOLA
+            HOLA 
         </div>
     );
 }

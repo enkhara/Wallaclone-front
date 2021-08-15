@@ -10,8 +10,9 @@ const Logout = () => {
   const dispatch = useDispatch();
   
   const handleOpenModal = () => {
+    const title = t('logout.Are you sure?');
     Swal.fire({
-      title: 'Are you sure?',
+      title: title,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
