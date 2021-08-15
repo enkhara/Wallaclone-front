@@ -152,15 +152,16 @@ export const authRegisterSuccess = () => {
 export const registerAction = (credentials) => {
   return async function (dispatch, getState, { api, history }) {
     dispatch(authRegisterRequest());
-    Swal.fire(
-      'Congratulations!',
-      'You have successfully registered',
-      'success'
-    );
 
     try {
       await api.auth.register(credentials);
       dispatch(authRegisterSuccess());
+      Swal.fire(
+        'Congratulations!',
+        'You have successfully registered',
+        'success'
+      );
+
       const { from } = { from: { pathname: '/login' } };
       history.replace(from);
     } catch (error) {
