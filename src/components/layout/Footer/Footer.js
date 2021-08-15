@@ -17,13 +17,12 @@ const Footer = () => {
             
             <Link 
                 to="/"
-                style={{width:'90px'}}
+                style={{width:'70px'}}
             >
                 <img src="/logo_wallaclone2.png" alt="Wallaclone app" />
 
             </Link>
                 
-           
             <div>
                 <FacebookIcon
                     className={classes.icons}
@@ -35,8 +34,9 @@ const Footer = () => {
                     className={classes.icons}
                 />
             </div>
-            <div>
-                <p>&copy; {new Date().getFullYear()} Wallaclone App. {t('footer.All rights reserved')}</p>
+            <div 
+                className={classes.copyright}>
+                <p>&copy; {new Date().getFullYear()} Wallaclone App.{t('footer.All rights reserved')}</p>
             </div>
         </footer>
     );
