@@ -60,44 +60,19 @@ function AdvertPage(...props) {
 				}
 			})
 		}
-
-		// Swal.fire({
-		// 	title: 'Are you sure?',
-		//   icon: 'warning',
-		//   showCancelButton: true,
-		//   confirmButtonColor: '#3085d6',
-		//   cancelButtonColor: '#d33',
-		//   confirmButtonText: 'Yes',
-		// }).then((result) => {
-		// 	if (result.isConfirmed) {
-		// 		const isPropietary = isUserPropietary(user, advert);
-		// 		if (isPropietary) {	
-		// 			dispatch(advertDeletedAction(advertId))
-		// 		};
-		//   }
-		// });
 	  };
 
 	const handleEdit = () => {
-		const isPropietary = isUserPropietary(user, advert);
-		console.log('isPropietary handleEdit', isPropietary);
-		if (isPropietary) {
-			dispatch(advertEditAction(advertId));
-			//return <Redirect to={`/adverts/edit/${advertId}`} />;
-		}
-		else {
-			// console.log('location', location);
-			// console.log('entro aqui', 'advert.name', advert.name, 'advertId', advertId);
-			// Swal.fire('Deberá Iniciar Sesión');
-			history.goBack();
-			//const { from } = location.pathname; // || { from: { pathname: '/' } };
-			//console.log('from', from, 'location.path', location.pathname) ;
-			//return history.replace(location.pathname);
-			//return <Redirect to={{ pathname: '/', state: { from: location } }} />
-
-			//history.push(`/adverts/${advert.name}/${advertId}`);
-			//return <Redirect to={`/adverts/${advert.name}/${advertId}`} />;
-		};
+		dispatch(advertEditAction(advertId));
+		// const isPropietary = isUserPropietary(user, advert);
+		// console.log('isPropietary handleEdit', isPropietary);
+		// if (isPropietary) {
+		// 	dispatch(advertEditAction(advertId));
+		// 	//return <Redirect to={`/adverts/edit/${advertId}`} />;
+		// }
+		// else {
+		// 	history.goBack();
+		// };
 	};
 
 	if (error?.statusCode === 401) {

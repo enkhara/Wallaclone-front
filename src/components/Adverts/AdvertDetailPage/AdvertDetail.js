@@ -51,10 +51,7 @@ function AdvertDetail({
 	const classes = useStyles();
 	const URLIMG = process.env.REACT_APP_API_BASE_URL;
 	const dispatch = useDispatch();
-
 	const user = useSelector(getUser);
-	console.log('usuario', user);
-
 	const history = useHistory();
 
 	const handleChat = async (e) => {

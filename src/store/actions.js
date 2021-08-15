@@ -96,6 +96,7 @@ export const loginAction = (credentials) => {
     try {
       await api.auth.login(credentials);
       dispatch(authLoginSuccess());
+      dispatch(userLoggedAction());
 
       const { from } = history.location.state || { from: { pathname: '/' } };
       history.replace(from);
