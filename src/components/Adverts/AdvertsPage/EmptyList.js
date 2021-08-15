@@ -7,7 +7,7 @@ const EmptyList = () => {
   const [t, i18n] = useTranslation('global');
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', height:'100vh' }}>
       <p>{t('adverts.Be the first Advert!')}</p>
       <Button as={Link} to="/adverts/new" variant="primary">
         {t('adverts.Advert')}

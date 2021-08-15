@@ -30,9 +30,9 @@ const NewPasswordPage = () => {
     }
   }
   return (
-    <div>
-      <NewPasswordForm onSubmit={handleSubmit} />
-    </div>
+    
+    <NewPasswordForm onSubmit={handleSubmit} />
+    
   );
 };
 

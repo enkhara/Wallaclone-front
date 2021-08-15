@@ -7,7 +7,7 @@ import {
 	advertDeletedAction,
 	advertDetailAction,
 	advertEditAction,
-	resetError
+	resetError,
 } from '../../../store/actions';
 
 import AdvertDetail from './AdvertDetail';
@@ -39,16 +39,16 @@ function AdvertPage() {
 	if (error?.statusCode === 404) {
 		return <Redirect to="/404" />;
 	}
-	
+
 	return (
 		<React.Fragment>
-		 
 			{isLoading && <p> ...loading advert</p>}
-			{advert && <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />}
-			{error && <div onClick={() => dispatch(resetError())} />} 
+			{advert && (
+				<AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />
+			)}
+			{error && <div onClick={() => dispatch(resetError())} />}
 		</React.Fragment>
 	);
 }
 
 export default AdvertPage;
-

@@ -4,7 +4,7 @@ import Advert from './Advert';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
-import { pageSizes } from './pageSizes';
+import { PAGESIZES } from './pageSizes';
 import { useStyles } from './advertsListCSS';
 import {
 	Grid,
@@ -17,10 +17,10 @@ import {
 
 const AdvertsList = ({ adverts }) => {
 	const classes = useStyles();
-
+	const ADS_PER_PAGE = 3
 	const [t] = useTranslation('global');
 	const [page, setPage] = useState(1);
-	const [pageSize, setPageSize] = useState(3);
+	const [pageSize, setPageSize] = useState(ADS_PER_PAGE);
 	const count = Math.ceil(adverts.length / pageSize);
 	const [pageNumber, setPageNumber] = useState(1);
 	const _advertsData = usePagination(adverts, pageSize);
@@ -29,7 +29,6 @@ const AdvertsList = ({ adverts }) => {
 		setPageNumber(value);
 		_advertsData.jump(value);
 	};
-
 
 	const handlePageSizeChange = (event) => {
 		setPageSize(event.target.value);
@@ -45,7 +44,7 @@ const AdvertsList = ({ adverts }) => {
 
 			</Grid>
 			<div
-				style={{display:'flex', flexDirection:'column', alignItems:'flex-end', marginTop:'2rem'}}
+				className={classes.containerAdvertList}
 			>
 				 
         		<InputLabel style={{fontWeight:'700'}}>{t('adverts.Adverts/Page')}</InputLabel>
@@ -56,7 +55,7 @@ const AdvertsList = ({ adverts }) => {
 						onChange={handlePageSizeChange}
 						className={classes.selectControl}
 					>
-          				{pageSizes.map((size) => (
+          				{PAGESIZES.map((size) => (
 							<option key={size} value={size} >
 								{size}
 							</option>
@@ -86,4 +85,3 @@ AdvertsList.propTypes = {
 };
 
 export default AdvertsList;
- 

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import {
@@ -19,6 +18,7 @@ function LoginPage() {
 
   const handleSubmit = (credentials) => {
     dispatch(loginAction(credentials));
+    dispatch(userLoggedAction());
   };
 
   let status;
@@ -33,12 +33,11 @@ function LoginPage() {
   }
 
   return (
-    <div>
-      <Header />
+    <>
       <LoginForm onSubmit={handleSubmit} />
       {isLoading && <p>...login in wallaclone</p>}
       {error && <div onClick={() => dispatch(resetError())} />}
-    </div>
+    </>
   );
 }
 

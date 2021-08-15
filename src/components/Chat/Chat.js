@@ -8,10 +8,10 @@ import T from 'prop-types';
 import './Chat.css';
 import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
+import UserOwnAdvertChat from './UserOwnAdvertChat';
 import Message from './Message';
 import withUser from '../hoc/withUser';
-import { Header, SideBar } from '../layout';
-
+import { SideBar } from '../layout';
 import { getUi } from '../../store/selectors';
 import {
 	userConversationsLoadAction,
@@ -46,7 +46,7 @@ const Chat = ({ user, ...props }) => {
 	useEffect(() => {
 		socket.current.emit('addUser', user._id);
 		socket.current.on('getUsers', (users) => {
-			//console.log('socket io users conected', users);
+			console.log('socket io users conected', users);
 			setOnlineUser(users);
 		});
 	}, [user]);
@@ -122,7 +122,6 @@ const Chat = ({ user, ...props }) => {
 
 	return (
 		<React.Fragment>
-			<Header />
 			<SideBar />
 			<div className="chat">
 				<div className="chatMenu">
@@ -139,6 +138,9 @@ const Chat = ({ user, ...props }) => {
 					</div>
 				</div>
 				<div className="chatBox">
+					<div className="chatBoxAdvertOwn">
+						<UserOwnAdvertChat user={user} />
+					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
 							<>

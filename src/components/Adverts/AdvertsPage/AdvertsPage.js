@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../../store/selectors';
@@ -17,7 +18,7 @@ const AdvertsPage = () => {
 
 	return (
 		<main 
-			style={{marginTop:'2rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
+			style={{marginTop:'3rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
 		>
 			{adverts.length ? (
 				<AdvertsList

@@ -32,12 +32,11 @@ function RegisterPage() {
   }
 
   return (
-    <div>
-      <Header />
+    <>
       <RegisterForm onSubmit={handleSubmit} />
       {isLoading && <p>...registering in wallaclone</p>}
       {error && <div onClick={() => dispatch(resetError())} />}
-    </div>
+    </>
   );
 }
 

@@ -73,14 +73,16 @@
     "Tags": "Tags",
     "Select one or more tags": "Select one or more tags:",
     "Delete": "Delete",
-    "Update": "Edit",
+    "Update": "Update",
     "Confirm advert deletion": "Confirm advert deletion",
     "User Confirmation": "User Confirmation",
     "Edit Advert": "Advert Edition",
     "Update Advert": "Advert Update",
     "Change image": "Change image",
     "Change product name": "Change product name",
-    "Change description": "Change description"
+    "Change description": "Change description",
+    "Reserved": "Reserved",
+    "Sold": "Sold"
   },
   "chat": {
     "Send": "Send",
@@ -97,5 +99,8 @@
     "Congratulations!": "Congratulations!",
     "You have successfully registered": "You have successfully registered",
     "You will receive an email if this email address is in our database": "You will receive an email if this email address is in our database"
+  },
+  "footer": {
+    "All rights reserved": "All rights reserved."
   }
 }

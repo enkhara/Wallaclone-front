@@ -68,7 +68,7 @@
     "Transaction Type": "Tipo de Transacción",
     "Transaction": "Transacción",
     "Created Advert": "Crear anuncio",
-    "Sell": "Vender",
+    "Sell": "Venta",
     "Wanted": "Búsqueda",
     "Tags": "Etiquetas",
     "Select one or more tags": "Seleccione una o más etiquetas:",
@@ -80,7 +80,9 @@
     "Update Advert": "Actualizar Anuncio",
     "Change image": "Cambiar imagen:",
     "Change product name": "Modifica nombre anuncio",
-    "Change description": "Modifica descripcion"
+    "Change description": "Modifica descripcion",
+    "Reserved": "Reservado",
+    "Sold": "Vendido"
   },
   "chat": {
     "Send": "Enviar",
@@ -96,5 +98,8 @@
     "Congratulations!": "Congratulations!",
     "You have successfully registered": "Se ha registrado exitosamente",
     "You will receive an email if this email address is in our database": "Recibirá un correo electrónico si esta dirección de correo electrónico está en nuestra base de datos"
+  },
+  "footer": {
+    "All rights reserved": "Todos los derechos reservados."
   }
 }

@@ -18,8 +18,8 @@ import ChatWithUser from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 
 const AppRoutes = () => {
-    return (
-        <Switch>
+	return (
+		<Switch>
 			<Route exact path="/login">
 				<LoginPage />
 			</Route>
@@ -41,10 +41,11 @@ const AppRoutes = () => {
 			</Route>
 
 			<PrivateRoute exact path="/adverts/new" component={NewAdvertPage} />
-			    <PrivateRoute
-					exact path="/adverts/edit/:advertId"
-					component={EditAdvertPage}
-				/>
+			<PrivateRoute
+				exact
+				path="/adverts/edit/:advertId"
+				component={EditAdvertPage}
+			/>
 
 			<Route exact path="/">
 				<Redirect to="/adverts" />
@@ -52,20 +53,20 @@ const AppRoutes = () => {
 
 			<PrivateRoute exact path="/user" component={UserPageWithUser} />
 
-			<PrivateRoute exact path="/chat">
-	    		{<ChatWithUser />}
+			<PrivateRoute exact path="/user/chat">
+				<ChatWithUser />
 			</PrivateRoute>
 
 			<Route exact path="/adverts">
-				<AdvertsPage/>
+				<AdvertsPage />
 			</Route>
 
 			<Route exact path="/404">
 				<NotfoundPage />
 			</Route>
-		    	<Redirect to="/404" />
+			<Redirect to="/404" />
 		</Switch>
-    );
-}
+	);
+};
 
 export default AppRoutes;
