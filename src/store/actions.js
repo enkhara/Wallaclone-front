@@ -154,13 +154,16 @@ export const registerAction = (credentials) => {
     dispatch(authRegisterRequest());
 
     try {
-      await api.auth.register(credentials);
+      const response = await api.auth.register(credentials);
       dispatch(authRegisterSuccess());
-      Swal.fire(
-        'Congratulations!',
-        'You have successfully registered',
-        'success'
-      );
+
+      if (response === 'USER REGISTERED') {
+        Swal.fire(
+          'Congratulations!',
+          'You have successfully registered',
+          'success'
+        );
+      }
 
       const { from } = { from: { pathname: '/login' } };
       history.replace(from);
@@ -499,10 +502,11 @@ export const forgotPasswordAction = (email, history) => {
   return async function (dispatch, getState, { api, history }) {
     dispatch(forgotPasswordRequest());
     try {
-      await api.auth.forgotPassword(email);
-      Swal.fire(
-        'You will receive an email if this email address is in our database'
-      );
+      const response = await api.auth.forgotPassword(email);
+
+      if (response.info === 'ok') {
+        Swal.fire('check your email link to reset your password');
+      }
       history.push('/login');
       dispatch(forgotPasswordSuccess());
     } catch (error) {
