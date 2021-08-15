@@ -27,13 +27,11 @@ const NewPasswordPage = () => {
         t('message.Somenthing goes wrong !') + t('message.Unauthorized'),
         t('message.Try again!')
       );
+    } else {
+      Swal.fire(`${error.message}`, t('message.Try again!'));
     }
   }
-  return (
-    
-    <NewPasswordForm onSubmit={handleSubmit} />
-    
-  );
+  return <NewPasswordForm onSubmit={handleSubmit} />;
 };
 
 export default NewPasswordPage;

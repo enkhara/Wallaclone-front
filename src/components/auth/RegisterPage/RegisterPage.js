@@ -28,6 +28,8 @@ function RegisterPage() {
           t('message.user already registered'),
         t('message.Try again!')
       );
+    } else {
+      Swal.fire(`${error.message}`, t('message.Try again!'));
     }
   }
 
