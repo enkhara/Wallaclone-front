@@ -46,7 +46,7 @@ const Chat = ({ user, ...props }) => {
 	useEffect(() => {
 		socket.current.emit('addUser', user._id);
 		socket.current.on('getUsers', (users) => {
-			//console.log('socket io users conected', users);
+			console.log('socket io users conected', users);
 			setOnlineUser(users);
 		});
 	}, [user]);

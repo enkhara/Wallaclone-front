@@ -59,8 +59,9 @@ export function user(state = initialState.user, action) {
 		case USER_LOGGED_SUCCESS:
 			console.log('action.payload', action.payload);
 			//return { ...state, ...action.payload };
+			//return { ...action.payload };
 			return action.payload;
-	
+			
 		case USER_LOGOUT_SUCCESS:
 			return null;
 		default:

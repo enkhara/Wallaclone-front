@@ -33,7 +33,7 @@ const NewPasswordForm = ({ onSubmit }) => {
       setComparisonPass(true);
       onSubmit(credentials.newpassword);
     } else {
-      Swal.fire('Passwords should match');
+      Swal.fire(t('newpassword.Passwords should match'));
     }
   };
 

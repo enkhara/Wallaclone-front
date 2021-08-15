@@ -9,7 +9,6 @@ import {
 	advertEditAction,
 	resetError,
 } from '../../../store/actions';
-import withUser from '../../hoc/withUser';
 
 import AdvertDetail from './AdvertDetail';
 import Swal from 'sweetalert2';

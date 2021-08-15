@@ -23,7 +23,7 @@ const SideBar = () => {
 					<BallotIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Products')}</span>
 				</Link>
-				<Link className="sideBarButton" to={'/chat'}>
+				<Link className="sideBarButton" to={'/user/chat'}>
 					<ChatIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Chat')}</span>
 				</Link>

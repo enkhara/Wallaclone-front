@@ -10,14 +10,17 @@ const Logout = () => {
   const dispatch = useDispatch();
   
   const handleOpenModal = () => {
-    const title = t('logout.Are you sure?');
+    
+    const message = t('header.Are you sure?');
+    const buttonText = t('header.Yes');
+    
     Swal.fire({
-      title: title,
+      title: `${message}`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
+      confirmButtonText: `${buttonText}`,
     }).then((result) => {
       if (result.isConfirmed) {
         const logoutSession = () => dispatch(authLogoutAction());
