@@ -15,7 +15,7 @@ const Conversation = ({ conversation, currentUser }) => {
 	);
 
 	useEffect(() => {
-		dispatch(advertDetailAction(conversation.advertisementId));
+		dispatch(advertDetailAction(conversation.advertisementId), [dispatch]);
 
 		console.log('friends en convesation component', advert);
 	}, [dispatch, currentUser, conversation]);
