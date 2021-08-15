@@ -54,7 +54,7 @@ const AppRoutes = () => {
 			<PrivateRoute exact path="/user" component={UserPageWithUser} />
 
 			<PrivateRoute exact path="/user/chat">
-				{<ChatWithUser />}
+				<ChatWithUser />
 			</PrivateRoute>
 
 			<Route exact path="/adverts">
