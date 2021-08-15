@@ -9,11 +9,10 @@ import {
 	advertEditAction,
 	resetError,
 } from '../../../store/actions';
-import withUser from '../../hoc/withUser';
 
 import AdvertDetail from './AdvertDetail';
 
-function AdvertPage({ user, ...props }) {
+function AdvertPage() {
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
@@ -52,6 +51,4 @@ function AdvertPage({ user, ...props }) {
 	);
 }
 
-const AdvertPageWithUser = withUser(AdvertPage);
-
-export default AdvertPageWithUser;
+export default AdvertPage;
