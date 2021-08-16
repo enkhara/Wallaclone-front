@@ -10,7 +10,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BallotIcon from '@material-ui/icons/Ballot';
 
 const SideBar = () => {
-	const { t, i18n } = useTranslation(['global']);
+	const { t } = useTranslation(['global']);
 
 	return (
 		<nav className="sideBarContainer">
