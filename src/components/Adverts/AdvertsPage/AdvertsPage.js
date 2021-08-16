@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Search } from '../../Filters';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
@@ -11,18 +12,21 @@ const AdvertsPage = () => {
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		dispatch(advertsLoadAction()); 
 	}, [dispatch]);
 
 	return (
 		<main 
-			style={{marginTop:'3rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
+			style={{marginTop:'0.5rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
 		>
 			{adverts.length ? (
-				<AdvertsList
-					adverts={adverts}
-				/>
+				<section>
+					<Search/>
+					<AdvertsList
+						adverts={adverts}
+					/>
+				</section>
 			) : (
 				<EmptyList />
 			)}

@@ -15,6 +15,7 @@ const Search = () => {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
+            className={classes.containerSearch}
         >
           <Typography className={classes.heading}>Search</Typography>
         </AccordionSummary>

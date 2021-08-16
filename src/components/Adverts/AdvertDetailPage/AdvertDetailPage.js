@@ -108,6 +108,7 @@ function AdvertPage(...props) {
 
 	return (
 		<React.Fragment>
+			
 			{isLoading && <p> ...loading advert</p>}
 			{advert && (
 				<AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />

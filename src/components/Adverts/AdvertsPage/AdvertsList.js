@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
 import { Pagination } from '@material-ui/lab';
@@ -36,7 +36,7 @@ const AdvertsList = ({ adverts }) => {
 	};
 	
 	return (
-		<section> 
+		<Fragment> 
 			<Grid container spacing={10}>
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
@@ -73,10 +73,7 @@ const AdvertsList = ({ adverts }) => {
 					color="secondary"
 				/>
 			</div>
-				
-		
-		 
-	</section>
+	</Fragment>
 	);
 };
 

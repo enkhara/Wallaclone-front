@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
-import { Search } from '../../Filters';
 import LenguageMenu from "./LenguageMenu";
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
@@ -9,7 +8,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 
 const Header = () => {
-
+  console.log('hola')
   return (
     <header>
         <section style={{display:'flex', alignItems:'center',justifyContent:'space-between', marginTop:'0.5rem'}}>
@@ -41,7 +40,7 @@ const Header = () => {
             
           <Navbar/>
         </Toolbar>
-          <Search/>
+         
       </AppBar>
      
     </header>
