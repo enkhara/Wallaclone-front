@@ -139,7 +139,11 @@ const Chat = ({ user, ...props }) => {
 				</div>
 				<div className="chatBox">
 					<div className="chatBoxAdvertOwn">
-						<UserOwnAdvertChat user={user} />
+						{currentChat} ?
+						<UserOwnAdvertChat
+							conversation={currentChat}
+							currentUser={user}
+						/>:{' '}
 					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
