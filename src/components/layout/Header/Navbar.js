@@ -8,22 +8,14 @@ import { getIsLogged } from '../../../store/selectors';
 const Navbar = () => {
     const isLogged = useSelector(getIsLogged);
     return (
-        <nav 
-            style={{
-              display:'flex',
-              flexDirection:'row',
-              justifyContent:'flex-end',
-              alignItems:'flex-end',
-              flexGrow:'1'}
-        }>
-            {!isLogged ? (
+        <nav>
+          {!isLogged ? (
               <MenuLoginRegister />
-            ) : (
-              <React.Fragment>
-                {/* <ButtonNewAdvert /> */}
+          ) : (
+              <div style={{display:'flex', alignItems:'center'}}>
                 <Profile/>
                 <Logout />
-              </React.Fragment>
+              </div>
             )}
         </nav>
        

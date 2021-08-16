@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import RegisterForm from './RegisterForm';
 import { registerAction, resetError } from '../../../store/actions';
-import { getUi } from '../../../store/selectors';
-import { Header } from '../../layout';
+import { getUi } from '../../../store/selectors'; 
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 

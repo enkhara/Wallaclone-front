@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
