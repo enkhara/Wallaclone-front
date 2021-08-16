@@ -1,12 +1,12 @@
 import './Chat.css';
 import Avatar from '@material-ui/core/Avatar';
 
-const UserOwnAdvertChat = ({ user }) => {
+const UserOwnAdvertChat = ({ currentChat, user }) => {
 	return (
 		<div className="userOwnBox">
 			<div className="userOwnInfo">
 				<Avatar className="UserOwnAdvertChatImg" src="" alt="" />
-				<p className="userOwnName">{user.name}</p>
+				<p className="userOwnName">{}</p>
 			</div>
 		</div>
 	);
