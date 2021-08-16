@@ -28,10 +28,12 @@ client.interceptors.response.use(
 
 client.interceptors.request.use(
 	function(config) {
-	  const token = storage.get("auth"); 
-	  if (token) {
-		config.headers["Authorization"] = 'Bearer ' + token;
-	  }
+		const token = storage.get("auth");
+		console.log('token', token)
+		if (token) {
+			config.headers["Authorization"] = 'Bearer ' + token
+		}
+		console.log('config', config);
 	  return config;
 	},
 	function(error) {
