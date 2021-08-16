@@ -73,16 +73,17 @@
     "Tags": "Etiquetas",
     "Select one or more tags": "Seleccione una o más etiquetas:",
     "Delete": "Eliminar",
-    "Update": "Editar",
-    "Confirm advert deletion": "Confirme la eliminación del anuncio",
-    "User Confirmation": "Confirmacion del Usuario",
-    "Edit Advert": "Edición de anuncio",
-    "Update Advert": "Actualizar Anuncio",
-    "Change image": "Cambiar imagen:",
-    "Change product name": "Modifica nombre anuncio",
-    "Change description": "Modifica descripcion",
-    "Reserved": "Reservado",
-    "Sold": "Vendido"
+    "Update": "Editar", 
+    "Confirm advert deletion":"Confirme la eliminación del anuncio", 
+    "User Confirmation":"Confirmacion del Usuario", 
+    "Edit Advert":"Edición de anuncio",
+    "Update Advert":"Actualizar Anuncio", 
+    "Change image": "Cambiar imagen:", 
+    "Change product name":"Modifica nombre anuncio",
+    "Change description": "Modifica descripcion", 
+    "Reserved": "Reservado", 
+    "Sold":"Vendido", 
+    "Are you sure?":"Estas seguro?"
   },
   "chat": {
     "Send": "Enviar",
@@ -102,4 +103,5 @@
   "footer": {
     "All rights reserved": "Todos los derechos reservados."
   }
+ 
 }

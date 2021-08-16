@@ -10,8 +10,10 @@ const Logout = () => {
   const dispatch = useDispatch();
   
   const handleOpenModal = () => {
+    
     const message = t('header.Are you sure?');
     const buttonText = t('header.Yes');
+    
     Swal.fire({
       title: `${message}`,
       icon: 'warning',
