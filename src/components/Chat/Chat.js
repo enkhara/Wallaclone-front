@@ -126,6 +126,7 @@ const Chat = ({ user, ...props }) => {
 			<div className="chat">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
+
 						<input placeholder="Search for friends"></input>
 						{conversations?.map((conversation) => (
 							<div
@@ -139,7 +140,11 @@ const Chat = ({ user, ...props }) => {
 				</div>
 				<div className="chatBox">
 					<div className="chatBoxAdvertOwn">
-						<UserOwnAdvertChat user={user} />
+						{currentChat} ?
+						<UserOwnAdvertChat
+							conversation={currentChat}
+							currentUser={user}
+						/>:{' '}
 					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (

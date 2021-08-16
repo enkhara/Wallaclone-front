@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { Typography } from "@material-ui/core";
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './footerCSS';
 

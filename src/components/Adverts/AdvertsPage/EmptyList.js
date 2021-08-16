@@ -4,7 +4,7 @@ import { Button } from '../../shared';
 import { useTranslation } from 'react-i18next';
 
 const EmptyList = () => {
-  const [t, i18n] = useTranslation('global');
+  const [t] = useTranslation('global');
 
   return (
     <div style={{ textAlign: 'center', height:'100vh' }}>

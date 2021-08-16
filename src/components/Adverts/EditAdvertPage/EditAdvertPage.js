@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import T from 'prop-types';
-
-import { Header } from '../../layout';
+ 
 import EditAdvertForm from './EditAdvertForm';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,10 +22,9 @@ function EditAdvertPage() {
 	};
 
 	return (
-		<React.Fragment>
-			<Header />
-			<EditAdvertForm {...advert} onSubmit={handleSubmit} />
-		</React.Fragment>
+ 
+		<EditAdvertForm {...advert} onSubmit={handleSubmit} />
+	 
 	);
 }
 

@@ -102,6 +102,10 @@
   },
   "footer": {
     "All rights reserved": "Todos los derechos reservados."
+  },
+
+  "profile": {
+    "Welcome": "Bienvenido"
   }
  
 }

@@ -82,8 +82,8 @@
     "Change product name": "Change product name",
     "Change description": "Change description",
     "Reserved": "Reserved",
-    "Sold": "Sold", 
-    "Are you sure?":"Are you sure?"
+    "Sold": "Sold",
+    "Are you sure?": "Are you sure?"
   },
   "chat": {
     "Send": "Send",
@@ -103,8 +103,11 @@
   },
   "footer": {
     "All rights reserved": "All rights reserved."
-  }, 
+  },
+  "profile": {
+    "Welcome": "Welcome"
+  },
   "logout": {
-    "Are you sure?":"Are you sure?"
+    "Are you sure?": "Are you sure?"
   }
 }
