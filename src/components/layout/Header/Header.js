@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
+import { Search } from '../../Filters';
 import LenguageMenu from "./LenguageMenu";
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
@@ -32,13 +33,15 @@ const Header = () => {
             style={{
               display:'flex',
               alignItems:'center',
-              justifyContent:'flex-end',
+              justifyContent:'space-between',
               width:'100%'
-          }}
-        >
-          
+            }}
+            >
+            Botón Menú Responsive
+            
           <Navbar/>
         </Toolbar>
+          <Search/>
       </AppBar>
      
     </header>
