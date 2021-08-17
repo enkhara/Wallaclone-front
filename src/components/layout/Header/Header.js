@@ -35,7 +35,6 @@ const Header = () => {
             position="static" 
             style={{
               background: 'var(--color-principal)',
-              
             }}
         >
           <Toolbar

@@ -19,14 +19,17 @@ const ResponsiveMenu = () => {
   return (
     <nav>
       <SwipeableDrawer open={openMenu} onClose={() => setOpenMenu(false)}>
-        <List disablePadding style={{width:'250px', height:'100%'}}>
-            <IconButton
-                color="inherit"
-                onClick={() => setOpenMenu(false)}
-            >
-                    <CloseIcon />
-            </IconButton>
-            <ListItem button style={{display:'flex', backgroundColor:'black', alignItem:'center', flexDirection:'column', borderBottom:'black 2px solid',height:'100%'}}>
+        <List disablePadding style={{width:'250px', height:'100%',backgroundColor:'lightblue'}}>
+            <div style={{width:'100%', textAlign:'right', color:'#ffffff'}}>
+                <IconButton
+                    color="inherit"
+                    onClick={() => setOpenMenu(false)}
+                >
+                        <CloseIcon />
+                </IconButton>
+
+            </div>
+            <ListItem button style={{display:'flex', alignItem:'center', flexDirection:'column',backgroundColor:'lightblue'}}>
                 <MenuLoginRegister/>
             </ListItem>
            
