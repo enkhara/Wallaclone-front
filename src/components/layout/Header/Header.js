@@ -34,7 +34,7 @@ const Header = () => {
         <AppBar 
             position="static" 
             style={{
-              background: 'linear-gradient(rgba(16,182,189,0.5046393557422969) 0%, rgba(16,182,189,0.5046393557422969) 35%, rgba(5,128,226,0.7203256302521008) 100%)',
+              background: 'var(--color-principal)',
               
             }}
         >

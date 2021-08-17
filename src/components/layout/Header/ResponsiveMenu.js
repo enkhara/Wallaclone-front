@@ -7,8 +7,9 @@ import {
   ListItemText,  
   SwipeableDrawer
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
+import MenuLoginRegister from "./MenuLoginRegister";
 
  
 
@@ -17,15 +18,18 @@ const ResponsiveMenu = () => {
 
   return (
     <nav>
-    
       <SwipeableDrawer open={openMenu} onClose={() => setOpenMenu(false)}>
-        <List disablePadding style={{width:'300px'}}>
-          <ListItem button>
-            <ListItemText primary="First Item" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Second Item" />
-          </ListItem>
+        <List disablePadding style={{width:'250px', height:'100%'}}>
+            <IconButton
+                color="inherit"
+                onClick={() => setOpenMenu(false)}
+            >
+                    <CloseIcon />
+            </IconButton>
+            <ListItem button style={{display:'flex', backgroundColor:'black', alignItem:'center', flexDirection:'column', borderBottom:'black 2px solid',height:'100%'}}>
+                <MenuLoginRegister/>
+            </ListItem>
+           
         </List>
       </SwipeableDrawer>
       <div position="static">
