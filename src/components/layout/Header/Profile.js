@@ -1,15 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { getUser } from '../../../store/selectors';
 import { Avatar } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-
+import withUser from '../../hoc/withUser';
+    
 const Profile = () => {
     const [t] = useTranslation('global');
     const user = useSelector(getUser);
-    // const { username } = user;
-    
+ 
     return (
         <Link 
             style={{
@@ -23,8 +23,7 @@ const Profile = () => {
             >
             <Avatar style={{marginRight:'0.5rem'}}/>
             <h3 style={{marginRight:'2rem'}}>
-                {t('profile.Welcome')} Jorge
-                {/* { usermane } */}
+                {t('profile.Welcome')} { user.username }
             </h3>
         </Link>
 
@@ -32,4 +31,7 @@ const Profile = () => {
     );
 }
 
-export default Profile;
+const ProfileWithUser = withUser(Profile);
+
+export default ProfileWithUser;
+//export default Profile;
