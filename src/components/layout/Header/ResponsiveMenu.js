@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react';
+import Logout from './Logout';
+import Profile from "./Profile";
+import { useSelector } from 'react-redux';
+import { getIsLogged } from '../../../store/selectors';
 import {
   IconButton,
-  Drawer,
   List,
   ListItem,
   ListItemText,  
@@ -14,39 +17,61 @@ import MenuLoginRegister from "./MenuLoginRegister";
  
 
 const ResponsiveMenu = () => {
-  const [openMenu, setOpenMenu] = React.useState(false);
 
-  return (
-    <nav>
-      <SwipeableDrawer open={openMenu} onClose={() => setOpenMenu(false)}>
-        <List disablePadding style={{width:'250px', height:'100%',backgroundColor:'lightblue'}}>
-            <div style={{width:'100%', textAlign:'right', color:'#ffffff'}}>
+    const [openMenu, setOpenMenu] = React.useState(false);
+    const isLogged = useSelector(getIsLogged);
+    return (
+        <nav>
+            <SwipeableDrawer 
+                open={openMenu} 
+                onClose={() => setOpenMenu(false)}
+            >
+                <List 
+                    disablePadding style={{width:'270px', height:'100%',backgroundColor:'lightblue'}}>
+                    
+                    <div 
+                        style={{width:'100%', textAlign:'right', color:'#ffffff'}}
+                    >
+                        <IconButton
+                            color="inherit"
+                            onClick={() => setOpenMenu(false)}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+
+                    </div>
+                    <ListItem 
+                        onClick={() => setOpenMenu(false)}  
+                        button style={{display:'flex', alignItem:'center', flexDirection:'column',backgroundColor:'lightblue'}}>
+
+                        {isLogged 
+                            ?
+                                <div
+                                    style={{width:'100%', height:'300px',display:'flex', alignItem:'center', flexDirection:'column', justifyContent:'space-between'}}
+                                >
+                                    <Profile/>
+                                    <Logout />
+                                </div>
+                            :
+                            <MenuLoginRegister/>
+
+                        }
+                        
+                    </ListItem>
+                </List>
+            </SwipeableDrawer>
+            <div>
                 <IconButton
                     color="inherit"
-                    onClick={() => setOpenMenu(false)}
+                    onClick={() => setOpenMenu(true)}
                 >
-                        <CloseIcon />
+                    <MenuIcon />
                 </IconButton>
-
+            
             </div>
-            <ListItem button style={{display:'flex', alignItem:'center', flexDirection:'column',backgroundColor:'lightblue'}}>
-                <MenuLoginRegister/>
-            </ListItem>
-           
-        </List>
-      </SwipeableDrawer>
-      <div position="static">
-          <IconButton
-            color="inherit"
-            onClick={() => setOpenMenu(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-       
-      </div>
       
-    </nav>
-  );
+        </nav>
+    );
 };
 
 export default ResponsiveMenu;

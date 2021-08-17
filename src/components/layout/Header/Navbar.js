@@ -21,7 +21,8 @@ const Navbar = () => {
                 <Profile/>
                 <Logout />
               </div>
-            )}
+              
+          )}
         </nav>
        
     );
