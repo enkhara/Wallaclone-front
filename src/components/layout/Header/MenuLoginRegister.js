@@ -4,18 +4,14 @@ import { useTranslation } from 'react-i18next';
 
 
 const NavLink = styled(Link)`
+     
     color: #ffffff;
     font-size: 1.3rem;
     font-weight: 700;
     text-decoration: none;
-    padding: 1rem 0.5rem;
-    margin-right: 1rem;
+    padding: 1rem 1rem;
     border-bottom: 3.5px solid transparent;
-
-
-    &:last-of-type {
-      margin-right:0;
-    }
+    
     &:hover{
       border-bottom: 3.5px solid #ffffff;
     }
