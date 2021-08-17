@@ -24,7 +24,7 @@ function LoginPage() {
   let status;
   if (error != null) {
     status = error.status;
-    if (status === 401) {
+    if (status === 400) {
       Swal.fire(
         t('message.Somenthing goes wrong !') + t('message.Unauthorized'),
         t('message.Try again!')
