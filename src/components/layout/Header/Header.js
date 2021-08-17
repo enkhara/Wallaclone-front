@@ -1,14 +1,24 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
+import ResponsiveMenu from "./ResponsiveMenu";
 import LenguageMenu from "./LenguageMenu";
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { 
+    AppBar, 
+    Toolbar, 
+    Typography,
+    useMediaQuery,
+    useTheme
+} from "@material-ui/core";
 
 
 const Header = () => {
-  console.log('hola')
+ 
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+  
   return (
     <header>
         <section style={{display:'flex', alignItems:'center',justifyContent:'space-between', marginTop:'0.5rem'}}>
@@ -29,17 +39,16 @@ const Header = () => {
             }}
         >
           <Toolbar
-            style={{
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'space-between',
-              width:'100%'
-            }}
-            >
-            Botón Menú Responsive
             
-          <Navbar/>
-        </Toolbar>
+          >
+           { isMatch 
+              ?
+              <ResponsiveMenu/>
+              :
+              <Navbar/>
+            }
+
+          </Toolbar>
          
       </AppBar>
      

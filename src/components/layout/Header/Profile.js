@@ -34,4 +34,3 @@ const Profile = () => {
 const ProfileWithUser = withUser(Profile);
 
 export default ProfileWithUser;
-//export default Profile;

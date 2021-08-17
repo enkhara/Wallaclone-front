@@ -8,7 +8,12 @@ import { getIsLogged } from '../../../store/selectors';
 const Navbar = () => {
     const isLogged = useSelector(getIsLogged);
     return (
-        <nav>
+        <nav style={{
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'flex-end',
+          width:'100%',
+        }}>
           {!isLogged ? (
               <MenuLoginRegister />
           ) : (
