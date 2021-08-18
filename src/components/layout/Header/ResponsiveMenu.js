@@ -6,8 +6,7 @@ import { getIsLogged } from '../../../store/selectors';
 import {
   IconButton,
   List,
-  ListItem,
-  ListItemText,  
+  ListItem,  
   SwipeableDrawer
 } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
@@ -25,6 +24,7 @@ const ResponsiveMenu = () => {
             <SwipeableDrawer 
                 open={openMenu} 
                 onClose={() => setOpenMenu(false)}
+                onOpen={() => setOpenMenu(true)}
             >
                 <List 
                     disablePadding style={{width:'270px', height:'100%',backgroundColor:'lightblue'}}>
@@ -54,7 +54,6 @@ const ResponsiveMenu = () => {
                                 </div>
                             :
                             <MenuLoginRegister/>
-
                         }
                         
                     </ListItem>
