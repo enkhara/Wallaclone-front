@@ -54,6 +54,10 @@ const AppRoutes = () => {
 			<Route exact path="/adverts/:advertName/:advertId">
 				<AdvertPage />
 			</Route>
+			
+			{/* <Route exact path="/:username/adverts">
+				<AdvertsPage />
+			</Route> */}
 
 			<Route exact path="/">
 				<Redirect to="/adverts" />

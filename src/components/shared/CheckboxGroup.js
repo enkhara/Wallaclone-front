@@ -16,7 +16,7 @@ function CheckboxGroup({ options, value, onChange, ...props }) {
 	return (
 		<div>
 			{options.map((option) => (
-				<label key={option}>
+				<label key={option}> 
 					<input
 						type="checkbox"
 						value={option}

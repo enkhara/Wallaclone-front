@@ -83,7 +83,9 @@
     "Change description": "Modifica descripcion", 
     "Reserved": "Reservado", 
     "Sold":"Vendido", 
-    "Are you sure?":"Estas seguro?"
+    "Are you sure?":"Estas seguro?", 
+    "Advert Actual Image": "Imagen actual", 
+    "Change tags":"Cambie las categorias/tags"
   },
   "chat": {
     "Send": "Enviar",

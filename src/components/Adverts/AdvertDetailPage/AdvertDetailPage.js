@@ -62,16 +62,16 @@ function AdvertPage(...props) {
 	  };
 
 	const handleEdit = () => {
-		dispatch(advertEditAction(advertId));
-		// const isPropietary = isUserPropietary(user, advert);
-		// console.log('isPropietary handleEdit', isPropietary);
-		// if (isPropietary) {
-		// 	dispatch(advertEditAction(advertId));
+		//dispatch(advertEditAction(advertId));
+		 const isPropietary = isUserPropietary(user, advert);
+		 console.log('isPropietary handleEdit', isPropietary);
+		 if (isPropietary) {
+		 	dispatch(advertEditAction(advertId));
 		// 	//return <Redirect to={`/adverts/edit/${advertId}`} />;
-		// }
-		// else {
-		// 	history.goBack();
-		// };
+		 }
+		 else {
+		 	history.goBack();
+		 };
 	};
 
 	if (error?.statusCode === 401) {

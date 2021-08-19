@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import T from 'prop-types';
 import {
 	Grid,
@@ -16,13 +16,18 @@ import { cyan } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import placeholder from '../../../assets/images/placeholder.png';
-import { getAllTags } from '../../../api/adverts';
 
 import AddIcon from '@material-ui/icons/Add';
-//import SelectTags from '../SelectTags';
 import { CheckboxGroup } from '../../shared';
 import { InputFile } from '../../shared';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+//import { getTags } from '../../../store/selectors';
+import { getAllTags } from '../../../api/adverts';
+import { tagsLoadedAction } from '../../../store/actions';
+import { ToggleButton } from '@material-ui/lab';
+import  CheckIcon from '@material-ui/icons/Check';
+	
 import SelectTags from '../SelectTags';
 
 const URLIMG = process.env.REACT_APP_API_BASE_URL;
@@ -36,6 +41,13 @@ const GreenCheckbox = withStyles({
 	},
 	checked: {},
 })((props) => <Checkbox color="default" {...props} />);
+
+const imgStyle = {
+	border: '1px solid #ddd',
+	borderRadius: '4px',
+	padding: '5px',
+	width: '200px',
+};
 function EditAdvertForm({
 	name,
 	transaction,
@@ -51,20 +63,49 @@ function EditAdvertForm({
 	_id,
 	onSubmit })
 {
-	//const { name, desc, price, transaction, tags, sold, reserved, image } = advert;
+	const [advertEdit, setAdvertEdit] = React.useState({
+		nameNew: name,
+		descNew: desc,
+		priceNew: price,
+		transactionNew: transaction,
+		tagsNew: tags,
+		reservedNew: reserved,
+		soldNew: sold,
+	  });
+	
+	const { nameNew, descNew, priceNew, transactionNew, tagsNew, soldNew, reservedNew } = advertEdit;
 	const [t] = useTranslation('global');
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	
-	const [advertNew, setAdvertNew] = useState('')
-	const [value, setValue] = useState('');
+	//const [advertNew, setAdvertNew] = useState('')
+	//const [value, setValue] = useState('');
 	const [newImage, setNewImage] = useState(image);
-	const [file, setFile] = useState(null);
- 	// Obtengo los tags del backend para mostrarlos 
- 	const [listaTags, setListaTags] = React.useState([]);
+	const [selected, setSelected] = React.useState(false);
+	//const [file, setFile] = useState(null);
+ 	
+	  // Obtengo los tags del backend para pintarlos en el select multiple 
+	  const [listaTags, setListaTags] = React.useState([]);
   
- 	React.useEffect(() => {
-		 getAllTags().then(setListaTags);
+	  React.useEffect(() => {
+		  getAllTags().then(setListaTags);
+		  console.log('listatags', listaTags)
+		  dispatch(tagsLoadedAction());
 	  }, []);
+
+	// Obtengo los tags del backend para mostrarlos
+	// const listaTags = useSelector(getTags);
+ 	//const [listaTags, setListaTags] = React.useState([]);
+  
+ 	// React.useEffect(() => {
+	// 	 getAllTags().then(setListaTags);
+	//   }, []);
+	
+// 	  React.useEffect(() => {
+// 		// despachamos la accion de carga de tags 
+// 		dispatch(tagsLoadedAction());
+//   }, []);
+	
 	
 	console.log('imagen', image ? `${URLIMG}images/adverts/${image}` : placeholder);
 	console.log('tags', tags);
@@ -78,13 +119,14 @@ function EditAdvertForm({
 	
 	const selectedHandler = event => {
 		console.log('imagen seleccionada', event.target.files[0]);
-		setFile(event.target.files[0]);
+		setNewImage(event.target.files[0]);
 	}
 
 	const handleChange = (event) => {
 		console.log('entro en ', event.target.name);
 		console.log('event.target.type ', event.target.type);
-	 	setAdvertNew((oldAdvert) => ({
+		console.log('event.target.value ', event.target.value);
+	 	setAdvertEdit((oldAdvert) => ({
 	 		...oldAdvert,
 	 		[event.target.name]:
 	 			event.target.type === 'checked'
@@ -94,12 +136,12 @@ function EditAdvertForm({
 	 };
 
 	const handleChangeImage = (event, image) => {
-		console.log('1', image);
+		console.log('1 image', image);
 		const file = image || event.target.files[0];
 		if (file) {
 			setNewImage(file);
-		} else {
-			setNewImage([]);
+		// } else {
+		// 	setNewImage([]);
 		}
 	};
 
@@ -108,12 +150,12 @@ function EditAdvertForm({
 
 		let updateAdvert = new FormData();
 
-		updateAdvert.append('name', name);
-		updateAdvert.append('desc', desc);
-		updateAdvert.append('price', price);
-		updateAdvert.append('transaction', transaction);
-		updateAdvert.append('sold', sold);
-		updateAdvert.append('reserved', reserved);
+		updateAdvert.append('name', nameNew);
+		updateAdvert.append('desc', descNew);
+		updateAdvert.append('price', priceNew);
+		updateAdvert.append('transaction', transactionNew);
+		updateAdvert.append('sold', soldNew);
+		updateAdvert.append('reserved', reservedNew);
 		updateAdvert.tags.forEach((tag) => updateAdvert.append('tags[]', tag));
 		if (newImage) {
 			updateAdvert.append('image', newImage);
@@ -124,7 +166,7 @@ function EditAdvertForm({
 		}
 			
 		onSubmit(updateAdvert);
-		setFile(null);
+		setNewImage(null);
 	};
 
 	return (
@@ -134,7 +176,7 @@ function EditAdvertForm({
 					elevation={10}
 					style={{
 						padding: '30px',
-						height: '800px',
+						height: '850px',
 						margin: '50px auto',
 						width: '500px',
 					}}
@@ -152,7 +194,7 @@ function EditAdvertForm({
 						required
 						name="name"
 						defaultValue={name}
-						//value={value}
+						//value={nameNew}
 						onChange={handleChange}
 						autoFocus={true}
 					/>
@@ -166,7 +208,7 @@ function EditAdvertForm({
 						required
 						name="desc"
 						defaultValue={desc}
-						//value={value}
+						//value={descNew}
 						onChange={handleChange}
 					/>
 					<TextField
@@ -203,66 +245,117 @@ function EditAdvertForm({
 							/>
 						</RadioGroup>
 					</FormControl>
-					
-					<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
-					<InputFile name="image"
-						placeholder={t('adverts.Change image')}
-						value={image ? `${URLIMG}images/adverts/${image}` : placeholder}
-						src = {image ? `${URLIMG}images/adverts/${image}` : placeholder}
-						//onChange={handleChangeImage(e,image)}
-  
-						//onLoad={handleLoad}
-						onChange={handleChangeImage}
-
-					/>
-					<input
+										
+					{/* <input
 						id="fileinput"
 						onChange={selectedHandler}
 						className="form-control"
-						type="file" />
-					<img src= {image ? `${URLIMG}images/adverts/${image}` : placeholder} ></img>
-					
-					{/* <SelectTags
+						type="file" /> */}
+						<FormLabel
+						component="legend"
+						placeholder={t('adverts.Advert Actual Image')}
+						>{t('adverts.Advert Actual Image')} </FormLabel>
+							<p>
+					</p>
+					<img src={image ? `${URLIMG}images/adverts/${image}` : placeholder} style={imgStyle}></img>
+				
+						
+  				<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
+					<InputFile name="image"
+						placeholder={t('adverts.Change image')}
+						//value={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+						src = {image ? `${URLIMG}images/adverts/${image}` : placeholder}
+						//onChange={handleChangeImage(e,image)}
+  						//onLoad={handleLoad}
+						onChange={handleChangeImage}
+					/>
+
+					 <FormLabel component="legend">{t('adverts.Change tags')}</FormLabel>
+					 {/* <SelectTags
 						multiple
 						name="tags"
 						//value={tags}
-						//onChange={handleChange}
-					/>  */}
+						onChange={handleChange}
+					/>   */}
 					{/* <CheckboxGroup
 						multiple
 						name="tags"
 						Value={tags}
 						onChange={handleChange}
-					/>  */}
+					/>   */}
 					{/* <CheckboxGroup
       					multiple={true}
         				name="tags"
         				value={tags}
+						//checked={listaTags.includes(tags)}
         				onChange = {handleChange}
 					>
-						{
-          				listaTags.map(tag => (
-          					<option key={tag} value={tag} > {tag} </option>
-          				))
-        			}
-					  </CheckboxGroup> */}
-        			
-        
-      				
-					 <FormControlLabel
+					
+					  </CheckboxGroup>  */}
+					
+					  <ToggleButton
+						value={reserved}
+  						selected={selected}
+  						onChange={() => { setSelected(!selected); }}
+						>
+  							<CheckIcon />
+					</ToggleButton>
+					
+						<ToggleButton
+						value={sold}
+  						selected={selected}
+  						onChange={() => { setSelected(!selected); }}
+						>
+  							<CheckIcon />
+					</ToggleButton>
+					
+					  {/* {reserved ? (
+            <button
+              
+              //onClick={() => updateStatus(false)}
+            >
+              Reservado
+            </button>
+          ) : (
+            <button
+              
+              //onClick={() => updateStatus(true)}
+            >
+              No Reservado
+            </button>
+          )}
+
+		  {sold ? (
+            <button
+              
+             // onClick={() => updateStatus(false)}
+            >
+              Vendido
+            </button>
+          ) : (
+            <button
+              
+             // onClick={() => updateStatus(true)}
+            >
+              No Vendido
+            </button>
+          )}		 */}
+					 {/* <FormControlLabel
 						control={<GreenCheckbox
-									checked={reserved ? true : false }
+									
+							checked={reserved} 
 					    			onChange={handleChange}
 									name="reserved" />}
         				label= {t('adverts.Reserved')}
 					/>
 					<FormControlLabel
 						control={<GreenCheckbox
-									checked={sold ? true : false }
+									checked={sold} 
 									onChange={handleChange}
 									name="sold" />}
         				label= {t('adverts.Sold')}
-      				/> 
+					/> */}
+					
 					<Button
 						type="submit"
 						style={{ margin: '30px 0' }}

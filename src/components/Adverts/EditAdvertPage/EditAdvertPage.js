@@ -30,7 +30,7 @@ function EditAdvertPage() {
 
 EditAdvertPage.propTypes = {
 	history: T.shape({
-		push: T.func.isRequired,
+	push: T.func.isRequired,
 	}).isRequired,
 };
 
