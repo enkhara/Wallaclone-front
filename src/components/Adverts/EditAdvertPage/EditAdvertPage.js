@@ -1,6 +1,5 @@
 import React from 'react';
 import T from 'prop-types';
- 
 import EditAdvertForm from './EditAdvertForm';
 import { Spinner } from '../../shared';
 import { getUi } from '../../../store/selectors'; 
