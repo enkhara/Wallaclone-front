@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory, useLocation } from 'react-router-dom';
 import { getAdvertDetail, getUi, getUser } from '../../../store/selectors';
+import { Spinner } from '../../shared';
 import {
   advertDeletedAction,
   advertDetailAction,
@@ -110,7 +111,7 @@ function AdvertPage(...props) {
 
   return (
     <React.Fragment>
-      {loading && <p> ...loading advert</p>}
+      {loading && <Spinner />}
       {advert && (
         <AdvertDetail {...advert} onDelete={handleDelete} onEdit={handleEdit} />
       )}

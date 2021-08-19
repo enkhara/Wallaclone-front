@@ -5,6 +5,7 @@ import { forgotPasswordAction, resetError } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
+import { Spinner } from '../../shared';
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const ForgotPasswordPage = () => {
     <div>
       <ForgotPasswordForm onSubmit={handleSubmit} />
       {error && <div onClick={() => dispatch(resetError())} />}
+      {isLoading && <Spinner/>}
     </div>
   );
 };

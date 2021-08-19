@@ -1,11 +1,16 @@
 import React from 'react';
 import T from 'prop-types';
 import NewAdvertForm from './NewAdvertForm';
+import { Spinner } from '../../shared';
+import { getUi } from '../../../store/selectors'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { advertCreatedAction, resetError } from '../../../store/actions';
 
-import { useDispatch } from 'react-redux';
-import { advertCreatedAction } from '../../../store/actions';
+
 
 function NewAdvertPage() {
+
+	const { isLoading, error } = useSelector(getUi);
 	const dispatch = useDispatch();
 
 	const handleSubmit = async (newAdvert) => {
@@ -13,8 +18,11 @@ function NewAdvertPage() {
 	};
 
 	return (
-	 
-		<NewAdvertForm onSubmit={handleSubmit} />
+		<React.Fragment>
+			{isLoading && <Spinner/>}
+      		{error && <div onClick={() => dispatch(resetError())} />}
+			<NewAdvertForm onSubmit={handleSubmit} />
+		</React.Fragment>
 		 
 	);
 }

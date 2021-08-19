@@ -34,7 +34,7 @@ const Advert = ({
 	const classes = useStyles();
 	return (
 
-		<Grid item xs={12} sm={6} md={4}>
+		<Grid item xs={12} sm={6} lg={4}>
 			<article>
 				<Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
 					<Card className={classes.card}>

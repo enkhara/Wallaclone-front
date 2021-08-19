@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Spinner } from '../../shared';
 import LoginForm from './LoginForm';
 import {
   loginAction,
@@ -7,7 +8,6 @@ import {
   userLoggedAction,
 } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
-import { Header } from '../../layout';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 

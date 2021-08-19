@@ -15,7 +15,7 @@ const LenguageMenu = () => {
     
     const classes = useStyles();
 
-    const [t, i18n] = useTranslation(['global']);
+    const [i18n] = useTranslation(['global']);
     function TranslationClick(lang) {
         i18n.changeLanguage(lang);
     }
