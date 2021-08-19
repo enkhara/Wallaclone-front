@@ -13,7 +13,7 @@ function EditAdvertPage() {
 
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
-	const { isLoading, error } = useSelector(getUi);
+	const { loading, error } = useSelector(getUi);
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
 	
 	React.useEffect(() => {
@@ -26,7 +26,7 @@ function EditAdvertPage() {
 
 	return (
 		<React.Fragment>
-			{isLoading && <Spinner/>}
+			{loading && <Spinner/>}
 			{error && <div onClick={() => dispatch(resetError())} />}
 			<EditAdvertForm {...advert} onSubmit={handleSubmit} />
 		</React.Fragment>
