@@ -33,7 +33,7 @@ const ForgotPasswordPage = () => {
     <div>
       <ForgotPasswordForm onSubmit={handleSubmit} />
       {error && <div onClick={() => dispatch(resetError())} />}
-      {isLoading && <Spinner/>}
+      {loading && <Spinner />}
     </div>
   );
 };
