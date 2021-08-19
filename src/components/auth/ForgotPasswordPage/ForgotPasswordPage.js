@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getUi);
+  const { loading, error } = useSelector(getUi);
   const [t] = useTranslation('global');
 
   const handleSubmit = (credenciales) => {

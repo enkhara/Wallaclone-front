@@ -13,11 +13,11 @@ import { useTranslation } from 'react-i18next';
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getUi);
+  const { loading, error } = useSelector(getUi);
   const [t] = useTranslation('global');
 
-  const handleSubmit = (credentials) => {
-    dispatch(loginAction(credentials));
+  const handleSubmit = async (credentials) => {
+    await dispatch(loginAction(credentials));
     dispatch(userLoggedAction());
   };
 
@@ -35,7 +35,7 @@ function LoginPage() {
   return (
     <>
       <LoginForm onSubmit={handleSubmit} />
-      {isLoading && <p>...login in wallaclone</p>}
+      {loading && <p>...login in wallaclone</p>}
       {error && <div onClick={() => dispatch(resetError())} />}
     </>
   );
