@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import ResponsiveMenu from "./ResponsiveMenu";
 import LenguageMenu from "./LenguageMenu";
-import { useSelector } from 'react-redux';
-import { getUser } from '../../../store/selectors';
 import { 
     AppBar, 
     Toolbar, 

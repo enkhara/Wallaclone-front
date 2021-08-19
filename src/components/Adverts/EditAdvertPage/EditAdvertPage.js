@@ -1,19 +1,22 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import T from 'prop-types';
  
 import EditAdvertForm from './EditAdvertForm';
-
+import { Spinner } from '../../shared';
+import { getUi } from '../../../store/selectors'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { advertEditAction, advertUpdateAction } from '../../../store/actions';
+import { advertEditAction, advertUpdateAction, resetError } from '../../../store/actions';
 import { getAdvertDetail } from '../../../store/selectors';
 
 function EditAdvertPage() {
+
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
+	const { isLoading, error } = useSelector(getUi);
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
 	
-	useEffect(() => {
+	React.useEffect(() => {
 		dispatch(advertEditAction(advertId));
 	}, [dispatch, advertId]);
 	
@@ -22,8 +25,11 @@ function EditAdvertPage() {
 	};
 
 	return (
- 
-		<EditAdvertForm {...advert} onSubmit={handleSubmit} />
+		<React.Fragment>
+			{isLoading && <Spinner/>}
+			{error && <div onClick={() => dispatch(resetError())} />}
+			<EditAdvertForm {...advert} onSubmit={handleSubmit} />
+		</React.Fragment>
 	 
 	);
 }

@@ -15,7 +15,7 @@
     "Favorites": "Favoritos"
   },
   "login": {
-    "Sign in": "Accesso",
+    "Sign in": "Acceso",
     "Username": "Usuario",
     "Enter username": "Ingrese usuario",
     "Password": "Contraseña",
@@ -105,9 +105,7 @@
   "footer": {
     "All rights reserved": "Todos los derechos reservados."
   },
-
   "profile": {
     "Welcome": "Bienvenido"
   }
- 
 }

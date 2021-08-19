@@ -5,10 +5,11 @@ import { forgotPasswordAction, resetError } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
+import { Spinner } from '../../shared';
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getUi);
+  const { loading, error } = useSelector(getUi);
   const [t] = useTranslation('global');
 
   const handleSubmit = (credenciales) => {
@@ -32,6 +33,7 @@ const ForgotPasswordPage = () => {
     <div>
       <ForgotPasswordForm onSubmit={handleSubmit} />
       {error && <div onClick={() => dispatch(resetError())} />}
+      {loading && <Spinner />}
     </div>
   );
 };

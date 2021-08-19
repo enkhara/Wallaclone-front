@@ -7,13 +7,15 @@ import { userLoggedAction } from '../../store/actions';
 import { getUser } from '../../store/selectors';
 
 const User = ({ children }) => {
-	const dispatch = useDispatch();
-	const user = useSelector(getUser);
-	useEffect(() => {
-		dispatch(userLoggedAction());
-	}, [dispatch]);
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  // useEffect(() => {
+  // 	dispatch(userLoggedAction());
+  // }, [dispatch]);
 
-	return user && children(user);
+  dispatch(userLoggedAction());
+
+  return user && children(user);
 };
 
 export default User;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Spinner } from '../../shared';
 import LoginForm from './LoginForm';
 import {
   loginAction,
@@ -7,17 +8,16 @@ import {
   userLoggedAction,
 } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
-import { Header } from '../../layout';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getUi);
+  const { loading, error } = useSelector(getUi);
   const [t] = useTranslation('global');
 
-  const handleSubmit = (credentials) => {
-    dispatch(loginAction(credentials));
+  const handleSubmit = async (credentials) => {
+    await dispatch(loginAction(credentials));
     dispatch(userLoggedAction());
   };
 
@@ -35,7 +35,7 @@ function LoginPage() {
   return (
     <>
       <LoginForm onSubmit={handleSubmit} />
-      {isLoading && <p>...login in wallaclone</p>}
+      {loading && <p>...login in wallaclone</p>}
       {error && <div onClick={() => dispatch(resetError())} />}
     </>
   );
