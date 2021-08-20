@@ -847,7 +847,7 @@ export const getChatSpeakersFailure = (error) => {
 
 export const getChatSpeakersAction = (userId) => {
 	return async function (dispatch, getState, { api }) {
-		dispatch(userConversationsLoadedRequest());
+		dispatch(getChatSpeakersRequest());
 		try {
 			const speakers = await api.chat.getUsersWithChat(userId);
 			dispatch(getChatSpeakersSuccess(speakers));
