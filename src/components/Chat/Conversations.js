@@ -8,7 +8,7 @@ import placeholder from '../../assets/images/placeholder.png';
 import React from 'react';
 import { advertDetailAction } from '../../store/actions.js';
 
-const Conversation = ({ conversation, currentUser }) => {
+const Conversation = ({ conversation }) => {
 	const dispatch = useDispatch();
 
 	const advertId = conversation.advertisementId._id;
@@ -35,7 +35,7 @@ const Conversation = ({ conversation, currentUser }) => {
 					<p> {conversation.advertisementId.price} </p>
 					<p> {conversation.advertisementId.transaction} </p>
 				</span>
-				<span className="conversationName">{advert.userId.username}</span>
+				<span className="conversationName">{advert?.userId.username}</span>
 			</div>
 		)
 	);
