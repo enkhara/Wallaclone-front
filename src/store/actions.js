@@ -1,11 +1,11 @@
 import Swal from 'sweetalert2';
 //import { user } from './reducers/advertsReducer';
 import {
-	getAdvertsLoaded,
-	getUserLoaded,
-	getUser, 
-	getAdvertDetail,
-	getTagsLoaded,
+  getAdvertsLoaded,
+  getUserLoaded,
+  getUser,
+  getAdvertDetail,
+  getTagsLoaded,
 } from './selectors';
 
 import {
@@ -66,6 +66,7 @@ import {
   USER_CONVERSATIONS_SUCCESS,
   USER_CONVERSATIONS_REQUEST,
   USER_CONVERSATIONS_FAILURE,
+  USER_FAVORITES_SUCCESS,
 } from './types';
 
 /** Login Pasando el history */
@@ -372,25 +373,25 @@ export const advertEditFailure = (error) => {
 };
 
 export const advertEditAction = (advertId) => {
-	return async function (dispatch, getState, { api, history }) {
-		const advertEdited = getAdvertDetail(getState(), advertId);
-		const user = getUser(getState());
-		console.log('user loggado', user);
-		// if (advertEdited) {
-		// 	return;
-		// }
-		console.log('USER ADVERT', advertEdited.userId);
-		console.log('ADVERTEDITED', advertEdited);
-		dispatch(advertEditRequest());
-		try {
-			const advert = await api.adverts.getAdvert(advertId);
-			//console.log(`advert ACTION ${advert}`);
-			dispatch(advertEditSuccess(advert.result));
-			return advert.result;
-		} catch (error) {
-			dispatch(advertEditFailure(error));
-		}
-	};
+  return async function (dispatch, getState, { api, history }) {
+    const advertEdited = getAdvertDetail(getState(), advertId);
+    const user = getUser(getState());
+    console.log('user loggado', user);
+    // if (advertEdited) {
+    // 	return;
+    // }
+    console.log('USER ADVERT', advertEdited.userId);
+    console.log('ADVERTEDITED', advertEdited);
+    dispatch(advertEditRequest());
+    try {
+      const advert = await api.adverts.getAdvert(advertId);
+      //console.log(`advert ACTION ${advert}`);
+      dispatch(advertEditSuccess(advert.result));
+      return advert.result;
+    } catch (error) {
+      dispatch(advertEditFailure(error));
+    }
+  };
 };
 
 /**
@@ -593,25 +594,31 @@ export const userLoggedSuccess = (user) => {
     payload: user,
   };
 };
+export const setFavoritesUser = (favoritos) => {
+  return {
+    type: USER_FAVORITES_SUCCESS,
+    payload: favoritos,
+  };
+};
 
 export const userLoggedAction = () => {
-	return async function (dispatch, getState, { api }) {
-		const user = getUserLoaded(getState());
-		console.log('user userLoggedAction', user);
-		//const tagsLoaded = getTagsLoaded(getState());
-		if (user) {
-			console.log('if user entro');
-			return;
-		}
-		dispatch(userLoggedRequest());
-		try {
-			const user = await api.user.getUserLogged();
-			dispatch(userLoggedSuccess(user));
-		} catch (err) {
-			dispatch(userLoggedFailure(err));
-			console.error('error en user token', err);
-		}
-	};
+  return async function (dispatch, getState, { api }) {
+    const user = getUserLoaded(getState());
+    console.log('user userLoggedAction', user);
+    //const tagsLoaded = getTagsLoaded(getState());
+    if (user) {
+      console.log('if user entro');
+      return;
+    }
+    dispatch(userLoggedRequest());
+    try {
+      const user = await api.user.getUserLogged();
+      dispatch(userLoggedSuccess(user));
+    } catch (err) {
+      dispatch(userLoggedFailure(err));
+      console.error('error en user token', err);
+    }
+  };
 };
 
 /***********************USER LOGOUT DELETE***********************/
