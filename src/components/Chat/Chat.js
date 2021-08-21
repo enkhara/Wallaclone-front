@@ -3,12 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import { useTranslation } from 'react-i18next';
-import T from 'prop-types';
+//import T from 'prop-types';
 
 import './Chat.css';
 import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
-import UserOwnAdvertChat from './UserOwnAdvertChat';
+//import UserOwnAdvertChat from './UserOwnAdvertChat';
 import Message from './Message';
 import withUser from '../hoc/withUser';
 import { SideBar } from '../layout';
@@ -35,7 +35,7 @@ const Chat = ({ user, ...props }) => {
 
 	const { error } = useSelector(getUi);
 
-	console.log('en chat iniciado', user);
+	//console.log('en chat iniciado', user);
 
 	/******************SOCKET CLIENT******************************/
 
@@ -46,7 +46,7 @@ const Chat = ({ user, ...props }) => {
 	useEffect(() => {
 		socket.current.emit('addUser', user._id);
 		socket.current.on('getUsers', (users) => {
-			console.log('socket io users conected', users);
+			//console.log('socket io users conected', users);
 			setOnlineUser(users);
 		});
 	}, [user]);
@@ -103,22 +103,27 @@ const Chat = ({ user, ...props }) => {
 			(member) => member !== user._id
 		);
 		//emit => send
-		socket.current.emit('sendMessage', {
-			senderId: user._id,
-			receiverId,
-			text: newMessages,
-		});
+		//només enviar si esta
+		if (onlineUsers.find((user) => user === receiverId)) {
+			socket.current.emit('sendMessage', {
+				senderId: user._id,
+				receiverId,
+				text: newMessages,
+			});
+		}
 
 		try {
 			//const res = await createdNewMessage(message);
 			const res = dispatch(messagesCreatedAction(message));
-			console.log('respuesta guardado mensaje', res);
+			//console.log('respuesta guardado mensaje', res);
 			setMessages([...messages, res]);
 			setNewMessages('');
 		} catch (err) {
 			console.log(err);
 		}
 	};
+
+	console.log('online USERS', onlineUsers);
 
 	return (
 		<React.Fragment>
@@ -173,7 +178,7 @@ const Chat = ({ user, ...props }) => {
 				<div className="chatOnline">
 					<div className="chatOnlineWrapper">
 						<ChatUserOnline
-							onlineUser={onlineUsers}
+							onlineUsers={onlineUsers}
 							currentId={user._id}
 							setCurrentChat={setCurrentChat}
 						/>
