@@ -31,7 +31,7 @@ h3{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
     font-size: 1.2rem;
     letter-spacing: 1px;
     font-weight: 600;
@@ -43,6 +43,7 @@ div label{
     padding-left: 1rem;
     font-size: 1.2rem;
     cursor: pointer;
+          
   
 }
 div label:first-child{
@@ -51,10 +52,10 @@ div label:first-child{
 }
 input[type="checkbox"]{
     cursor: pointer;
-
 }
 
 p{
     margin-top: 1rem;
     font-weight: 700;
 }
+

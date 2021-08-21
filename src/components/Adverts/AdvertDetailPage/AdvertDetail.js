@@ -33,6 +33,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../../store/selectors';
 
+
 function AdvertDetail({
 	name,
 	transaction,
@@ -79,6 +80,7 @@ function AdvertDetail({
 			md={12}
 			elevation={10}
 			className={classes.gridDetailAdvert}
+			 
 		>
 			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
