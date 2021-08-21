@@ -1,5 +1,5 @@
 import React from 'react';
-import { SelectRange } from '../shared';
+import styled from 'styled-components';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
   Accordion,
@@ -7,51 +7,66 @@ import {
   AccordionDetails,
   TextField
 } from '@material-ui/core';
+import { SelectTags } from '../Adverts';
 
-const Search = () => {
+
+const AccordionDetailsContainer  = styled(AccordionDetails)`
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const InputText = styled.input`
+  width: 100%;
+  border: 2px solid lightblue;
+  border-radius:4px;
+  font-size:1.2rem;
+  outline:none;
+  padding: 0.8rem;
+  box-sizing:borderBox;
+  transition:.3s;
+  
+  &:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+`;
+
+const FiltersForm = () => {
     return (
       <section style={{margin:'2rem 0'}}>
         <form>
           <Accordion 
-            style={{
-                width:'50%', 
-                margin:'0 auto',
-            }}
+            style={{width:'50%', margin:'0 auto'}}
           >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
           >
                 <h3 style={{margin:0}} >Search</h3>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetailsContainer>
                 
-                  <div 
-                    style={{
-                      width:'100%', 
-                      display:'flex',
-                      flexDirection:'column',
-                      alignItem:'center', 
-                      justifyContent:'flex-start',
-                      padding:'0 2rem',
-                      marginBotton:'4rem'
-                      }}
-                    >
-                    <TextField
+                  <div>
+                    <InputText
+                      type="text"
                       placeholder="Name"
-                      variant="outlined"
+                       
                     />
                     <p>Price</p>
-                    <SelectRange
-                      style={{width:'100%', marginLeft:'4px'}}
-                     
-                    />
+                    {/* <SelectTags
+                      multiple
+                      name="tags"
+                      value={tags}
+                      onChange={handleChange}
+                    /> */}
                   </div>
                 
-            </AccordionDetails>
+            </AccordionDetailsContainer>
           </Accordion>
         </form>
       </section>
     );
 }
 
-export default Search;
+export default FiltersForm;
