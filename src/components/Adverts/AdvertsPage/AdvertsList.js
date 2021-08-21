@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
+import { FiltersForm } from '../../Filters';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
@@ -35,8 +36,10 @@ const AdvertsList = ({ adverts }) => {
 		setPage(1);
 	};
 	
+	
+
 	return (
-		<Fragment> 
+		<Fragment>
 			<Grid container spacing={8}>
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />

@@ -16,7 +16,7 @@ export const getUser = (userId) => {
 
 const token = storage.get('auth');
 
-export const putUserFavorites = (user_Id, advertId) => {
+export const addFavorites = (user_Id, advertId) => {
   return client.put(
     `${BASE_URL}/users/addfavourite/${user_Id}`,
     { ads_favs: advertId },
@@ -24,4 +24,19 @@ export const putUserFavorites = (user_Id, advertId) => {
       headers: { Authorization: `${token}` },
     }
   );
+};
+
+export const deleteFavorites = (user_Id, advertId) => {
+  return client.put(
+    `${BASE_URL}/users/deletefavourite/${user_Id}`,
+    { ads_favs: advertId },
+    {
+      headers: { Authorization: `${token}` },
+    }
+  );
+};
+export const getUserFav = (userId) => {
+  const user = client.get(`${BASE_URL}/users/${userId}`);
+  console.log(user);
+  return user;
 };
