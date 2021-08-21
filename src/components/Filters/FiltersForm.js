@@ -7,6 +7,7 @@ import {
   TextField
 } from '@material-ui/core';
 import { SelectTags } from '../Adverts';
+import SelectRange from './SelectRange';
 import './FiltersForm.css';
 
 
@@ -32,9 +33,11 @@ const FiltersForm = () => {
 
   return (
     <section>
-      <form>
+      <form
+        
+      >
         <Accordion 
-          style={{width:'50%', margin:'0 auto'}}
+          style={{width:'40%'}}
         >
           <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -43,11 +46,11 @@ const FiltersForm = () => {
           </AccordionSummary>
           <AccordionDetails
             className="container-detail"
-          >            
+            >            
             <div>
+              <p>Name</p>
               <input
                 type="text"
-                placeholder="Name"
                 value={name}     
                 name="name"
                 onChange={handleChange}
@@ -62,8 +65,14 @@ const FiltersForm = () => {
                   name="tags"
                   value={tags}
                   onChange={handleChange}
+
                 />
               </div>
+              <p>Price</p>
+                <SelectRange
+
+                />
+
             </div>
                 
             </AccordionDetails>
