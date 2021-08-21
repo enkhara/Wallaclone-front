@@ -46,6 +46,10 @@ const getToken = async function () {
 	return localStorage.getItem('token');
 };
 
-export const updateAdvert = (advertId, advert) => {
-	return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
-};
+ export const updateAdvert = (advertId, advert) => {
+ 	return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
+ };
+
+
+
+

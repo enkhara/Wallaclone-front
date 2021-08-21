@@ -85,7 +85,8 @@
     "Sold":"Vendido", 
     "Are you sure?":"Estas seguro?", 
     "Advert Actual Image": "Imagen actual", 
-    "Change tags":"Cambie las categorias/tags"
+    "Change tags":"Cambie las categorias/tags", 
+    "Change status adverts": "Cambie los estados"
   },
   "chat": {
     "Send": "Enviar",

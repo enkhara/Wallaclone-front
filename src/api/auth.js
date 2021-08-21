@@ -12,7 +12,7 @@ export const login = ({ remember, ...credentials }) => {
 		})
 		.then((token) => {
 			//if (remember) {
-				console.log('guarda el token en storage');
+				//console.log('guarda el token en storage');
 				storage.set('auth', token);
 			//}
 		});
@@ -32,7 +32,7 @@ export const logout = () => {
 };
 
 export const newPassword = (credentials, id, token) => {
-	console.log('credentials en api/nwepassword', credentials, id, token);
+	//console.log('credentials en api/nwepassword', credentials, id, token);
 	return client.put(
 		`${authPath}/new-password`,
 		{ newPassword: credentials, id: id },
