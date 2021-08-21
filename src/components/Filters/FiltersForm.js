@@ -12,7 +12,7 @@ import './FiltersForm.css';
 
 
  
-const FiltersForm = () => {
+const FiltersForm = ({ ...props }) => {
   
   const [filter, setFilter] = React.useState({
       name:'',
@@ -69,9 +69,9 @@ const FiltersForm = () => {
                 />
               </div>
               <p>Price</p>
-                {/* <SelectRange
-
-                /> */}
+                <SelectRange
+                  {...props}
+                />
 
             </div>
                 

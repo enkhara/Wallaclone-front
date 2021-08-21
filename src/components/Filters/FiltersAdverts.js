@@ -5,19 +5,25 @@ import { minAndMaxRange } from './minAndMaxRange';
 
 const FiltersAdverts = ({ adverts }) => {
     
-    const { min, max } = minAndMaxRange(adverts);
+    const { min: minPrice, max: maxPrice } = minAndMaxRange(adverts);
 
-    const [filteredAdverts,setFilteredAdverts] = React.useState(adverts);
+    const [filteredAdverts,setFilteredAdverts] = React.useState([]);
     const [priceRange,setPriceRange] = React.useState({
-        min:0,
-        max:25000
-    })
+        min: minPrice,
+        max: maxPrice
+    });
 
-    
+    const filteredRange = selectedRange =>{
+        setFilteredAdverts(selectedRange);
+    };
     
     return (
         <React.Fragment>
-            <FiltersForm/>
+            <FiltersForm
+                filteredRange={filteredRange}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+            />
             <AdvertsList
                 adverts={adverts}
             />
