@@ -69,9 +69,9 @@ const FiltersForm = () => {
                 />
               </div>
               <p>Price</p>
-                <SelectRange
+                {/* <SelectRange
 
-                />
+                /> */}
 
             </div>
                 

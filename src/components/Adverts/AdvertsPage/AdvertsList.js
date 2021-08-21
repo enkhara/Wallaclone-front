@@ -36,14 +36,7 @@ const AdvertsList = ({ adverts }) => {
 		setPage(1);
 	};
 	
-	 const [priceRange,setPriceRange] = React.useState({
-        min:0,
-        max:25000
-    })
-    
-    const filteredPrice = selectedRange =>{
-        setPriceRange(selectedRange);
-    }
+	
 
 	return (
 		<Fragment>
