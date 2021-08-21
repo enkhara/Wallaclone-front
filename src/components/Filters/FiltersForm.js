@@ -12,7 +12,7 @@ import './FiltersForm.css';
 
 
  
-const FiltersForm = ({ ...props }) => {
+const FiltersForm = ({...props}) => {
   
   const [filter, setFilter] = React.useState({
       name:'',
@@ -37,7 +37,7 @@ const FiltersForm = ({ ...props }) => {
         
       >
         <Accordion 
-          style={{width:'40%'}}
+          style={{width:'40%',background:'linear-gradient(to top, #dfe9f3 0%, white 100%)'}}
         >
           <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -69,14 +69,27 @@ const FiltersForm = ({ ...props }) => {
                 />
               </div>
               <p>Price</p>
+              <div style={{paddingLeft:'0.5rem'}}>
                 <SelectRange
                   {...props}
                 />
 
+              </div>
+
             </div>
                 
             </AccordionDetails>
+            <div className="button">
+              <input
+                type="submit"
+                className="button-search"
+                value="Search"
+              />
+
+            </div>
           </Accordion>
+          
+
         </form>
       </section>
     );

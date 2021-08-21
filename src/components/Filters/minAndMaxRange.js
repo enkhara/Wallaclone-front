@@ -1,12 +1,12 @@
 export const minAndMaxRange = adverts=>{
-    let max=adverts[0].price;
-    let min=max;
+    let max = adverts[0].price;
+    let min = max;
     adverts.forEach(advert => {
         if(advert.price > max){
-            max=advert.price;
+            max = advert.price;
         }
         if(advert.price < min){
-            min=advert.price;
+            min = advert.price;
         }
         
     });

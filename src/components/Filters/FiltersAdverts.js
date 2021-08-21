@@ -17,6 +17,8 @@ const FiltersAdverts = ({ adverts }) => {
         setFilteredAdverts(selectedRange);
     };
     
+
+    
     return (
         <React.Fragment>
             <FiltersForm
