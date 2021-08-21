@@ -1,6 +1,5 @@
 import React from 'react';
 import T from 'prop-types';
- 
 import EditAdvertForm from './EditAdvertForm';
 import { Spinner } from '../../shared';
 import { getUi } from '../../../store/selectors'; 
@@ -13,7 +12,7 @@ function EditAdvertPage() {
 
 	const dispatch = useDispatch();
 	const { advertId } = useParams();
-	const { isLoading, error } = useSelector(getUi);
+	const { loading, error } = useSelector(getUi);
 	const advert = useSelector((state) => getAdvertDetail(state, advertId));
 	
 	React.useEffect(() => {
@@ -26,7 +25,7 @@ function EditAdvertPage() {
 
 	return (
 		<React.Fragment>
-			{isLoading && <Spinner/>}
+			{loading && <Spinner/>}
 			{error && <div onClick={() => dispatch(resetError())} />}
 			<EditAdvertForm {...advert} onSubmit={handleSubmit} />
 		</React.Fragment>
@@ -36,7 +35,7 @@ function EditAdvertPage() {
 
 EditAdvertPage.propTypes = {
 	history: T.shape({
-		push: T.func.isRequired,
+	push: T.func.isRequired,
 	}).isRequired,
 };
 

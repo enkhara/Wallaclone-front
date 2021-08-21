@@ -14,20 +14,21 @@ function CheckboxGroup({ options, value, onChange, ...props }) {
 	};
 
 	return (
-		<div>
+	<div>
 			{options.map((option) => (
-				<label key={option}>
-					<input
-						type="checkbox"
-						value={option}
-						checked={value.includes(option)}
-						onChange={handleChange}
-						{...props}
-					/>
-					{option}
-				</label>
-			))}
-		</div>
+			<label key={option}>
+				<input
+					type="checkbox"
+					value={option}
+					checked={value.includes(option)}
+					onChange={handleChange}
+					{...props}
+				/>
+				{option}
+			</label>
+		))}
+	</div>
+
 	);
 }
 

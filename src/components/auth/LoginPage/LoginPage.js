@@ -35,7 +35,7 @@ function LoginPage() {
   return (
     <>
       <LoginForm onSubmit={handleSubmit} />
-      {loading && <p>...login in wallaclone</p>}
+      {loading && <Spinner/>}
       {error && <div onClick={() => dispatch(resetError())} />}
     </>
   );

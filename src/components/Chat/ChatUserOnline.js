@@ -1,12 +1,22 @@
 import './Chat.css';
 import Avatar from '@material-ui/core/Avatar';
 import { useEffect, useState } from 'react';
-import { getUsersWithChat } from '../../api/chat';
-import { getUser } from '../../api/user';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { getChatSpeakersAction } from '../../store/actions';
+
+import { useDispatch } from 'react-redux';
 
 const ChatUserOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
+	const dispatch = useDispatch();
+
+	const [speakers, setSpeakers] = useState([]);
+
+	useEffect(async () => {
+		const speakersResponse = await dispatch(getChatSpeakersAction(currentId));
+		setSpeakers(speakersResponse);
+	}, [dispatch, currentId]);
+
+	console.log('speakers', speakers);
 	//buscar el usuaris amb els que tenim una conversa
 	// const [speakers, setSpeakers] = useState([]);
 	// const [onlineSpeakers, setOnlineSpeakers] = useState([]);

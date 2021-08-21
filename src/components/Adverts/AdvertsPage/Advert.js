@@ -75,7 +75,6 @@ const Advert = ({
               <CardContent className={classes.cardContent}>
                 <Typography component="p" className={classes.priceAdvert}>
                   {`${price} €`}
-
                   {isLogged &&
                     (fav ? (
                       <FavoriteBorderIcon
@@ -109,7 +108,12 @@ const Advert = ({
 
             <CardActions className={classes.cardActions}>
               <Box className={classes.author}>
-                <Avatar />
+                <Link
+                  to={`/${userId.username}/adverts`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Avatar />
+                </Link>
                 <Box ml={2}>
                   <Typography variant="subtitle2" component="p">
                     {userId.username}
@@ -139,7 +143,7 @@ Advert.prototype = {
   ...advert,
   image: T.string,
   reserved: T.bool,
-  sell: T.bool,
+  sold: T.bool,
 };
 
 export default Advert;

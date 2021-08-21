@@ -18,7 +18,7 @@ const store = configureStore({
 });
 
 ReactDOM.render(
-  <Suspense fallback="loading">
+  <Suspense fallback="">
     <Root store={store} history={history} />
   </Suspense>,
   document.getElementById('root')

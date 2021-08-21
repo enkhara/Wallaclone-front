@@ -66,6 +66,9 @@ import {
   USER_CONVERSATIONS_SUCCESS,
   USER_CONVERSATIONS_REQUEST,
   USER_CONVERSATIONS_FAILURE,
+  GET_CHAT_SPEAKERS_SUCCESS,
+  GET_CHAT_SPEAKERS_REQUEST,
+  GET_CHAT_SPEAKERS_FAILURE,
   USER_FAVORITES_SUCCESS,
 } from './types';
 
@@ -823,6 +826,41 @@ export const userConversationsLoadAction = (userId) => {
       return conversations;
     } catch (error) {
       dispatch(userConversationsLoadedFailure(error));
+    }
+  };
+};
+
+/********************************SPEAKERS CHAT************************************/
+export const getChatSpeakersRequest = () => {
+  return {
+    type: GET_CHAT_SPEAKERS_REQUEST,
+  };
+};
+
+export const getChatSpeakersSuccess = (speakers) => {
+  return {
+    type: GET_CHAT_SPEAKERS_SUCCESS,
+    payload: speakers,
+  };
+};
+
+export const getChatSpeakersFailure = (error) => {
+  return {
+    type: GET_CHAT_SPEAKERS_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const getChatSpeakersAction = (userId) => {
+  return async function (dispatch, getState, { api }) {
+    dispatch(getChatSpeakersRequest());
+    try {
+      const speakers = await api.chat.getUsersWithChat(userId);
+      dispatch(getChatSpeakersSuccess(speakers));
+      return speakers;
+    } catch (error) {
+      dispatch(getChatSpeakersFailure(error));
     }
   };
 };

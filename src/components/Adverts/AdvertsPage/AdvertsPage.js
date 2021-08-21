@@ -1,10 +1,10 @@
 import React from 'react';
-import { Search } from '../../Filters';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
 import EmptyList from './EmptyList';
 import AdvertsList from './AdvertsList';
+import { FiltersAdverts } from '../../Filters';
  
 
 
@@ -22,8 +22,7 @@ const AdvertsPage = () => {
 		>
 			{adverts.length ? (
 				<section>
-					<Search/>
-					<AdvertsList
+					<FiltersAdverts
 						adverts={adverts}
 					/>
 				</section>

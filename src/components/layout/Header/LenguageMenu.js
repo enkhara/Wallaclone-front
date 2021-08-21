@@ -1,38 +1,38 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { CardMedia, makeStyles } from "@material-ui/core";
+import { CardMedia } from "@material-ui/core";
+import styled from 'styled-components';
 
-const useStyles = makeStyles((theme) => ({
-    containerLenguage:{
-        width:'40px', 
-        height:'25px',
-        cursor:'pointer'
-    }
-
-}));
+const CardLenguage  = styled(CardMedia)`
+    width: 40px; 
+    height: 25px;
+    cursor: pointer;
+`;
+const ContainerLenguage  = styled.section`
+    display:flex;
+    align-items:space-between;
+    justify-content:space-between;
+    width: 90px;
+`;
 
 const LenguageMenu = () => {
-    
-    const classes = useStyles();
 
-    const [i18n] = useTranslation(['global']);
+    const { i18n } = useTranslation(['global']);
     function TranslationClick(lang) {
         i18n.changeLanguage(lang);
     }
     
     return (
-        <section style={{display:'flex',alignItems:'space-between',justifyContent:'space-between', width:'90px'}}>
-            <CardMedia 
+        <ContainerLenguage>
+            <CardLenguage 
                 onClick={() => TranslationClick('es')}
                 image='/spain.png'
-                className={classes.containerLenguage}
             />
-            <CardMedia 
+            <CardLenguage 
                onClick={() => TranslationClick('en')}
-               image='/united_kingdom.png'
-               className={classes.containerLenguage}
+               image='/united_kingdom.png'               
             />
-        </section>
+        </ContainerLenguage>
     );
 }
 

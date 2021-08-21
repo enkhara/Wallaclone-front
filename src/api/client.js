@@ -29,11 +29,11 @@ client.interceptors.response.use(
 client.interceptors.request.use(
 	function(config) {
 		const token = storage.get("auth");
-		console.log('token client interceptors request', token)
+		//console.log('token client interceptors request', token)
 		if (token != null && token != undefined) {
 			config.headers["Authorization"] = 'Bearer ' + token
 		}
-		console.log('config client interceptors request', config);
+		//console.log('config client interceptors request', config);
 	  return config;
 	},
 	function(error) {

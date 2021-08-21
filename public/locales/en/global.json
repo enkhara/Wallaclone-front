@@ -83,7 +83,10 @@
     "Change description": "Change description",
     "Reserved": "Reserved",
     "Sold": "Sold",
-    "Are you sure?": "Are you sure?"
+    "Are you sure?": "Are you sure?", 
+    "Advert Actual Image": "Actual image", 
+    "Change tags":"Change tags", 
+    "Change status adverts": "Change status adverts"
   },
   "chat": {
     "Send": "Send",

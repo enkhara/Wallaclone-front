@@ -31,6 +31,10 @@ const AppRoutes = () => {
 				exact path="/user"
 				component={UserPageWithUser} />
 
+			<PrivateRoute
+				exact path="/:username/account"
+				component={UserPageWithUser} />
+
 			<PrivateRoute exact path="/user/chat">
 				<ChatWithUser />
 			</PrivateRoute>
@@ -54,6 +58,10 @@ const AppRoutes = () => {
 			<Route exact path="/adverts/:advertName/:advertId">
 				<AdvertPage />
 			</Route>
+			
+			 <Route exact path="/:username/adverts">
+				<AdvertsPage />
+			</Route> 
 
 			<Route exact path="/">
 				<Redirect to="/adverts" />
