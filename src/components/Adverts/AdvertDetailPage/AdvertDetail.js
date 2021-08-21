@@ -83,7 +83,10 @@ function AdvertDetail({
 			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
 					<Box className={classes.author}>
-						<Avatar />
+						
+						<Link to={`/${userId.username}/adverts`} style={{ textDecoration: 'none' }}>
+							<Avatar />		
+						</Link>
 						<Box ml={2}>
 							<Typography variant="subtitle2" component="p">
 								{userId.username ? userId.username : 'Desconocido'}

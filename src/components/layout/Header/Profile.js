@@ -11,7 +11,7 @@ const Profile = () => {
     const user = useSelector(getUser);
  
     return (
-        <Link 
+        <Link to={`/${user.username}/account`} 
             style={{
                 display:'flex', 
                 alignItems:'center', 
@@ -26,8 +26,6 @@ const Profile = () => {
                 {t('profile.Welcome')} { user.username }
             </h3>
         </Link>
-
-       
     );
 }
 

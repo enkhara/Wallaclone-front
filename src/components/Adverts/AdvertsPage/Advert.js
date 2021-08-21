@@ -59,8 +59,12 @@ const Advert = ({
 						</CardActionArea>
 					 
 						<CardActions className={classes.cardActions}>
-                    		<Box className={classes.author}>
-                        		<Avatar/>
+							<Box className={classes.author}>
+							<Link to={`/${userId.username}/adverts`} style={{ textDecoration: 'none' }}>
+							
+									<Avatar />
+									
+							</Link>
                         		<Box ml={2}>
                             		<Typography variant="subtitle2" component="p">
                             			{userId.username}
@@ -84,7 +88,7 @@ Advert.prototype = {
 	...advert,
 	image: T.string,
 	reserved: T.bool,
-	sell: T.bool,
+	sold: T.bool,
 };
 
 export default Advert;

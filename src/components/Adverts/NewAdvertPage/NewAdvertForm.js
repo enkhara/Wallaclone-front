@@ -131,7 +131,7 @@ function NewAdvertForm({ onSubmit }) {
               row
             >
               <FormControlLabel
-                value="sell"
+                value="sale"
                 control={<Radio />}
                 label={t('adverts.Sell')}
               />
