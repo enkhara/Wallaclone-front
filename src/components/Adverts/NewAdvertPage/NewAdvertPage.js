@@ -10,7 +10,7 @@ import { advertCreatedAction, resetError } from '../../../store/actions';
 
 function NewAdvertPage() {
 
-	const { isLoading, error } = useSelector(getUi);
+	const { loading, error } = useSelector(getUi);
 	const dispatch = useDispatch();
 
 	const handleSubmit = async (newAdvert) => {
@@ -19,7 +19,7 @@ function NewAdvertPage() {
 
 	return (
 		<React.Fragment>
-			{isLoading && <Spinner/>}
+			{loading && <Spinner/>}
       		{error && <div onClick={() => dispatch(resetError())} />}
 			<NewAdvertForm onSubmit={handleSubmit} />
 		</React.Fragment>

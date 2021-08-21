@@ -126,26 +126,18 @@ const Chat = ({ user, ...props }) => {
 			<div className="chat">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-
 						<input placeholder="Search for friends"></input>
 						{conversations?.map((conversation) => (
 							<div
 								key={conversation._id}
 								onClick={() => setCurrentChat(conversation)}
 							>
-								<Conversation conversation={conversation} currentUser={user} />
+								<Conversation conversation={conversation} />
 							</div>
 						))}
 					</div>
 				</div>
 				<div className="chatBox">
-					<div className="chatBoxAdvertOwn">
-						{currentChat} ?
-						<UserOwnAdvertChat
-							conversation={currentChat}
-							currentUser={user}
-						/>:{' '}
-					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
 							<>

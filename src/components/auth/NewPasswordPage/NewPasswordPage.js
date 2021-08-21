@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 
 const NewPasswordPage = () => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(getUi);  
+  const { loading, error } = useSelector(getUi);  
   const history = useHistory();
   const location = useLocation();
   const { id, token } = useParams();
@@ -34,7 +34,7 @@ const NewPasswordPage = () => {
   }
   return(
     <React.Fragment>
-        {isLoading && <Spinner/>}
+        {loading && <Spinner/>}
         {error && <div onClick={() => dispatch(resetError())} />}
         <NewPasswordForm onSubmit={handleSubmit} />;
     </React.Fragment>

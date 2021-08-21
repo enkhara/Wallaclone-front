@@ -1,14 +1,23 @@
 import './Chat.js';
 import Avatar from '@material-ui/core/Avatar';
-import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { advertDetailAction } from '../../store/actions';
 import { getAdvertDetail } from '../../store/selectors.js';
 
 import placeholder from '../../assets/images/placeholder.png';
+import React from 'react';
+import { advertDetailAction } from '../../store/actions.js';
 
-const Conversation = ({ conversation, currentUser }) => {
+const Conversation = ({ conversation }) => {
+	const dispatch = useDispatch();
+
+	const advertId = conversation.advertisementId._id;
+	const advert = useSelector((state) => getAdvertDetail(state, advertId));
+
+	React.useEffect(() => {
+		dispatch(advertDetailAction(advertId));
+	}, [dispatch, advertId]);
+
 	return (
 		conversation && (
 			<div className="conversation">
@@ -22,11 +31,11 @@ const Conversation = ({ conversation, currentUser }) => {
 					alt=""
 				/>
 				<span className="advertisementName">
-					{conversation.advertisementId.name}
-					{conversation.advertisementId.price}
-					{conversation.advertisementId.transaction}
+					<p> {conversation.advertisementId.name} </p>
+					<p> {conversation.advertisementId.price} </p>
+					<p> {conversation.advertisementId.transaction} </p>
 				</span>
-				<span className="conversationName">{currentUser.username}</span>
+				<span className="conversationName">{advert?.userId.username}</span>
 			</div>
 		)
 	);

@@ -71,6 +71,7 @@ const RegisterForm = ({ onSubmit }) => {
             fullWidth
             required
             name="email"
+            style={{marginBottom:'1rem'}}
             value={email}
             onChange={handleChange}
           />

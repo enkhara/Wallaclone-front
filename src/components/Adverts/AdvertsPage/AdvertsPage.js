@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search } from '../../Filters';
+import { FiltersForm } from '../../Filters';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
@@ -22,7 +22,7 @@ const AdvertsPage = () => {
 		>
 			{adverts.length ? (
 				<section>
-					<Search/>
+					<FiltersForm/>
 					<AdvertsList
 						adverts={adverts}
 					/>
