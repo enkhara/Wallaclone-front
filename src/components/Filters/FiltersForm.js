@@ -44,7 +44,7 @@ const FiltersForm = ({ clickSearch,...props }) => {
         onSubmit={handleSubmit}
       >
         <Accordion 
-          style={{width:'40%',background:'linear-gradient(to top, #dfe9f3 0%, white 100%)'}}
+          className="accordion"
         >
           <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
