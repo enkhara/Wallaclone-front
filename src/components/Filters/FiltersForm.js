@@ -12,17 +12,17 @@ import './FiltersForm.css';
 
 
  
-const FiltersForm = ({...props}) => {
+const FiltersForm = ({ clickSearch,...props }) => {
   
-  const [filter, setFilter] = React.useState({
+  const [filters, setFilters] = React.useState({
       name:'',
       tags:[],
   });
 
-  const { name, tags } = filter;
+  const { name, tags } = filters;
 
   const handleChange = (event) => {
-    setFilter((oldAdvert) => ({
+    setFilters((oldAdvert) => ({
       ...oldAdvert,
       [event.target.name]:
         event.target.type === 'checked'
@@ -31,10 +31,17 @@ const FiltersForm = ({...props}) => {
     }));
   };
 
+  const handleSubmit = ev =>{
+    ev.preventDefault();
+    clickSearch(filters);
+
+  }
+
   return (
+
     <section>
       <form
-        
+        onSubmit={handleSubmit}
       >
         <Accordion 
           style={{width:'40%',background:'linear-gradient(to top, #dfe9f3 0%, white 100%)'}}
@@ -54,7 +61,6 @@ const FiltersForm = ({...props}) => {
                 value={name}     
                 name="name"
                 onChange={handleChange}
-
               />
               <p>Tags</p>
               <div 
@@ -75,9 +81,7 @@ const FiltersForm = ({...props}) => {
                 />
 
               </div>
-
             </div>
-                
             </AccordionDetails>
             <div className="button">
               <input
@@ -85,11 +89,8 @@ const FiltersForm = ({...props}) => {
                 className="button-search"
                 value="Search"
               />
-
             </div>
           </Accordion>
-          
-
         </form>
       </section>
     );
