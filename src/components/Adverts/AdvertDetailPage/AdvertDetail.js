@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useStyles } from './advertDetailCSS';
+import { useStyles } from './AdvertDetailCSS';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -58,15 +58,18 @@ function AdvertDetail({
   const history = useHistory();
   const [fav, setFav] = React.useState(false);
 
-  React.useEffect(() => {
-    if (user && user._id) {
-      getUserFav(user._id).then((r) => {
-        const favorites = r.result.ads_favs;
-        dispatch(setFavoritesUser(favorites));
-        setFav(favorites.includes(_id));
-      });
-    }
-  }, [dispatch]);
+	const handleChat = async (e) => {
+		e.preventDefault();
+
+		console.log('en advertDetail', userId._id, user._id);
+		if (userId._id === user._id) {
+			console.log('el anuncio es tuyo');
+			return;
+		}
+
+		const conversation = await dispatch(
+			conversationLoadAction(userId._id, _id)
+		);
 
   const handleChat = async (e) => {
     e.preventDefault();
