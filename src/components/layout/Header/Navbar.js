@@ -4,6 +4,7 @@ import Logout from './Logout';
 import Profile from "./Profile";
 import { useSelector } from 'react-redux';
 import { getIsLogged } from '../../../store/selectors';
+import ButtonNewAdvert from "./ButtonNewAdvert";
 
 const Navbar = () => {
     const isLogged = useSelector(getIsLogged);
@@ -14,6 +15,7 @@ const Navbar = () => {
           justifyContent:'flex-end',
           width:'100%',
         }}>
+           <ButtonNewAdvert/>
           {!isLogged ? (
               <MenuLoginRegister />
           ) : (
