@@ -13,9 +13,10 @@ const LinkNewButton  = styled(Link)`
   padding:10px;
   cursor:pointer;
   text-decoration:none;
-  margin-right:50px;
-  font-size: 1.3rem;
+  
+  font-size: 1.1rem;
   font-weight: 700;
+  width:240px;
 `;
 const ButtonNewAdvert = () => {
 

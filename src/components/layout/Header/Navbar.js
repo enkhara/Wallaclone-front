@@ -17,9 +17,11 @@ const Navbar = () => {
         }}>
            <ButtonNewAdvert/>
           {!isLogged ? (
-              <MenuLoginRegister />
+             <div style={{marginLeft:'50px'}}>
+                <MenuLoginRegister />
+              </div>
           ) : (
-              <div style={{display:'flex', alignItems:'center'}}>
+              <div style={{display:'flex', alignItems:'center',marginLeft:'50px'}}>
                 <Profile/>
                 <Logout />
               </div>
