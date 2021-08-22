@@ -83,9 +83,9 @@
     "Change description": "Change description",
     "Reserved": "Reserved",
     "Sold": "Sold",
-    "Are you sure?": "Are you sure?", 
-    "Advert Actual Image": "Actual image", 
-    "Change tags":"Change tags", 
+    "Are you sure?": "Are you sure?",
+    "Advert Actual Image": "Actual image",
+    "Change tags": "Change tags",
     "Change status adverts": "Change status adverts"
   },
   "chat": {
@@ -112,5 +112,11 @@
   },
   "logout": {
     "Are you sure?": "Are you sure?"
+  },
+  "filters": {
+    "Search": "Search",
+    "Name": "Name",
+    "Tags": "Tags",
+    "Price": "Price"
   }
 }

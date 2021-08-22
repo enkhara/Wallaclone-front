@@ -8,12 +8,14 @@ import {
 } from '@material-ui/core';
 import { SelectTags } from '../Adverts';
 import SelectRange from './SelectRange';
+import { useTranslation } from 'react-i18next';
 import './FiltersForm.css';
 
 
  
 const FiltersForm = ({ clickSearch,...props }) => {
-  
+
+  const [t]= useTranslation('global');
   const [filters, setFilters] = React.useState({
       name:'',
       tags:[],
@@ -49,20 +51,20 @@ const FiltersForm = ({ clickSearch,...props }) => {
           <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
         >
-            <h3>Search</h3>
+            <h3>{t('filters.Search')}</h3>
           </AccordionSummary>
           <AccordionDetails
             className="container-detail"
             >            
             <div>
-              <p>Name</p>
+              <p>{t('filters.Name')}</p>
               <input
                 type="text"
                 value={name}     
                 name="name"
                 onChange={handleChange}
               />
-              <p>Tags</p>
+              <p>{t('filters.Tags')}</p>
               <div 
                 className="tags"
               >
@@ -74,7 +76,7 @@ const FiltersForm = ({ clickSearch,...props }) => {
 
                 />
               </div>
-              <p>Price</p>
+              <p>{t('filters.Price')}</p>
               <div style={{paddingLeft:'0.5rem'}}>
                 <SelectRange
                   {...props}
@@ -87,7 +89,7 @@ const FiltersForm = ({ clickSearch,...props }) => {
               <input
                 type="submit"
                 className="button-search"
-                value="Search"
+                value={t('filters.Search')}
               />
             </div>
           </Accordion>
