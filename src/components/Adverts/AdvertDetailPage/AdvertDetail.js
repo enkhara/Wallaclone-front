@@ -57,16 +57,16 @@ function AdvertDetail({
 	const history = useHistory();
 	const [fav, setFav] = React.useState(false);
 
-  React.useEffect(() => {
-    if (user && user._id) {
-      getUserFav(user._id).then((r) => {
-        const favorites = r.result.ads_favs;
-        dispatch(setFavoritesUser(favorites));
-        setFav(favorites.includes(_id));
-      });
-    }
-  }, [dispatch]);
-  
+	React.useEffect(() => {
+		if (user && user._id) {
+			getUserFav(user._id).then((r) => {
+				const favorites = r.result.ads_favs;
+				dispatch(setFavoritesUser(favorites));
+				setFav(favorites.includes(_id));
+			});
+		}
+	}, [dispatch]);
+
 	const handleChat = async (e) => {
 		e.preventDefault();
 		const conversation = await dispatch(
@@ -226,15 +226,14 @@ function AdvertDetail({
 					</Button>
 				</Box>
 
-        <Box className={classes.socialDetailAdvert}>
-          <ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} /> 
-          {/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
-          {/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
-        </Box>
-      </Card>
-    </Grid>
-  );
-			
+				<Box className={classes.socialDetailAdvert}>
+					<ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} />
+					{/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
+					{/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
+				</Box>
+			</Card>
+		</Grid>
+	);
 }
 
 AdvertDetail.propTypes = {

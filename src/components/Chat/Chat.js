@@ -43,8 +43,10 @@ const Chat = ({ user, ...props }) => {
 	useEffect(() => {
 		socket.current.emit('addUser', user._id);
 		socket.current.on('getUsers', (users) => {
-			//console.log('socket io users conected', users);
-			setOnlineUser(users.filter((u) => u.userId !== user._id));
+			console.log('socket io users conected', users);
+			setOnlineUser(users);
+			//setOnlineUser(users.filter((u) => u.userId !== user._id));
+			console.log(onlineUsers);
 		});
 	}, [user]);
 
@@ -60,7 +62,6 @@ const Chat = ({ user, ...props }) => {
 	}, []);
 
 	useEffect(() => {
-		//control de mensajes y chat, si llega un mensaje de otro usuario no se debe mostras
 		arrivalMessages &&
 			currentChat?.members.includes(arrivalMessages.sender) &&
 			setMessages((prev) => [...prev, arrivalMessages]);
@@ -99,29 +100,22 @@ const Chat = ({ user, ...props }) => {
 		const receiverId = currentChat.members.find(
 			(member) => member !== user._id
 		);
-		//emit => send
-		//només enviar si esta
-		if (onlineUsers.find((user) => user === receiverId)) {
+
+		if (onlineUsers.find((onlineUser) => onlineUser.userId === receiverId)) {
 			socket.current.emit('sendMessage', {
 				senderId: user._id,
 				receiverId,
 				text: newMessages,
 			});
 		}
-
 		try {
-			//const res = await createdNewMessage(message);
-			const res = dispatch(messagesCreatedAction(message));
-			//console.log('respuesta guardado mensaje', res);
+			const res = await dispatch(messagesCreatedAction(message));
 			setMessages([...messages, res]);
 			setNewMessages('');
 		} catch (err) {
 			console.log(err);
 		}
 	};
-
-	//console.log('onlineUsers 127', onlineUsers);
-
 	return (
 		<React.Fragment>
 			<SideBar />
