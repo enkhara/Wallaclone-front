@@ -12,6 +12,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuLoginRegister from "./MenuLoginRegister";
+import ButtonNewAdvert from './ButtonNewAdvert';
 
  
 
@@ -46,16 +47,22 @@ const ResponsiveMenu = () => {
 
                         {isLogged 
                             ?
-                                <div
-                                    style={{width:'100%', height:'300px',display:'flex', alignItem:'center', flexDirection:'column', justifyContent:'space-between'}}
-                                >
+                            <div
+                                style={{width:'100%', height:'300px',display:'flex', alignItem:'center', flexDirection:'column', justifyContent:'space-between'}}
+                            >
                                     <Profile/>
+                                    <ButtonNewAdvert/>
                                     <Logout />
-                                </div>
+                            </div>
                             :
-                            <MenuLoginRegister/>
+                            <React.Fragment>
+                                <MenuLoginRegister/>
+                                <div style={{marginTop:'2rem'}}>
+                                    <ButtonNewAdvert/>
+                                </div>
+                            </React.Fragment>
+
                         }
-                        
                     </ListItem>
                 </List>
             </SwipeableDrawer>

@@ -50,7 +50,7 @@ const LoginForm = ({ onSubmit }) => {
           }}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+            <Avatar style={{ backgroundColor: '#62aae6f4' }}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('login.Sign in')}</h2>
@@ -63,6 +63,7 @@ const LoginForm = ({ onSubmit }) => {
             name="username"
             value={username}
             onChange={handleChange}
+           
           />
           <TextField
             label={t('login.Password')}
@@ -71,6 +72,7 @@ const LoginForm = ({ onSubmit }) => {
             fullWidth
             required
             name="password"
+            style={{marginTop:'1rem'}}
             value={password}
             onChange={handleChange}
           />

@@ -57,7 +57,7 @@ export function logged(state = initialState.logged, action) {
 export function user(state = initialState.user, action) {
 	switch (action.type) {
 		case USER_LOGGED_SUCCESS:
-			console.log('action.payload', action.payload);
+			//console.log('action.payload', action.payload);
 			//return { ...state, ...action.payload };
 			//return { ...action.payload };
 			return action.payload;
@@ -93,15 +93,7 @@ export function adverts(state = initialState.adverts, action) {
 		
 		case ADVERT_EDIT_SUCCESS:
 		case ADVERT_UPDATE_SUCCESS:
-			// return state.map((advert) => {
-			// 	if (advert._id === action.payload._id) {
-			// 		return {
-			// 			...state,
-			// 			loaded: false,
-			// 			data: [...state.data, action.payload],
-			// 		};
-			// 	}
-			// });
+			
 			return {
 				...state,
 				loaded: false,
@@ -114,8 +106,9 @@ export function adverts(state = initialState.adverts, action) {
 			return {
 				...state,
 				loaded: true,
-				data: state.data.filter((advert) => advert._id !== action.payload._id),
+				data: state.data.filter((advert) => advert._id !== action.payload),
 			};
+		
 		default:
 			return state;
 	}

@@ -20,13 +20,12 @@ import {
   IconButton,
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { positions } from '@material-ui/system';
+//import { positions } from '@material-ui/system';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFav } from '../../../api/user';
 import { getUser, getIsLogged } from '../../../store/selectors';
 import { setFavoritesUser } from '../../../store/actions';
-
 const Advert = ({
   _id,
   image,
@@ -45,9 +44,8 @@ const Advert = ({
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
-
   const [fav, setFav] = React.useState(true);
-
+  
   React.useEffect(() => {
     if (user && user._id) {
       getUserFav(user._id).then((r) => {
@@ -129,7 +127,7 @@ const Advert = ({
               </Box>
 
               <ShareAdvert
-                Url={'http://localhost:3000/username/desc_anuncio'}
+                Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`}
               />
             </CardActions>
           </Card>

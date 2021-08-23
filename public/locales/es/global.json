@@ -57,7 +57,7 @@
     "Advert": "Anuncio",
     "Adverts/Page": "Anuncios/Página",
     "Create new advert": "Crea tu nuevo anuncio",
-    "Advert Name": "Ingrese el nombre del producto",
+    "Advert Name": "Nombre del producto",
     "Enter product name": "Ingrese el nombre del producto",
     "price": "Precio",
     "Enter price": "Ingrese precio",
@@ -86,7 +86,13 @@
     "Are you sure?":"Estas seguro?", 
     "Advert Actual Image": "Imagen actual", 
     "Change tags":"Cambie las categorias/tags", 
-    "Change status adverts": "Cambie los estados"
+    "Change status adverts": "Cambie los estados", 
+    "You will not be able to reverse this !": "No podrás revertir esto !", 
+    "Yes, delete it!":"Si, eliminalo!", 
+    "Deleted!": "Eliminado!", 
+    "Your advert has been deleted": "Tu anuncio ha sido eliminado ", 
+    "Action not allowed": "Acción no permitida", 
+    "You will need to log in": "Deberá iniciar sesión"
   },
   "chat": {
     "Send": "Enviar",
@@ -108,5 +114,17 @@
   },
   "profile": {
     "Welcome": "Bienvenido"
+  },
+  "filters": {
+    "Search": "Buscar",
+    "Name": "Nombre",
+    "Tags": "Tipos",
+    "Price": "Precio"
+  },
+  "page404": {
+    "GO BACK": "VOLVER",
+    "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
+
   }
+
 }

@@ -47,9 +47,13 @@ const getToken = async function () {
 };
 
  export const updateAdvert = (advertId, advert) => {
- 	return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
+	 return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
  };
 
-
+ export const getUserAdvertsFav = (userId) => {
+	const user = client.get(`${BASE_URL}/advertisements/favourites/${userId}`);
+	console.log(user);
+	return user;
+  };
 
 

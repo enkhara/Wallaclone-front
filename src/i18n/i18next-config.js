@@ -7,7 +7,7 @@ const Languages = ['en', 'es'];
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
   fallbackLng: 'en',
-  debug: true,
+  debug: false,
   whitelist: Languages,
 });
 

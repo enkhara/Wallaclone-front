@@ -35,8 +35,19 @@ export const deleteFavorites = (user_Id, advertId) => {
     }
   );
 };
+
 export const getUserFav = (userId) => {
   const user = client.get(`${BASE_URL}/users/${userId}`);
   console.log(user);
   return user;
 };
+
+// obtiene los anuncios de un usuario ordenados por fecha de creación descendente 
+export const getAllAdvertsUser = (userId) => {
+	const url = `${BASE_URL}/advertisements?sort=-createdAt&userId=${userId}`;
+	return client.get(url);
+};
+
+
+
+

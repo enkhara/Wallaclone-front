@@ -1,7 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
 import { InputFile } from '../../shared';
-import { useStyles } from '../../shared/useStyles';
 import {
   Grid,
   Paper,
@@ -17,10 +16,11 @@ import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
 
+import '../NewAndEditAdvert.css';
 function NewAdvertForm({ onSubmit }) {
   
   const [t] = useTranslation('global');
-  const classes = useStyles();
+
 
   const [advert, setAdvert] = React.useState({
     name: '',
@@ -73,98 +73,98 @@ function NewAdvertForm({ onSubmit }) {
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: '30px',
-            height: '800px',
-            margin: '50px auto',
-            width: '500px',
-          }}
+          className="container_paper"
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+            <Avatar style={{ backgroundColor: '#62aae6f4' }}>
               <AddIcon />
             </Avatar>
             <h2>{t('adverts.Create new advert')}</h2>
           </Grid>
+          <p>{t('adverts.Advert Name')}</p>
           <TextField
-            label={t('adverts.Advert Name')}
             placeholder={t('adverts.Enter product name')}
             fullWidth
             required
             name="name"
             value={name}
             onChange={handleChange}
-            autoFocus={true}
+          
           />
-          <TextField
-            className={classes.textArea}
-						id="outlined-multiline-flexible"
-            label={t('adverts.Description')}
+          <p>{t('adverts.Description')}</p>
+          <textarea 
             placeholder={t('adverts.Enter description')}
-            multiline
-						rows={4}
-            fullWidth
-            required
             name="desc"
             value={desc}
             onChange={handleChange}
-          />
-          <TextField
-            label={t('adverts.price')}
-            placeholder={t('adverts.Enter price')}
-            fullWidth
             required
-            type="number"
-            name="price"
-            value={price}
-            onChange={handleChange}
-            autoFocus={true}
           />
-          <FormControl component="fieldset">
-            <FormLabel component="legend">{t('adverts.Transaction Type')}</FormLabel>
-            <RadioGroup
-              aria-label="transaction"
-              name="transaction"
-              required
-              value={transaction}
+          <div id="price_buy">
+              <section>
+                <p>{t('adverts.price')}</p>
+                <TextField
+                  placeholder={t('adverts.Enter price')}
+                  required
+                  type="number"
+                  name="price"
+                  variant="outlined"
+                  value={price}
+                  onChange={handleChange}
+                />
+              </section>
+              <section id="transaction">
+                <p>{t('adverts.Transaction Type')}</p>
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    aria-label="transaction"
+                    name="transaction"
+                    required
+                    value={transaction}
+                    onChange={handleChange}
+                    row
+                    >
+                    <FormControlLabel
+                      value="sale"
+                      control={<Radio />}
+                      label={t('adverts.Sell')}
+                      />
+                    <FormControlLabel
+                      value="wanted"
+                      control={<Radio />}
+                      label={t('adverts.Wanted')}
+                      />
+                  </RadioGroup>
+                </FormControl>
+              </section>
+          </div>
+          <p>{t('adverts.Select one or more tags')}</p>
+          <section className="tags_advert">
+            <SelectTags
+              multiple
+              name="tags"
+              value={tags}
               onChange={handleChange}
-              row
+            />
+
+          </section>
+          <p>{t('adverts.Select image')}</p>
+          <div id="input_file">
+            <InputFile 
+              placeholder={t('adverts.Select image')}
+              name="image"
+              onChange={handleChangeImage}
+              
+            />
+            <Button
+              type="submit"
+              style={{ margin: '30px 0' }}
+              color="primary"
+              variant="contained"
+              disabled={!name || !transaction || !price || tags.length === 0}
             >
-              <FormControlLabel
-                value="sale"
-                control={<Radio />}
-                label={t('adverts.Sell')}
-              />
-              <FormControlLabel
-                value="wanted"
-                control={<Radio />}
-                label={t('adverts.Wanted')}
-              />
-            </RadioGroup>
-          </FormControl>
-          <FormLabel component="legend">{t('adverts.Select one or more tags')}</FormLabel>
-          <SelectTags
-            multiple
-            name="tags"
-            value={tags}
-            onChange={handleChange}
-          />
-          <FormLabel component="legend">{t('adverts.Select image')}</FormLabel>
-          <InputFile 
-            placeholder={t('adverts.Select image')}
-            name="image"
-            onChange={handleChangeImage}
-           />
-          <Button
-            type="submit"
-            style={{ margin: '30px 0' }}
-            color="primary"
-            fullWidth
-            variant="contained"
-            disabled={!name || !transaction || !price || tags.length === 0}
-          >
-            {t('adverts.Created Advert')}
-          </Button>
+              {t('adverts.Created Advert')}
+            </Button>
+          </div>
         </Paper>
       </form>
     </Grid>
