@@ -21,6 +21,10 @@ import {
 
 const Chat = ({ user, ...props }) => {
 	const dispatch = useDispatch();
+	const socket = useRef();
+	const scrollRef = useRef();
+	const { error } = useSelector(getUi);
+
 	const [conversations, setConversations] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
@@ -29,13 +33,6 @@ const Chat = ({ user, ...props }) => {
 	const [onlineUsers, setOnlineUser] = useState([]);
 
 	const { t, i18n } = useTranslation(['global']);
-
-	const socket = useRef();
-	const scrollRef = useRef();
-
-	const { error } = useSelector(getUi);
-
-	//console.log('en chat iniciado', user);
 
 	/******************SOCKET CLIENT******************************/
 
@@ -47,7 +44,7 @@ const Chat = ({ user, ...props }) => {
 		socket.current.emit('addUser', user._id);
 		socket.current.on('getUsers', (users) => {
 			//console.log('socket io users conected', users);
-			setOnlineUser(users);
+			setOnlineUser(users.filter((u) => u.userId !== user._id));
 		});
 	}, [user]);
 
@@ -123,7 +120,7 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 
-	console.log('online USERS', onlineUsers);
+	//console.log('onlineUsers 127', onlineUsers);
 
 	return (
 		<React.Fragment>
