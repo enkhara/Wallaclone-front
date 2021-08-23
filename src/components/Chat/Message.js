@@ -4,9 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { format } from 'timeago.js';
 
 const Message = ({ message, own }) => {
-	//const { user } =
-	//console.log('en el componenete MESSAGE la prop OWN', own);
-
 	return (
 		<div className={own ? 'message own' : 'message'}>
 			<div className="messageTop">
