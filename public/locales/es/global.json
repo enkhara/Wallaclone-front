@@ -57,7 +57,7 @@
     "Advert": "Anuncio",
     "Adverts/Page": "Anuncios/Página",
     "Create new advert": "Crea tu nuevo anuncio",
-    "Advert Name": "Ingrese el nombre del producto",
+    "Advert Name": "Nombre del producto",
     "Enter product name": "Ingrese el nombre del producto",
     "price": "Precio",
     "Enter price": "Ingrese precio",
@@ -124,6 +124,7 @@
   "page404": {
     "GO BACK": "VOLVER",
     "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
+
   }
 
 }

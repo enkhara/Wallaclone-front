@@ -1,0 +1,82 @@
+.container_paper{
+    padding: 30px;
+    height: auto;
+    margin: 50px auto;
+    width: 550px;
+}
+p{
+    color:#62aae6f4;
+}
+h2{
+    display: block;
+    padding-bottom: 1rem;
+}
+
+
+textarea{
+    width: 100%;
+    border: 2px solid lightblue;
+    border-radius:4px;
+    font-size:1rem;
+    outline:none;
+    padding: 0.5rem;
+    box-sizing:borderBox;
+    transition:.3s;
+    resize:vertical;
+    height:100px;
+    font-family: Roboto;
+}
+
+textarea:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+}
+
+#price_buy{
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+#price_buy section{
+    margin-top: 0px;
+}
+#transaction{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+.tags{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: darkblue;
+
+}
+div label{
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    cursor: pointer;
+    padding-bottom: 0.5rem;      
+  
+}
+
+div label:first-child{
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+#input_file{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+
+

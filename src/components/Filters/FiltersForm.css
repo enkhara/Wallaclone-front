@@ -45,16 +45,13 @@ h3{
  
 }
 div label{
-   
-    /* padding-left: 1rem; */
     font-size: 1rem;
     padding-left: 0.5rem;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     cursor: pointer;
-    padding-bottom: 0.5rem;
-          
+    padding-bottom: 0.5rem;      
   
 }
  

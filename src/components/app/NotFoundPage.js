@@ -12,7 +12,7 @@ function NotfoundPage() {
                 <img src="404.png" alt="404"/>
                <p className="container_404">
                      404
-                 </p>
+                </p>
             </div>
 
             <div className="container_error">
