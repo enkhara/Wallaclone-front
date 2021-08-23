@@ -10,11 +10,10 @@ const LinkNewButton  = styled(Link)`
   margin-top:1px;
   background-color:#fff;
   color:lightblue;
-  padding:10px;
+  padding:9px;
   cursor:pointer;
   text-decoration:none;
-  
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   width:240px;
 `;
@@ -24,7 +23,7 @@ const ButtonNewAdvert = () => {
 
   return (
     <LinkNewButton 
-      to={`/adverts/new`}
+      to={'/adverts/new'}
     >
       <AddCircleOutlineIcon 
          style={{marginRight:'5px'}}
