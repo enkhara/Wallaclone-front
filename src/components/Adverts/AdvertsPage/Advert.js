@@ -20,7 +20,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { positions } from '@material-ui/system';
+//import { positions } from '@material-ui/system';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFav } from '../../../api/user';
@@ -127,7 +127,7 @@ const Advert = ({
               </Box>
 
               <ShareAdvert
-                Url={`${process.env.FRONT_LOCALHOST}adverts/${name}/${_id}`}
+                Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`}
               />
             </CardActions>
           </Card>
