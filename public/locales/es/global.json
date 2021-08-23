@@ -114,5 +114,11 @@
   },
   "profile": {
     "Welcome": "Bienvenido"
+  },
+  "filters": {
+    "Search": "Buscar",
+    "Name": "Nombre",
+    "Tags": "Tipos",
+    "Price": "Precio"
   }
 }

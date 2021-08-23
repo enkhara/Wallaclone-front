@@ -118,5 +118,11 @@
   },
   "logout": {
     "Are you sure?": "Are you sure?"
+  },
+  "filters": {
+    "Search": "Search",
+    "Name": "Name",
+    "Tags": "Tags",
+    "Price": "Price"
   }
 }
