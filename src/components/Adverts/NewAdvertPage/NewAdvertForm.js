@@ -138,7 +138,7 @@ function NewAdvertForm({ onSubmit }) {
               </section>
           </div>
           <p>{t('adverts.Select one or more tags')}</p>
-          <section className="tags">
+          <section className="tags_advert">
             <SelectTags
               multiple
               name="tags"
