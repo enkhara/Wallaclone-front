@@ -36,13 +36,6 @@ const GreenCheckbox = withStyles({
 	},
 	checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-
-// const imgStyle = {
-// 	border: '1px solid #ddd',
-// 	borderRadius: '4px',
-// 	padding: '5px',
-// 	width: '200px',
-// };
 function EditAdvertForm({
 	name,
 	transaction,
@@ -51,10 +44,9 @@ function EditAdvertForm({
 	tags,
 	image,
 	reserved,
-	sold, 
+	sold,
 	_id,
-	onSubmit })
-{
+	onSubmit }) {
 	const [t] = useTranslation('global');
 	const classes = useStyles();
 	const dispatch = useDispatch();
@@ -63,11 +55,11 @@ function EditAdvertForm({
 		descNew: desc,
 		priceNew: price,
 		transactionNew: transaction,
-		tagsNew: tags,
+		tagsNew: [tags],
 		reservedNew: reserved,
 		soldNew: sold,
-		imageNew: image, 
-	  });
+		imageNew: image,
+	});
 	
 	const { nameNew, descNew, priceNew, transactionNew, tagsNew } = advertEdit;
 	const [newImage, setNewImage] = useState();
@@ -77,11 +69,12 @@ function EditAdvertForm({
 	const [stateReserved, setStateReserved] = React.useState({ reservedNew: reserved });
 	const [stateSold, setStateSold] = React.useState({ soldNew: sold });
 	
-    // Obtengo los tags del backend para pintarlos en el select multiple 
+	// Obtengo los tags del backend para pintarlos en el select multiple 
 	const [listaTags, setListaTags] = React.useState([]);
-    const [tagsNews, setTagsNews] = React.useState(tags);
-  
-	React.useEffect(() => {
+	const [tagsNews, setTagsNews] = React.useState(tags);
+	console.log('tagsNews', tagsNews);
+	
+	useEffect(() => {
 		// Obtenemos los tags del backend para mostrarlos
 		getAllTags().then(setListaTags);
 		dispatch(tagsLoadedAction());
@@ -114,30 +107,6 @@ function EditAdvertForm({
 		}
 	};
 
-	// const handleChangeTags = event => {
-	// 	if (event.target.checked) {
-	// 		console.log('entro para añadir tag', event.target.value)
-			
-	// 		 setAdvertEdit((oldAdvert) => ({
-	// 		 	...oldAdvert,
-	// 		 	[event.target.name]: tagsNew.push(event.target.value) ,
-	// 		 }))
-	// 	}
-	// 	 else {
-    //          const index = tagsNew.indexOf(event.target.value);
-    //          if (index === -1) {
-    //              console.error("checkbox was unchecked but had not been registered as checked before");
-    //          } else {
-	// 	 		console.log('entro para quitar tag')
-	// 	 		setAdvertEdit((oldAdvert) => ({
-	// 	 			...oldAdvert,
-	// 	 			[event.target.name]: tagsNew.splice(index, 1)
-	// 	 		}))
-    //          }
-    //      }
-	// 	console.log('tagsNew resultado', tagsNew);
-	// };
-
 	const handleChangeImage = (event) => {
 		
 		const file = event.target.files[0];
@@ -158,12 +127,8 @@ function EditAdvertForm({
 		updateAdvert.append('transaction', advertEdit.transactionNew);
 		updateAdvert.append('sold', stateSold['soldNew']);
 		updateAdvert.append('reserved', stateReserved['reservedNew']);
-		//updateAdvert.append('tags', advertEdit.tagsNew);
-		//updateAdvert.tagsNew.forEach((tag) => advertEdit.append('tags[]', tag));
 		updateAdvert.append('tags', tagsNews);
-		//console.log('tags nuevos', tagsNew);
-		//console.log('newImage', newImage, 'imagen anterior', `${URLIMG}images/adverts/${image}`);
-
+		
 		if (newImage !== undefined && (newImage !== `${URLIMG}images/adverts/${image}`)) {
 			console.log('entro en imagen cambiada');
 			updateAdvert.append('image', newImage);
@@ -264,11 +229,11 @@ function EditAdvertForm({
 							{listaTags.map((option) => (
 								<label key={option}> 
 									<GreenCheckbox
-										name="tagsNew"
+										name="tagsNews"
 										type="checkbox"
 										key={option}
 										value={option}
-										defaultChecked={tagsNew.includes(option)}
+										defaultChecked={tagsNews.includes(option)}
 										onChange={handleChangeTags}
 									/>
 									{option}

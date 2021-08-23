@@ -6,7 +6,7 @@ function InputFile({ type, value, onChange, ...props }) {
   const [src, setSrc] = React.useState(null);
 
   const loadSrcFromFile = file => {
-    console.log('file', file);
+   // console.log('file', file);
     if (!file) {
       setSrc(null);
       return;

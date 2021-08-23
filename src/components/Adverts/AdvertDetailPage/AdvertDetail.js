@@ -58,7 +58,6 @@ function AdvertDetail({
 	const [fav, setFav] = React.useState(false);
 
   React.useEffect(() => {
-    console.log('process.env', process.env)
     if (user && user._id) {
       getUserFav(user._id).then((r) => {
         const favorites = r.result.ads_favs;
@@ -228,8 +227,8 @@ function AdvertDetail({
 				</Box>
 
         <Box className={classes.socialDetailAdvert}>
-          
-          <ShareAdvert Url={`${process.env.FRONT_LOCALHOST}adverts/${name}/${_id}`} />
+          <ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} /> 
+          {/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
           {/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
         </Box>
       </Card>
