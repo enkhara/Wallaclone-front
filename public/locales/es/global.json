@@ -120,5 +120,10 @@
     "Name": "Nombre",
     "Tags": "Tipos",
     "Price": "Precio"
+  },
+  "page404": {
+    "GO BACK": "VOLVER",
+    "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
   }
+
 }

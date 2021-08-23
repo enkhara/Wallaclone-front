@@ -124,5 +124,9 @@
     "Name": "Name",
     "Tags": "Tags",
     "Price": "Price"
+  },
+  "page404": {
+    "GO BACK": "GO BACK",
+    "PAGE NOT FOUND": "PAGE NOT FOUND"
   }
 }
