@@ -1,12 +1,8 @@
 import React from 'react';
-
 import placeholder from '../../assets/images/placeholder.png';
 
 function InputFile({ type, value, onChange, ...props }) {
-  //const inputRef = React.createRef(null);
-  //const [src, setSrc] = React.useState(null);
   const inputRef = React.createRef();
-  console.log('value props', props);
   const [src, setSrc] = React.useState(null);
 
   const loadSrcFromFile = file => {
@@ -22,19 +18,6 @@ function InputFile({ type, value, onChange, ...props }) {
     reader.readAsDataURL(file);
   };
 
-  // const handleLoad = (file) => {
-  //   console.log('file', file);
-  //   if (!file) {
-  //     setSrc(null);
-  //     return;
-  //   }
-  //   const reader = new FileReader();
-  //   reader.onload = function () {
-  //     setSrc(reader.result);
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
-  
   const handleClick = () => {
     inputRef.current.click();
   };
@@ -44,14 +27,6 @@ function InputFile({ type, value, onChange, ...props }) {
     loadSrcFromFile(file);
     onChange(ev);
   };
-
-  // const handleChange = (ev, image) => {
-  //   console.log('en handleChange de inputFile');
-  //   console.log(image);
-  //   const file = image || ev.target.files[0];
-  //   loadSrcFromFile(file);
-  //   onChange(ev);
-  // };
 
   return (
     <>
@@ -64,7 +39,6 @@ function InputFile({ type, value, onChange, ...props }) {
         {...props}
       />
       <img
-        //onLoad ={handleLoad}
         onClick={handleClick}
         src={src || placeholder}
         alt=""

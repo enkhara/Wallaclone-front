@@ -68,7 +68,7 @@
     "Transaction Type": "Transaction Type",
     "Transaction": "Transaction",
     "Created Advert": "Created Advert",
-    "Sell": "Sell",
+    "Sell": "Sale",
     "Wanted": "Wanted",
     "Tags": "Tags",
     "Select one or more tags": "Select one or more tags:",
@@ -86,7 +86,13 @@
     "Are you sure?": "Are you sure?", 
     "Advert Actual Image": "Actual image", 
     "Change tags":"Change tags", 
-    "Change status adverts": "Change status adverts"
+    "Change status adverts": "Change status adverts", 
+    "You will not be able to reverse this !": "You will not be able to reverse this !", 
+    "Yes, delete it!":"Yes, delete it!", 
+    "Deleted!": "Deleted!", 
+    "Your advert has been deleted": "Your advert has been deleted", 
+    "Action not allowed": "Action not allowed", 
+    "You will need to log in": "You will need to log in"
   },
   "chat": {
     "Send": "Send",

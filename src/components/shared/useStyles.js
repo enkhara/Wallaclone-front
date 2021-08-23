@@ -32,6 +32,16 @@ export const useStyles = makeStyles((theme) => ({
 	  	borderRadius: 3,
 		marginTop:'1rem',
 		marginBottom:'1rem',
+	},
+	
+	mediaEditAdvert: {
+		height: 200,
+		width: 200,
+		borderRadius: 4,
+		border: '1px solid #ddd',
+		marginTop:'1rem',
+		marginBottom: '1rem',
+		padding: 5,
   	},
 	cardActions: {
 	  	display: 'flex',

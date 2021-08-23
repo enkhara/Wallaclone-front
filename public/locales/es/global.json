@@ -86,7 +86,13 @@
     "Are you sure?":"Estas seguro?", 
     "Advert Actual Image": "Imagen actual", 
     "Change tags":"Cambie las categorias/tags", 
-    "Change status adverts": "Cambie los estados"
+    "Change status adverts": "Cambie los estados", 
+    "You will not be able to reverse this !": "No podrás revertir esto !", 
+    "Yes, delete it!":"Si, eliminalo!", 
+    "Deleted!": "Eliminado!", 
+    "Your advert has been deleted": "Tu anuncio ha sido eliminado ", 
+    "Action not allowed": "Acción no permitida", 
+    "You will need to log in": "Deberá iniciar sesión"
   },
   "chat": {
     "Send": "Enviar",

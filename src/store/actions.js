@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-//import { user } from './reducers/advertsReducer';
+
 import {
   getAdvertsLoaded,
   getUserLoaded,
@@ -465,6 +465,7 @@ export const advertDeletedFailure = (error) => {
 };
 
 export const advertDeletedAction = (advertId) => {
+  
   return async function (dispatch, getState, { api, history }) {
     dispatch(advertDeletedRequest());
     try {
@@ -472,12 +473,9 @@ export const advertDeletedAction = (advertId) => {
       // dispatch(advertDeletedSuccess(advert));
       await api.adverts.deleteAdvert(advertId);
       dispatch(advertDeletedSuccess(advertId));
-      history.push('/');
-      Swal.fire(
-        'Advert deleted',
-        'El anuncio ha sido borrado con éxito',
-        'success'
-      );
+      history.push('/adverts');
+      //Swal.fire('Deleted!', 'Your advert has been deleted.', 'success');
+     
     } catch (error) {
       dispatch(advertDeletedFailure(error));
       const errorMessage = JSON.stringify(error.conversation);
@@ -515,7 +513,7 @@ export const forgotPasswordAction = (email, history) => {
       const response = await api.auth.forgotPassword(email);
 
       if (response.info === 'ok') {
-        Swal.fire('check your email link to reset your password');
+        Swal.fire('Check your email link to reset your password');
       }
       history.push('/login');
       dispatch(forgotPasswordSuccess());
@@ -561,7 +559,7 @@ export const newPasswordAction = (
 
     try {
       await api.auth.newPassword(credentials, id, token);
-      await Swal.fire('updated password!!');
+      await Swal.fire('Updated password!!');
       window.open('about:blank', '_self');
       window.close();
       // Redirect
