@@ -19,7 +19,7 @@ const Header = () => {
   
   return (
     <header>
-        <section style={{display:'flex', alignItems:'center',justifyContent:'space-between', marginTop:'0.5rem'}}>
+        <section style={{display:'flex', alignItems:'center',justifyContent:'space-between', margin:'0px', marginTop:'0.5rem'}}>
           <Typography variant="h6">
             <Link to="/">
               <img src="/logo_wallaclone2.png" alt="Wallaclone app" />
@@ -31,9 +31,7 @@ const Header = () => {
 
         <AppBar 
             position="static" 
-            style={{
-              background: 'var(--color-principal)',
-            }}
+            style={{background:'var(--color-principal)'}}
         >
           <Toolbar
             

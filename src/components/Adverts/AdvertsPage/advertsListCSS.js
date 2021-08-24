@@ -1,6 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
+	principalGrid:{
+		display:'flex', 
+		justifyContent:'center', 
+		alignItems:'flex-start',
+		 
+		 
+	},
     formControl: {
 		minWidth: 130,
 		marginBottom:'0.5rem',

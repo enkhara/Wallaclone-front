@@ -71,28 +71,29 @@
     "Sell": "Venta",
     "Wanted": "Búsqueda",
     "Tags": "Etiquetas",
-    "Select one or more tags": "Seleccione una o más etiquetas:",
+    "Select one or more tags": "Seleccione una o más etiquetas",
     "Delete": "Eliminar",
-    "Update": "Editar", 
-    "Confirm advert deletion":"Confirme la eliminación del anuncio", 
-    "User Confirmation":"Confirmacion del Usuario", 
-    "Edit Advert":"Edición de anuncio",
-    "Update Advert":"Actualizar Anuncio", 
-    "Change image": "Cambiar imagen:", 
-    "Change product name":"Modifica nombre anuncio",
-    "Change description": "Modifica descripcion", 
-    "Reserved": "Reservado", 
-    "Sold":"Vendido", 
-    "Are you sure?":"Estas seguro?", 
-    "Advert Actual Image": "Imagen actual", 
-    "Change tags":"Cambie las categorias/tags", 
-    "Change status adverts": "Cambie los estados", 
-    "You will not be able to reverse this !": "No podrás revertir esto !", 
-    "Yes, delete it!":"Si, eliminalo!", 
-    "Deleted!": "Eliminado!", 
-    "Your advert has been deleted": "Tu anuncio ha sido eliminado ", 
-    "Action not allowed": "Acción no permitida", 
-    "You will need to log in": "Deberá iniciar sesión"
+    "Update": "Editar",
+    "Confirm advert deletion": "Confirme la eliminación del anuncio",
+    "User Confirmation": "Confirmacion del Usuario",
+    "Edit Advert": "Edición de anuncio",
+    "Update Advert": "Actualizar Anuncio",
+    "Change image": "Cambiar imagen:",
+    "Change product name": "Modifica nombre anuncio",
+    "Change description": "Modifica descripcion",
+    "Reserved": "Reservado",
+    "Sold": "Vendido",
+    "Are you sure?": "Estas seguro?",
+    "Advert Actual Image": "Imagen actual",
+    "Change tags": "Cambie las categorias/tags",
+    "Change status adverts": "Cambie los estados",
+    "You will not be able to reverse this !": "No podrás revertir esto !",
+    "Yes, delete it!": "Si, eliminalo!",
+    "Deleted!": "Eliminado!",
+    "Your advert has been deleted": "Tu anuncio ha sido eliminado ",
+    "Action not allowed": "Acción no permitida",
+    "You will need to log in": "Deberá iniciar sesión",
+    "Cancel": "Cancelar"
   },
   "chat": {
     "Send": "Enviar",
@@ -124,7 +125,5 @@
   "page404": {
     "GO BACK": "VOLVER",
     "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
-
   }
-
 }

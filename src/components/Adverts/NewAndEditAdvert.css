@@ -1,8 +1,8 @@
 .container_paper{
-    padding: 30px;
+    padding: 20px;
     height: auto;
     margin: 50px auto;
-    width: 550px;
+    width: 300px;
 }
 p{
     color:#62aae6f4;
@@ -27,15 +27,17 @@ textarea{
     font-family: Roboto;
 }
 
-textarea:focus{
+textarea:focus, input[type="number"]:focus{
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
 }
 
 #price_buy{
     display:flex;
-    align-items:center;
-    justify-content:space-between
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content:center;
+
 }
 #price_buy section{
     margin-top: 0px;
@@ -58,7 +60,7 @@ textarea:focus{
 
 }
 .tags_advert div label{
-    display: inline-flex;
+    display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     cursor: pointer;
@@ -66,10 +68,7 @@ textarea:focus{
   
 }
 
-.tags_advert div label:first-child{
-    padding-left: 0px;
-    margin-left: 0px;
-}
+
 
 #input_file{
     width: 100%;
@@ -79,4 +78,57 @@ textarea:focus{
     justify-content:center;
 }
 
+.new_advert_button{
+    width: 100%;
+    height: 3rem;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 0;
+    background: var(--color-principal);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1rem;
+    
+}
 
+ 
+
+
+
+
+@media(min-width:500px){
+    .container_paper{         
+        width: 400px;
+        padding: 30px;
+    }
+    
+
+}
+ 
+@media(min-width:900px){
+    .container_paper{         
+        width: 550px;
+        
+    }
+
+    #price_buy{
+        
+        flex-direction: row;
+        justify-content:space-between;
+    }
+    #price_buy section{
+        margin-top: 0px;
+    }
+   
+    
+
+    .tags_advert div label:first-child{
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+    .tags_advert div label{
+        display: inline-flex;
+      
+    }
+}

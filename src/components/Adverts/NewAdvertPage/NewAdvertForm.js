@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import { InputFile } from '../../shared';
+import { InputFile, GoBackButton } from '../../shared';
 import {
   Grid,
   Paper,
@@ -17,11 +17,13 @@ import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
 
 import '../NewAndEditAdvert.css';
+import { InputBase } from '@material-ui/core';
+
 function NewAdvertForm({ onSubmit }) {
-  
+
+  const inputNameRef = React.useRef(null);
+
   const [t] = useTranslation('global');
-
-
   const [advert, setAdvert] = React.useState({
     name: '',
     desc: '',
@@ -31,6 +33,8 @@ function NewAdvertForm({ onSubmit }) {
   });
 
   const { name, desc, price, transaction, tags } = advert;
+
+  
 
   const handleChange = (event) => {
     setAdvert((oldAdvert) => ({
@@ -51,6 +55,8 @@ function NewAdvertForm({ onSubmit }) {
        setImage([]);
      }
   };
+
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -81,7 +87,7 @@ function NewAdvertForm({ onSubmit }) {
             </Avatar>
             <h2>{t('adverts.Create new advert')}</h2>
           </Grid>
-          <p>{t('adverts.Advert Name')}</p>
+          <p>{t('adverts.Advert Name')}*</p>
           <TextField
             placeholder={t('adverts.Enter product name')}
             fullWidth
@@ -89,9 +95,10 @@ function NewAdvertForm({ onSubmit }) {
             name="name"
             value={name}
             onChange={handleChange}
+            autoFocus={true}
           
           />
-          <p>{t('adverts.Description')}</p>
+          <p>{t('adverts.Description')}*</p>
           <textarea 
             placeholder={t('adverts.Enter description')}
             name="desc"
@@ -101,7 +108,7 @@ function NewAdvertForm({ onSubmit }) {
           />
           <div id="price_buy">
               <section>
-                <p>{t('adverts.price')}</p>
+                <p>{t('adverts.price')}*</p>
                 <TextField
                   placeholder={t('adverts.Enter price')}
                   required
@@ -110,10 +117,11 @@ function NewAdvertForm({ onSubmit }) {
                   variant="outlined"
                   value={price}
                   onChange={handleChange}
+                 
                 />
               </section>
               <section id="transaction">
-                <p>{t('adverts.Transaction Type')}</p>
+                <p>{t('adverts.Transaction Type')}*</p>
                 <FormControl component="fieldset">
                   <RadioGroup
                     aria-label="transaction"
@@ -137,7 +145,7 @@ function NewAdvertForm({ onSubmit }) {
                 </FormControl>
               </section>
           </div>
-          <p>{t('adverts.Select one or more tags')}</p>
+          <p>{t('adverts.Select one or more tags')}*</p>
           <section className="tags_advert">
             <SelectTags
               multiple
@@ -155,15 +163,17 @@ function NewAdvertForm({ onSubmit }) {
               onChange={handleChangeImage}
               
             />
-            <Button
-              type="submit"
-              style={{ margin: '30px 0' }}
-              color="primary"
-              variant="contained"
-              disabled={!name || !transaction || !price || tags.length === 0}
-            >
-              {t('adverts.Created Advert')}
-            </Button>
+              <input
+                type="submit"
+                className="new_advert_button"
+                value={t('adverts.Created Advert')}
+                disabled={!name || !transaction || !price || tags.length === 0}
+              />
+                <GoBackButton
+                  styleclassName={'neworedit'}
+                >
+                  {t('adverts.Cancel')}
+                </GoBackButton>
           </div>
         </Paper>
       </form>

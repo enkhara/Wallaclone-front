@@ -20,10 +20,10 @@ import {
   IconButton,
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-//import { positions } from '@material-ui/system';
+
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserFav } from '../../../api/user';
+import { getUserFav,addFavorites,deleteFavorites } from '../../../api/user';
 import { getUser, getIsLogged } from '../../../store/selectors';
 import { setFavoritesUser } from '../../../store/actions';
 const Advert = ({
@@ -44,7 +44,7 @@ const Advert = ({
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
-  const [fav, setFav] = React.useState(true);
+  const [fav, setFav] = React.useState(false);
   
   React.useEffect(() => {
     if (user && user._id) {
@@ -56,9 +56,24 @@ const Advert = ({
     }
   }, [dispatch]);
 
+  const handleFavored = async (e) => {
+    e.preventDefault();
+    setFav(!fav);
+
+    if (!fav) {
+      await addFavorites(user._id, _id);
+      const favorites = user.ads_favs.push(_id);
+      dispatch(setFavoritesUser(favorites));
+    } else {
+      const favorites = user.ads_favs._id;
+      favorites && favorites.splice(favorites.indexOf(_id), 1);
+      await deleteFavorites(user._id, _id);
+    }
+  };
+
   return (
-    <Grid item xs={12} sm={6} lg={4}>
-      <article>
+    <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>
+      <article className={classes.container_card}>
         <NavLink to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
             <CardActionArea>
@@ -74,28 +89,26 @@ const Advert = ({
                 <Typography component="p" className={classes.priceAdvert}>
                   {`${price} €`}
                   {isLogged &&
-                    (fav ? (
-                      <FavoriteBorderIcon
-                        className={classes.favoriteIcon}
-                        style={{
-                          fontSize: '2rem',
-                        }}
-                        color="secondary"
-                      />
-                    ) : (
-                      !fav && (
-                        <FavoriteBorderIcon
-                          className={classes.favoriteIcon}
-                          style={{ fontSize: '2rem' }}
-                        />
-                      )
-                    ))}
-                  {!isLogged && (
-                    <FavoriteBorderIcon
-                      className={classes.favoriteIcon}
-                      style={{ fontSize: '2rem' }}
-                    />
-                  )}
+              (fav ? (
+                <IconButton
+                  className={classes.favoriteIcon}
+                  color="secondary"
+                  onClick={handleFavored}
+                >
+                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+                </IconButton>
+              ) : (
+                !fav && (
+                  <IconButton
+                    className={classes.favoriteIcon}
+                    onClick={handleFavored}
+                    
+                  >
+                    <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+                  </IconButton>
+                )
+              ))}
+           
                 </Typography>
                 <Typography component="p">{name}</Typography>
                 <Typography component="p">{tags.join(' - ')}</Typography>
