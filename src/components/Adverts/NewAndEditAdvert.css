@@ -27,7 +27,7 @@ textarea{
     font-family: Roboto;
 }
 
-textarea:focus{
+textarea:focus, input[type="number"]:focus{
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
 }
@@ -77,6 +77,21 @@ textarea:focus{
     flex-direction: column;
     align-items:center;
     justify-content:center;
+}
+
+.new_advert_button{
+    width: 100%;
+    height: 3rem;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    min-width: 20rem;
+    border-radius: 10px;
+    border: 0;
+    background: var(--color-principal);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1rem;
+    
 }
 
 

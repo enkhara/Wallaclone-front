@@ -68,7 +68,7 @@ p{
     font-weight: 700;
 }
 
-input[type=submit]{
+.button-search{
     width: 160px;
     padding: 0.5rem;
     font-size: 1.1rem;
@@ -77,12 +77,10 @@ input[type=submit]{
     border: 0;
     background: var(--color-principal);
     color: #fff;
-  
-}
-input[type=submit]:hover{
     cursor: pointer;
-}
   
+}
+ 
 
 .button{
     display: flex;
