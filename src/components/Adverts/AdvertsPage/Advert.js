@@ -44,7 +44,7 @@ const Advert = ({
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
-  const [fav, setFav] = React.useState(true);
+  const [fav, setFav] = React.useState(false);
   
   React.useEffect(() => {
     if (user && user._id) {
@@ -74,7 +74,7 @@ const Advert = ({
                 <Typography component="p" className={classes.priceAdvert}>
                   {`${price} €`}
                   {isLogged &&
-                    (fav ? (
+                    fav ? (
                       <FavoriteBorderIcon
                         className={classes.favoriteIcon}
                         style={{
@@ -89,7 +89,7 @@ const Advert = ({
                           style={{ fontSize: '2rem' }}
                         />
                       )
-                    ))}
+                    )}
                   {!isLogged && (
                     <FavoriteBorderIcon
                       className={classes.favoriteIcon}
