@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import './Chat.css';
 import ChatUserOnline from './ChatUserOnline';
 import Conversation from './Conversations';
-//import UserOwnAdvertChat from './UserOwnAdvertChat';
+import UserOwnAdvertChat from './UserOwnAdvertChat';
 import Message from './Message';
 import withUser from '../hoc/withUser';
 import { SideBar } from '../layout';
@@ -134,6 +134,9 @@ const Chat = ({ user, ...props }) => {
 					</div>
 				</div>
 				<div className="chatBox">
+					<div>
+						{currentChat && <UserOwnAdvertChat currentChat={currentChat} />}
+					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (
 							<>
