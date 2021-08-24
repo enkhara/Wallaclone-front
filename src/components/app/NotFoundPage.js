@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+
 import './NotFoundPage.css';
+import { GoBackButton } from '../shared';
 
 function NotfoundPage() {
-	const history = useHistory();
+	
 	const [t] = useTranslation('global');
 	return (
         <div className="container">
@@ -19,11 +20,12 @@ function NotfoundPage() {
                 <p className="error">
 					{t('page404.PAGE NOT FOUND')}
                 </p>
-                <button 
-					className="button_goback"
-					onClick={()=> (history.goBack())}
-				>{t('page404.GO BACK')}
-				</button>
+                <GoBackButton
+                    styleclassName={'404'}
+                >
+
+                    {t('page404.GO BACK')}
+                </GoBackButton>
             </div>
         </div>
     );

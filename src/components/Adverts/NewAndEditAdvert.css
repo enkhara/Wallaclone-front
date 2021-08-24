@@ -27,7 +27,7 @@ textarea{
     font-family: Roboto;
 }
 
-textarea:focus{
+textarea:focus, input[type="number"]:focus{
     border-color:dodgerBlue;
     box-shadow:0 0 8px 0 dodgerBlue;
 }

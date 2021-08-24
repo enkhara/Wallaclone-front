@@ -36,16 +36,6 @@
     font-size: 1.5rem;
     font-family: sans-serif, 'Gill Sans MT', Calibri, 'Trebuchet MS';
 }
-.button_goback {
-    background-color: #0077d8f4;
-    color: #ffffff;
-    font-weight: 700;
-    font-family: sans-serif, 'Gill Sans MT', Calibri, 'Trebuchet MS';
-    padding: 0.8em 1em;
-    border-radius: 50px;
-    width: 100%;
-    cursor: pointer;
-}
 .container_error{
     margin-bottom: 2rem;
 }
