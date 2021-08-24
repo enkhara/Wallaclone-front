@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from './advertDetailCSS';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
 import {
 	Grid,
@@ -115,13 +115,21 @@ function AdvertDetail({
 		>
 			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
-					<Box className={classes.author}>
-						<Link
+					<NavLink
+								to={{
+								pathname: `/${userId.username}/adverts`,
+								state: { userId: `${userId._id}`},
+								}}
+								style={{ textDecoration: 'none' }}
+							>
+						<Box className={classes.author}>
+						{/* <Link
 							to={`/${userId.username}/adverts`}
 							style={{ textDecoration: 'none' }}
-						>
+						> */}
+						
 							<Avatar />
-						</Link>
+						
 						<Box ml={2}>
 							<Typography variant="subtitle2" component="p">
 								{userId.username ? userId.username : 'Desconocido'}
@@ -137,6 +145,7 @@ function AdvertDetail({
 							</Typography>
 						</Box>
 					</Box>
+					</NavLink>
 					<Box>
 						{isLogged &&
 							(fav ? (
@@ -227,9 +236,9 @@ function AdvertDetail({
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>
-					<ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} />
-					{/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
-					{/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
+
+					<ShareAdvert Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`} />
+					
 				</Box>
 			</Card>
 		</Grid>

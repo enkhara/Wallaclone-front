@@ -6,16 +6,18 @@ import EmptyList from './EmptyList';
 import { FiltersAdverts } from '../../Filters';
  
 
-
-const AdvertsPage = () => {
+const AdvertsPage = (props) => {
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
-
+	const username = props.match.params.username;
+	
 	React.useEffect(() => {
-		dispatch(advertsLoadAction()); 
+		dispatch(advertsLoadAction());
 	}, [dispatch]);
 
+	
 	return (
+		
 		<main 
 			style={{marginTop:'0.5rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
 		>
@@ -23,6 +25,7 @@ const AdvertsPage = () => {
 				<section>
 					<FiltersAdverts
 						adverts={adverts}
+						username={username}
 					/>
 				</section>
 			) : (

@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 
 import {
   getAdvertsLoaded,
+  getAdvertsUserLoaded, 
   getUserLoaded,
   getUser,
   getAdvertDetail,
@@ -207,6 +208,7 @@ export const advertsLoadedFailure = (error) => {
 
 export const advertsLoadAction = () => {
   return async function (dispatch, getState, { api }) {
+
     const advertsLoaded = getAdvertsLoaded(getState());
     if (advertsLoaded) {
       return;

@@ -60,7 +60,8 @@ const AppRoutes = () => {
 			</Route>
 			
 			 <Route exact path="/:username/adverts">
-				<AdvertsPage />
+				{/* <AdvertsPage /> */}
+				{routeProps => <AdvertsPage {...routeProps} />}
 			</Route> 
 
 			<Route exact path="/">
@@ -68,7 +69,8 @@ const AppRoutes = () => {
 			</Route>
 
 			<Route exact path="/adverts">
-				<AdvertsPage />
+				{/* <AdvertsPage /> */}
+				{routeProps => <AdvertsPage {...routeProps} />}
 			</Route>
 
 			<Route exact path="/404">

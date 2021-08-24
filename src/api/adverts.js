@@ -7,9 +7,15 @@ export const BASE_URL = '/apiv1';
 // 	return client.get(url);
 // };
 
-// obtiene el nº de limit de anuncios ordenados por fecha de creación descendente
+// obtiene el nº de limit de anuncios ordenados por fecha de creación descendente (de más recientes a más antiguos)
 export const getLatestAdverts = (limit) => {
 	const url = `${BASE_URL}/advertisements?sort=-createdAt&limit=${limit}`;
+	return client.get(url);
+};
+
+// obtiene los anuncios ordenados por fecha de creación ascendente (de más antiguos a más nuevos)
+export const getOldAdverts = (limit) => {
+	const url = `${BASE_URL}/advertisements?sort=createdAt&limit=${limit}`;
 	return client.get(url);
 };
 
@@ -17,13 +23,6 @@ export const getAllAdverts = () => {
 	const url = `${BASE_URL}/advertisements`;
 	return client.get(url);
 };
-
-// const mapAdvert = ({ image, ...advert }) => ({
-// 	...advert,
-// 	image: image
-// 		? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
-// 		: image,
-// });
 
 export const getAllTags = () => {
 	return client.get(`${BASE_URL}/tags/allTags`);
@@ -48,12 +47,12 @@ const getToken = async function () {
 
  export const updateAdvert = (advertId, advert) => {
 	 return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
- };
+};
 
  export const getUserAdvertsFav = (userId) => {
-	const user = client.get(`${BASE_URL}/advertisements/favourites/${userId}`);
+	const user = client.get(`${BASE_URL}/favourites/${userId}`);
 	console.log(user);
 	return user;
-  };
+};
 
 

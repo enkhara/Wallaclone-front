@@ -4,7 +4,7 @@ import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
 import { formatDistanceToNow } from 'date-fns';
 import ShareAdvert from '../shareAdvert';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useStyles } from './advertCSS';
 
 import {
@@ -59,7 +59,7 @@ const Advert = ({
   return (
     <Grid item xs={12} sm={6} lg={4}>
       <article>
-        <Link to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
+        <NavLink to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -105,33 +105,39 @@ const Advert = ({
             </CardActionArea>
 
             <CardActions className={classes.cardActions}>
+              <NavLink
+                to={{
+                  pathname: `/${userId.username}/adverts`,
+                  state: { userId: `${userId._id}`},
+                }}
+                style={{ textDecoration: 'none' }}
+               >
               <Box className={classes.author}>
-                <Link
-                  to={`/${userId.username}/adverts`}
-                  style={{ textDecoration: 'none' }}
-                >
+                
                   <Avatar />
-                </Link>
+                
                 <Box ml={2}>
                   <Typography variant="subtitle2" component="p">
                     {userId.username}
-                  </Typography>
+                    </Typography>
+                    
                   <Typography
                     variant="subtitle2"
                     color="textSecondary"
                     component="p"
                   >
                     {formatDistanceToNow(new Date(createdAt))}
-                  </Typography>
-                </Box>
+                    </Typography>
+                  
+                  </Box>          
               </Box>
-
+            </NavLink>
               <ShareAdvert
-                Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`}
+                Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`}
               />
             </CardActions>
           </Card>
-        </Link>
+        </NavLink>
       </article>
     </Grid>
   );
