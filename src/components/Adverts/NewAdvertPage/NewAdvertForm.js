@@ -15,10 +15,12 @@ import { RadioGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 import '../NewAndEditAdvert.css';
 function NewAdvertForm({ onSubmit }) {
   
+  const history = useHistory();
   const [t] = useTranslation('global');
 
 
@@ -81,7 +83,7 @@ function NewAdvertForm({ onSubmit }) {
             </Avatar>
             <h2>{t('adverts.Create new advert')}</h2>
           </Grid>
-          <p>{t('adverts.Advert Name')}</p>
+          <p>{t('adverts.Advert Name')}*</p>
           <TextField
             placeholder={t('adverts.Enter product name')}
             fullWidth
@@ -91,7 +93,7 @@ function NewAdvertForm({ onSubmit }) {
             onChange={handleChange}
           
           />
-          <p>{t('adverts.Description')}</p>
+          <p>{t('adverts.Description')}*</p>
           <textarea 
             placeholder={t('adverts.Enter description')}
             name="desc"
@@ -101,7 +103,7 @@ function NewAdvertForm({ onSubmit }) {
           />
           <div id="price_buy">
               <section>
-                <p>{t('adverts.price')}</p>
+                <p>{t('adverts.price')}*</p>
                 <TextField
                   placeholder={t('adverts.Enter price')}
                   required
@@ -110,10 +112,11 @@ function NewAdvertForm({ onSubmit }) {
                   variant="outlined"
                   value={price}
                   onChange={handleChange}
+                 
                 />
               </section>
               <section id="transaction">
-                <p>{t('adverts.Transaction Type')}</p>
+                <p>{t('adverts.Transaction Type')}*</p>
                 <FormControl component="fieldset">
                   <RadioGroup
                     aria-label="transaction"
@@ -137,7 +140,7 @@ function NewAdvertForm({ onSubmit }) {
                 </FormControl>
               </section>
           </div>
-          <p>{t('adverts.Select one or more tags')}</p>
+          <p>{t('adverts.Select one or more tags')}*</p>
           <section className="tags_advert">
             <SelectTags
               multiple
@@ -163,6 +166,11 @@ function NewAdvertForm({ onSubmit }) {
               disabled={!name || !transaction || !price || tags.length === 0}
             >
               {t('adverts.Created Advert')}
+            </Button>
+            <Button
+              onClick={()=> (history.goBack())}
+            >
+              {t('adverts.Cancel')}
             </Button>
           </div>
         </Paper>
