@@ -15,11 +15,22 @@ const ChatUserOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
 		dispatch(getChatSpeakersAction(currentId)).then(setSpeakers);
 	}, [dispatch, currentId]);
 
-	//console.log('speakers', speakers);
-	//console.log('online useers', onlineUsers);
+	// console.log('speakers', speakers);
+	// console.log('online useers', onlineUsers);
+	// console.log('currentId', currentId);
+	// console.log('onlineSpeakers', onlineSpeakers);
 
 	useEffect(() => {
-		setOnlineSpeakers(onlineUsers.filter((f) => speakers.includes(f.userId)));
+		setOnlineSpeakers(
+			// speakers
+			// 	.filter((f) => onlineUsers.map((o) => o.userId.includes(f._id)))
+			// 	.filter((f) => f._id !== currentId)
+			onlineUsers
+				.filter((f) =>
+					speakers.map((speaker) => speaker._id.includes(f.userId))
+				)
+				.filter((f) => f.userId !== currentId)
+		);
 	}, [speakers, onlineUsers]);
 
 	return (
