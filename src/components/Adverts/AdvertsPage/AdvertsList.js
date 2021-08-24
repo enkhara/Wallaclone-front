@@ -40,7 +40,7 @@ const AdvertsList = ({ adverts }) => {
 
 	return (
 		<Fragment>
-			<Grid container spacing={8} className={classes.principalGrid}>
+			<Grid container spacing={7} className={classes.principalGrid}>
 				{_advertsData.currentData().map((advert) => (
 					<Advert key={advert._id} {...advert} />
 				))}

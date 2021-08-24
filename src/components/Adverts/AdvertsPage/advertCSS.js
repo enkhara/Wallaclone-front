@@ -6,8 +6,6 @@ export const useStyles = makeStyles((theme) => ({
     
   },
   container_card:{
-     
-   
     transition: 'transform .3s',
     '&:hover':{
       transform:'translateY(5px)',

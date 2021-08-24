@@ -4,7 +4,9 @@ export const useStyles = makeStyles((theme) => ({
 	principalGrid:{
 		display:'flex', 
 		justifyContent:'center', 
-		alignItems:'center'
+		alignItems:'flex-start',
+		 
+		 
 	},
     formControl: {
 		minWidth: 130,
