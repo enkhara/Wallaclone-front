@@ -21,6 +21,8 @@ import { InputBase } from '@material-ui/core';
 
 function NewAdvertForm({ onSubmit }) {
 
+  const inputNameRef = React.useRef(null);
+
   const [t] = useTranslation('global');
   const [advert, setAdvert] = React.useState({
     name: '',
@@ -31,6 +33,8 @@ function NewAdvertForm({ onSubmit }) {
   });
 
   const { name, desc, price, transaction, tags } = advert;
+
+  
 
   const handleChange = (event) => {
     setAdvert((oldAdvert) => ({
@@ -51,6 +55,8 @@ function NewAdvertForm({ onSubmit }) {
        setImage([]);
      }
   };
+
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,6 +95,7 @@ function NewAdvertForm({ onSubmit }) {
             name="name"
             value={name}
             onChange={handleChange}
+            autoFocus={true}
           
           />
           <p>{t('adverts.Description')}*</p>
@@ -156,23 +163,17 @@ function NewAdvertForm({ onSubmit }) {
               onChange={handleChangeImage}
               
             />
-  
               <input
                 type="submit"
                 className="new_advert_button"
                 value={t('adverts.Created Advert')}
                 disabled={!name || !transaction || !price || tags.length === 0}
               />
-
-             
-                
                 <GoBackButton
                   styleclassName={'neworedit'}
                 >
                   {t('adverts.Cancel')}
                 </GoBackButton>
-
-             
           </div>
         </Paper>
       </form>
