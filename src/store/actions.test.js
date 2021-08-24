@@ -157,8 +157,6 @@ describe('loginAction', () => {
 
 /******************************************AUTH LOGOUT ACTION******************************************/
 
-describe;
-
 /***********************************ADVERTS LOADED ACTION********************************************/
 describe('advertsLoadedSuccess', () => {
 	test('should return ADVERTS_LOADED_SUCCESS action', () => {
