@@ -1,6 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
+  containerGrid:{
+    maxWidth:'450px',
+    
+  },
+  container_card:{
+     
+   
+    transition: 'transform .3s',
+    '&:hover':{
+      transform:'translateY(5px)',
+      boxShadow:'2px 2px 26px 0px rgba(0,0,0,0.3)',
+    }
+  },
+
   priceAdvert: {
     display: 'flex',
     justifyContent: 'space-between',
