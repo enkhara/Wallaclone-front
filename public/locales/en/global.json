@@ -92,7 +92,8 @@
     "Deleted!": "Deleted!",
     "Your advert has been deleted": "Your advert has been deleted",
     "Action not allowed": "Action not allowed",
-    "You will need to log in": "You will need to log in"
+    "You will need to log in": "You will need to log in",
+    "Cancel": "Cancel"
   },
   "chat": {
     "Send": "Send",

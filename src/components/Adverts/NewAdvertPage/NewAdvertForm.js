@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import { InputFile } from '../../shared';
+import { InputFile, GoBackButton } from '../../shared';
 import {
   Grid,
   Paper,
@@ -15,15 +15,13 @@ import { RadioGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 
 import '../NewAndEditAdvert.css';
+import { InputBase } from '@material-ui/core';
+
 function NewAdvertForm({ onSubmit }) {
-  
-  const history = useHistory();
+
   const [t] = useTranslation('global');
-
-
   const [advert, setAdvert] = React.useState({
     name: '',
     desc: '',
@@ -158,20 +156,23 @@ function NewAdvertForm({ onSubmit }) {
               onChange={handleChangeImage}
               
             />
-            <Button
-              type="submit"
-              style={{ margin: '30px 0' }}
-              color="primary"
-              variant="contained"
-              disabled={!name || !transaction || !price || tags.length === 0}
-            >
-              {t('adverts.Created Advert')}
-            </Button>
-            <Button
-              onClick={()=> (history.goBack())}
-            >
-              {t('adverts.Cancel')}
-            </Button>
+  
+              <input
+                type="submit"
+                className="new_advert_button"
+                value={t('adverts.Created Advert')}
+                disabled={!name || !transaction || !price || tags.length === 0}
+              />
+
+             
+                
+                <GoBackButton
+                  styleclassName={'neworedit'}
+                >
+                  {t('adverts.Cancel')}
+                </GoBackButton>
+
+             
           </div>
         </Paper>
       </form>
