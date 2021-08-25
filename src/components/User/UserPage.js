@@ -7,7 +7,7 @@ const UserPage = ({ user, ...props }) => {
 	return (
 		
 		<div className="userSpace">
-			<SideBar />
+			<SideBar user={user} />
 			<div className="userNav"></div>
 			<div className="userContainer"></div>
 		</div>

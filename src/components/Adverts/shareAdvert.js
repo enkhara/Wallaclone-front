@@ -13,7 +13,11 @@ class shareAdvert extends Component {
     render() {
         return (
             <div>
-                <FacebookShareButton url={this.props.Url} quote={`${this.props.Title} - ${this.props.Resumen}`}>
+                <FacebookShareButton
+                    url={this.props.Url}
+                    quote={`${this.props.Title} - ${this.props.Resumen}`}
+                    hashtag="#"
+                >
                     <FacebookIcon round size={32} />
                 </FacebookShareButton>
 

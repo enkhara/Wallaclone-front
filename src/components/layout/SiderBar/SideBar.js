@@ -9,7 +9,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BallotIcon from '@material-ui/icons/Ballot';
 
-const SideBar = () => {
+const SideBar = (user) => {
 	const { t } = useTranslation(['global']);
 
 	return (
@@ -19,7 +19,7 @@ const SideBar = () => {
 					<AccountBoxIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Profile')}</span>
 				</Link>
-				<Link to={''} className="sideBarButton">
+				<Link to={{ pathname: `/${user.username}/myadverts` }} className="sideBarButton">
 					<BallotIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Products')}</span>
 				</Link>

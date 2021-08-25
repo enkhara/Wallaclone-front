@@ -2,16 +2,28 @@ import React from 'react';
 import AdvertsList from '../Adverts/AdvertsPage/AdvertsList';
 import FiltersForm from './FiltersForm';
 import { minAndMaxRange } from './minAndMaxRange';
+let advertsUser = {};
 
-const FiltersAdverts = ({ adverts }) => {
+const FiltersAdverts = ({ adverts, username }) => {
     
     const { min: minPrice, max: maxPrice } = minAndMaxRange(adverts);
     const [filteredAdverts,setFilteredAdverts] = React.useState(adverts);
     const [priceRange,setPriceRange] = React.useState([minPrice, maxPrice]);
-  
+
+    React.useEffect(() => {
+
+        if (username !== undefined) {
+        
+            setFilteredAdverts(adverts.filter(advert => {
+                
+                return (advert.userId.username.toLowerCase() === username.toLowerCase());
+            
+            }));
+        }
+	}, [username]);
 
     const filteredRange = selectedRange =>(setPriceRange(selectedRange));
-        
+    
     const clickSearch = selectedFilter =>{
         setFilteredAdverts(
             adverts.filter(advert=>{
@@ -27,15 +39,15 @@ const FiltersAdverts = ({ adverts }) => {
                 if(advert.price >= priceRange[0] && advert.price <= priceRange[1]){
                         filterPrice = advert.price;
                 }
-              
-                return filterByTags && filterByName && filterPrice;
+                
+                    
+                return filterByTags && filterByName && filterPrice; 
             })
                 
         );
             
     }
    
-
     return (
         <React.Fragment>
             <FiltersForm

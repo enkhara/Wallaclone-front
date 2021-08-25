@@ -81,6 +81,7 @@ export function registered(state = initialState.registered, action) {
 export function adverts(state = initialState.adverts, action) {
 	switch (action.type) {
 		case ADVERTS_LOADED_SUCCESS:
+		//case ADVERTS_USER_LOADED_SUCCESS:
 			return { ...state, loaded: true, data: action.payload };
 		case ADVERT_CREATED_SUCCESS:
 		case ADVERT_DETAIL_SUCCESS:

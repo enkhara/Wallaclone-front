@@ -9,9 +9,10 @@ import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from './advertDetailCSS';
+import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
 import {
 	Grid,
@@ -115,49 +116,42 @@ function AdvertDetail({
 		>
 			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
-					<Box className={classes.author}>
-						<Link
-							to={`/${userId.username}/adverts`}
-							style={{ textDecoration: 'none' }}
-						>
-							<Avatar />
-						</Link>
-						<Box ml={2}>
-							<Typography variant="subtitle2" component="p">
-								{userId.username ? userId.username : 'Desconocido'}
-							</Typography>
-							<Typography
-								variant="subtitle2"
-								color="textSecondary"
-								component="p"
+					<NavLink
+								to={{
+								pathname: `/${userId.username}/adverts`,
+								state: { userId: `${userId._id}`},
+								}}
+								style={{ textDecoration: 'none' }}
 							>
-								{formatDistanceToNow(new Date(createdAt))}
-								{/* <span>  </span>
-								Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
-							</Typography>
-						</Box>
-					</Box>
-					<Box>
-						{isLogged &&
-							(fav ? (
-								<IconButton
-									className={classes.favoriteIcon}
-									color="secondary"
-									onClick={handleFavored}
+						<Box className={classes.author}>
+							<Avatar />
+							<Box ml={2}>
+								<Typography variant="subtitle2" component="p">
+									{userId.username ? userId.username : 'Desconocido'}
+								</Typography>
+								<Typography
+									variant="subtitle2"
+									color="textSecondary"
+									component="p"
 								>
-									<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-								</IconButton>
-							) : (
-								!fav && (
-									<IconButton
-										className={classes.favoriteIcon}
-										onClick={handleFavored}
-									>
-										<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-									</IconButton>
-								)
-							))}
-						{!isLogged && (
+									{formatDistanceToNow(new Date(createdAt))}
+									{/* <span>  </span>
+									Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
+								</Typography>
+							</Box>
+						</Box>
+					</NavLink>
+					<Box>
+						{isLogged && (
+							<IconButton
+								className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
+								onClick={handleFavored}
+							>
+								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+							</IconButton>
+						)}
+						{/* : 
+							(
 							<IconButton
 								className={classes.favoriteIcon}
 								onClick={() => history.push('/login')}
@@ -167,7 +161,7 @@ function AdvertDetail({
 									// color="primary"
 								/>
 							</IconButton>
-						)}
+						)} */}
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
@@ -227,9 +221,9 @@ function AdvertDetail({
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>
-					<ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} />
-					{/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
-					{/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
+
+					<ShareAdvert Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`} />
+					
 				</Box>
 			</Card>
 		</Grid>

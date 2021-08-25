@@ -1,3 +1,9 @@
+.form_search{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .accordion{
     width:100%;
     background:linear-gradient(to top, #dfe9f3 0%, white 100%);
@@ -107,6 +113,7 @@ p{
 @media(min-width:990px){
     .accordion{
         width: 55%;
+      
          
     }
     
