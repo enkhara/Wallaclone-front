@@ -98,29 +98,7 @@ const Advert = ({
                   <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
                 </IconButton>
                   }
-                   
-                  {/* {isLogged &&
-              (fav ? (
-                <IconButton
-                    className={classes.favoriteIcon}
-                    color="secondary"
-                  onClick={handleFavored}
-                >
-                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                </IconButton>
-              ) : (
-                !fav && 
-                (
-                  <IconButton
-                    className={classes.favoriteIcon}
-                    onClick={handleFavored}
-                  >
-                    <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                  </IconButton>
-                )
-                    )
-                    )} */}
-           
+                  
                 </Typography>
                 <Typography component="p">{name}</Typography>
                 <Typography component="p">{tags.join(' - ')}</Typography>
@@ -128,35 +106,36 @@ const Advert = ({
                 <Typography component="p">{desc}</Typography>
               </CardContent>
             </CardActionArea>
-
-            <CardActions className={classes.cardActions}>
+          
+          <CardActions className={classes.cardActions}>
               <NavLink
                 to={{
                   pathname: `/${userId.username}/adverts`,
-                  state: { userId: `${userId._id}`},
+                  // state: { userId: `${userId._id}`},
                 }}
                 style={{ textDecoration: 'none' }}
                >
-              <Box className={classes.author}>
-                
-                  <Avatar />
-                
-                <Box ml={2}>
-                  <Typography variant="subtitle2" component="p">
-                    {userId.username}
+                <Box className={classes.author}>
+                  
+                    <Avatar />
+                  
+                  <Box ml={2}>
+                   <Typography variant="subtitle2" component="p">
+                      {userId.username}
                     </Typography>
                     
-                  <Typography
-                    variant="subtitle2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {formatDistanceToNow(new Date(createdAt))}
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {formatDistanceToNow(new Date(createdAt))}
                     </Typography>
                   
                   </Box>          
-              </Box>
-            </NavLink>
+                </Box>
+              </NavLink>
+              
               <ShareAdvert
                 Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`}
               />
