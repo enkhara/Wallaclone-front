@@ -2,7 +2,7 @@ import {
 	AUTH_LOGGED,
 	AUTH_LOGIN_REQUEST,
 	AUTH_LOGIN_SUCCESS,
-	AUTH_LOGOUT,
+	AUTH_LOGOUT_SUCCESS,
 	ADVERTS_LOADED_REQUEST,
 	ADVERTS_LOADED_SUCCESS,
 	ADVERT_CREATED_REQUEST,
@@ -47,7 +47,7 @@ export function logged(state = initialState.logged, action) {
 			return action.payload;
 		case AUTH_LOGIN_SUCCESS:
 			return true;
-		case AUTH_LOGOUT:
+		case AUTH_LOGOUT_SUCCESS:
 			return false;
 		default:
 			return state;
@@ -61,7 +61,7 @@ export function user(state = initialState.user, action) {
 			//return { ...state, ...action.payload };
 			//return { ...action.payload };
 			return action.payload;
-			
+
 		case USER_LOGOUT_SUCCESS:
 			return null;
 		default:
@@ -85,23 +85,24 @@ export function adverts(state = initialState.adverts, action) {
 			return { ...state, loaded: true, data: action.payload };
 		case ADVERT_CREATED_SUCCESS:
 		case ADVERT_DETAIL_SUCCESS:
-		
 			return {
 				...state,
 				loaded: false,
 				data: [...state.data, action.payload],
 			};
-		
+
 		case ADVERT_EDIT_SUCCESS:
 		case ADVERT_UPDATE_SUCCESS:
-			
 			return {
 				...state,
 				loaded: false,
 				data: state.data.map((advert) =>
-					advert._id === action.payload._id ? { ...advert, ...action.payload } : advert)
+					advert._id === action.payload._id
+						? { ...advert, ...action.payload }
+						: advert
+				),
 			};
-		
+
 		case ADVERT_DELETED_SUCCESS:
 			// en data de adverts devuelvo los datos de los anuncios sin el anuncio borrado
 			return {
@@ -109,7 +110,7 @@ export function adverts(state = initialState.adverts, action) {
 				loaded: true,
 				data: state.data.filter((advert) => advert._id !== action.payload),
 			};
-		
+
 		default:
 			return state;
 	}
