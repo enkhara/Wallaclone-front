@@ -88,6 +88,7 @@ export const useStyles = makeStyles((theme) => ({
 	
 	},
   cardContent: {
+    width:'100%',
     height: 'auto',
     padding:'0.5rem',
     paddingTop:'0.5rem',
@@ -95,12 +96,13 @@ export const useStyles = makeStyles((theme) => ({
   },
   
   card: {
-    width: 'auto',
     padding: '6px',
+   
   },
   media: {
-    height: 200,
-    borderRadius: 3,
+    height: '250px',
+    borderRadius: '3px',
+     
   },
   cardActions: {
     display: 'flex',
