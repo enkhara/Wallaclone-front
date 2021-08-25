@@ -1,3 +1,5 @@
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
+import { getAllAdverts } from '../api/adverts';
 import {
 	authLoginRequest,
 	advertsLoadedSuccess,
@@ -5,14 +7,32 @@ import {
 	authLoginFailure,
 	authLoginSuccess,
 	loginAction,
+	authLogoutSuccess,
+	authLogoutFailure,
+	authLogoutRequest,
+	authLogoutAction,
+	authRegisterRequest,
+	authRegisterFailure,
+	authRegisterSuccess,
+	registerAction,
+	advertsLoadedRequest,
+	advertsLoadedFailure,
+	advertsLoadAction,
 } from './actions';
 
 import {
 	AUTH_LOGIN_REQUEST,
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
-	AUTH_LOGOUT,
+	AUTH_LOGOUT_REQUEST,
+	AUTH_LOGOUT_SUCCESS,
 	AUTH_LOGOUT_FAILURE,
+	AUTH_REGISTER_SUCCESS,
+	AUTH_REGISTER_REQUEST,
+	AUTH_REGISTER_FAILURE,
+	ADVERTS_LOADED_REQUEST,
+	ADVERTS_LOADED_SUCCESS,
+	ADVERTS_LOADED_FAILURE,
 	UI_RESET_ERROR,
 	ADVERT_CREATED_SUCCESS,
 	ADVERT_CREATED_REQUEST,
@@ -23,12 +43,6 @@ import {
 	ADVERT_UPDATE_SUCCESS,
 	ADVERT_UPDATE_REQUEST,
 	ADVERT_UPDATE_FAILURE,
-	AUTH_REGISTER_SUCCESS,
-	AUTH_REGISTER_REQUEST,
-	AUTH_REGISTER_FAILURE,
-	ADVERTS_LOADED_REQUEST,
-	ADVERTS_LOADED_SUCCESS,
-	ADVERTS_LOADED_FAILURE,
 	TAGS_LOADED_REQUEST,
 	TAGS_LOADED_SUCCESS,
 	TAGS_LOADED_FAILURE,
@@ -156,8 +170,173 @@ describe('loginAction', () => {
 });
 
 /******************************************AUTH LOGOUT ACTION******************************************/
+describe('authLogoutSuccess', () => {
+	const result = authLogoutSuccess();
+	expect(result).toEqual({ type: AUTH_LOGOUT_SUCCESS });
+});
 
+describe('authLogoutRequest', () => {
+	const result = authLogoutRequest();
+	expect(result).toEqual({ type: AUTH_LOGOUT_REQUEST });
+});
+
+describe('authLogoutFailure', () => {
+	const error = 'error';
+	const expectedAction = {
+		type: AUTH_LOGOUT_FAILURE,
+		payload: error,
+		error: true,
+	};
+	const result = authLogoutFailure(error);
+	expect(result).toEqual(expectedAction);
+});
+
+describe('authLogoutAction', () => {
+	describe('when logout api resolve', () => {
+		const action = authLogoutAction();
+		const dispatch = jest.fn();
+		const getState = () => {};
+		const api = {
+			auth: { logout: jest.fn().mockResolvedValue() },
+		};
+		const history = { location: {}, push: jest.fn() };
+
+		test('should dispatch an AUTH_LOGOUT_REQUEST action', () => {
+			action(dispatch, getState, { api, history });
+			expect(dispatch).toHaveBeenCalledWith({ type: AUTH_LOGOUT_REQUEST });
+		});
+
+		test('should call api.auth.logout()', () => {
+			action(dispatch, getState, { api, history });
+			expect(api.auth.logout).toHaveBeenCalledWith();
+		});
+
+		test('should dispatch AUTH_LOGOUT_SUCCESS', async () => {
+			await action(dispatch, getState, { api, history });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: AUTH_LOGOUT_SUCCESS,
+			});
+		});
+
+		test('should redirect to /', async () => {
+			await action(dispatch, getState, { api, history });
+			expect(history.push).toHaveBeenCalledWith('/');
+		});
+	});
+
+	describe('when logout api throws', () => {
+		const action = authLogoutAction();
+		const dispatch = jest.fn();
+		const error = 'error';
+		const getState = () => {};
+
+		test('should dispatch AUTH_LOGOUT_FAILURE', async () => {
+			const api = {
+				auth: { logout: jest.fn().mockRejectedValue(error) },
+			};
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: AUTH_LOGOUT_FAILURE,
+				payload: error,
+				error: true,
+			});
+		});
+	});
+});
+
+/***********************************AUTH REGISTER ACTION*********************************************/
+describe(' authRegisterRequest', () => {
+	test('should return AUTH_REGISTER_REQUEST action', () => {
+		const result = authRegisterRequest();
+		expect(result).toEqual({ type: AUTH_REGISTER_REQUEST });
+	});
+});
+
+describe(' authRegisterSuccess', () => {
+	test('should return AUTH_REGISTER_SUCCESS action', () => {
+		const result = authRegisterSuccess();
+		expect(result).toEqual({ type: AUTH_REGISTER_SUCCESS });
+	});
+});
+
+describe('authRegiserFailure', () => {
+	test('should return AUTH_REGISTER_FAILURE action', () => {
+		const error = 'error';
+		const expectedAction = {
+			type: AUTH_REGISTER_FAILURE,
+			payload: error,
+			error: true,
+		};
+		const result = authRegisterFailure(error);
+		expect(result).toEqual(expectedAction);
+	});
+});
+
+describe('registerAction', () => {
+	describe('when register api resolve', () => {
+		const credentials = 'credentials';
+		const action = registerAction(credentials);
+		const dispatch = jest.fn();
+		const getState = () => {};
+		const api = {
+			auth: { register: jest.fn().mockResolvedValue() },
+		};
+		const history = { location: {}, replace: jest.fn() };
+
+		test('should dispatch an AUTH_REGISTER_REQUEST action', () => {
+			action(dispatch, getState, { api, history });
+			expect(dispatch).toHaveBeenCalledWith({
+				type: AUTH_REGISTER_REQUEST,
+			});
+		});
+
+		test('should call api.auth.register', () => {
+			action(dispatch, getState, { api, history });
+			expect(api.auth.register).toHaveBeenCalledWith(credentials);
+		});
+
+		test('should dispatch an AUTH_REGISTER_SUCCESS', async () => {
+			await action(dispatch, getState, { api, history });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: AUTH_REGISTER_SUCCESS,
+			});
+		});
+
+		test('should redirecto to /login', async () => {
+			await action(dispatch, getState, { api, history });
+			expect(history.replace).toHaveBeenCalledWith({ pathname: '/login' });
+		});
+	});
+
+	describe('when register api throws', () => {
+		const credentials = 'credentials';
+		const action = registerAction(credentials);
+		const dispatch = jest.fn();
+		const error = 'username or email registered';
+		const getState = () => {};
+
+		test('should dispatch AUTH_REGISTER_FAILURE', async () => {
+			const api = {
+				auth: { register: jest.fn().mockRejectedValue(error) },
+			};
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: AUTH_REGISTER_FAILURE,
+				payload: error,
+				error: true,
+			});
+		});
+	});
+});
 /***********************************ADVERTS LOADED ACTION********************************************/
+describe('advertsLoadedRequest', () => {
+	test('should return ADVERTS_LOADED_SUCCESS action', () => {
+		const expectedAction = { type: ADVERTS_LOADED_REQUEST };
+		const result = advertsLoadedRequest();
+		expect(result).toEqual(expectedAction);
+	});
+});
+
 describe('advertsLoadedSuccess', () => {
 	test('should return ADVERTS_LOADED_SUCCESS action', () => {
 		const adverts = 'adverts';
@@ -166,6 +345,92 @@ describe('advertsLoadedSuccess', () => {
 		expect(result).toEqual(expectedAction);
 	});
 });
+
+describe('advertsLoadedFailure', () => {
+	test('should return ADVERTS_LOADED_FAILURE action', () => {
+		const error = 'error';
+		const expectedAction = {
+			type: ADVERTS_LOADED_FAILURE,
+			payload: error,
+			error: true,
+		};
+		const result = advertsLoadedFailure(error);
+		expect(result).toEqual(expectedAction);
+	});
+});
+
+// describe('advertsLoadAction', () => {
+// 	describe('when adverts exist in state', () => {
+// 		const action = advertsLoadAction();
+// 		const dispatch = jest.fn();
+// 		const api = {
+// 			adverts: { getAllAdverts: jest.fn() },
+// 		};
+// 		const advertsData = ['adverts'];
+// 		const state = {
+// 			adverts: {
+// 				data: advertsData,
+// 			},
+// 		};
+// 		const getState = () => state;
+
+// 		test('should not dispatch any action', () => {
+// 			action(dispatch, getState, { api });
+// 			expect(dispatch).not.toHaveBeenCalled();
+// 		});
+
+// 		test('should not call api', () => {
+// 			action(dispatch, getState, { api });
+// 			expect(api.adverts.getAllAdverts).not.toHaveBeenCalled();
+// 		});
+// 	});
+
+// 	describe('when getAllAdverts api resolve', () => {
+// 		const adverts = [];
+// 		const action = advertsLoadAction();
+// 		const dispatch = jest.fn();
+// 		const getState = () => {};
+// 		const api = {
+// 			adverts: { getAllAdverts: jest.fn().mockResolvedValue(adverts) },
+// 		};
+
+// 		test('should dispatch an ADVERTS_LOADED_REQUEST', () => {
+// 			action(dispatch, getState, { api });
+// 			expect(dispatch).toHaveBeenCalledWith({ type: ADVERTS_LOADED_REQUEST });
+// 		});
+
+// 		test('should call api.adverts.getAlldverts()', () => {
+// 			action(dispatch, getState, { api });
+// 			expect(api.adverts.getAllAdverts).toHaveBeenCalledWith();
+// 		});
+
+// 		test('should dispatch ADVERTS_LOADED_SUCCESS', async () => {
+// 			await action(dispatch, getState, { api });
+// 			expect(dispatch).toHaveBeenNthCalledWith(2, {
+// 				type: ADVERTS_LOADED_SUCCESS,
+// 				payload: adverts,
+// 			});
+// 		});
+// 	});
+// 	describe('when getAllAdverts api throws', () => {
+// 		const action = advertsLoadAction();
+// 		const dispatch = jest.fn();
+// 		const error = 'error';
+// 		const getState = () => {};
+
+// 		test('should dispatch ADVERTS_LOADED_FAILURE', async () => {
+// 			const api = {
+// 				adverts: { getAllAdverts: jest.fn().mockRejectedValue(error) },
+// 			};
+// 			await action(dispatch, getState, { api });
+// 			expect(dispatch).toHaveBeenNthCalledWith(2, {
+// 				type: ADVERTS_LOADED_FAILURE,
+// 				payload: error,
+// 				error: true,
+// 			});
+// 		});
+// 	});
+// });
 
 /*************************************TAGS LOADED ACTION***********************************************/
 describe('tagsLoadedFailure', () => {
