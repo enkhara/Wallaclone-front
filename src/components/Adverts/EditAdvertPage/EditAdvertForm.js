@@ -208,7 +208,27 @@ function EditAdvertForm({
 							</FormControl>
               			</section>
 					</div>
-					
+					<p>{t('adverts.Change tags')}*</p>
+          			<section className="tags_advert">
+            		 
+						{listaTags.map((option) => (
+							<label key={option}
+								style={{display:'flex',alignItems:'center', margin:'0px',padding:'0px'}}
+								> 
+								<Checkbox
+									name="tagsNews"
+									type="checkbox"
+									key={option}
+									value={option}
+									defaultChecked={tagsNews.includes(option)}
+									onChange={handleChangeTags}
+								/>
+								{option}
+							</label>
+						))}
+					 
+
+          			</section>
 					
 									
 					<FormLabel
@@ -219,26 +239,12 @@ function EditAdvertForm({
 						<CardMedia className={classes.mediaEditAdvert} image={urlImage} />
 						<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
 						<InputFile name = "imageNew"
-								   placeholder = {t('adverts.Change image')}
-								   src = {placeholder}
-								   onChange = {handleChangeImage}
+							placeholder = {t('adverts.Change image')}
+							src = {placeholder}
+							onChange = {handleChangeImage}
 						/>
-						<FormLabel component="legend">{t('adverts.Change tags')}</FormLabel> 
-						<div>
-							{listaTags.map((option) => (
-								<label key={option}> 
-									<GreenCheckbox
-										name="tagsNews"
-										type="checkbox"
-										key={option}
-										value={option}
-										defaultChecked={tagsNews.includes(option)}
-										onChange={handleChangeTags}
-									/>
-									{option}
-								</label>
-							))}
-						</div>
+						
+					
 					
 				 		<FormLabel component="legend">{t('adverts.Change status adverts')}</FormLabel>
 						{Object.keys(stateReserved).map(key => (
