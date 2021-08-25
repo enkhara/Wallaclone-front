@@ -102,6 +102,15 @@ export const useStyles = makeStyles((theme) => ({
 			backgroundColor:'#fa5969'
 		}
 	},
+
+	favoriteIconSel: {
+		marginRight: '5px',
+		transition: 'all 600ms',
+		"&:hover":{
+			backgroundColor:'#fa5969'
+		},
+		color: 'red', 
+	},
 	chatIcon: {
 		transition: 'all 600ms',
 		padding:'0',

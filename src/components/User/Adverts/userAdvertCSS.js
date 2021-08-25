@@ -48,9 +48,4 @@ export const useStyles = makeStyles((theme) => ({
   favoriteIcon: {
     marginRight: '5px',
   },
-
-  favoriteIconSel: {
-    marginRight: '5px',
-    color:'red',
-  },
 }));

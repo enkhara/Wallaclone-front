@@ -9,6 +9,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from './advertDetailCSS';
+import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
@@ -123,50 +124,34 @@ function AdvertDetail({
 								style={{ textDecoration: 'none' }}
 							>
 						<Box className={classes.author}>
-						{/* <Link
-							to={`/${userId.username}/adverts`}
-							style={{ textDecoration: 'none' }}
-						> */}
-						
 							<Avatar />
-						
-						<Box ml={2}>
-							<Typography variant="subtitle2" component="p">
-								{userId.username ? userId.username : 'Desconocido'}
-							</Typography>
-							<Typography
-								variant="subtitle2"
-								color="textSecondary"
-								component="p"
-							>
-								{formatDistanceToNow(new Date(createdAt))}
-								{/* <span>  </span>
-								Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
-							</Typography>
+							<Box ml={2}>
+								<Typography variant="subtitle2" component="p">
+									{userId.username ? userId.username : 'Desconocido'}
+								</Typography>
+								<Typography
+									variant="subtitle2"
+									color="textSecondary"
+									component="p"
+								>
+									{formatDistanceToNow(new Date(createdAt))}
+									{/* <span>  </span>
+									Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
+								</Typography>
+							</Box>
 						</Box>
-					</Box>
 					</NavLink>
 					<Box>
-						{isLogged &&
-							(fav ? (
-								<IconButton
-									className={classes.favoriteIcon}
-									color="secondary"
-									onClick={handleFavored}
-								>
-									<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-								</IconButton>
-							) : (
-								!fav && (
-									<IconButton
-										className={classes.favoriteIcon}
-										onClick={handleFavored}
-									>
-										<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-									</IconButton>
-								)
-							))}
-						{!isLogged && (
+						{isLogged && (
+							<IconButton
+								className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
+								onClick={handleFavored}
+							>
+								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+							</IconButton>
+						)}
+						{/* : 
+							(
 							<IconButton
 								className={classes.favoriteIcon}
 								onClick={() => history.push('/login')}
@@ -176,7 +161,7 @@ function AdvertDetail({
 									// color="primary"
 								/>
 							</IconButton>
-						)}
+						)} */}
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
