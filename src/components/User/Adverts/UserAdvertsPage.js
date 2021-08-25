@@ -4,6 +4,7 @@ import { getAdverts } from '../../../store/selectors';
 import { advertsLoadAction } from '../../../store/actions';
 import UserEmptyList from './UserEmptyList';
 import UserAdvertsList from './UserAdvertsList';
+import withUser from '../../hoc/withUser';
  
 
 const UserAdvertsPage = (props) => {
@@ -54,4 +55,8 @@ const UserAdvertsPage = (props) => {
 	);
 };
 
-export default UserAdvertsPage;
+const UserAdvertsPageWu = withUser(UserAdvertsPage);
+
+export default UserAdvertsPageWu;
+
+//export default UserAdvertsPage;

@@ -129,5 +129,12 @@
   "page404": {
     "GO BACK": "GO BACK",
     "PAGE NOT FOUND": "PAGE NOT FOUND"
+  }, 
+  "userzone":{
+    "Your adverts": "Your adverts", 
+    "adverts":"adverts", 
+    "Published at": "Published at", 
+    "Updated at": "Updated at"
+
   }
 }

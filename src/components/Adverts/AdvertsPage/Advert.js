@@ -21,12 +21,12 @@ import {
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
-
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFav,addFavorites,deleteFavorites } from '../../../api/user';
 import { getUser, getIsLogged } from '../../../store/selectors';
 import { setFavoritesUser } from '../../../store/actions';
+import { useTranslation } from 'react-i18next';
 const Advert = ({
   _id,
   image,
@@ -41,11 +41,14 @@ const Advert = ({
   createdAt,
 }) => {
   const classes = useStyles();
+  const [t] = useTranslation('global');
   const history = useHistory();
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
   const [fav, setFav] = React.useState(false);
+
+
   
   React.useEffect(() => {
     if (user && user._id) {
@@ -72,7 +75,6 @@ const Advert = ({
     }
   };
 
-
   return (
      <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>
       <article className={classes.container_card}>
@@ -88,44 +90,43 @@ const Advert = ({
                 }
               />
               <CardContent className={classes.cardContent}>
-                <Typography component="p" className={classes.priceAdvert}>
-                  {`${price} €`}
+                <section className={classes.container_price_favorite}>
                   {isLogged &&
-                    <IconButton
+                      <IconButton
                       className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
                       onClick={handleFavored}
-                    >
-                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                </IconButton>
-                  }
-                   
-                  {/* {isLogged &&
-              (fav ? (
-                <IconButton
-                    className={classes.favoriteIcon}
-                    color="secondary"
-                  onClick={handleFavored}
-                >
-                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                </IconButton>
-              ) : (
-                !fav && 
-                (
-                  <IconButton
-                    className={classes.favoriteIcon}
-                    onClick={handleFavored}
-                  >
+                      >
                     <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                  </IconButton>
-                )
-                    )
-                    )} */}
-           
-                </Typography>
-                <Typography component="p">{name}</Typography>
-                <Typography component="p">{tags.join(' - ')}</Typography>
-                <Typography component="p">{transaction}</Typography>
-                <Typography component="p">{desc}</Typography>
+                    </IconButton>
+                  }
+               
+                  <p className={classes.priceAdvert}>
+                    {`${price} €`}
+                  </p>
+
+                </section>
+                 
+                <h4 className={classes.cardNameAdvert}>{name}</h4>
+                <p className={classes.descAdvert}>{desc}</p>
+                <div className={classes.tagAndDescDetailAdvert}>
+                  <p>
+                    <span 
+                      className={ 
+                        transaction ==='wanted' 
+                        ? classNames(classes.wanted) 
+                        : classNames(classes.sale)}
+                    >
+                      {transaction}
+                      
+                    </span>
+                  </p>
+                  <p>
+                    <span className={classes.spanDetailAdvert}>
+                      {tags.join(' - ')}
+                    </span>
+                  </p>
+                
+				        </div>
               </CardContent>
             </CardActionArea>
 

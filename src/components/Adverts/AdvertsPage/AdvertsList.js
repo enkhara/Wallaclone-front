@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import T from 'prop-types';
 import Advert from './Advert';
-import { FiltersForm } from '../../Filters';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useTranslation } from 'react-i18next';
@@ -10,10 +9,10 @@ import { useStyles } from './advertsListCSS';
 import {
 	Grid,
 	InputLabel,
-	FormHelperText,
+	//FormHelperText,
 	FormControl,
 	Select,
-	NativeSelect
+	//NativeSelect
 } from '@material-ui/core';
 
 const AdvertsList = ({ adverts }) => {

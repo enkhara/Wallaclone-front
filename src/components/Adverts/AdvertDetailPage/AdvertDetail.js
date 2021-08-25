@@ -119,7 +119,7 @@ function AdvertDetail({
 					<NavLink
 								to={{
 								pathname: `/${userId.username}/adverts`,
-								state: { userId: `${userId._id}`},
+								// state: { userId: `${userId._id}`},
 								}}
 								style={{ textDecoration: 'none' }}
 							>
@@ -142,16 +142,16 @@ function AdvertDetail({
 						</Box>
 					</NavLink>
 					<Box>
-						{isLogged && (
+						{isLogged ? (
 							<IconButton
 								className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
 								onClick={handleFavored}
 							>
 								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 							</IconButton>
-						)}
-						{/* : 
-							(
+						)
+						 : (
+							
 							<IconButton
 								className={classes.favoriteIcon}
 								onClick={() => history.push('/login')}
@@ -161,7 +161,8 @@ function AdvertDetail({
 									// color="primary"
 								/>
 							</IconButton>
-						)} */}
+						 )}
+					
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
