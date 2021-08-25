@@ -9,9 +9,10 @@ import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useStyles } from './advertDetailCSS';
+import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
 import {
   Grid,
@@ -104,136 +105,129 @@ function AdvertDetail({
     }
   };
 
-  return (
-    <Grid
-      item
-      xs={12}
-      sm={12}
-      md={12}
-      elevation={10}
-      className={classes.gridDetailAdvert}
-    >
-      <Card className={classes.cardDetailAdvert}>
-        <CardActions className={classes.headerDetailAdvert}>
-          <Box className={classes.author}>
-            <Link
-              to={`/${userId.username}/adverts`}
-              style={{ textDecoration: 'none' }}
-            >
-              <Avatar />
-            </Link>
-            <Box ml={2}>
-              <Typography variant="subtitle2" component="p">
-                {userId.username ? userId.username : 'Desconocido'}
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-                component="p"
-              >
-                {formatDistanceToNow(new Date(createdAt))}
-                {/* <span>  </span>
-								Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
-              </Typography>
-            </Box>
-          </Box>
-          <Box>
-            {isLogged &&
-              (fav ? (
-                <IconButton
-                  className={classes.favoriteIcon}
-                  color="secondary"
-                  onClick={handleFavored}
-                >
-                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                </IconButton>
-              ) : (
-                !fav && (
-                  <IconButton
-                    className={classes.favoriteIcon}
-                    onClick={handleFavored}
-                  >
-                    <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                  </IconButton>
-                )
-              ))}
-            {!isLogged && (
-              <IconButton
-                className={classes.favoriteIcon}
-                onClick={() => history.push('/login')}
-              >
-                <FavoriteBorderIcon
-                  style={{ fontSize: '2rem' }}
-                  // color="primary"
-                />
-              </IconButton>
-            )}
-            <IconButton className={classes.chatIcon} onClick={handleChat}>
-              <ChatIcon style={{ fontSize: '2rem' }} />
-            </IconButton>
-          </Box>
-        </CardActions>
-        <CardMedia
-          className={classes.mediaDetailAdvert}
-          image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
-        />
-        <Typography component="p" className={classes.priceDetailAdvert}>
-          {`${price} €`}
-        </Typography>
-        <Typography component="h2" className={classes.nameDetailAdvert}>
-          {name}
-        </Typography>
-        <Box className={classes.tagAndDescDetailAdvert}>
-          <Typography component="p">
-            <span className={classes.spanDetailAdvert}>
-              {t('adverts.Tags')}
-            </span>
-            {tags.join(' - ')}
-          </Typography>
-          <Typography component="p">
-            <span className={classes.spanDetailAdvert}>
-              {t('adverts.Transaction')}
-            </span>
-            {transaction}
-          </Typography>
-        </Box>
-        <Box className={classes.tagAndDescDetailAdvert}>
-          <Typography component="p" style={{ fontWeight: '500' }}>
-            {desc}
-          </Typography>
-        </Box>
-        <Box className={classes.updateAndDeleteDetailAdvert}>
-          <Link
-            className={classes.containerNewAdvert}
-            to={`/adverts/edit/${_id}`}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={onEdit}
-              startIcon={<CreateIcon />}
-            >
-              {t('adverts.Update')}
-            </Button>
-          </Link>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={onDelete}
-            startIcon={<DeleteIcon />}
-          >
-            {t('adverts.Delete')}
-          </Button>
-        </Box>
+	return (
+		<Grid
+			item
+			xs={12}
+			sm={12}
+			md={12}
+			elevation={10}
+			className={classes.gridDetailAdvert}
+		>
+			<Card className={classes.cardDetailAdvert}>
+				<CardActions className={classes.headerDetailAdvert}>
+					<NavLink
+								to={{
+								pathname: `/${userId.username}/adverts`,
+								state: { userId: `${userId._id}`},
+								}}
+								style={{ textDecoration: 'none' }}
+							>
+						<Box className={classes.author}>
+							<Avatar />
+							<Box ml={2}>
+								<Typography variant="subtitle2" component="p">
+									{userId.username ? userId.username : 'Desconocido'}
+								</Typography>
+								<Typography
+									variant="subtitle2"
+									color="textSecondary"
+									component="p"
+								>
+									{formatDistanceToNow(new Date(createdAt))}
+									{/* <span>  </span>
+									Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
+								</Typography>
+							</Box>
+						</Box>
+					</NavLink>
+					<Box>
+						{isLogged && (
+							<IconButton
+								className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
+								onClick={handleFavored}
+							>
+								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+							</IconButton>
+						)}
+						{/* : 
+							(
+							<IconButton
+								className={classes.favoriteIcon}
+								onClick={() => history.push('/login')}
+							>
+								<FavoriteBorderIcon
+									style={{ fontSize: '2rem' }}
+									// color="primary"
+								/>
+							</IconButton>
+						)} */}
+						<IconButton className={classes.chatIcon} onClick={handleChat}>
+							<ChatIcon style={{ fontSize: '2rem' }} />
+						</IconButton>
+					</Box>
+				</CardActions>
+				<CardMedia
+					className={classes.mediaDetailAdvert}
+					image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+				/>
+				<Typography component="p" className={classes.priceDetailAdvert}>
+					{`${price} €`}
+				</Typography>
+				<Typography component="h2" className={classes.nameDetailAdvert}>
+					{name}
+				</Typography>
+				<Box className={classes.tagAndDescDetailAdvert}>
+					<Typography component="p">
+						<span className={classes.spanDetailAdvert}>
+							{t('adverts.Tags')}
+						</span>
+						{tags.join(' - ')}
+					</Typography>
+					<Typography component="p">
+						<span className={classes.spanDetailAdvert}>
+							{t('adverts.Transaction')}
+						</span>
+						{transaction}
+					</Typography>
+				</Box>
+				<Box className={classes.tagAndDescDetailAdvert}>
+					<Typography component="p" style={{ fontWeight: '500' }}>
+						{desc}
+					</Typography>
+				</Box>
+				<Box className={classes.updateAndDeleteDetailAdvert}>
+					<Link
+						className={classes.containerNewAdvert}
+						to={`/adverts/edit/${_id}`}
+					>
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={onEdit}
+							startIcon={<CreateIcon />}
+						>
+							{t('adverts.Update')}
+						</Button>
+					</Link>
+					<Button
+						variant="contained"
+						color="secondary"
+						onClick={onDelete}
+						startIcon={<DeleteIcon />}
+					>
+						{t('adverts.Delete')}
+					</Button>
+				</Box>
 
-        <Box className={classes.socialDetailAdvert}>
-          <ShareAdvert Url={`http://localhost:3000/adverts/${name}/${_id}`} />
-          {/* <ShareAdvert Url={`${process.env.REACT_FRONT_LOCALHOST}adverts/${name}/${_id}`} /> */}
-          {/* <ShareAdvert Url={'http://localhost:3000/username/desc_anuncio'} /> */}
-        </Box>
-      </Card>
-    </Grid>
-  );
+				<Box className={classes.socialDetailAdvert}>
+
+					<ShareAdvert Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`} />
+					
+				</Box>
+			</Card>
+		</Grid>
+	);
 }
 
 AdvertDetail.propTypes = {

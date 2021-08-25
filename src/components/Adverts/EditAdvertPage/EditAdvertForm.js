@@ -72,7 +72,7 @@ function EditAdvertForm({
 	// Obtengo los tags del backend para pintarlos en el select multiple 
 	const [listaTags, setListaTags] = React.useState([]);
 	const [tagsNews, setTagsNews] = React.useState(tags);
-	console.log('tagsNews', tagsNews);
+	//console.log('tagsNews', tagsNews);
 	
 	useEffect(() => {
 		// Obtenemos los tags del backend para mostrarlos
@@ -130,7 +130,7 @@ function EditAdvertForm({
 		updateAdvert.append('tags', tagsNews);
 		
 		if (newImage !== undefined && (newImage !== `${URLIMG}images/adverts/${image}`)) {
-			console.log('entro en imagen cambiada');
+			//console.log('entro en imagen cambiada');
 			updateAdvert.append('image', newImage);
 		}
 		
@@ -277,7 +277,7 @@ function EditAdvertForm({
 						fullWidth
 						variant="contained"
 						disabled={
-							!nameNew || !transactionNew || !priceNew || tagsNew.length === 0
+							!nameNew || !transactionNew || !priceNew || tagsNews.length === 0
 						}
 					>
 						{t('adverts.Update Advert')}

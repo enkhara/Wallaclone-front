@@ -43,6 +43,7 @@ const FiltersForm = ({ clickSearch,...props }) => {
 
     <section>
       <form
+        className="form_search"
         onSubmit={handleSubmit}
       >
         <Accordion 

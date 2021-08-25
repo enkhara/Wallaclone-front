@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import { InputFile } from '../../shared';
+import { InputFile, GoBackButton } from '../../shared';
 import {
   Grid,
   Paper,
@@ -15,15 +15,15 @@ import { RadioGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 
 import '../NewAndEditAdvert.css';
+import { InputBase } from '@material-ui/core';
+
 function NewAdvertForm({ onSubmit }) {
-  
-  const history = useHistory();
+
+  const inputNameRef = React.useRef(null);
+
   const [t] = useTranslation('global');
-
-
   const [advert, setAdvert] = React.useState({
     name: '',
     desc: '',
@@ -33,6 +33,8 @@ function NewAdvertForm({ onSubmit }) {
   });
 
   const { name, desc, price, transaction, tags } = advert;
+
+  
 
   const handleChange = (event) => {
     setAdvert((oldAdvert) => ({
@@ -53,6 +55,8 @@ function NewAdvertForm({ onSubmit }) {
        setImage([]);
      }
   };
+
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -91,6 +95,7 @@ function NewAdvertForm({ onSubmit }) {
             name="name"
             value={name}
             onChange={handleChange}
+            autoFocus={true}
           
           />
           <p>{t('adverts.Description')}*</p>
@@ -158,20 +163,17 @@ function NewAdvertForm({ onSubmit }) {
               onChange={handleChangeImage}
               
             />
-            <Button
-              type="submit"
-              style={{ margin: '30px 0' }}
-              color="primary"
-              variant="contained"
-              disabled={!name || !transaction || !price || tags.length === 0}
-            >
-              {t('adverts.Created Advert')}
-            </Button>
-            <Button
-              onClick={()=> (history.goBack())}
-            >
-              {t('adverts.Cancel')}
-            </Button>
+              <input
+                type="submit"
+                className="new_advert_button"
+                value={t('adverts.Created Advert')}
+                disabled={!name || !transaction || !price || tags.length === 0}
+              />
+                <GoBackButton
+                  styleclassName={'neworedit'}
+                >
+                  {t('adverts.Cancel')}
+                </GoBackButton>
           </div>
         </Paper>
       </form>

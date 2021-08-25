@@ -5,21 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdvertDetail } from '../../store/selectors.js';
 import React from 'react';
 
-const UserOwnAdvertChat = ({ currentChat }) => {
+const UserOwnAdvertChat = ({ currentChat, user }) => {
 	console.log('currentChat', currentChat);
-	const dispatch = useDispatch();
+	console.log('user', user);
 
-	const advertId = currentChat.advertisementId._id;
-	const advert = useSelector((state) => getAdvertDetail(state, advertId));
+	const userInChat = currentChat.members.filter(
+		(member) => member._id !== user._id
+	);
+	console.log('user filtrado', userInChat[0]);
 
-	React.useEffect(() => {
-		dispatch(advertDetailAction(advertId));
-	}, [dispatch, advertId]);
 	return (
 		<div className="userOwnBox">
 			<div className="userOwnInfo">
 				<Avatar className="UserOwnAdvertChatImg" src="" alt="" />
-				<p className="userOwnName">{advert?.userId.username}</p>
+				<p className="userOwnName">{userInChat[0].username}</p>
 			</div>
 		</div>
 	);

@@ -24,3 +24,9 @@ export const getAdvertDetail = (state, advertId) => {
 export const getTags = (state) => state.tags;
 
 export const getTagsLoaded = (state) => !!state.tags.length;
+
+export const getAdvertsUserLoaded = (state, userId) => {
+	// devolverá true si todos los anuncios del estado pertenecen al usuario
+	return state.adverts.data.every((advert) => advert.userId._id === userId);
+};
+

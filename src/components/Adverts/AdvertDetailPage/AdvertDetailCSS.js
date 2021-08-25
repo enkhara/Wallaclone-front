@@ -83,6 +83,49 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '3.5rem',
   },
 
+  author: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0,
+    margin: 0,
+  },
+  headerDetailAdvert: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: 0,
+    margin: 0,
+  },
+  priceDetailAdvert: {
+    fontWeight: 700,
+    fontSize: '1.75rem',
+  },
+  nameDetailAdvert: {
+    fontWeight: 400,
+    fontSize: '1.6rem',
+    letterSpacing: '1.5px',
+    marginBottom: '0.7rem',
+  },
+  tagAndDescDetailAdvert: {
+    width: '100%',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottom: '1px #ECEFF1 solid',
+    borderTop: '1px #ECEFF1 solid',
+    paddingTop: '2rem',
+    paddingBottom: '2rem',
+  },
+  socialDetailAdvert: {
+    width: '100%',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '3.5rem',
+  },
+
   updateAndDeleteDetailAdvert: {
     width: '100%',
     height: '50px',
@@ -97,6 +140,15 @@ export const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: '#fa5969',
     },
+  },
+
+  favoriteIconSel: {
+    marginRight: '5px',
+    transition: 'all 600ms',
+    '&:hover': {
+      backgroundColor: '#fa5969',
+    },
+    color: 'red',
   },
   chatIcon: {
     transition: 'all 600ms',
