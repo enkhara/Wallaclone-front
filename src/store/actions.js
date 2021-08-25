@@ -12,7 +12,8 @@ import {
 	AUTH_LOGIN_REQUEST,
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGIN_FAILURE,
-	AUTH_LOGOUT,
+	AUTH_LOGOUT_REQUEST,
+	AUTH_LOGOUT_SUCCESS,
 	AUTH_LOGOUT_FAILURE,
 	UI_RESET_ERROR,
 	ADVERT_CREATED_SUCCESS,
@@ -101,7 +102,7 @@ export const loginAction = (credentials) => {
 			await api.auth.login(credentials);
 			dispatch(authLoginSuccess());
 			//dispatch(userLoggedAction());
-
+			
 			const { from } = history.location.state || { from: { pathname: '/' } };
 			history.replace(from);
 		} catch (error) {
@@ -110,26 +111,35 @@ export const loginAction = (credentials) => {
 	};
 };
 //logout
+export const authLogoutRequest = () => {
+	return {
+		type: AUTH_LOGOUT_REQUEST,
+	};
+};
 
-export const authLogoutSuccess = () => ({
-	type: AUTH_LOGOUT,
-});
+export const authLogoutSuccess = () => {
+	return {
+		type: AUTH_LOGOUT_SUCCESS,
+	};
+};
 
-export const advertsLogoutFailure = (error) => ({
-	type: AUTH_LOGOUT_FAILURE,
-	payload: error,
-	error: true,
-});
+export const authLogoutFailure = (error) => {
+	return {
+		type: AUTH_LOGOUT_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
 
 export function authLogoutAction() {
 	return async (dispatch, getState, { api, history }) => {
 		try {
-			dispatch(authLogoutSuccess());
-			//dispatch(userLogoutSuccess());
+			dispatch(authLogoutRequest());
 			await api.auth.logout();
+			dispatch(authLogoutSuccess());
 			history.push('/');
 		} catch (error) {
-			dispatch(advertsLogoutFailure(error));
+			dispatch(authLogoutFailure(error));
 		}
 	};
 }

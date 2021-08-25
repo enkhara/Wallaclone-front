@@ -135,7 +135,9 @@ const Chat = ({ user, ...props }) => {
 				</div>
 				<div className="chatBox">
 					<div>
-						{currentChat && <UserOwnAdvertChat currentChat={currentChat} />}
+						{currentChat && (
+							<UserOwnAdvertChat currentChat={currentChat} user={user} />
+						)}
 					</div>
 					<div className="chatBoxWrapper">
 						{!!currentChat ? (

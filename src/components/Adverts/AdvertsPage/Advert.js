@@ -21,12 +21,12 @@ import {
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
+
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFav,addFavorites,deleteFavorites } from '../../../api/user';
 import { getUser, getIsLogged } from '../../../store/selectors';
 import { setFavoritesUser } from '../../../store/actions';
-import { useTranslation } from 'react-i18next';
 const Advert = ({
   _id,
   image,
@@ -41,14 +41,11 @@ const Advert = ({
   createdAt,
 }) => {
   const classes = useStyles();
-  const [t] = useTranslation('global');
   const history = useHistory();
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
   const [fav, setFav] = React.useState(false);
-
-
   
   React.useEffect(() => {
     if (user && user._id) {
@@ -75,6 +72,7 @@ const Advert = ({
     }
   };
 
+
   return (
      <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>
       <article className={classes.container_card}>
@@ -90,78 +88,54 @@ const Advert = ({
                 }
               />
               <CardContent className={classes.cardContent}>
-                <section
-                  className={classes.container_price_favorite}
-                >
+                <Typography component="p" className={classes.priceAdvert}>
+                  {`${price} €`}
                   {isLogged &&
-                      <IconButton
+                    <IconButton
                       className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
                       onClick={handleFavored}
-                      >
-                    <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                    </IconButton>
-                  }
-               
-                  <p className={classes.priceAdvert}>
-                    {`${price} €`}
-                  </p>
-
-                </section>
-                 
-                <h4 className={classes.cardNameAdvert}>{name}</h4>
-                <p className={classes.descAdvert}>{desc}</p>
-                <div className={classes.tagAndDescDetailAdvert}>
-                  <p>
-                    <span 
-                      className={ 
-                        transaction ==='wanted' 
-                        ? classNames(classes.wanted) 
-                        : classNames(classes.sale)}
                     >
-                      {transaction}
-                      
-                    </span>
-                  </p>
-                  <p>
-                    <span className={classes.spanDetailAdvert}>
-                      {tags.join(' - ')}
-                    </span>
-                  </p>
-                
-				        </div>
-                {/* <p className={classes.descAdvert}>{tags.join('  ')}</p>
-                <Typography component="p">{transaction}</Typography> */}
+                  <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+                </IconButton>
+                  }
+                  
+                </Typography>
+                <Typography component="p">{name}</Typography>
+                <Typography component="p">{tags.join(' - ')}</Typography>
+                <Typography component="p">{transaction}</Typography>
+                <Typography component="p">{desc}</Typography>
               </CardContent>
             </CardActionArea>
-
-            <CardActions className={classes.cardActions}>
+          
+          <CardActions className={classes.cardActions}>
               <NavLink
                 to={{
                   pathname: `/${userId.username}/adverts`,
-                  state: { userId: `${userId._id}`},
+                  // state: { userId: `${userId._id}`},
                 }}
                 style={{ textDecoration: 'none' }}
                >
-              <Box className={classes.author}>
-                
-                  <Avatar />
-                
-                <Box ml={2}>
-                  <Typography variant="subtitle2" component="p">
-                    {userId.username}
+                <Box className={classes.author}>
+                  
+                    <Avatar />
+                  
+                  <Box ml={2}>
+                   <Typography variant="subtitle2" component="p">
+                      {userId.username}
                     </Typography>
                     
-                  <Typography
-                    variant="subtitle2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {formatDistanceToNow(new Date(createdAt))}
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {formatDistanceToNow(new Date(createdAt))}
                     </Typography>
                   
                   </Box>          
-              </Box>
-            </NavLink>
+                </Box>
+              </NavLink>
+              
               <ShareAdvert
                 Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`}
               />

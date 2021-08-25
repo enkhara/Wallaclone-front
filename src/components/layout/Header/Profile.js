@@ -11,7 +11,7 @@ const Profile = () => {
     const user = useSelector(getUser);
  
     return (
-        <Link to={`/${user.username}/account`} 
+        <Link to={`/${user.username}/myzone`} 
             style={{
                 display:'flex', 
                 alignItems:'center', 
