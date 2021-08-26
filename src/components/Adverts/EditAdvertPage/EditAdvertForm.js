@@ -18,15 +18,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import placeholder from '../../../assets/images/placeholder.png';
 
-import AddIcon from '@material-ui/icons/Add';
+import UpdateIcon from '@material-ui/icons/Update';
 import { InputFile } from '../../shared';
 import { useTranslation } from 'react-i18next';
 import { useDispatch} from 'react-redux';
 import { getAllTags } from '../../../api/adverts';
 import { tagsLoadedAction } from '../../../store/actions';
+import '../NewAndEditAdvert.css';
 
 const URLIMG = process.env.REACT_APP_API_BASE_URL;
-
 const GreenCheckbox = withStyles({
 	root: {
 	  color: cyan[400],
@@ -143,21 +143,16 @@ function EditAdvertForm({
 			<form encType="multipart/form-data" onSubmit={handleSubmit}>
 				<Paper
 					elevation={10}
-					style={{
-						padding: '30px',
-						height: '1000px',
-						margin: '50px auto',
-						width: '600px',
-					}}
+					className="container_paper"	
 				>
 					<Grid align="center">
-						<Avatar style={{ backgroundColor: '#1dba849e' }}>
-							<AddIcon />
+						<Avatar style={{ backgroundColor: '#62aae6f4' }}>
+							<UpdateIcon/>
 						</Avatar>
 						<h2>{t('adverts.Edit Advert')}</h2>
 					</Grid>
+					<p>{t('adverts.Advert Name')}*</p>
 					<TextField
-						label={t('adverts.Advert Name')}
 						placeholder={t('adverts.Change product name')}
 						fullWidth
 						required
@@ -166,51 +161,75 @@ function EditAdvertForm({
 						onChange={handleChange}
 						autoFocus={true}
 					/>
-					<TextField className={classes.textArea}
-						id="outlined-multiline-flexible"
-						label={t('adverts.Description')}
+					<p>{t('adverts.Description')}*</p>
+					<textarea
 						placeholder={t('adverts.Change description')}
-						multiline
-						rows={4}
-						fullWidth
 						required
 						name="descNew"
 						defaultValue={desc}
 						onChange={handleChange}
 					/>
-					<TextField
-						label={t('adverts.price')}
-						placeholder={t('adverts.price')}
-						fullWidth
-						required
-						type="number"
-						name="priceNew"
-						defaultValue={price}
-						onChange={handleChange}
-						autoFocus={true}
-					/>
-					<FormControl component="fieldset">
-					<FormLabel component="legend">{t('adverts.Transaction Type')}</FormLabel>
-						
-						<RadioGroup
-							aria-label="transaction"
-							name="transactionNew"
-							defaultValue={transaction}
-							onChange={handleChange}
-							row
-						>
-							<FormControlLabel
-								value="sale"
-								control={<Radio />}
-								label={t('adverts.Sell')}							
-								/>
-							<FormControlLabel
-								value="wanted"
-								control={<Radio />}
-								label={t('adverts.Wanted')}
+					 <div id="price_buy">
+						 <section>
+						 	<p>{t('adverts.price')}*</p>
+							<TextField
+								placeholder={t('adverts.price')}
+								required
+								type="number"
+								name="priceNew"
+								variant="outlined"
+								defaultValue={price}
+								onChange={handleChange}
+								autoFocus={true}
 							/>
-						</RadioGroup>
-					</FormControl>
+						 </section>
+						 <section id="transaction">
+							<p>{t('adverts.Transaction Type')}*</p>
+							<FormControl component="fieldset">
+								<RadioGroup
+									aria-label="transaction"
+									name="transaction"
+									required
+									value={transaction}
+									onChange={handleChange}
+									row
+									>
+									<FormControlLabel
+										value="sale"
+										control={<Radio />}
+										label={t('adverts.Sell')}
+									/>
+									<FormControlLabel
+										value="wanted"
+										control={<Radio />}
+										label={t('adverts.Wanted')}
+									/>
+								</RadioGroup>
+							</FormControl>
+              			</section>
+					</div>
+					<p>{t('adverts.Change tags')}*</p>
+          			<section className="tags_advert">
+            		 
+						{listaTags.map((option) => (
+							<label key={option}
+								style={{display:'flex',alignItems:'center', margin:'0px',padding:'0px'}}
+								> 
+								<Checkbox
+									name="tagsNews"
+									type="checkbox"
+									key={option}
+									value={option}
+									defaultChecked={tagsNews.includes(option)}
+									onChange={handleChangeTags}
+								/>
+								{option}
+							</label>
+						))}
+					 
+
+          			</section>
+					
 									
 					<FormLabel
 						component="legend"
@@ -220,26 +239,12 @@ function EditAdvertForm({
 						<CardMedia className={classes.mediaEditAdvert} image={urlImage} />
 						<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
 						<InputFile name = "imageNew"
-								   placeholder = {t('adverts.Change image')}
-								   src = {placeholder}
-								   onChange = {handleChangeImage}
+							placeholder = {t('adverts.Change image')}
+							src = {placeholder}
+							onChange = {handleChangeImage}
 						/>
-						<FormLabel component="legend">{t('adverts.Change tags')}</FormLabel> 
-						<div>
-							{listaTags.map((option) => (
-								<label key={option}> 
-									<GreenCheckbox
-										name="tagsNews"
-										type="checkbox"
-										key={option}
-										value={option}
-										defaultChecked={tagsNews.includes(option)}
-										onChange={handleChangeTags}
-									/>
-									{option}
-								</label>
-							))}
-						</div>
+						
+					
 					
 				 		<FormLabel component="legend">{t('adverts.Change status adverts')}</FormLabel>
 						{Object.keys(stateReserved).map(key => (
