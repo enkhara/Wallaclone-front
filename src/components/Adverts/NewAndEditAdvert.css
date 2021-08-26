@@ -68,8 +68,13 @@ textarea:focus, input[type="number"]:focus{
   
 }
 
-
-
+.edit_tags{
+    display:flex;
+    align-items:center;
+    margin-left:0px;
+    padding:0px;
+    
+}
 #input_file{
     width: 100%;
     display:flex;
@@ -92,7 +97,14 @@ textarea:focus, input[type="number"]:focus{
     
 }
 
- 
+.mediaEditAdvert{
+    height: 200px;
+    width: 200px;
+    border: 1px solid #ddd;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+    padding: 5;
+}
 
 
 

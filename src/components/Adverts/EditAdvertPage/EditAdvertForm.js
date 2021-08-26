@@ -10,16 +10,14 @@ import {
 	CardMedia,
 } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { useStyles } from '../../shared/useStyles';
 import { FormLabel, FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import { cyan } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import placeholder from '../../../assets/images/placeholder.png';
-
 import UpdateIcon from '@material-ui/icons/Update';
-import { InputFile } from '../../shared';
+import { InputFile, GoBackButton} from '../../shared';
 import { useTranslation } from 'react-i18next';
 import { useDispatch} from 'react-redux';
 import { getAllTags } from '../../../api/adverts';
@@ -48,7 +46,6 @@ function EditAdvertForm({
 	_id,
 	onSubmit }) {
 	const [t] = useTranslation('global');
-	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [advertEdit, setAdvertEdit] = React.useState({
 		nameNew: name,
@@ -209,19 +206,19 @@ function EditAdvertForm({
               			</section>
 					</div>
 					<p>{t('adverts.Change tags')}*</p>
-          			<section className="tags_advert">
-            		 
+          			<section>
 						{listaTags.map((option) => (
 							<label key={option}
-								style={{display:'flex',alignItems:'center', margin:'0px',padding:'0px'}}
-								> 
-								<Checkbox
+								className="edit_tags"
+							> 
+								<GreenCheckbox
 									name="tagsNews"
 									type="checkbox"
 									key={option}
 									value={option}
 									defaultChecked={tagsNews.includes(option)}
 									onChange={handleChangeTags}
+									style={{marginLeft:'0px',paddingLeft:'0px'}}
 								/>
 								{option}
 							</label>
@@ -230,38 +227,35 @@ function EditAdvertForm({
 
           			</section>
 					
-									
-					<FormLabel
-						component="legend"
-						placeholder={t('adverts.Advert Actual Image')}
-						>{t('adverts.Advert Actual Image')} </FormLabel>
-				
-						<CardMedia className={classes.mediaEditAdvert} image={urlImage} />
-						<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
+					<section>
+						<p>{t('adverts.Advert Actual Image')} </p>
+						<CardMedia 
+							className="mediaEditAdvert"
+							image={urlImage} 
+						/>
+						<p>{t('adverts.Change image')}</p>
 						<InputFile name = "imageNew"
 							placeholder = {t('adverts.Change image')}
 							src = {placeholder}
 							onChange = {handleChangeImage}
 						/>
-						
-					
-					
-				 		<FormLabel component="legend">{t('adverts.Change status adverts')}</FormLabel>
+
+					</section>			
+														
+				 	<p>{t('adverts.Change status adverts')}</p>
 						{Object.keys(stateReserved).map(key => (
-									<FormControlLabel
-										control={<GreenCheckbox
-											type="checkbox"
-											label='Reservado'
-											onChange={handleToggleReserved}
-											key={key}
-											name={key}
-											checked={stateReserved[key]}
-										/>}
-										label= {t('adverts.Reserved')}
-									/>
-								))}
-					
-					
+							<FormControlLabel
+								control={<GreenCheckbox
+								type="checkbox"
+								label='Reservado'
+								onChange={handleToggleReserved}
+								key={key}
+								name={key}
+								checked={stateReserved[key]}
+								/>}
+							label= {t('adverts.Reserved')}
+							/>
+						))}
 						{Object.keys(stateSold).map(key => (
 							<FormControlLabel
 								control={<GreenCheckbox
@@ -275,18 +269,20 @@ function EditAdvertForm({
 							/>
 						))}
 						
-					<Button
+					<input
 						type="submit"
-						style={{ margin: '30px 0' }}
+						value={t('adverts.Update Advert')}
 						color="primary"
-						fullWidth
-						variant="contained"
+						className="new_advert_button"
 						disabled={
 							!nameNew || !transactionNew || !priceNew || tagsNews.length === 0
 						}
-					>
-						{t('adverts.Update Advert')}
-					</Button>
+					/>
+					<GoBackButton
+                  		styleclassName={'neworedit'}
+                	>
+                  	{t('adverts.Cancel')}
+                	</GoBackButton>
 				</Paper>
 			</form>
 		</Grid>

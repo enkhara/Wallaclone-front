@@ -80,7 +80,7 @@ const Advert = ({
       <article className={classes.container_card}>
         <NavLink to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
-            <CardActionArea>
+            <CardActionArea>              
               <CardMedia
                 className={classes.media}
                 image={
