@@ -62,7 +62,7 @@ function NewAdvertForm({ onSubmit }) {
     event.preventDefault();
 
     let newAdvert = new FormData();
-    newAdvert.append('name', advert.name);
+    newAdvert.append('name', advert.name.replace(/(<([^>]+)>)/gi, ""));
     newAdvert.append('desc', advert.desc);
     newAdvert.append('price', advert.price);
     newAdvert.append('transaction', advert.transaction);

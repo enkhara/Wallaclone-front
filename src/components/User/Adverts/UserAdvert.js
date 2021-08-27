@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
 import { format } from 'date-fns';
@@ -11,6 +11,10 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import ToggleIcon from "material-ui-toggle-icon";
+//import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import {
   Grid,
@@ -18,13 +22,27 @@ import {
   ButtonBase, 
   Typography,
   IconButton,
+  Button,
 } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getIsLogged } from '../../../store/selectors';
 
+// const useStyles = makeStyles(theme => ({
+//   iconHover: {
+//     '&:hover': {
+//       border: '2px solid green',
+//     }
+//   },
+
+//   floatBtn: {
+//     marginRight: theme.spacing(1),
+//   },
+// }));
 const UserAdvert = ({
   _id,
   image,
@@ -38,6 +56,7 @@ const UserAdvert = ({
   userId,
   createdAt,
   updatedAt,
+  onDelete,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -46,7 +65,10 @@ const UserAdvert = ({
   const dispatch = useDispatch();
 
   const [t] = useTranslation('global');
- 
+
+  const [stateSold, setStateSold] = useState({ on: false });
+  const [stateReserved, setStateReserved] = useState({ on: false });
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -61,10 +83,10 @@ const UserAdvert = ({
                   />
             </ButtonBase>
           </Grid>
-          <Grid item xs={15} sm container>
+          <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="title1">
+                <Typography gutterBottom variant="h6">
                  <strong>{price} €</strong>
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -103,18 +125,50 @@ const UserAdvert = ({
                 
             </Grid>
             <div className={classes.root}>
+           
               <IconButton aria-label="create" color="primary">
-                <CreateIcon />
+              <Link className={classes.containerNewAdvert}
+						          to={`/adverts/edit/${_id}`}
+					      > 
+                  <CreateIcon />
+                </Link>
               </IconButton>
-              <IconButton aria-label="delete" color="primary">
-                <DeleteIcon />
+
+              <IconButton  aria-label="delete" color="primary">
+                <DeleteIcon onClick={onDelete} />
               </IconButton>
-              <IconButton color="primary" aria-label="add an alarm">
+
+              {/* {reserved ? (<IconButton color="primary" aria-label="add an alarm">
+                <BookmarkIcon />
+              </IconButton>)
+                :
+                (<IconButton color="primary" aria-label="add an alarm">
                 <BookmarkBorderIcon />
+                </IconButton>)} */}
+              
+                <IconButton color="primary" aria-label="add an alarm"
+                        onClick={() => setStateReserved((stateReserved) => ({ on: !stateReserved.on }))}>
+              <ToggleIcon
+                on={stateReserved.on}
+                onIcon={<BookmarkIcon />}
+                offIcon={<BookmarkBorderIcon />}
+              />
               </IconButton>
-              <IconButton color="primary" aria-label="add to shopping cart">
+              
+              {/* <IconButton color="primary" aria-label="add to shopping cart">
                 <ShoppingCartIcon />
+              </IconButton> */}
+            
+              {/* <Button onClick={() => handleToggleSold()}>{sold ? 'VENDIDO' : 'NO VENDIDO'}</Button> */}
+              <IconButton color="primary" aria-label="add an alarm"
+                        onClick={() => setStateSold((stateSold) => ({ on: !stateSold.on }))}>
+              <ToggleIcon
+                on={stateSold.on}
+                onIcon={<ShoppingCartIcon />}
+                offIcon={<RemoveShoppingCartIcon />}
+              />
               </IconButton>
+          
             </div>
           </Grid>
         </Grid>
@@ -122,83 +176,6 @@ const UserAdvert = ({
     </div>
   );
 }
-
-//   return (
-//     <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>
-//       <article className={classes.container_card}>
-//         <NavLink to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
-//           <Card className={classes.card}>
-//             <CardActionArea>
-//               <CardMedia
-//                 className={classes.media}
-//                 image={
-//                   image
-//                     ? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
-//                     : placeholder
-//                 }
-//               />
-//               <CardContent className={classes.cardContent}>
-//                           <Typography
-//                     variant="subtitle2"
-//                     color="textSecondary"
-//                     component="p"
-//                   >
-//                     {formatDistanceToNow(new Date(createdAt))}
-//                               </Typography>
-//                               <Typography
-//                     variant="subtitle2"
-//                     color="textSecondary"
-//                     component="p"
-//                   >
-//                     {formatDistanceToNow(new Date(updatedAt))}
-//                     </Typography>
-//                 <Typography component="p" className={classes.priceAdvert}>
-//                   {`${price} €`}
-//                 </Typography>
-//                 <Typography component="p">{name}</Typography>
-                              
-//                 {/* <Typography component="p">{tags.join(' - ')}</Typography> */}
-//                 <Typography component="p">{transaction}</Typography>
-//                 {/* <Typography component="p">{desc}</Typography> */}
-//               </CardContent>
-//             </CardActionArea>
-
-//             <CardActions className={classes.cardActions}>
-//               <NavLink
-//                 to={{
-//                   pathname: `/${userId.username}/adverts`,
-//                   state: { userId: `${userId._id}`},
-//                 }}
-//                 style={{ textDecoration: 'none' }}
-//                >
-//               <Box className={classes.author}>
-                
-//                   <Avatar />
-                
-//                 <Box ml={2}>
-//                   <Typography variant="subtitle2" component="p">
-//                     {userId.username}
-//                     </Typography>
-                    
-//                   <Typography
-//                     variant="subtitle2"
-//                     color="textSecondary"
-//                     component="p"
-//                   >
-//                     {formatDistanceToNow(new Date(createdAt))}
-//                     </Typography>
-                  
-//                   </Box>          
-//               </Box>
-//             </NavLink>
-          
-//            </CardActions>
-//           </Card>
-//         </NavLink>
-//       </article>
-//     </Grid>
-//   );
-// };
 
 UserAdvert.prototype = {
   name: T.string.isRequired,

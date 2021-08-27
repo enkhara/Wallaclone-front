@@ -9,18 +9,18 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BallotIcon from '@material-ui/icons/Ballot';
 
-const SideBar = ({ user, ...props }) => {
+const SideBar = () => {
 
 	const { t } = useTranslation(['global']);
-
+	
 	return (
 		<nav className="sideBarContainer">
 			<div className="sideBarWrapper">
-				<Link to={`/${user.username}/account`} className="sideBarButton">
+				<Link to={'/user/account'} className="sideBarButton">
 					<AccountBoxIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Profile')}</span>
 				</Link>
-				<Link to={{ pathname: `/${user.username}/myadverts` }} className="sideBarButton">
+				<Link to={{ pathname: '/myadverts' }} className="sideBarButton">
 					<BallotIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Products')}</span>
 				</Link>

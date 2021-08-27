@@ -9,9 +9,9 @@ import withUser from '../../hoc/withUser';
 const Profile = () => {
     const [t] = useTranslation('global');
     const user = useSelector(getUser);
- 
+    
     return (
-        <Link to={`/${user.username}/myzone`} 
+        <Link to={'/myadverts'} 
             style={{
                 display:'flex', 
                 alignItems:'center', 

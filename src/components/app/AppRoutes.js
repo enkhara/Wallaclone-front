@@ -17,6 +17,7 @@ import UserPageWithUser from '../User/UserPage';
 import ChatWithUser from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 import UserAdvertsPageWu from '../User/Adverts/UserAdvertsPage';
+import EditUserAccountPage from '../User/Account/EditAccountPage'
 
 const AppRoutes = () => {
 	return (
@@ -32,15 +33,11 @@ const AppRoutes = () => {
 				exact path="/user"
 				component={UserPageWithUser} />
 			
-			<PrivateRoute
-				exact path="/:username/account"
-				component={UserPageWithUser} />
-			
-			<PrivateRoute
-				exact path="/:username/myzone"
-				component={UserPageWithUser} />
-			
-			<PrivateRoute exact path="/:username/myadverts" >
+			<PrivateRoute exact path="/user/account">
+				<EditUserAccountPage />
+			</PrivateRoute>
+				
+			<PrivateRoute exact path="/myadverts" >
 				{routeProps => <UserAdvertsPageWu {...routeProps} />}
 			</PrivateRoute>
 
