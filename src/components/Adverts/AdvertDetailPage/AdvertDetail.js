@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useStyles } from './advertDetailCSS';
+import { useStyles } from './AdvertDetailCSS';
 import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
@@ -117,12 +117,12 @@ function AdvertDetail({
 			<Card className={classes.cardDetailAdvert}>
 				<CardActions className={classes.headerDetailAdvert}>
 					<NavLink
-								to={{
-								pathname: `/${userId.username}/adverts`,
-								// state: { userId: `${userId._id}`},
-								}}
-								style={{ textDecoration: 'none' }}
-							>
+						to={{
+							pathname: `/${userId.username}/adverts`,
+							// state: { userId: `${userId._id}`},
+						}}
+						style={{ textDecoration: 'none' }}
+					>
 						<Box className={classes.author}>
 							<Avatar />
 							<Box ml={2}>
@@ -144,14 +144,16 @@ function AdvertDetail({
 					<Box>
 						{isLogged ? (
 							<IconButton
-								className={fav ? classNames(classes.favoriteIconSel) : classNames(classes.favoriteIcon)}
+								className={
+									fav
+										? classNames(classes.favoriteIconSel)
+										: classNames(classes.favoriteIcon)
+								}
 								onClick={handleFavored}
 							>
 								<FavoriteBorderIcon style={{ fontSize: '2rem' }} />
 							</IconButton>
-						)
-						 : (
-							
+						) : (
 							<IconButton
 								className={classes.favoriteIcon}
 								onClick={() => history.push('/login')}
@@ -161,8 +163,8 @@ function AdvertDetail({
 									// color="primary"
 								/>
 							</IconButton>
-						 )}
-					
+						)}
+
 						<IconButton className={classes.chatIcon} onClick={handleChat}>
 							<ChatIcon style={{ fontSize: '2rem' }} />
 						</IconButton>
@@ -222,9 +224,9 @@ function AdvertDetail({
 				</Box>
 
 				<Box className={classes.socialDetailAdvert}>
-
-					<ShareAdvert Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`} />
-					
+					<ShareAdvert
+						Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`}
+					/>
 				</Box>
 			</Card>
 		</Grid>
