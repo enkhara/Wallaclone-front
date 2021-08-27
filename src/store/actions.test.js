@@ -18,6 +18,9 @@ import {
 	advertsLoadedRequest,
 	advertsLoadedFailure,
 	advertsLoadAction,
+	advertDetailRequest,
+	advertDetailSuccess,
+	advertDetailFailure,
 } from './actions';
 
 import {
@@ -33,6 +36,9 @@ import {
 	ADVERTS_LOADED_REQUEST,
 	ADVERTS_LOADED_SUCCESS,
 	ADVERTS_LOADED_FAILURE,
+	ADVERT_DETAIL_REQUEST,
+	ADVERT_DETAIL_SUCCESS,
+	ADVERT_DETAIL_FAILURE,
 	UI_RESET_ERROR,
 	ADVERT_CREATED_SUCCESS,
 	ADVERT_CREATED_REQUEST,
@@ -46,9 +52,6 @@ import {
 	TAGS_LOADED_REQUEST,
 	TAGS_LOADED_SUCCESS,
 	TAGS_LOADED_FAILURE,
-	ADVERT_DETAIL_REQUEST,
-	ADVERT_DETAIL_SUCCESS,
-	ADVERT_DETAIL_FAILURE,
 	ADVERT_DELETED_REQUEST,
 	ADVERT_DELETED_SUCCESS,
 	ADVERT_DELETED_FAILURE,
@@ -359,78 +362,107 @@ describe('advertsLoadedFailure', () => {
 	});
 });
 
-// describe('advertsLoadAction', () => {
-// 	describe('when adverts exist in state', () => {
-// 		const action = advertsLoadAction();
-// 		const dispatch = jest.fn();
-// 		const api = {
-// 			adverts: { getAllAdverts: jest.fn() },
-// 		};
-// 		const advertsData = ['adverts'];
-// 		const state = {
-// 			adverts: {
-// 				data: advertsData,
-// 			},
-// 		};
-// 		const getState = () => state;
+describe('advertsLoadAction', () => {
+	describe('when adverts exist in state', () => {
+		const action = advertsLoadAction();
+		const dispatch = jest.fn();
+		const api = {
+			adverts: { getAllAdverts: jest.fn() },
+		};
+		const advertsData = ['adverts'];
+		const state = {
+			adverts: {
+				data: advertsData,
+			},
+		};
+		const getState = () => state;
 
-// 		test('should not dispatch any action', () => {
-// 			action(dispatch, getState, { api });
-// 			expect(dispatch).not.toHaveBeenCalled();
-// 		});
+		test('should not dispatch any action', () => {
+			expect(dispatch).not.toHaveBeenCalled();
+		});
 
-// 		test('should not call api', () => {
-// 			action(dispatch, getState, { api });
-// 			expect(api.adverts.getAllAdverts).not.toHaveBeenCalled();
-// 		});
-// 	});
+		test('should not call api', () => {
+			expect(api.adverts.getAllAdverts).not.toHaveBeenCalled();
+		});
+	});
 
-// 	describe('when getAllAdverts api resolve', () => {
-// 		const adverts = [];
-// 		const action = advertsLoadAction();
-// 		const dispatch = jest.fn();
-// 		const getState = () => {};
-// 		const api = {
-// 			adverts: { getAllAdverts: jest.fn().mockResolvedValue(adverts) },
-// 		};
+	describe('when getAllAdverts api resolve', () => {
+		//const adverts = [];
+		const action = advertsLoadAction();
+		const dispatch = jest.fn();
+		const getState = () => {};
+		const api = {
+			adverts: { getAllAdverts: jest.fn().mockResolvedValue('adverts') },
+		};
 
-// 		test('should dispatch an ADVERTS_LOADED_REQUEST', () => {
-// 			action(dispatch, getState, { api });
-// 			expect(dispatch).toHaveBeenCalledWith({ type: ADVERTS_LOADED_REQUEST });
-// 		});
+		test('should dispatch an ADVERTS_LOADED_REQUEST', () => {
+			action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenCalledWith({ type: ADVERTS_LOADED_REQUEST });
+		});
 
-// 		test('should call api.adverts.getAlldverts()', () => {
-// 			action(dispatch, getState, { api });
-// 			expect(api.adverts.getAllAdverts).toHaveBeenCalledWith();
-// 		});
+		test('should call api.adverts.getAllAdverts()', () => {
+			action(dispatch, getState, { api });
+			expect(api.adverts.getAllAdverts).toHaveBeenCalledWith();
+		});
 
-// 		test('should dispatch ADVERTS_LOADED_SUCCESS', async () => {
-// 			await action(dispatch, getState, { api });
-// 			expect(dispatch).toHaveBeenNthCalledWith(2, {
-// 				type: ADVERTS_LOADED_SUCCESS,
-// 				payload: adverts,
-// 			});
-// 		});
-// 	});
-// 	describe('when getAllAdverts api throws', () => {
-// 		const action = advertsLoadAction();
-// 		const dispatch = jest.fn();
-// 		const error = 'error';
-// 		const getState = () => {};
+		test('should dispatch ADVERTS_LOADED_SUCCESS', async () => {
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: ADVERTS_LOADED_SUCCESS,
+				payload: 'adverts',
+			});
+		});
+	});
+	describe('when getAllAdverts api throws', () => {
+		const action = advertsLoadAction();
+		const dispatch = jest.fn();
+		const error = 'error';
+		const getState = () => {};
 
-// 		test('should dispatch ADVERTS_LOADED_FAILURE', async () => {
-// 			const api = {
-// 				adverts: { getAllAdverts: jest.fn().mockRejectedValue(error) },
-// 			};
-// 			await action(dispatch, getState, { api });
-// 			expect(dispatch).toHaveBeenNthCalledWith(2, {
-// 				type: ADVERTS_LOADED_FAILURE,
-// 				payload: error,
-// 				error: true,
-// 			});
-// 		});
-// 	});
-// });
+		test('should dispatch ADVERTS_LOADED_FAILURE', async () => {
+			const api = {
+				adverts: { getAllAdverts: jest.fn().mockRejectedValue(error) },
+			};
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: ADVERTS_LOADED_FAILURE,
+				payload: error,
+				error: true,
+			});
+		});
+	});
+});
+
+/****************************************ADVERTDETAIL ACTION***********************************/
+describe('advertDetailRequest', () => {
+	test('should return ADVERT_DETAIL_REQUEST action', () => {
+		const expectedAction = { type: ADVERT_DETAIL_REQUEST };
+		const result = advertDetailRequest();
+		expect(result).toEqual(expectedAction);
+	});
+});
+
+describe('advertDetailSuccess', () => {
+	test('should return ADVERT_DETAIL_SUCCESS action', () => {
+		const advert = 'advert';
+		const expectedAction = { type: ADVERT_DETAIL_SUCCESS, payload: advert };
+		const result = advertDetailSuccess(advert);
+		expect(result).toEqual(expectedAction);
+	});
+});
+
+describe('advertDetailFailure', () => {
+	test('should return ADVERT_DETAIL_FAILURE action', () => {
+		const error = 'error';
+		const expectedAction = {
+			type: ADVERT_DETAIL_FAILURE,
+			payload: error,
+			error: true,
+		};
+		const result = advertDetailFailure(error);
+		expect(result).toEqual(expectedAction);
+	});
+});
 
 /*************************************TAGS LOADED ACTION***********************************************/
 describe('tagsLoadedFailure', () => {
