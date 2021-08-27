@@ -125,5 +125,11 @@
   "page404": {
     "GO BACK": "VOLVER",
     "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
+  }, 
+  "userzone":{
+    "Your adverts": "Tus anuncios", 
+    "adverts":"anuncios",
+    "Published at": "Publicado", 
+    "Updated at": "Modificado"
   }
 }

@@ -9,13 +9,14 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BallotIcon from '@material-ui/icons/Ballot';
 
-const SideBar = (user) => {
+const SideBar = ({ user, ...props }) => {
+
 	const { t } = useTranslation(['global']);
 
 	return (
 		<nav className="sideBarContainer">
 			<div className="sideBarWrapper">
-				<Link to={''} className="sideBarButton">
+				<Link to={`/${user.username}/account`} className="sideBarButton">
 					<AccountBoxIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Profile')}</span>
 				</Link>

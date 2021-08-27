@@ -163,17 +163,17 @@ function NewAdvertForm({ onSubmit }) {
               onChange={handleChangeImage}
               
             />
-              <input
-                type="submit"
-                className="new_advert_button"
-                value={t('adverts.Created Advert')}
-                disabled={!name || !transaction || !price || tags.length === 0}
-              />
-                <GoBackButton
-                  styleclassName={'neworedit'}
-                >
-                  {t('adverts.Cancel')}
-                </GoBackButton>
+            <input
+              type="submit"
+              className="new_advert_button"
+              value={t('adverts.Created Advert')}
+              disabled={!name || !transaction || !price || tags.length === 0}
+            />
+            <GoBackButton
+              styleclassName={'neworedit'}
+            >
+              {t('adverts.Cancel')}
+            </GoBackButton>
           </div>
         </Paper>
       </form>

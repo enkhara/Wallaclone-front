@@ -79,13 +79,13 @@ export const useStyles = makeStyles((theme) => ({
 	},
 
 	
-	mediaEditAdvert: {
-		height: 200,
-		width: 200,
-		borderRadius: 4,
-		border: '1px solid #ddd',
-		marginTop:'1rem',
-		marginBottom: '1rem',
-		padding: 5,
-  	},	
+	// mediaEditAdvert: {
+	// 	height: 200,
+	// 	width: 200,
+	// 	borderRadius: 4,
+	// 	border: '1px solid #ddd',
+	// 	marginTop:'1rem',
+	// 	marginBottom: '1rem',
+	// 	padding: 5,
+  	// },	
   }));
