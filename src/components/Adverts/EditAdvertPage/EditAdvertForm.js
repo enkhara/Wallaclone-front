@@ -10,23 +10,21 @@ import {
 	CardMedia,
 } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { useStyles } from '../../shared/useStyles';
 import { FormLabel, FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import { cyan } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import placeholder from '../../../assets/images/placeholder.png';
-
-import AddIcon from '@material-ui/icons/Add';
-import { InputFile } from '../../shared';
+import UpdateIcon from '@material-ui/icons/Update';
+import { InputFile, GoBackButton} from '../../shared';
 import { useTranslation } from 'react-i18next';
 import { useDispatch} from 'react-redux';
 import { getAllTags } from '../../../api/adverts';
 import { tagsLoadedAction } from '../../../store/actions';
+import '../NewAndEditAdvert.css';
 
 const URLIMG = process.env.REACT_APP_API_BASE_URL;
-
 const GreenCheckbox = withStyles({
 	root: {
 	  color: cyan[400],
@@ -48,7 +46,6 @@ function EditAdvertForm({
 	_id,
 	onSubmit }) {
 	const [t] = useTranslation('global');
-	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [advertEdit, setAdvertEdit] = React.useState({
 		nameNew: name,
@@ -143,21 +140,16 @@ function EditAdvertForm({
 			<form encType="multipart/form-data" onSubmit={handleSubmit}>
 				<Paper
 					elevation={10}
-					style={{
-						padding: '30px',
-						height: '1000px',
-						margin: '50px auto',
-						width: '600px',
-					}}
+					className="container_paper"	
 				>
 					<Grid align="center">
-						<Avatar style={{ backgroundColor: '#1dba849e' }}>
-							<AddIcon />
+						<Avatar style={{ backgroundColor: '#62aae6f4' }}>
+							<UpdateIcon/>
 						</Avatar>
 						<h2>{t('adverts.Edit Advert')}</h2>
 					</Grid>
+					<p>{t('adverts.Advert Name')}*</p>
 					<TextField
-						label={t('adverts.Advert Name')}
 						placeholder={t('adverts.Change product name')}
 						fullWidth
 						required
@@ -166,97 +158,104 @@ function EditAdvertForm({
 						onChange={handleChange}
 						autoFocus={true}
 					/>
-					<TextField className={classes.textArea}
-						id="outlined-multiline-flexible"
-						label={t('adverts.Description')}
+					<p>{t('adverts.Description')}*</p>
+					<textarea
 						placeholder={t('adverts.Change description')}
-						multiline
-						rows={4}
-						fullWidth
 						required
 						name="descNew"
 						defaultValue={desc}
 						onChange={handleChange}
 					/>
-					<TextField
-						label={t('adverts.price')}
-						placeholder={t('adverts.price')}
-						fullWidth
-						required
-						type="number"
-						name="priceNew"
-						defaultValue={price}
-						onChange={handleChange}
-						autoFocus={true}
-					/>
-					<FormControl component="fieldset">
-					<FormLabel component="legend">{t('adverts.Transaction Type')}</FormLabel>
-						
-						<RadioGroup
-							aria-label="transaction"
-							name="transactionNew"
-							defaultValue={transaction}
-							onChange={handleChange}
-							row
-						>
-							<FormControlLabel
-								value="sale"
-								control={<Radio />}
-								label={t('adverts.Sell')}							
-								/>
-							<FormControlLabel
-								value="wanted"
-								control={<Radio />}
-								label={t('adverts.Wanted')}
+					 <div id="price_buy">
+						 <section>
+						 	<p>{t('adverts.price')}*</p>
+							<TextField
+								placeholder={t('adverts.price')}
+								required
+								type="number"
+								name="priceNew"
+								variant="outlined"
+								defaultValue={price}
+								onChange={handleChange}
+								autoFocus={true}
 							/>
-						</RadioGroup>
-					</FormControl>
-									
-					<FormLabel
-						component="legend"
-						placeholder={t('adverts.Advert Actual Image')}
-						>{t('adverts.Advert Actual Image')} </FormLabel>
-				
-						<CardMedia className={classes.mediaEditAdvert} image={urlImage} />
-						<FormLabel component="legend">{t('adverts.Change image')}</FormLabel>
-						<InputFile name = "imageNew"
-								   placeholder = {t('adverts.Change image')}
-								   src = {placeholder}
-								   onChange = {handleChangeImage}
-						/>
-						<FormLabel component="legend">{t('adverts.Change tags')}</FormLabel> 
-						<div>
-							{listaTags.map((option) => (
-								<label key={option}> 
-									<GreenCheckbox
-										name="tagsNews"
-										type="checkbox"
-										key={option}
-										value={option}
-										defaultChecked={tagsNews.includes(option)}
-										onChange={handleChangeTags}
-									/>
-									{option}
-								</label>
-							))}
-						</div>
-					
-				 		<FormLabel component="legend">{t('adverts.Change status adverts')}</FormLabel>
-						{Object.keys(stateReserved).map(key => (
+						 </section>
+						 <section id="transaction">
+							<p>{t('adverts.Transaction Type')}*</p>
+							<FormControl component="fieldset">
+								<RadioGroup
+									aria-label="transaction"
+									name="transaction"
+									required
+									value={transaction}
+									onChange={handleChange}
+									row
+									>
 									<FormControlLabel
-										control={<GreenCheckbox
-											type="checkbox"
-											label='Reservado'
-											onChange={handleToggleReserved}
-											key={key}
-											name={key}
-											checked={stateReserved[key]}
-										/>}
-										label= {t('adverts.Reserved')}
+										value="sale"
+										control={<Radio />}
+										label={t('adverts.Sell')}
 									/>
-								))}
+									<FormControlLabel
+										value="wanted"
+										control={<Radio />}
+										label={t('adverts.Wanted')}
+									/>
+								</RadioGroup>
+							</FormControl>
+              			</section>
+					</div>
+					<p>{t('adverts.Change tags')}*</p>
+          			<section>
+						{listaTags.map((option) => (
+							<label key={option}
+								className="edit_tags"
+							> 
+								<GreenCheckbox
+									name="tagsNews"
+									type="checkbox"
+									key={option}
+									value={option}
+									defaultChecked={tagsNews.includes(option)}
+									onChange={handleChangeTags}
+									style={{marginLeft:'0px',paddingLeft:'0px'}}
+								/>
+								{option}
+							</label>
+						))}
+					 
+
+          			</section>
 					
-					
+					<section>
+						<p>{t('adverts.Advert Actual Image')} </p>
+						<CardMedia 
+							className="mediaEditAdvert"
+							image={urlImage} 
+						/>
+						<p>{t('adverts.Change image')}</p>
+						<InputFile name = "imageNew"
+							placeholder = {t('adverts.Change image')}
+							src = {placeholder}
+							onChange = {handleChangeImage}
+						/>
+
+					</section>			
+														
+				 	<p>{t('adverts.Change status adverts')}</p>
+						{Object.keys(stateReserved).map(key => (
+							<FormControlLabel
+								control={<GreenCheckbox
+								type="checkbox"
+								label='Reservado'
+								onChange={handleToggleReserved}
+								key={key}
+								name={key}
+								checked={stateReserved[key]}
+								/>}
+							label= {t('adverts.Reserved')}
+							/>
+						))}
 						{Object.keys(stateSold).map(key => (
 							<FormControlLabel
 								control={<GreenCheckbox
@@ -270,18 +269,20 @@ function EditAdvertForm({
 							/>
 						))}
 						
-					<Button
+					<input
 						type="submit"
-						style={{ margin: '30px 0' }}
+						value={t('adverts.Update Advert')}
 						color="primary"
-						fullWidth
-						variant="contained"
+						className="new_advert_button"
 						disabled={
 							!nameNew || !transactionNew || !priceNew || tagsNews.length === 0
 						}
-					>
-						{t('adverts.Update Advert')}
-					</Button>
+					/>
+					<GoBackButton
+                  		styleclassName={'neworedit'}
+                	>
+                  	{t('adverts.Cancel')}
+                	</GoBackButton>
 				</Paper>
 			</form>
 		</Grid>
