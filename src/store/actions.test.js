@@ -21,7 +21,9 @@ import {
 	advertDetailRequest,
 	advertDetailSuccess,
 	advertDetailFailure,
+	advertDetailAction,
 } from './actions';
+import { getUser } from './selectors';
 
 import {
 	AUTH_LOGIN_REQUEST,
@@ -387,13 +389,18 @@ describe('advertsLoadAction', () => {
 	});
 
 	describe('when getAllAdverts api resolve', () => {
-		//const adverts = [];
 		const action = advertsLoadAction();
+		const adverts = ['adverts'];
 		const dispatch = jest.fn();
-		const getState = () => {};
 		const api = {
 			adverts: { getAllAdverts: jest.fn().mockResolvedValue('adverts') },
 		};
+		const state = {
+			adverts: {
+				data: [],
+			},
+		};
+		const getState = () => state;
 
 		test('should dispatch an ADVERTS_LOADED_REQUEST', () => {
 			action(dispatch, getState, { api });
@@ -409,7 +416,7 @@ describe('advertsLoadAction', () => {
 			await action(dispatch, getState, { api });
 			expect(dispatch).toHaveBeenNthCalledWith(2, {
 				type: ADVERTS_LOADED_SUCCESS,
-				payload: 'adverts',
+				payload: adverts,
 			});
 		});
 	});
@@ -461,6 +468,89 @@ describe('advertDetailFailure', () => {
 		};
 		const result = advertDetailFailure(error);
 		expect(result).toEqual(expectedAction);
+	});
+});
+
+describe('advertDetailAction', () => {
+	describe('when advert exists in state', () => {
+		const advertId = '1';
+		const dispatch = jest.fn();
+		const action = advertDetailAction(advertId);
+		const api = {
+			adverts: { getAdvert: jest.fn() },
+		};
+		const state = {
+			adverts: {
+				data: [{ _id: advertId }],
+			},
+		};
+		const getState = () => state;
+
+		test('should not dispatch any action', () => {
+			action(dispatch, getState, { api });
+			expect(dispatch).not.toHaveBeenCalled();
+		});
+		test('should not call api', () => {
+			action(dispatch, getState, { api });
+			expect(api.adverts.getAdvert).not.toHaveBeenCalled();
+		});
+	});
+	describe('when api resolves', () => {
+		const advert = [{ result: 'advert' }];
+		const advertId = '1';
+		const dispatch = jest.fn();
+		const action = advertDetailAction(advertId);
+		const api = {
+			adverts: { getAdvert: jest.fn().mockResolvedValue(advert) },
+		};
+		const state = {
+			adverts: {
+				data: [],
+			},
+		};
+		const getState = () => state;
+
+		test('should dispatch an ADVERT_DETAIL_REQUEST action', () => {
+			action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(1, {
+				type: ADVERT_DETAIL_REQUEST,
+			});
+		});
+		test('should call api method', () => {
+			action(dispatch, getState, { api });
+			expect(api.adverts.getAdvert).toHaveBeenCalledWith(advertId);
+		});
+		test('should dispatch an ADVERT_DETAIL_SUCCESS action', async () => {
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: ADVERT_DETAIL_SUCCESS,
+				payload: advert.result,
+			});
+		});
+	});
+	describe('when api reject', () => {
+		const error = 'error';
+		const advertId = '1';
+		const dispatch = jest.fn();
+		const action = advertDetailAction(advertId);
+		const state = {
+			adverts: {
+				data: [],
+			},
+		};
+		const getState = () => state;
+
+		test('should dispatch an ADVERT_DETAIL_FAILURE action', async () => {
+			const api = {
+				adverts: { getAdvert: jest.fn().mockRejectedValue(error) },
+			};
+			await action(dispatch, getState, { api });
+			expect(dispatch).toHaveBeenNthCalledWith(2, {
+				type: ADVERT_DETAIL_FAILURE,
+				payload: error,
+				error: true,
+			});
+		});
 	});
 });
 
