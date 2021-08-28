@@ -51,7 +51,7 @@ function AdvertPage(...props) {
 	const handleEdit = () => {
 		
 		 const isPropietary = isUserPropietary(user, advert);
-		 console.log('isPropietary handleEdit', isPropietary);
+		 //console.log('isPropietary handleEdit', isPropietary);
 		 if (isPropietary) {
 		 	dispatch(advertEditAction(advertId));
 			//return <Redirect to={`/adverts/edit/${advertId}`} />;
@@ -71,13 +71,9 @@ function AdvertPage(...props) {
 
   const isUserPropietary = (user, advert) => {
     // Función para comprobar si el usuario puede editar y/borrar un anuncio
-    // console.log('user de la aplicacion', user);
-    // console.log('USER ADVERT', advert.userId);
-    // console.log('user != null', user != null);
-    // console.log('user != undefined', user != undefined);
+   
     if (user !== null && user !== undefined) {
-      //console.log('user._id', user._id);
-      //console.log('advert.userId._id', advert.userId._id);
+     
       if (user._id !== advert.userId._id) {
         Swal.fire(t('adverts.Action not allowed'));
         //console.log('user.userId', user._id,'advert.userId',advert.userId._id);

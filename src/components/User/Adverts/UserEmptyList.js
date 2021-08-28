@@ -8,7 +8,7 @@ const EmptyList = () => {
 
   return (
     <div style={{ textAlign: 'center', height:'100vh' }}>
-          <p>{t('adverts.Be the first Advert!')} NO DISPONE DE ANUNCIOS PUBLICADOS </p>
+          <p>{t('adverts.Be the first Advert!')} </p>
           
       <Button as={Link} to="/adverts/new" variant="primary">
         {t('adverts.Advert')}

@@ -101,7 +101,7 @@
     "type your message": "type your message"
   },
   "message": {
-    "Somenthing goes wrong !": "Somenthing goes wrong !",
+    "Somenthing goes wrong !": "Somenthing goes wrong!",
     "Unauthorized": "Unauthorized",
     "user already registered": "user already registered",
     "everything was good": "everything was good",
@@ -135,6 +135,25 @@
     "adverts":"adverts", 
     "Published at": "Published at", 
     "Updated at": "Updated at"
+  }, 
+  "account":{
+    "Account Information": "Profile Data",
+    "Username": "Username", 
+    "Email": "Email", 
+    "Password": "Password", 
+    "Current password": "Enter your current password",
+    "New password": "Enter New Password", 
+    "Repeat Password": "Confirm Password", 
+    "Change Information": "Profile Update", 
+    "Delete User": "User Unsubscribe's wallaclone", 
+    "Are you sure?": "Are you sure you want to unsubscribe?", 
+    "You will not be able to reverse this !": "You will not be able to reverse this !", 
+    "Yes, unsubscribe me!": "Yes, unsubscribe me!", 
+    "Unsubscribed!":"Unsubscribed!",
+    "Your account has been deleted.": "Your account has been deleted.", 
+    "Current password modification":"Current password modification"
+
+
 
   }
 }

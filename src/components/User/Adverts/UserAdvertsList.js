@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useStyles } from './userAdvertsListCSS';
 import { Grid, Typography, } from '@material-ui/core';
 
-const AdvertsList = ({ adverts }) => {
+const AdvertsList = ({ adverts, onDelete }) => {
 	const classes = useStyles();
 	
 	const [t] = useTranslation('global');
@@ -32,7 +32,7 @@ const AdvertsList = ({ adverts }) => {
 				 > 
 			
 				{adverts.map((advert) => (
-					<UserAdvert key={advert._id} {...advert} />
+					<UserAdvert key={advert._id} {...advert} onDelete/>
 				))}
 
 			</Grid>

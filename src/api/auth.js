@@ -42,3 +42,13 @@ export const newPassword = (credentials, id, token) => {
 	);
 	// return client.put(`${authPath}/forgot-password`, credentials);
 };
+
+export const updateAccountUser = (userId, newcredentials ) => {
+	console.log('credentials en updateAccountUser', newcredentials);
+	return client.put(`/apiv1/users/${userId}`, newcredentials);
+};
+
+export const deleteAccountUser = (userId) => {
+	return client.delete(`/apiv1/users/${userId}`);
+};
+

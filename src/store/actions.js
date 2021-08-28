@@ -28,6 +28,9 @@ import {
 	AUTH_REGISTER_SUCCESS,
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_FAILURE,
+	AUTH_UPDATE_SUCCESS,
+	AUTH_UPDATE_REQUEST,
+	AUTH_UPDATE_FAILURE,
 	ADVERTS_LOADED_REQUEST,
 	ADVERTS_LOADED_SUCCESS,
 	ADVERTS_LOADED_FAILURE,
@@ -52,6 +55,9 @@ import {
 	USER_LOGGED_SUCCESS,
 	USER_LOGGED_REQUEST,
 	USER_LOGGED_FAILURE,
+	USER_DELETED_SUCCESS,
+	USER_DELETED_REQUEST,
+	USER_DELETED_FAILURE,
 	MESSAGE_CREATED_REQUEST,
 	MESSAGE_CREATED_SUCCESS,
 	MESSAGE_CREATED_FAILURE,
@@ -102,7 +108,7 @@ export const loginAction = (credentials) => {
 			await api.auth.login(credentials);
 			dispatch(authLoginSuccess());
 			//dispatch(userLoggedAction());
-			
+
 			const { from } = history.location.state || { from: { pathname: '/' } };
 			history.replace(from);
 		} catch (error) {
@@ -189,8 +195,55 @@ export const registerAction = (credentials) => {
 	};
 };
 /** fin register */
-
 /** Fin login pasando history */
+
+/** Account USER Update */
+
+export const authUpdateRequest = () => {
+	return {
+		type: AUTH_UPDATE_REQUEST,
+	};
+};
+
+export const authUpdateFailure = (error) => {
+	return {
+		type: AUTH_UPDATE_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const authUpdateSuccess = () => {
+	return {
+		type: AUTH_UPDATE_SUCCESS,
+		//payload: user
+	};
+};
+
+export const updateAccountAction = (userId, credentials) => {
+	return async function (dispatch, getState, { api, history }) {
+		dispatch(authUpdateRequest());
+		try {
+			const response = await api.auth.updateAccountUser(userId, credentials);
+			dispatch(authUpdateSuccess(response.result));
+			
+			console.log('updateAccount result', response.result);
+			if (response.error) {
+				Swal.fire(
+					'Error',
+					response.error,
+					'error'
+				);
+			}
+			else if (response.result !== undefined) {
+				Swal.fire("Congratulations!", "User Data Updated", "success");		
+			}
+		} catch (error) {
+			dispatch(authUpdateFailure(error));			
+		}
+	};
+};
+
 
 /**************************GET ADVERTS***********************/
 
@@ -270,7 +323,7 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			console.log(`advert ACTION ${advert}`);
+			console.log(`advert ACTION ${advert.result}`);
 			dispatch(advertDetailSuccess(advert.result));
 			return advert.result;
 		} catch (error) {
@@ -589,6 +642,13 @@ export const userLoggedRequest = () => {
 	};
 };
 
+export const userLoggedSuccess = (user) => {
+	return {
+		type: USER_LOGGED_SUCCESS,
+		payload: user,
+	};
+};
+
 export const userLoggedFailure = (error) => {
 	return {
 		type: USER_LOGGED_FAILURE,
@@ -597,12 +657,6 @@ export const userLoggedFailure = (error) => {
 	};
 };
 
-export const userLoggedSuccess = (user) => {
-	return {
-		type: USER_LOGGED_SUCCESS,
-		payload: user,
-	};
-};
 export const setFavoritesUser = (favoritos) => {
 	return {
 		type: USER_FAVORITES_SUCCESS,
@@ -623,14 +677,14 @@ export const userLoggedAction = () => {
 		try {
 			const user = await api.user.getUserLogged();
 			dispatch(userLoggedSuccess(user));
-		} catch (err) {
-			dispatch(userLoggedFailure(err));
-			console.error('error en user token', err);
+		} catch (error) {
+			dispatch(userLoggedFailure(error));
+			console.error('error en user token', error);
 		}
 	};
 };
 
-/***********************USER LOGOUT DELETE***********************/
+/***********************USER LOGOUT ***********************/
 export const userLogoutRequest = () => {
 	return {
 		type: USER_LOGOUT_REQUEST,
@@ -657,8 +711,43 @@ export const userLogoutAction = () => {
 		dispatch(userLogoutRequest());
 		try {
 			dispatch(userLogoutSuccess());
-		} catch (err) {
-			dispatch(userLogoutFailure(err));
+		} catch (error) {
+			dispatch(userLogoutFailure(error));
+		}
+	};
+};
+
+/** USER ACCOUNT DELETE ***/
+export const userDeletedRequest = () => {
+	return {
+		type: USER_DELETED_REQUEST,
+	};
+};
+
+export const userDeletedFailure = (error) => {
+	return {
+		type: USER_DELETED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const userDeletedSuccess = (userId) => {
+	return {
+		type: USER_DELETED_SUCCESS,
+		payload:userId,
+	};
+};
+
+export const userDeletedAction = (userId) => {
+	return async function (dispatch, getState, {api, history}) {
+		dispatch(userDeletedRequest());
+		try {
+			await api.auth.deleteAccountUser(userId);
+			dispatch(userDeletedSuccess());
+			history.push('/adverts');
+		} catch (error) {
+			dispatch(userDeletedFailure(error));
 		}
 	};
 };

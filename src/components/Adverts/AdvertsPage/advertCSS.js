@@ -71,8 +71,10 @@ export const useStyles = makeStyles((theme) => ({
     
   },
   descAdvert:{
-    display:'block',
+    
     fontSize: '1rem',
+    height:'auto',
+    width:'auto'
 
   },
   spanDetailAdvert:{
@@ -88,22 +90,32 @@ export const useStyles = makeStyles((theme) => ({
 	
 	},
   cardContent: {
+    
     width:'100%',
     height: 'auto',
     padding:'0.5rem',
     paddingTop:'0.5rem',
+    height:'auto',
+    width:'auto'
     
   },
   
   card: {
     padding: '6px',
-   
+    height: 'auto',
+    
   },
   media: {
-    height: '250px',
+    height:'250px',
     borderRadius: '3px',
+    width: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '50% 50%',
+    
      
   },
+  
   cardActions: {
     display: 'flex',
     justifyContent: 'space-between',
