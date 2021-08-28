@@ -2,10 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
  
 export const useStyles = makeStyles((theme) => ({
 	gridDetailAdvert:{
-		display:'flex',
-		flexDirection:'column',
-		justifyContent:'flex-end',
-		alignItems:'flex-end',
 		height: 'auto',
 		margin: '40px auto',
 		width: '600px',
@@ -84,6 +80,7 @@ export const useStyles = makeStyles((theme) => ({
 		display:'flex',
 		justifyContent:'center',
 		alignItems:'center',
+		marginTop:'1.5rem',
 	},
 	favoriteIcon: {
 		marginRight: '5px',
@@ -141,7 +138,7 @@ export const useStyles = makeStyles((theme) => ({
 	 
 	},
 	containerGoBack:{
-		width:'30%', 
+		width:'100%', 
 		marginTop:'1rem',
 	},
 	  

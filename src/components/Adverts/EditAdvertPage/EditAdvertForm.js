@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch} from 'react-redux';
 import { getAllTags } from '../../../api/adverts';
 import { tagsLoadedAction } from '../../../store/actions';
+import ShareAdvert from '../shareAdvert';
 import '../NewAndEditAdvert.css';
 
 const URLIMG = process.env.REACT_APP_API_BASE_URL;
@@ -137,11 +138,11 @@ function EditAdvertForm({
 
 	return (
 		<Grid>
-			<form encType="multipart/form-data" onSubmit={handleSubmit}>
-				<Paper
-					elevation={10}
-					className="container_paper"	
-				>
+			<Paper
+				elevation={10}
+				className="container_paper"	
+			>
+				<form encType="multipart/form-data" onSubmit={handleSubmit}>
 					<Grid align="center">
 						<Avatar style={{ backgroundColor: '#62aae6f4' }}>
 							<UpdateIcon/>
@@ -268,7 +269,6 @@ function EditAdvertForm({
 								label={t('adverts.Sold')}
 							/>
 						))}
-						
 					<input
 						type="submit"
 						value={t('adverts.Update Advert')}
@@ -278,13 +278,18 @@ function EditAdvertForm({
 							!nameNew || !transactionNew || !priceNew || tagsNews.length === 0
 						}
 					/>
+				</form>
 					<GoBackButton
                   		styleclassName={'neworedit'}
-                	>
+						  >
                   	{t('adverts.Cancel')}
                 	</GoBackButton>
-				</Paper>
-			</form>
+					<div className="socialDetailAdvert">
+						<ShareAdvert
+							Url={`${process.env.REACT_APP_FRONT_LOCALHOST}adverts/${name}/${_id}`}
+							/>
+					</div>
+			</Paper>
 		</Grid>
 	);
 }
