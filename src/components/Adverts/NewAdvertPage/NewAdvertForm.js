@@ -76,107 +76,107 @@ function NewAdvertForm({ onSubmit }) {
 
   return (
     <Grid>
-      <form onSubmit={handleSubmit}>
-        <Paper
-          elevation={10}
-          className="container_paper"
-        >
-          <Grid align="center">
-            <Avatar style={{ backgroundColor: '#62aae6f4' }}>
-              <AddIcon />
-            </Avatar>
-            <h2>{t('adverts.Create new advert')}</h2>
-          </Grid>
-          <p>{t('adverts.Advert Name')}*</p>
-          <TextField
-            placeholder={t('adverts.Enter product name')}
-            fullWidth
-            required
-            name="name"
-            value={name}
-            onChange={handleChange}
-            autoFocus={true}
-          
-          />
-          <p>{t('adverts.Description')}*</p>
-          <textarea 
-            placeholder={t('adverts.Enter description')}
-            name="desc"
-            value={desc}
-            onChange={handleChange}
-            required
-          />
-          <div id="price_buy">
-              <section>
-                <p>{t('adverts.price')}*</p>
-                <TextField
-                  placeholder={t('adverts.Enter price')}
-                  required
-                  type="number"
-                  name="price"
-                  variant="outlined"
-                  value={price}
-                  onChange={handleChange}
-                 
-                />
-              </section>
-              <section id="transaction">
-                <p>{t('adverts.Transaction Type')}*</p>
-                <FormControl component="fieldset">
-                  <RadioGroup
-                    aria-label="transaction"
-                    name="transaction"
-                    required
-                    value={transaction}
-                    onChange={handleChange}
-                    row
-                    >
-                    <FormControlLabel
-                      value="sale"
-                      control={<Radio />}
-                      label={t('adverts.Sell')}
-                      />
-                    <FormControlLabel
-                      value="wanted"
-                      control={<Radio />}
-                      label={t('adverts.Wanted')}
-                      />
-                  </RadioGroup>
-                </FormControl>
-              </section>
-          </div>
-          <p>{t('adverts.Select one or more tags')}*</p>
-          <section className="tags_advert">
-            <SelectTags
-              multiple
-              name="tags"
-              value={tags}
+      <Paper
+        elevation={10}
+        className="container_paper"
+      >
+        <form onSubmit={handleSubmit}>
+            <Grid align="center">
+              <Avatar style={{ backgroundColor: '#62aae6f4' }}>
+                <AddIcon />
+              </Avatar>
+              <h2>{t('adverts.Create new advert')}</h2>
+            </Grid>
+            <p>{t('adverts.Advert Name')}*</p>
+            <TextField
+              placeholder={t('adverts.Enter product name')}
+              fullWidth
+              required
+              name="name"
+              value={name}
               onChange={handleChange}
+              autoFocus={true}
+            
             />
+            <p>{t('adverts.Description')}*</p>
+            <textarea 
+              placeholder={t('adverts.Enter description')}
+              name="desc"
+              value={desc}
+              onChange={handleChange}
+              required
+            />
+            <div id="price_buy">
+                <section>
+                  <p>{t('adverts.price')}*</p>
+                  <TextField
+                    placeholder={t('adverts.Enter price')}
+                    required
+                    type="number"
+                    name="price"
+                    variant="outlined"
+                    value={price}
+                    onChange={handleChange}
+                  
+                  />
+                </section>
+                <section id="transaction">
+                  <p>{t('adverts.Transaction Type')}*</p>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-label="transaction"
+                      name="transaction"
+                      required
+                      value={transaction}
+                      onChange={handleChange}
+                      row
+                      >
+                      <FormControlLabel
+                        value="sale"
+                        control={<Radio />}
+                        label={t('adverts.Sell')}
+                        />
+                      <FormControlLabel
+                        value="wanted"
+                        control={<Radio />}
+                        label={t('adverts.Wanted')}
+                        />
+                    </RadioGroup>
+                  </FormControl>
+                </section>
+            </div>
+            <p>{t('adverts.Select one or more tags')}*</p>
+            <section className="tags_advert">
+              <SelectTags
+                multiple
+                name="tags"
+                value={tags}
+                onChange={handleChange}
+              />
 
-          </section>
-          <p>{t('adverts.Select image')}</p>
-          <div id="input_file">
-            <InputFile 
-              placeholder={t('adverts.Select image')}
-              name="image"
-              onChange={handleChangeImage}
-              
-            />
-            <input
-              type="submit"
-              className="new_advert_button"
-              value={t('adverts.Created Advert')}
-              disabled={!name || !transaction || !price || tags.length === 0}
-            />
-            <GoBackButton
-              styleclassName={'neworedit'}
-            >
-              {t('adverts.Cancel')}
-            </GoBackButton>
-          </div>
-        </Paper>
-      </form>
+            </section>
+            <p>{t('adverts.Select image')}</p>
+            <div id="input_file">
+              <InputFile 
+                placeholder={t('adverts.Select image')}
+                name="image"
+                onChange={handleChangeImage}
+                
+              />
+              <input
+                type="submit"
+                className="new_advert_button"
+                value={t('adverts.Created Advert')}
+                disabled={!name || !transaction || !price || tags.length === 0}
+              />
+            </div>
+        </form>
+              <GoBackButton
+                styleclassName={'neworedit'}
+              >
+                {t('adverts.Cancel')}
+              </GoBackButton>
+      </Paper>
     </Grid>
   );
 }
