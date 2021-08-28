@@ -13,8 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useTranslation } from 'react-i18next';
+import { useStyles } from '../authCSS';
 
 const LoginForm = ({ onSubmit }) => {
+  const classes = useStyles();
   const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     username: '',
@@ -42,15 +44,10 @@ const LoginForm = ({ onSubmit }) => {
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: 30,
-            height: '500px',
-            margin: '50px auto',
-            width: 350,
-          }}
+          className={classes.containerPaper}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#62aae6f4' }}>
+            <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('login.Sign in')}</h2>
@@ -76,20 +73,23 @@ const LoginForm = ({ onSubmit }) => {
             value={password}
             onChange={handleChange}
           />
-          <FormControlLabel
-            style={{ marginTop: 5 }}
-            control={
-              <Checkbox
-                name="checked"
-                color="primary"
-                onChange={(ev) => setIsChecked(ev.target.checked)}
+          <div style={{marginTop:'0.5rem'}}>
+            <FormControlLabel
+              
+              control={
+                <Checkbox
+                  name="checked"
+                  color="primary"
+                  onChange={(ev) => setIsChecked(ev.target.checked)}
+                  style={{padding:'0px'}}
+                />
+              }
+              label={t('login.Remember me')}
               />
-            }
-            label={t('login.Remember me')}
-          />
+          </div>
           <Button
             type="submit"
-            style={{ margin: '30px 0' }}
+            className={classes.buttonForm}
             color="primary"
             fullWidth
             variant="contained"
