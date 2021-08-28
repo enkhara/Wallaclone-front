@@ -102,7 +102,7 @@ export const loginAction = (credentials) => {
 			await api.auth.login(credentials);
 			dispatch(authLoginSuccess());
 			//dispatch(userLoggedAction());
-			
+
 			const { from } = history.location.state || { from: { pathname: '/' } };
 			history.replace(from);
 		} catch (error) {
@@ -270,7 +270,7 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			console.log(`advert ACTION ${advert}`);
+			console.log(`advert ACTION ${advert.result}`);
 			dispatch(advertDetailSuccess(advert.result));
 			return advert.result;
 		} catch (error) {
@@ -589,6 +589,13 @@ export const userLoggedRequest = () => {
 	};
 };
 
+export const userLoggedSuccess = (user) => {
+	return {
+		type: USER_LOGGED_SUCCESS,
+		payload: user,
+	};
+};
+
 export const userLoggedFailure = (error) => {
 	return {
 		type: USER_LOGGED_FAILURE,
@@ -597,12 +604,6 @@ export const userLoggedFailure = (error) => {
 	};
 };
 
-export const userLoggedSuccess = (user) => {
-	return {
-		type: USER_LOGGED_SUCCESS,
-		payload: user,
-	};
-};
 export const setFavoritesUser = (favoritos) => {
 	return {
 		type: USER_FAVORITES_SUCCESS,
