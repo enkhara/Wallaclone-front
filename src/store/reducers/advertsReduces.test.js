@@ -4,11 +4,11 @@ import {
 	ADVERT_CREATED_SUCCESS,
 	ADVERT_DELETED_SUCCESS,
 	ADVERT_DETAIL_SUCCESS,
+	ADVERT_UPDATE_SUCCESS,
+	ADVERT_EDIT_SUCCESS,
 	AUTH_LOGGED,
 	AUTH_LOGIN_SUCCESS,
 	AUTH_LOGOUT_SUCCESS,
-	ADVERT_EDIT_SUCCESS,
-	ADVERT_UPDATE_SUCCESS,
 	TAGS_LOADED_SUCCESS,
 	UI_RESET_ERROR,
 	AUTH_REGISTER_SUCCESS,
@@ -69,7 +69,7 @@ describe('adverts', () => {
 	test('should manade ADVERT_EDIT_SUCCESS', () => {
 		const payload = '1';
 		const payloadUpdate = '2';
-		const action = { type: ADVERT_UPDATE_SUCCESS, payload };
+		const action = { type: ADVERT_EDIT_SUCCESS, payload };
 		const state = { ...initialState.adverts, data: [{ id: '1' }] };
 		expect(adverts(state, action)).toMatchObject({
 			data: [payloadUpdate],
