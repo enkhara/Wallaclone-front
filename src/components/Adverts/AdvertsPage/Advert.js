@@ -78,7 +78,7 @@ const Advert = ({
   return (
      <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>
       <article className={classes.container_card}>
-        <NavLink to={`/adverts/${name}/${_id}`} style={{ textDecoration: 'none' }}>
+        <NavLink to={`/adverts/${name.replace(/\/+/g,'-')}/${_id}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
             <CardActionArea>              
               <CardMedia

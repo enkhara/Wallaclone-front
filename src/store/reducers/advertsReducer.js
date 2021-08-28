@@ -20,10 +20,14 @@ import {
 	UI_RESET_ERROR,
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_SUCCESS,
+	AUTH_UPDATE_REQUEST,
+	AUTH_UPDATE_SUCCESS,
 	USER_LOGGED_SUCCESS,
 	USER_LOGGED_REQUEST,
 	USER_LOGOUT_SUCCESS,
 	USER_LOGOUT_REQUEST,
+	USER_DELETED_REQUEST,
+	USER_DELETED_SUCCESS,
 } from '../types';
 
 export const initialState = {
@@ -57,12 +61,12 @@ export function logged(state = initialState.logged, action) {
 export function user(state = initialState.user, action) {
 	switch (action.type) {
 		case USER_LOGGED_SUCCESS:
-			//console.log('action.payload', action.payload);
-			//return { ...state, ...action.payload };
-			//return { ...action.payload };
+		//case AUTH_UPDATE_SUCCESS:
+			
 			return action.payload;
 
 		case USER_LOGOUT_SUCCESS:
+		case USER_DELETED_SUCCESS:
 			return null;
 		default:
 			return state;
@@ -72,7 +76,10 @@ export function user(state = initialState.user, action) {
 export function registered(state = initialState.registered, action) {
 	switch (action.type) {
 		case AUTH_REGISTER_SUCCESS:
+		case AUTH_UPDATE_SUCCESS:
 			return true;
+		case USER_DELETED_SUCCESS:
+			return false;
 		default:
 			return state;
 	}
@@ -81,7 +88,6 @@ export function registered(state = initialState.registered, action) {
 export function adverts(state = initialState.adverts, action) {
 	switch (action.type) {
 		case ADVERTS_LOADED_SUCCESS:
-		//case ADVERTS_USER_LOADED_SUCCESS:
 			return { ...state, loaded: true, data: action.payload };
 		case ADVERT_CREATED_SUCCESS:
 		case ADVERT_DETAIL_SUCCESS:

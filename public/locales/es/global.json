@@ -101,7 +101,7 @@
     "type your message": "Escribe tu mensaje"
   },
   "message": {
-    "Somenthing goes wrong !": "Algo va mal !",
+    "Somenthing goes wrong !": "Algo va mal!",
     "Unauthorized": "No Autorizado",
     "everything was good": "everything was good",
     "Try again!": "¡Intentar otra vez!",
@@ -131,5 +131,22 @@
     "adverts":"anuncios",
     "Published at": "Publicado", 
     "Updated at": "Modificado"
+  }, 
+  "account":{
+    "Account Information": "Tu Perfil",
+    "Username": "Nombre de Usuario", 
+    "Email": "Email", 
+    "Password": "Password", 
+    "Current password": "Introduce tu actual contraseña",
+    "New password": "Introduce la nueva contraseña", 
+    "Repeat Password": "Confirma contraseña", 
+    "Change Information": "Actualización Perfil", 
+    "Delete User": "Quiero darme de baja de wallaclone",
+    "Are you sure?": "¿Seguro que quieres darte de baja?", 
+    "You will not be able to reverse this !": "¡No podrás revertir esto!", 
+    "Yes, unsubscribe me!": "Si, dame de baja!", 
+    "Unsubscribed!":"Desubscrito!",
+    "Your account has been deleted.": "Tu cuenta ha sido eliminada.",
+    "Current password modification":"Modificación contraseña actual" 
   }
 }

@@ -4,13 +4,13 @@ import storage from '../utils/storage';
 
 export const getUserLogged = () => {
   const user = client.get(`${BASE_URL}/users/auth/me`);
-  console.log('en api user', user);
+ // console.log('en api user', user);
   return user;
 };
-/**implementar en back la ruta correcta y en front */
+
 export const getUser = (userId) => {
   const user = client.get(`${BASE_URL}/users/${userId}`);
-  console.log(user);
+  //console.log(user);
   return user;
 };
 
@@ -38,7 +38,7 @@ export const deleteFavorites = (user_Id, advertId) => {
 
 export const getUserFav = (userId) => {
   const user = client.get(`${BASE_URL}/users/${userId}`);
-  console.log(user);
+  //console.log(user);
   return user;
 };
 
