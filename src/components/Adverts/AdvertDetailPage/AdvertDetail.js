@@ -174,34 +174,41 @@ function AdvertDetail({
 					className={classes.mediaDetailAdvert}
 					image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 				/>
-				<Typography component="p" className={classes.priceDetailAdvert}>
-					{`${price} €`}
-				</Typography>
-				<Typography component="h2" className={classes.nameDetailAdvert}>
-					{name}
-				</Typography>
-				<Box className={classes.tagAndDescDetailAdvert}>
-					<Typography component="p">
-						<span className={classes.spanDetailAdvert}>
-							{t('adverts.Tags')}
-						</span>
-						{tags.join(' - ')}
+					
+					<Typography component="p" className={classes.priceDetailAdvert}>
+						{`${price} €`}
 					</Typography>
-					<Typography component="p">
-						<span className={classes.spanDetailAdvert}>
-							{t('adverts.Transaction')}
-						</span>
-						{transaction}
+					<Typography component="h2" className={classes.nameDetailAdvert}>
+						{name}
 					</Typography>
-				</Box>
-				<Box className={classes.tagAndDescDetailAdvert}>
-					<Typography component="p" style={{ fontWeight: '500' }}>
+
+					<Typography component="p" className={classes.descAdvert}>
 						{desc}
 					</Typography>
-				</Box>
+					
+				<div>
+                  <p>
+                    <span
+						
+                    	className={ 
+                        	transaction ==='wanted' 
+                        	? classNames(classes.wanted) 
+                        	: classNames(classes.sale)}
+                    >
+                      {transaction}
+                      
+                    </span>
+                  </p>
+                  <p>
+                    <span className={classes.tagsAdvert}>
+                      {tags.join(' - ')}
+                    </span>
+                  </p>
+                
+				</div>
 				<Box className={classes.updateAndDeleteDetailAdvert}>
 					<Link
-						className={classes.containerNewAdvert}
+						 
 						to={`/adverts/edit/${_id}`}
 					>
 						<Button
@@ -217,6 +224,7 @@ function AdvertDetail({
 						variant="contained"
 						color="secondary"
 						onClick={onDelete}
+						style={{marginLeft:'0.7rem'}}
 						startIcon={<DeleteIcon />}
 					>
 						{t('adverts.Delete')}
