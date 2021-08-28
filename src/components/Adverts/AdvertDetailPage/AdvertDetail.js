@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
+import { GoBackButton } from '../../shared';
 import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
 import {
 	Grid,
@@ -35,6 +36,7 @@ import {
 } from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getIsLogged } from '../../../store/selectors';
+
 function AdvertDetail({
 	name,
 	transaction,
@@ -237,6 +239,14 @@ function AdvertDetail({
 					/>
 				</Box>
 			</Card>
+			<div className={classes.containerGoBack}> 
+				<GoBackButton
+						styleclassName={'goBack'}
+					>
+						{t('page404.GO BACK')}
+				</GoBackButton>
+
+			</div>
 		</Grid>
 	);
 }

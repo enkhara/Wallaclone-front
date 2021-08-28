@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
  
 export const useStyles = makeStyles((theme) => ({
 	gridDetailAdvert:{
+		display:'flex',
+		flexDirection:'column',
+		justifyContent:'flex-end',
+		alignItems:'flex-end',
 		height: 'auto',
 		margin: '40px auto',
 		width: '600px',
@@ -135,6 +139,10 @@ export const useStyles = makeStyles((theme) => ({
 		marginRight: '1rem',
 		fontWeight: '800',
 	 
+	},
+	containerGoBack:{
+		width:'30%', 
+		marginTop:'1rem',
 	},
 	  
 	

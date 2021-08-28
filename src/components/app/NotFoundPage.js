@@ -21,7 +21,7 @@ function NotfoundPage() {
 					{t('page404.PAGE NOT FOUND')}
                 </p>
                 <GoBackButton
-                    styleclassName={'404'}
+                    styleclassName={'goBack'}
                 >
 
                     {t('page404.GO BACK')}
