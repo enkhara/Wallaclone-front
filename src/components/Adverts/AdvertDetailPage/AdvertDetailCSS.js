@@ -136,10 +136,11 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     margin: '0',
     color: 'white',
-    width: '20%',
+    width: '30%',
     height: '2rem',
     borderRadius: '5px',
     background: 'rgba(175, 11, 33, 0.89)',
+    
   },
   tagsAdvert: {
     color: '#b2b3b4',
