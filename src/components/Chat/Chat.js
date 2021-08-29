@@ -118,11 +118,6 @@ const Chat = ({ user, ...props }) => {
 	};
 	return (
 		<main className='main'>
-			<aside className="aside">
-				<SideBar />
-			</aside>
-			
-			<div className="chat">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
 						<input placeholder="Search for friends"></input>
@@ -183,7 +178,7 @@ const Chat = ({ user, ...props }) => {
 						/>
 					</div>
 				</div>
-			</div>
+			 
 		</main>
 	);
 };

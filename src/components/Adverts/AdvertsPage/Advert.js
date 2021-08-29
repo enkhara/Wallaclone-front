@@ -80,15 +80,16 @@ const Advert = ({
       <article className={classes.container_card}>
         <NavLink to={`/adverts/${name.replace(/\/+/g,'-')}/${_id}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
-            <CardActionArea>              
-              <CardMedia
-                className={classes.media}
-                image={
+            <CardActionArea>    
+              <img src={
                   image
                     ? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
                     : placeholder
-                }
+                } 
+                alt="image advert" 
+                className={classes.media}
               />
+               
               <CardContent className={classes.cardContent}>
                 <section className={classes.container_price_favorite}>
                   {isLogged &&

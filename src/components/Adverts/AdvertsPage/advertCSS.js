@@ -109,13 +109,16 @@ export const useStyles = makeStyles((theme) => ({
     height:'250px',
     borderRadius: '3px',
     width: '100%',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '50% 50%',
-    
      
+    '& img':{
+      objectFit: 'cover',
+      height:'250px',
+      width: '100%',
+
+    }
+       
   },
-  
+
   cardActions: {
     display: 'flex',
     justifyContent: 'space-between',
