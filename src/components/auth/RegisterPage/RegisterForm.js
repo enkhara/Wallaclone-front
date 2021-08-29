@@ -59,6 +59,7 @@ const RegisterForm = ({ onSubmit }) => {
             name="username"
             value={username}
             onChange={handleChange}
+            autoFocus={true}
           />
           <TextField
             type="email"

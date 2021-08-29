@@ -60,6 +60,7 @@ const LoginForm = ({ onSubmit }) => {
             name="username"
             value={username}
             onChange={handleChange}
+            autoFocus={true}
            
           />
           <TextField
