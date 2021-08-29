@@ -19,7 +19,7 @@ const SideBar = () => {
 			
 			<Link to={'/user/account'} className="sideBarButton">
 				<AccountBoxIcon/>
-				<span className="sideBarButtonName">{t('sideBar.Profile')}</span>
+				<span>{t('sideBar.Profile')}</span>
 			</Link>
 			<Link to={{ pathname: '/myadverts' }} className="sideBarButton">
 				<BallotIcon/>

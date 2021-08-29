@@ -55,11 +55,11 @@ const UserAdvertsPage = ({ user, props }) => {
 	};
 
 	return (
-		<main id='main'>
-			<aside id="aside">
+		<main className='main'>
+			<aside className="aside">
 				<SideBar {...props} />
 			</aside>
-			<section id="userAdverts">
+			<section className="userAdverts">
 				{userAdverts.length ? (
 					<UserAdvertsList
 						adverts={userAdverts}

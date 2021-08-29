@@ -59,13 +59,18 @@ function EditAccountPage({...props} ) {
 
   return (
     
-      <React.Fragment>
-      <SideBar />
-      {user &&
-        <EditAccountForm {...user} onSubmit={handleSubmit} onDelete={handleDelete} />}
-        {loading && <Spinner />}
-          {error && <div onClick={() => dispatch(resetError())} />}
-       </React.Fragment> 
+      <main className='main'>
+        <aside className="aside">
+				    <SideBar/>
+			  </aside>
+        <section style={{width:'100%',margin:'0px'}}>
+          {user &&
+            <EditAccountForm {...user} onSubmit={handleSubmit} onDelete={handleDelete} />}
+            {loading && <Spinner />}
+            {error && <div onClick={() => dispatch(resetError())} />}
+
+        </section>
+       </main> 
     
   );
 }
