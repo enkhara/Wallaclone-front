@@ -15,11 +15,17 @@ export const useStyles = makeStyles((theme) => ({
     height:'350px',
     borderRadius: '3px',
     width: '100%',
-    
+    [theme.breakpoints.down('xs')]: {
+      height:'240px'
+    },
     '& img':{
       objectFit: 'cover',
       height:'350px',
       width: '100%',
+      [theme.breakpoints.down('xs')]: {
+        height:'240px',
+        objectFit: 'cover',
+      },
     }
        
   },
