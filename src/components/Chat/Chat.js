@@ -117,8 +117,11 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 	return (
-		<React.Fragment>
-			<SideBar />
+		<main className='main'>
+			<aside className="aside">
+				<SideBar />
+			</aside>
+			
 			<div className="chat">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
@@ -181,7 +184,7 @@ const Chat = ({ user, ...props }) => {
 					</div>
 				</div>
 			</div>
-		</React.Fragment>
+		</main>
 	);
 };
 
