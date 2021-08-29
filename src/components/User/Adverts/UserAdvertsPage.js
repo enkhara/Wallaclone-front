@@ -8,6 +8,7 @@ import { SideBar } from '../../layout';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 import { advertDeletedAction } from '../../../store/actions';
+import './User.css';
  
 
 const UserAdvertsPage = ({ user, props }) => {
@@ -54,27 +55,23 @@ const UserAdvertsPage = ({ user, props }) => {
 	};
 
 	return (
-		
-		<main 
-			style={{marginTop:'0.5rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
-		 
-        >
-            <React.Fragment>
+		<main id='main'>
+			<aside id="aside">
 				<SideBar {...props} />
+			</aside>
+			<section id="userAdverts">
 				{userAdverts.length ? (
-					<section>
-						<UserAdvertsList
-							adverts={userAdverts}
-							username={user.username}
-							onDelete={handleDelete}
-						/>
-					</section>
-				) : (
+					<UserAdvertsList
+						adverts={userAdverts}
+						username={user.username}
+						onDelete={handleDelete}
+					/>
+					
+					) : (
 					<UserEmptyList />
 					)}
-                
-            </React.Fragment>
 	
+			</section>
 		</main>
 	);
 };
