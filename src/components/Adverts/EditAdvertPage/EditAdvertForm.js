@@ -178,7 +178,7 @@ function EditAdvertForm({
 								variant="outlined"
 								defaultValue={price}
 								onChange={handleChange}
-								autoFocus={true}
+								 
 							/>
 						 </section>
 						 <section id="transaction">
