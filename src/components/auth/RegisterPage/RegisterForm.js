@@ -11,9 +11,10 @@ import {
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useTranslation } from 'react-i18next';
-// import { ChangeLanguage } from '../../../utils/changeLanguage';
+import { useStyles } from '../authCSS';
 
 const RegisterForm = ({ onSubmit }) => {
+  const classes = useStyles();
   const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     username: '',
@@ -42,15 +43,10 @@ const RegisterForm = ({ onSubmit }) => {
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: 30,
-            height: '500px',
-            margin: '50px auto',
-            width: 350,
-          }}
+          className={classes.containerPaper}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+          <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('register.Register')}</h2>
@@ -71,7 +67,7 @@ const RegisterForm = ({ onSubmit }) => {
             fullWidth
             required
             name="email"
-            style={{marginBottom:'1rem'}}
+            style={{marginBottom:'1rem', marginTop:'1rem'}}
             value={email}
             onChange={handleChange}
           />
@@ -88,7 +84,7 @@ const RegisterForm = ({ onSubmit }) => {
 
           <Button
             type="submit"
-            style={{ margin: '30px 0' }}
+            className={classes.buttonForm}
             color="primary"
             fullWidth
             variant="contained"
@@ -98,7 +94,7 @@ const RegisterForm = ({ onSubmit }) => {
           </Button>
           <Typography>
             {t('register.Do you have an account?')}
-            <Link href="/login">{t('register.Sign In')}</Link>
+            <Link href="/login"> {t('register.Sign In')}</Link>
           </Typography>
         </Paper>
       </form>
