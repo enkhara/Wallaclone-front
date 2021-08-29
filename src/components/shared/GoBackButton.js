@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const CancelButton = styled.button`
-${({ styleclassName }) => styleclassName ==='404' 
+${({ styleclassName }) => styleclassName ==='goBack' 
 
 ? 
 css`
