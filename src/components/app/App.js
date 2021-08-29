@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
 	return (
-		<div style={{width:'95%', maxWidth:'1600px', margin:'auto', height: '100vh'}}>
+		<div style={{width:'95%', maxWidth:'1600px', margin:'auto', height: '100%'}}>
             <Header/>
 			<AppRoutes/>	
             <Footer/>

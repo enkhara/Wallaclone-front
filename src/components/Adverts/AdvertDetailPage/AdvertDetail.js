@@ -172,9 +172,10 @@ function AdvertDetail({
 						</IconButton>
 					</Box>
 				</CardActions>
-				<CardMedia
+				<img
 					className={classes.mediaDetailAdvert}
-					image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
+					alt="image advert"
+					src={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 				/>
 					
 					<Typography component="p" className={classes.priceDetailAdvert}>

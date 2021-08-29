@@ -1,19 +1,80 @@
-.chat {
-	height: 100vh;
-	display: flex;
-	max-width: 1000px;
-	margin: auto;
+ 
+.container_chat{
+		width: 40%;
+		height: 80vh;
+		display: flex;
+		flex-direction: column;
+		margin: 50px auto;
+		box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+		background-color:dodgerblue ;
+		 
+}
+.header h1{
+	color:#fff;
+	padding: 15px;
+}
+.body{
+	flex: 1;
+	color:#fff;
+	background-color:rgba(0, 0, 0, 0.7); 
+	padding: 20px 30px;
+
 }
 
-.chatMenu {
-	flex: 3.5;
+.message{
+	background-color:dodgerblue ;
+	padding: 10px;
+	color:#fff;
+	width: fit-content;
+	border-radius: 10px;
+	margin-bottom: 15px;
 }
+ 
+.user_message{
+	margin-left: auto;
+	background-color: #fff;
+	color:black;
+}
+
+.footer form{
+	display: flex;
+
+}
+/* form input{
+	flex:1;
+	height: 40px;
+	border: none;
+	outline: none;
+	padding-left: 5px;
+	font-size: 16px;
+}
+
+form button{
+	width: 100px;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	background-color:dodgerblue ;
+	color: #fff;
+	cursor: pointer;
+
+}
+form button:hover{
+	background-color:blue ;
+	transition: 0.2s ease;
+} */
+
+
+
+
 
 .chatMenuInput {
 	width: 90%;
 	padding: 10px 0;
 	border: none;
 	border-bottom: 1px solid grey;
+	background-color: rgb(221, 211, 164);
+		
 }
 .chatBox {
 	flex: 5.5;

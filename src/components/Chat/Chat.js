@@ -117,9 +117,7 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 	return (
-		<React.Fragment>
-			<SideBar />
-			<div className="chat">
+		<main className='main'>
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
 						<input placeholder="Search for friends"></input>
@@ -180,8 +178,8 @@ const Chat = ({ user, ...props }) => {
 						/>
 					</div>
 				</div>
-			</div>
-		</React.Fragment>
+			 
+		</main>
 	);
 };
 

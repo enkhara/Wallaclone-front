@@ -12,10 +12,22 @@ export const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   mediaDetailAdvert: {
-    height: 340,
-    borderRadius: 3,
-    marginTop: '1rem',
-    marginBottom: '1rem',
+    height:'350px',
+    borderRadius: '3px',
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      height:'240px'
+    },
+    '& img':{
+      objectFit: 'cover',
+      height:'350px',
+      width: '100%',
+      [theme.breakpoints.down('xs')]: {
+        height:'240px',
+        objectFit: 'cover',
+      },
+    }
+       
   },
   author: {
     display: 'flex',
@@ -36,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: 'var(--color-principal)',
     fontSize: '1.3rem',
-    margin: 0,
+    marginTop:'0.5rem',
     color: '#fff',
     width: '40%',
     height: '2rem',
@@ -124,10 +136,11 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     margin: '0',
     color: 'white',
-    width: '20%',
+    width: '30%',
     height: '2rem',
     borderRadius: '5px',
     background: 'rgba(175, 11, 33, 0.89)',
+    
   },
   tagsAdvert: {
     color: '#b2b3b4',

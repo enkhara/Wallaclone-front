@@ -14,26 +14,27 @@ const SideBar = () => {
 	const { t } = useTranslation(['global']);
 	
 	return (
-		<nav className="sideBarContainer">
-			<div className="sideBarWrapper">
-				<Link to={'/user/account'} className="sideBarButton">
-					<AccountBoxIcon className="sideBarButtonImg" />
-					<span className="sideBarButtonName">{t('sideBar.Profile')}</span>
-				</Link>
-				<Link to={{ pathname: '/myadverts' }} className="sideBarButton">
-					<BallotIcon className="sideBarButtonImg" />
-					<span className="sideBarButtonName">{t('sideBar.Products')}</span>
-				</Link>
-				<Link className="sideBarButton" to={'/user/chat'}>
-					<ChatIcon className="sideBarButtonImg" />
-					<span className="sideBarButtonName">{t('sideBar.Chat')}</span>
-				</Link>
-				<Link to={''} className="sideBarButton">
-					<FavoriteBorderIcon className="sideBarButtonImg" />
-					<span className="sideBarButtonName">{t('sideBar.Favorites')}</span>
-				</Link>
-			</div>
-		</nav>
+		
+		<React.Fragment>
+			
+			<Link to={'/user/account'} className="sideBarButton">
+				<AccountBoxIcon/>
+				<span>{t('sideBar.Profile')}</span>
+			</Link>
+			<Link to={{ pathname: '/myadverts' }} className="sideBarButton">
+				<BallotIcon/>
+				<span>{t('sideBar.Products')}</span>
+			</Link>
+			<Link className="sideBarButton" to={'/user/chat'}>
+				<ChatIcon />
+				<span >{t('sideBar.Chat')}</span>
+			</Link>
+			<Link to={''} className="sideBarButton">
+				<FavoriteBorderIcon/>
+				<span>{t('sideBar.Favorites')}</span>
+			</Link>
+		</React.Fragment>
+		
 	);
 };
 
