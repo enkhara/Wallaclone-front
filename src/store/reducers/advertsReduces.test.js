@@ -58,29 +58,31 @@ describe('adverts', () => {
 			data: [payload],
 		});
 	});
+
 	test('should manage ADVERT_DELETED_SUCCESS action', () => {
 		const payload = '1';
 		const action = { type: ADVERT_DELETED_SUCCESS, payload };
-		const state = {
-			...initialState.adverts,
-			loaded: true,
-			data: [{ id: '1' }],
-		};
-		const expectedState = {
-			...state,
-			loaded: true,
+		const state = { ...initialState.adverts, data: [{ _id: '1' }] };
+		expect(adverts(state, action)).toMatchObject({
 			data: [],
-		};
-		expect(adverts(state, action)).toBe(expectedState);
+		});
 	});
 	// test('should manage ADVERT_UPDATE_SUCCESS', () => {
-	// 	const payload = { _id: '1' };
-	// 	const payloadUpdate = '2';
+	// 	const payload = { _id: '1', name: 'newName' };
+	// 	const advert = {
+	// 		_id: '1',
+	// 		name: 'advert',
+	// 	};
+
 	// 	const action = { type: ADVERT_UPDATE_SUCCESS, payload };
-	// 	const state = { ...initialState.adverts, data: [{ id: '1' }] };
-	// 	expect(adverts(state, action)).toBe({
-	// 		data: [payloadUpdate],
-	// 	});
+	// 	const state = {
+	// 		...initialState.adverts,
+	// 		loaded: false,
+	// 		data: [advert],
+	// 	};
+	// 	expect(adverts(state, action)).toBe(
+	// 		advert._id === payload._id ? { ...advert, ...payload } : advert
+	// 	);
 	// });
 	// test('should manage ADVERT_EDIT_SUCCESS', () => {
 	// 	const payload = { _id: '1' };
