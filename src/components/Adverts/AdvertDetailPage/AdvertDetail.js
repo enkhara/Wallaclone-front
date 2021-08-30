@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useHistory } from 'react-router';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
-import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
+
 import {
 	Grid,
 	Button,
@@ -31,10 +31,12 @@ import {
 import {
 	conversationLoadAction,
 	conversationCreatedAction,
-	setFavoritesUser,
+	userAddFavoritesAction,
+	userDeleteFavoritesAction, 
+	
 } from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, getIsLogged } from '../../../store/selectors';
+import { getUser, getIsLogged, getUserAdvertFavorite } from '../../../store/selectors';
 function AdvertDetail({
 	name,
 	transaction,
@@ -56,16 +58,22 @@ function AdvertDetail({
 	const user = useSelector(getUser);
 	const isLogged = useSelector(getIsLogged);
 	const history = useHistory();
-	const [fav, setFav] = React.useState(false);
+	let fav = false;
+	//const [fav, setFav] = React.useState(false);
+	fav = getUserAdvertFavorite(user, user._id, _id);
 
-	React.useEffect(() => {
-		if (user && user._id) {
-			getUserFav(user._id).then((r) => {
-				const favorites = r.result.ads_favs;
-				dispatch(setFavoritesUser(favorites));
-				setFav(favorites.includes(_id));
-			});
-		}
+	useEffect(() => {
+		//  if (user && user._id) {
+		//  	getUserFav(user._id).then((r) => {
+		//  		const favorites = r.result.ads_favs;
+		//  		dispatch(setFavoritesUser(favorites));
+		//  		setFav(favorites.includes(_id));
+		//  	});
+		//  }
+		//console.log('user con getUser', useSelector(getUser));
+		
+		fav = getUserAdvertFavorite(user, user._id, _id);
+		console.log('user fav', fav);
 	}, [dispatch]);
 
 	const handleChat = async (e) => {
@@ -90,21 +98,35 @@ function AdvertDetail({
 		history.push('/user/chat');
 	};
 
+	// const handleFavored = async (e) => {
+	// 	e.preventDefault();
+	// 	setFav(!fav);
+
+	// 	if (!fav) {
+	// 		await addFavorites(user._id, _id);
+	// 		const favorites = user.ads_favs.push(_id);
+	// 		dispatch(setFavoritesUser(favorites));
+
+	// 	} else {
+	// 		const favorites = user.ads_favs._id;
+	// 		favorites && favorites.splice(favorites.indexOf(_id), 1);
+	// 		await deleteFavorites(user._id, _id);
+	// 	}
+	// };
+
 	const handleFavored = async (e) => {
 		e.preventDefault();
-		setFav(!fav);
-
 		if (!fav) {
-			await addFavorites(user._id, _id);
-			const favorites = user.ads_favs.push(_id);
-			dispatch(setFavoritesUser(favorites));
-		} else {
-			const favorites = user.ads_favs._id;
-			favorites && favorites.splice(favorites.indexOf(_id), 1);
-			await deleteFavorites(user._id, _id);
+			console.log('añadimos favorito')
+			dispatch(userAddFavoritesAction(user._id, _id));
+		}
+		else {
+			console.log('borramos favorito')
+			dispatch(userDeleteFavoritesAction(user._id, _id));
 		}
 	};
 
+	//console.log('favorito antes de render', fav);
 	return (
 		<Grid
 			item

@@ -77,6 +77,14 @@ import {
 	GET_CHAT_SPEAKERS_REQUEST,
 	GET_CHAT_SPEAKERS_FAILURE,
 	USER_FAVORITES_SUCCESS,
+	USER_ADD_FAVORITES_SUCCESS,
+	USER_ADD_FAVORITES_FAILURE,
+	USER_DELETE_FAVORITES_SUCCESS,
+	USER_DELETE_FAVORITES_FAILURE, 
+	ADVERT_UPDATE_RESERVED_SUCCESS,
+	ADVERT_UPDATE_RESERVED_FAILURE,
+	ADVERT_UPDATE_SOLD_SUCCESS,
+	ADVERT_UPDATE_SOLD_FAILURE,
 } from './types';
 
 /** Login Pasando el history */
@@ -227,7 +235,7 @@ export const updateAccountAction = (userId, credentials) => {
 			const response = await api.auth.updateAccountUser(userId, credentials);
 			dispatch(authUpdateSuccess(response.result));
 			
-			console.log('updateAccount result', response.result);
+			//console.log('updateAccount result', response.result);
 			if (response.error) {
 				Swal.fire(
 					'Error',
@@ -323,7 +331,7 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			console.log(`advert ACTION ${advert}`);
+			//console.log(`advert ACTION ${advert}`);
 			dispatch(advertDetailSuccess(advert.result));
 			return advert.result;
 		} catch (error) {
@@ -440,14 +448,9 @@ export const advertEditFailure = (error) => {
 
 export const advertEditAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
-		const advertEdited = getAdvertDetail(getState(), advertId);
-		const user = getUser(getState());
-		console.log('user loggado', user);
-		// if (advertEdited) {
-		// 	return;
-		// }
-		console.log('USER ADVERT', advertEdited.userId);
-		console.log('ADVERTEDITED', advertEdited);
+	//	const advertEdited = getAdvertDetail(getState(), advertId);
+	//	const user = getUser(getState());
+	
 		dispatch(advertEditRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
@@ -503,6 +506,83 @@ export const advertUpdateAction = (advertId, advert) => {
 		}
 	};
 };
+
+/***
+ * ACTIONS ADVERT UPDATE RESERVED & SOLD 
+ */
+export const advertUpdateReservedSuccess = (advert) => {
+	return {
+		type: ADVERT_UPDATE_RESERVED_SUCCESS,
+		payload: advert,
+	};
+};
+
+export const advertUpdateReservedFailure = (error) => {
+	return {
+		type: ADVERT_UPDATE_RESERVED_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const advertUpdateSoldSuccess = (advert) => {
+	return {
+		type: ADVERT_UPDATE_SOLD_SUCCESS,
+		payload: advert,
+	};
+};
+
+export const advertUpdateSoldFailure = (error) => {
+	return {
+		type: ADVERT_UPDATE_SOLD_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const advertUpdateReservedAction = (advertId, reserved) => {
+	console.log('action reserved', reserved);
+	return async function (dispatch, getState, { api, history }) {
+		
+		try {
+			console.log('reserved pasado a actions', reserved)
+			const updateAdvert = await api.adverts.changeReserved(advertId, reserved);
+
+			dispatch(advertUpdateReservedSuccess(updateAdvert.result));
+			// history.push(
+			// 	`/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+			// );
+		} catch (error) {
+			dispatch(advertUpdateReservedFailure(error));
+		//	if (error?.statusCode === 401) {
+		//		history.push('/login');
+		//		}
+		}
+	};
+};
+
+export const advertUpdateSoldAction = (advertId, sold) => {
+	return async function (dispatch, getState, { api, history }) {
+		
+		try {
+			const updateAdvert = await api.adverts.changeSold(advertId, sold);
+
+			dispatch(advertUpdateSoldSuccess(updateAdvert.result));
+			// history.push(
+			// 	`/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
+			// );
+		} catch (error) {
+			dispatch(advertUpdateSoldFailure(error));
+		//	if (error?.statusCode === 401) {
+		//		history.push('/login');
+		//		}
+		}
+	};
+};
+
+
+
+
 
 /*******************ADVERT DELETE ************************* */
 
@@ -656,6 +736,7 @@ export const userLoggedSuccess = (user) => {
 		payload: user,
 	};
 };
+
 export const setFavoritesUser = (favoritos) => {
 	return {
 		type: USER_FAVORITES_SUCCESS,
@@ -663,13 +744,73 @@ export const setFavoritesUser = (favoritos) => {
 	};
 };
 
+export const UserAddFavoritesSuccess = (user) => {
+	return {
+		type: USER_ADD_FAVORITES_SUCCESS,
+		payload: user,
+	};
+};
+
+export const UserAddFavoritesError = (error) => {
+	return {
+		type: USER_ADD_FAVORITES_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+export const UserDeleteFavoritesSuccess = (user) => {
+	return {
+		type: USER_DELETE_FAVORITES_SUCCESS,
+		payload: user,
+	};
+};
+
+export const UserDeleteFavoritesError = (error) => {
+	return {
+		type: USER_DELETE_FAVORITES_FAILURE,
+		payload: error,
+		error: true,
+	};
+};
+
+
+
+export const userAddFavoritesAction = (userId, advertId) => {
+	return async function (dispatch, getState, { api, history }) {
+		
+		try {
+			const updateUser = await api.user.addFavorites(userId, advertId);
+			dispatch(UserAddFavoritesSuccess(updateUser.result));
+			
+		} catch (error) {
+			dispatch(UserAddFavoritesError(error));
+		
+		}
+	};
+};
+
+export const userDeleteFavoritesAction = (userId, advertId) => {
+	return async function (dispatch, getState, { api, history }) {
+		
+		try {
+			const updateUser = await api.user.deleteFavorites(userId, advertId);
+			dispatch(UserDeleteFavoritesSuccess(updateUser.result));
+			
+		} catch (error) {
+			dispatch(UserDeleteFavoritesError(error));
+		
+		}
+	};
+};
+
 export const userLoggedAction = () => {
 	return async function (dispatch, getState, { api }) {
 		const user = getUserLoaded(getState());
-		console.log('user userLoggedAction', user);
+		//console.log('user userLoggedAction', user);
 		//const tagsLoaded = getTagsLoaded(getState());
 		if (user) {
-			console.log('if user entro');
+			//console.log('if user entro');
 			return;
 		}
 		dispatch(userLoggedRequest());
@@ -678,7 +819,7 @@ export const userLoggedAction = () => {
 			dispatch(userLoggedSuccess(user));
 		} catch (error) {
 			dispatch(userLoggedFailure(error));
-			console.error('error en user token', error);
+			//console.error('error en user token', error);
 		}
 	};
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
 import { format } from 'date-fns';
@@ -8,13 +8,10 @@ import { useStyles } from './userAdvertCSS';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
+//import BookmarkIcon from '@material-ui/icons/Bookmark';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
-import ToggleIcon from "material-ui-toggle-icon";
-//import IconButton from "@material-ui/core/IconButton";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+// import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+// import ToggleIcon from "material-ui-toggle-icon";
 
 import {
   Grid,
@@ -22,27 +19,21 @@ import {
   ButtonBase, 
   Typography,
   IconButton,
-  Button,
+  Button, 
 } from '@material-ui/core';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Tooltip from '@material-ui/core/Tooltip';
+import Swal from 'sweetalert2';
 
-
-import { useHistory } from 'react-router';
+//import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, getIsLogged } from '../../../store/selectors';
+import {
+	advertDeletedAction,
+	advertsLoadAction,
+	advertUpdateReservedAction,
+	advertUpdateSoldAction
+} from '../../../store/actions';
+import { getAdvertDetail, getAdverts } from '../../../store/selectors';
 
-// const useStyles = makeStyles(theme => ({
-//   iconHover: {
-//     '&:hover': {
-//       border: '2px solid green',
-//     }
-//   },
-
-//   floatBtn: {
-//     marginRight: theme.spacing(1),
-//   },
-// }));
 const UserAdvert = ({
   _id,
   image,
@@ -56,24 +47,58 @@ const UserAdvert = ({
   userId,
   createdAt,
   updatedAt,
-  onDelete,
+  favs, 
 }) => {
   const classes = useStyles();
-  const history = useHistory();
-  const user = useSelector(getUser);
-  const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
-
+  //const advert = useSelector((state) => getAdvertDetail(state, _id));
+  //const adverts = useSelector(getAdverts);
   const [t] = useTranslation('global');
+  
 
-  const [stateSold, setStateSold] = useState({ on: false });
-  const [stateReserved, setStateReserved] = useState({ on: false });
+  useEffect(() => {
+
+    dispatch(advertsLoadAction());
+
+  }, [reserved, sold]);
+
+  const handleDelete = () => {
+    
+		const title = t('adverts.Are you sure?');
+		Swal.fire({
+			title: title,
+			text: t('adverts.You will not be able to reverse this !'),
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: t('adverts.Yes, delete it!'),
+		}).then((result) => {
+			if (result.isConfirmed) {
+				dispatch(advertDeletedAction(_id));
+				Swal.fire(t('adverts.Deleted!'), t('adverts.Your advert has been deleted.'), 'success');
+			}
+		});
+	};
+  
+  const handleReserved = async (_id, reserved) => {
+    console.log('entro en handleReserved de UserAdvert _id', _id);
+    console.log('entro en handleReserved de UserAdvert reserved', reserved, !reserved);
+    // le pasamos el dato negado
+		await dispatch(advertUpdateReservedAction(_id, !reserved));
+	}
+	
+  const handleSold = async (_id, sold) => {
+    console.log('entro en handleSold de UserAdvert');
+		await dispatch(advertUpdateSoldAction(_id, !sold));
+	}
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2} >
           <Grid item>
+          <NavLink to={`/adverts/${name.replace(/\/+/g,'-')}/${_id}`} style={{ textDecoration: 'none' }}>
             <ButtonBase className={classes.image}>
               <img className={classes.img}
                 alt="Imagen del anuncio"
@@ -81,9 +106,10 @@ const UserAdvert = ({
                      ? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
                      : placeholder } 
                   />
-            </ButtonBase>
+              </ButtonBase>
+            </NavLink>
           </Grid>
-          <Grid item xs={12} sm container>
+          <Grid item xs={8} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="h6">
@@ -96,12 +122,7 @@ const UserAdvert = ({
                 {desc.substr(0, 20)+' ...'}
                 </Typography>
               </Grid>
-             
-              <Grid item>
-                {/* <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
-                </Typography> */}
-              </Grid>
+            
             </Grid>
           
             <Grid item xs>
@@ -124,52 +145,51 @@ const UserAdvert = ({
                 </Typography>
                 
             </Grid>
-            <div className={classes.root}>
-           
-              <IconButton aria-label="create" color="primary">
-              <Link className={classes.containerNewAdvert}
-						          to={`/adverts/edit/${_id}`}
-					      > 
-                  <CreateIcon />
-                </Link>
-              </IconButton>
-
-              <IconButton  aria-label="delete" color="primary">
-                <DeleteIcon onClick={onDelete} />
-              </IconButton>
-
-              {/* {reserved ? (<IconButton color="primary" aria-label="add an alarm">
-                <BookmarkIcon />
-              </IconButton>)
-                :
-                (<IconButton color="primary" aria-label="add an alarm">
-                <BookmarkBorderIcon />
-                </IconButton>)} */}
-              
-                <IconButton color="primary" aria-label="add an alarm"
-                        onClick={() => setStateReserved((stateReserved) => ({ on: !stateReserved.on }))}>
-              <ToggleIcon
-                on={stateReserved.on}
-                onIcon={<BookmarkIcon />}
-                offIcon={<BookmarkBorderIcon />}
-              />
-              </IconButton>
-              
-              {/* <IconButton color="primary" aria-label="add to shopping cart">
-                <ShoppingCartIcon />
-              </IconButton> */}
+            <Grid item >
+              <Typography variant="subtitle2" >
+                {t('userzone.Status')}
+                </Typography> 
+                <Typography variant="body2" >
+                  {reserved ?  t('userzone.Reserved') : t('userzone.Not Reserved')}
+                </Typography> 
+                <Typography variant="body2" >
+                  {sold ? t('userzone.Sold') : t('userzone.Not Sold')}
+                </Typography> 
+               </Grid> 
             
-              {/* <Button onClick={() => handleToggleSold()}>{sold ? 'VENDIDO' : 'NO VENDIDO'}</Button> */}
-              <IconButton color="primary" aria-label="add an alarm"
-                        onClick={() => setStateSold((stateSold) => ({ on: !stateSold.on }))}>
-              <ToggleIcon
-                on={stateSold.on}
-                onIcon={<ShoppingCartIcon />}
-                offIcon={<RemoveShoppingCartIcon />}
-              />
-              </IconButton>
+            {!favs && <div className={classes.root}>
+              
+              <Tooltip title="Editar" placement="top" arrow>
+                <IconButton aria-label="create" color="primary">
+                  <Link className={classes.containerNewAdvert}
+                    to={`/adverts/edit/${_id}`}
+                  >
+                    <CreateIcon />
+                  </Link>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Eliminar" placement="top" arrow>
+                <IconButton aria-label="delete" color="primary">
+                  <DeleteIcon onClick={()=>handleDelete()} />
+                </IconButton>
+                </Tooltip>
+               
+              <Tooltip title={reserved ? t('userzone.Mark as un reserved') : t('userzone.Mark as reserved')} placement="top" arrow>
+                <IconButton id="reserved" color="primary" aria-label="add an alarm"
+                    onClick={() => handleReserved(_id, reserved)}>
+                <BookmarkBorderIcon />
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title={sold ? t('userzone.Mark as unsold') : t('userzone.Mark as sold')} placement="top" arrow>
+                <IconButton id="sold" color="primary" aria-label="add an alarm"
+                    onClick={() => handleSold(_id, sold)} >
+                  <ShoppingCartIcon />
+                </IconButton>
+              </Tooltip>
           
-            </div>
+            </div>}
+             
           </Grid>
         </Grid>
       </Paper>

@@ -28,7 +28,7 @@ const SideBar = () => {
 					<ChatIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Chat')}</span>
 				</Link>
-				<Link to={''} className="sideBarButton">
+				<Link to={'/myfavourites'} className="sideBarButton">
 					<FavoriteBorderIcon className="sideBarButtonImg" />
 					<span className="sideBarButtonName">{t('sideBar.Favorites')}</span>
 				</Link>

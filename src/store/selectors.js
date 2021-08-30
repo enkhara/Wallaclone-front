@@ -30,3 +30,14 @@ export const getAdvertsUserLoaded = (state, userId) => {
 	return state.adverts.data.every((advert) => advert.userId._id === userId);
 };
 
+export const getUserAdvertFavorite = (state, userId, advertId) => {
+	let fav;
+
+	if (!userId) {
+		fav = false;
+	}
+	else {
+		fav = state.ads_favs.includes(advertId);
+	}
+	return fav;
+};

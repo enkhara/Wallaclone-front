@@ -18,6 +18,7 @@ import ChatWithUser from '../Chat/Chat';
 import NotfoundPage from './NotFoundPage';
 import UserAdvertsPageWu from '../User/Adverts/UserAdvertsPage';
 import EditUserAccountPage from '../User/Account/EditAccountPage'
+import UserAdvertsFavPage from '../User/Adverts/UserAdvertsFavPage';
 
 const AppRoutes = () => {
 	return (
@@ -44,6 +45,10 @@ const AppRoutes = () => {
 			<PrivateRoute exact path="/user/chat">
 				<ChatWithUser />
 			</PrivateRoute>
+
+			<PrivateRoute exact path="/myfavourites" >
+				<UserAdvertsFavPage />
+			</PrivateRoute>
 			
 			<Route exact path="/login">
 				<LoginPage />
@@ -66,7 +71,6 @@ const AppRoutes = () => {
 			</Route>
 			
 			 <Route exact path="/:username/adverts">
-				{/* <AdvertsPage /> */}
 				{routeProps => <AdvertsPage {...routeProps} />}
 			</Route> 
 
@@ -75,7 +79,6 @@ const AppRoutes = () => {
 			</Route>
 
 			<Route exact path="/adverts">
-				{/* <AdvertsPage /> */}
 				{routeProps => <AdvertsPage {...routeProps} />}
 			</Route>
 

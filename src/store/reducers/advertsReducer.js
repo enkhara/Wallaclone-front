@@ -28,6 +28,12 @@ import {
 	USER_LOGOUT_REQUEST,
 	USER_DELETED_REQUEST,
 	USER_DELETED_SUCCESS,
+	USER_ADD_FAVORITES_SUCCESS,
+	USER_ADD_FAVORITES_FAILURE,
+	USER_DELETE_FAVORITES_SUCCESS,
+	USER_DELETE_FAVORITES_FAILURE, 
+	ADVERT_UPDATE_RESERVED_SUCCESS,
+	ADVERT_UPDATE_SOLD_SUCCESS,
 } from '../types';
 
 export const initialState = {
@@ -61,6 +67,8 @@ export function logged(state = initialState.logged, action) {
 export function user(state = initialState.user, action) {
 	switch (action.type) {
 		case USER_LOGGED_SUCCESS:
+		case USER_ADD_FAVORITES_SUCCESS:
+		case USER_DELETE_FAVORITES_SUCCESS:	
 		//case AUTH_UPDATE_SUCCESS:
 			
 			return action.payload;
@@ -99,6 +107,8 @@ export function adverts(state = initialState.adverts, action) {
 
 		case ADVERT_EDIT_SUCCESS:
 		case ADVERT_UPDATE_SUCCESS:
+		case ADVERT_UPDATE_RESERVED_SUCCESS:
+		case ADVERT_UPDATE_SOLD_SUCCESS:
 			return {
 				...state,
 				loaded: false,

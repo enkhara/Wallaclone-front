@@ -15,17 +15,24 @@ export const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 800,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
+  
   img: {
     margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    width: '150px', 
+    height:'150px',
+    maxWidth: '80%',
+    maxHeight: '80%',
   },
 
+  image: {
+    
+    objectFit: 'cover',
+    width: '150px',
+    height: '150px',   
+  },
+
+   
   containerGrid:{
     maxWidth:'450px',
     
@@ -73,5 +80,16 @@ export const useStyles = makeStyles((theme) => ({
   favoriteIcon: {
     marginRight: '5px',
   },
+  
+  // iconHover: {
+  //   '&:hover': {
+  //     border: '2px solid green',
+  //     //TODO display the text CREATE ITEM instead of AddIcon
+  //   }
+  // },
+
+  // floatBtn: {
+  //   marginRight: theme.spacing(1),
+  // },
 
 }));

@@ -4,7 +4,7 @@ import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
 import { formatDistanceToNow } from 'date-fns';
 import ShareAdvert from '../shareAdvert';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useStyles } from './advertCSS';
 
 import {
@@ -23,9 +23,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserFav,addFavorites,deleteFavorites } from '../../../api/user';
-import { getUser, getIsLogged } from '../../../store/selectors';
-import { setFavoritesUser } from '../../../store/actions';
+import { getUser, getIsLogged, getUserAdvertFavorite} from '../../../store/selectors';
+import { userAddFavoritesAction, userDeleteFavoritesAction } from '../../../store/actions';
 import { useTranslation } from 'react-i18next';
 const Advert = ({
   _id,
@@ -46,34 +45,52 @@ const Advert = ({
   const user = useSelector(getUser);
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
-  const [fav, setFav] = React.useState(false);
+  let fav = false;
+	fav = getUserAdvertFavorite(user, user._id, _id);
 
+  // React.useEffect(() => {
+  //   if (user && user._id) {
+  //     getUserFav(user._id).then((r) => {
+  //       const favorites = r.result.ads_favs;
+  //       dispatch(setFavoritesUser(favorites));
+  //       setFav(favorites.includes(_id));
+  //     });
+  //   }
+  // }, [dispatch]);
 
-  
-  React.useEffect(() => {
-    if (user && user._id) {
-      getUserFav(user._id).then((r) => {
-        const favorites = r.result.ads_favs;
-        dispatch(setFavoritesUser(favorites));
-        setFav(favorites.includes(_id));
-      });
-    }
+  // const handleFavored = async (e) => {
+  //   e.preventDefault();
+  //   setFav(!fav);
+
+  //   if (!fav) {
+  //     await addFavorites(user._id, _id);
+  //     const favorites = user.ads_favs.push(_id);
+  //     dispatch(setFavoritesUser(favorites));
+  //   } else {
+  //     const favorites = user.ads_favs._id;
+  //     favorites && favorites.splice(favorites.indexOf(_id), 1);
+  //     await deleteFavorites(user._id, _id);
+  //   }
+  // };
+
+  React.useEffect(() => {	
+		fav = getUserAdvertFavorite(user, user._id, _id);
+	//	console.log('user fav', fav);
   }, [dispatch]);
-
+  
   const handleFavored = async (e) => {
-    e.preventDefault();
-    setFav(!fav);
-
-    if (!fav) {
-      await addFavorites(user._id, _id);
-      const favorites = user.ads_favs.push(_id);
-      dispatch(setFavoritesUser(favorites));
-    } else {
-      const favorites = user.ads_favs._id;
-      favorites && favorites.splice(favorites.indexOf(_id), 1);
-      await deleteFavorites(user._id, _id);
-    }
+		e.preventDefault();
+		if (!fav) {
+			console.log('añadimos favorito')
+			dispatch(userAddFavoritesAction(user._id, _id));
+		}
+		else {
+			console.log('borramos favorito')
+			dispatch(userDeleteFavoritesAction(user._id, _id));
+		}
   };
+  
+  //console.log('favorito antes de render', fav);
 
   return (
      <Grid item xs={12} sm={6} lg={4} className={classes.containerGrid}>

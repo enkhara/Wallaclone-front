@@ -93,7 +93,8 @@
     "Your advert has been deleted": "Tu anuncio ha sido eliminado ",
     "Action not allowed": "Acción no permitida",
     "You will need to log in": "Deberá iniciar sesión",
-    "Cancel": "Cancelar"
+    "Cancel": "Cancelar", 
+    "In this list you can see all the products that you have saved as favorites": "En esta lista podrás ver todos los productos que has guardado como favoritos"
   },
   "chat": {
     "Send": "Enviar",
@@ -130,7 +131,17 @@
     "Your adverts": "Tus anuncios", 
     "adverts":"anuncios",
     "Published at": "Publicado", 
-    "Updated at": "Modificado"
+    "Updated at": "Modificado", 
+    "Your favourites adverts":"Tus anuncios favoritos", 
+    "Status":"Estado", 
+    "Reserved":"Reservado",
+    "Sold":"Vendido", 
+    "Not Reserved":"No Reservado",
+    "Not Sold":"No Vendido", 
+    "Mark as un reserved": "Marcar como no reservado", 
+    "Mark as reserved": "Marcar como reservado", 
+    "Mark as unsold": "Marcar como no vendido", 
+    "Mark as sold": "Marcar como vendido"
   }, 
   "account":{
     "Account Information": "Tu Perfil",

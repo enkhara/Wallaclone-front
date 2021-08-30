@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useStyles } from './userAdvertsListCSS';
 import { Grid, Typography, } from '@material-ui/core';
 
-const AdvertsList = ({ adverts, onDelete }) => {
+const AdvertsList = ({ adverts, favs, onDelete, onChangeReserved, onChangeSold }) => {
 	const classes = useStyles();
 	
 	const [t] = useTranslation('global');
@@ -16,7 +16,7 @@ const AdvertsList = ({ adverts, onDelete }) => {
 		<Fragment>
 			<Grid>
 			 	<Typography gutterBottom variant="h4">
-					{t('userzone.Your adverts')}
+					{favs ? t('userzone.Your favourites adverts') : t('userzone.Your adverts') }
 				</Typography>
 				<Grid item>
               		<Typography variant="subtitle1">{adverts.length} {t('userzone.adverts')}</Typography>
@@ -32,7 +32,13 @@ const AdvertsList = ({ adverts, onDelete }) => {
 				 > 
 			
 				{adverts.map((advert) => (
-					<UserAdvert key={advert._id} {...advert} onDelete/>
+					<UserAdvert key={advert._id}
+						{...advert}
+						favs={favs}
+						onDelete
+						onChangeReserved
+						onChangeSold
+					/>
 				))}
 
 			</Grid>

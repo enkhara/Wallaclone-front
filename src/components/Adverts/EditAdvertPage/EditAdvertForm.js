@@ -249,7 +249,7 @@ function EditAdvertForm({
 								type="checkbox"
 								label='Reservado'
 								onChange={handleToggleReserved}
-								key={key}
+								key={1}
 								name={key}
 								checked={stateReserved[key]}
 								/>}
@@ -261,7 +261,7 @@ function EditAdvertForm({
 								control={<GreenCheckbox
 									type="checkbox"
 									onChange={handleToggleSold}
-									key={key}
+									key={2}
 									name={key}
 									checked={stateSold[key]}
 								/>}
