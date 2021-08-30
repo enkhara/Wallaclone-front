@@ -47,18 +47,20 @@ const UserAdvert = ({
   userId,
   createdAt,
   updatedAt,
-  favs, 
+  favs,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   //const advert = useSelector((state) => getAdvertDetail(state, _id));
   //const adverts = useSelector(getAdverts);
   const [t] = useTranslation('global');
-  
+  //const [reserved, setReserved] = useState(reserved);
+  //const [sold, setSold] = useState(sold);
 
   useEffect(() => {
 
     dispatch(advertsLoadAction());
+    //const advert = useSelector((state) => getAdvertDetail(state, _id));
 
   }, [reserved, sold]);
 

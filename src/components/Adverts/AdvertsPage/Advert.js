@@ -21,7 +21,7 @@ import {
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
-import { useHistory } from 'react-router';
+//import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getUser,

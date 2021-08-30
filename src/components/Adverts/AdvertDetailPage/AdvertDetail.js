@@ -26,7 +26,7 @@ import {
 	CardActionArea,
 	CardActions,
 	CardMedia,
-	CardContent,
+	//CardContent,
 	Typography,
 	Avatar,
 	Box,
