@@ -54,39 +54,8 @@ const Advert = ({
   const dispatch = useDispatch();
   const [fav, setFav] = useState(false);
 
-  //let fav = false;
-  // if (user) {
-  // 	fav = getUserAdvertFavorite(user, user._id, _id);
-  // }
-
-  // React.useEffect(() => {
-  //   if (user && user._id) {
-  //     getUserFav(user._id).then((r) => {
-  //       const favorites = r.result.ads_favs;
-  //       dispatch(setFavoritesUser(favorites));
-  //       setFav(favorites.includes(_id));
-  //     });
-  //   }
-  // }, [dispatch]);
-
-  // const handleFavored = async (e) => {
-  //   e.preventDefault();
-  //   setFav(!fav);
-
-  //   if (!fav) {
-  //     await addFavorites(user._id, _id);
-  //     const favorites = user.ads_favs.push(_id);
-  //     dispatch(setFavoritesUser(favorites));
-  //   } else {
-  //     const favorites = user.ads_favs._id;
-  //     favorites && favorites.splice(favorites.indexOf(_id), 1);
-  //     await deleteFavorites(user._id, _id);
-  //   }
-  // };
-
   useEffect(() => {
     if (user) {
-      //console.log('estoy en el efecto')
       setFav(getUserAdvertFavorite(user, user._id, _id));
     }
   }, [user, fav]);
@@ -124,15 +93,16 @@ const Advert = ({
               <CardContent className={classes.cardContent}>
                 <section className={classes.container_price_favorite}>
                   {isLogged && (
-                    <FavoriteBorderIcon
-                      style={{ fontSize: '2rem' }}
+                    <IconButton
                       className={
                         fav
                           ? classNames(classes.favoriteIconSel)
                           : classNames(classes.favoriteIcon)
                       }
                       onClick={handleFavored}
-                    />
+                    >
+                      <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
+                    </IconButton>
                   )}
 
                   <p className={classes.priceAdvert}>{`${price} €`}</p>

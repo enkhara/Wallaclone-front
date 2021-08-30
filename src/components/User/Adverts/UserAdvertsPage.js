@@ -7,25 +7,30 @@ import withUser from '../../hoc/withUser';
 import { SideBar } from '../../layout';
 import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
-import {
-	advertDeletedAction,
-	advertUpdateReservedAction,
-	advertUpdateSoldAction
-} from '../../../store/actions';
+// import {
+// 	advertDeletedAction,
+// 	advertUpdateReservedAction,
+// 	advertUpdateSoldAction
+// } from '../../../store/actions';
+import { advertsLoadAction } from '../../../store/actions';
 import './User.css';
  
 
 const UserAdvertsPage = ({ user, props }) => {
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
-	
 //	const user = useSelector(getUser);
 	//const username = props.match.params.username;
-	const { t } = useTranslation(['global']);
-	const favs = false;
 
+	const { t } = useTranslation(['global']);
+	
     const [userAdverts,setUserAdverts] = React.useState(adverts);
 	
+	React.useEffect(() => {
+		console.log('entro en use effect de userAdvertsPage 2');
+		dispatch(advertsLoadAction());
+	}, [dispatch]);
+
     React.useEffect(() => {
 		//console.log('entro en use effect de userAdvertsPage');
         if (user.username !== undefined) {
@@ -76,6 +81,8 @@ const UserAdvertsPage = ({ user, props }) => {
 						adverts={userAdverts}
 						username={user.username}
 						//onDelete={handleDelete}
+						//onChangeReserved={handleReserved}
+						
 					/>
 					
 					) : (

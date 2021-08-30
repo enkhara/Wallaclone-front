@@ -94,22 +94,6 @@ function AdvertDetail({
 		history.push('/user/chat');
 	};
 
-	// const handleFavored = async (e) => {
-	// 	e.preventDefault();
-	// 	setFav(!fav);
-
-	// 	if (!fav) {
-	// 		await addFavorites(user._id, _id);
-	// 		const favorites = user.ads_favs.push(_id);
-	// 		dispatch(setFavoritesUser(favorites));
-
-	// 	} else {
-	// 		const favorites = user.ads_favs._id;
-	// 		favorites && favorites.splice(favorites.indexOf(_id), 1);
-	// 		await deleteFavorites(user._id, _id);
-	// 	}
-	// };
-
 	const handleFavored = async (e) => {
 		e.preventDefault();
 		if (!fav) {

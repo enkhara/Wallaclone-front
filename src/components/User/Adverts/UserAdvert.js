@@ -47,24 +47,30 @@ const UserAdvert = ({
   userId,
   createdAt,
   updatedAt,
-  favs,
+  favs
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  //const advert = useSelector((state) => getAdvertDetail(state, _id));
+  const advert = useSelector((state) => getAdvertDetail(state, _id));
   //const adverts = useSelector(getAdverts);
   const [t] = useTranslation('global');
-  //const [reserved, setReserved] = useState(reserved);
-  //const [sold, setSold] = useState(sold);
+  const [statusReserved, setStatusReserved] = useState(reserved);
+  const [statusSold, setStatusSold] = useState(sold);
 
   useEffect(() => {
+    console.log('entro en useEfect de reserved UserAdvert')
+    //dispatch(advertsLoadAction());
+   // getAdvertDetail(state.adverts.data, _id);
+    // seteamos el estado con los datos almacenados en redux (actualizados)
+    setStatusReserved(reserved);
+  }, [reserved]);
 
-    dispatch(advertsLoadAction());
-    //const advert = useSelector((state) => getAdvertDetail(state, _id));
+  useEffect(() => {
+    console.log('entro en useEfect de sold UserAdvert')
+    setStatusSold(sold);
+  }, [sold]);
 
-  }, [reserved, sold]);
-
-  const handleDelete = () => {
+   const handleDelete = () => {
     
 		const title = t('adverts.Are you sure?');
 		Swal.fire({
@@ -89,11 +95,13 @@ const UserAdvert = ({
     // le pasamos el dato negado
 		await dispatch(advertUpdateReservedAction(_id, !reserved));
 	}
-	
+
+
   const handleSold = async (_id, sold) => {
     console.log('entro en handleSold de UserAdvert');
 		await dispatch(advertUpdateSoldAction(_id, !sold));
-	}
+  }
+  
 
   return (
     <div className={classes.root}>
@@ -152,10 +160,10 @@ const UserAdvert = ({
                 {t('userzone.Status')}
                 </Typography> 
                 <Typography variant="body2" >
-                  {reserved ?  t('userzone.Reserved') : t('userzone.Not Reserved')}
+                  {statusReserved ?  t('userzone.Reserved') : t('userzone.Not Reserved')}
                 </Typography> 
                 <Typography variant="body2" >
-                  {sold ? t('userzone.Sold') : t('userzone.Not Sold')}
+                  {statusSold ? t('userzone.Sold') : t('userzone.Not Sold')}
                 </Typography> 
                </Grid> 
             
@@ -171,19 +179,19 @@ const UserAdvert = ({
                 </IconButton>
               </Tooltip>
               <Tooltip title="Eliminar" placement="top" arrow>
-                <IconButton aria-label="delete" color="primary">
-                  <DeleteIcon onClick={()=>handleDelete()} />
+                <IconButton aria-label="delete" color="primary" type="submit">
+                  <DeleteIcon onClick={()=>handleDelete()} /> 
                 </IconButton>
                 </Tooltip>
                
-              <Tooltip title={reserved ? t('userzone.Mark as un reserved') : t('userzone.Mark as reserved')} placement="top" arrow>
+              <Tooltip title={statusReserved ? t('userzone.Mark as un reserved') : t('userzone.Mark as reserved')} placement="top" arrow>
                 <IconButton id="reserved" color="primary" aria-label="add an alarm"
-                    onClick={() => handleReserved(_id, reserved)}>
+                   onClick={() => handleReserved(_id, reserved)}>   
                 <BookmarkBorderIcon />
                 </IconButton>
               </Tooltip>
 
-              <Tooltip title={sold ? t('userzone.Mark as unsold') : t('userzone.Mark as sold')} placement="top" arrow>
+              <Tooltip title={statusSold ? t('userzone.Mark as unsold') : t('userzone.Mark as sold')} placement="top" arrow>
                 <IconButton id="sold" color="primary" aria-label="add an alarm"
                     onClick={() => handleSold(_id, sold)} >
                   <ShoppingCartIcon />
