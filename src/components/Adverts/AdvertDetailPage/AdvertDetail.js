@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
@@ -61,24 +61,16 @@ function AdvertDetail({
 	const user = useSelector(getUser);
 	const isLogged = useSelector(getIsLogged);
 	const history = useHistory();
-	let fav = false;
-	//const [fav, setFav] = React.useState(false);
-	fav = getUserAdvertFavorite(user, user._id, _id);
+	const [fav, setFav] = useState(false);
 
 	useEffect(() => {
-		//  if (user && user._id) {
-		//  	getUserFav(user._id).then((r) => {
-		//  		const favorites = r.result.ads_favs;
-		//  		dispatch(setFavoritesUser(favorites));
-		//  		setFav(favorites.includes(_id));
-		//  	});
-		//  }
-		//console.log('user con getUser', useSelector(getUser));
-		
-		fav = getUserAdvertFavorite(user, user._id, _id);
-		console.log('user fav', fav);
-	}, [dispatch]);
+		if (user) {
+			//console.log('estoy en el efecto')
+			setFav(getUserAdvertFavorite(user, user._id, _id));
+		}
+	}, [user, fav]);
 
+	
 	const handleChat = async (e) => {
 		e.preventDefault();
 		const conversation = await dispatch(
@@ -121,16 +113,15 @@ function AdvertDetail({
 	const handleFavored = async (e) => {
 		e.preventDefault();
 		if (!fav) {
-			console.log('añadimos favorito')
+			//console.log('añadimos favorito')
 			dispatch(userAddFavoritesAction(user._id, _id));
 		}
 		else {
-			console.log('borramos favorito')
+			//console.log('borramos favorito')
 			dispatch(userDeleteFavoritesAction(user._id, _id));
 		}
 	};
 
-	//console.log('favorito antes de render', fav);
 	return (
 		<Grid
 			item
