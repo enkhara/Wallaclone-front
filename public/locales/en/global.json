@@ -93,7 +93,8 @@
     "Your advert has been deleted": "Your advert has been deleted",
     "Action not allowed": "Action not allowed",
     "You will need to log in": "You will need to log in",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "This advert is yours!": "This advert is yours!"
   },
   "chat": {
     "Send": "Send",
@@ -129,31 +130,28 @@
   "page404": {
     "GO BACK": "GO BACK",
     "PAGE NOT FOUND": "PAGE NOT FOUND"
-  }, 
-  "userzone":{
-    "Your adverts": "Your adverts", 
-    "adverts":"adverts", 
-    "Published at": "Published at", 
+  },
+  "userzone": {
+    "Your adverts": "Your adverts",
+    "adverts": "adverts",
+    "Published at": "Published at",
     "Updated at": "Updated at"
-  }, 
-  "account":{
+  },
+  "account": {
     "Account Information": "Profile Data",
-    "Username": "Username", 
-    "Email": "Email", 
-    "Password": "Password", 
+    "Username": "Username",
+    "Email": "Email",
+    "Password": "Password",
     "Current password": "Enter your current password",
-    "New password": "Enter New Password", 
-    "Repeat Password": "Confirm Password", 
-    "Change Information": "Profile Update", 
-    "Delete User": "User Unsubscribe's wallaclone", 
-    "Are you sure?": "Are you sure you want to unsubscribe?", 
-    "You will not be able to reverse this !": "You will not be able to reverse this !", 
-    "Yes, unsubscribe me!": "Yes, unsubscribe me!", 
-    "Unsubscribed!":"Unsubscribed!",
-    "Your account has been deleted.": "Your account has been deleted.", 
-    "Current password modification":"Current password modification"
-
-
-
+    "New password": "Enter New Password",
+    "Repeat Password": "Confirm Password",
+    "Change Information": "Profile Update",
+    "Delete User": "User Unsubscribe's wallaclone",
+    "Are you sure?": "Are you sure you want to unsubscribe?",
+    "You will not be able to reverse this !": "You will not be able to reverse this !",
+    "Yes, unsubscribe me!": "Yes, unsubscribe me!",
+    "Unsubscribed!": "Unsubscribed!",
+    "Your account has been deleted.": "Your account has been deleted.",
+    "Current password modification": "Current password modification"
   }
 }

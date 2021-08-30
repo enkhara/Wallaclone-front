@@ -93,7 +93,8 @@
     "Your advert has been deleted": "Tu anuncio ha sido eliminado ",
     "Action not allowed": "Acción no permitida",
     "You will need to log in": "Deberá iniciar sesión",
-    "Cancel": "Cancelar"
+    "Cancel": "Cancelar",
+    "This advert is yours!": "Este anuncio es tuyo!"
   },
   "chat": {
     "Send": "Enviar",
@@ -125,28 +126,28 @@
   "page404": {
     "GO BACK": "VOLVER",
     "PAGE NOT FOUND": "PÁGINA NO ENCONTRADA"
-  }, 
-  "userzone":{
-    "Your adverts": "Tus anuncios", 
-    "adverts":"anuncios",
-    "Published at": "Publicado", 
+  },
+  "userzone": {
+    "Your adverts": "Tus anuncios",
+    "adverts": "anuncios",
+    "Published at": "Publicado",
     "Updated at": "Modificado"
-  }, 
-  "account":{
+  },
+  "account": {
     "Account Information": "Tu Perfil",
-    "Username": "Nombre de Usuario", 
-    "Email": "Email", 
-    "Password": "Password", 
+    "Username": "Nombre de Usuario",
+    "Email": "Email",
+    "Password": "Password",
     "Current password": "Introduce tu actual contraseña",
-    "New password": "Introduce la nueva contraseña", 
-    "Repeat Password": "Confirma contraseña", 
-    "Change Information": "Actualización Perfil", 
+    "New password": "Introduce la nueva contraseña",
+    "Repeat Password": "Confirma contraseña",
+    "Change Information": "Actualización Perfil",
     "Delete User": "Quiero darme de baja de wallaclone",
-    "Are you sure?": "¿Seguro que quieres darte de baja?", 
-    "You will not be able to reverse this !": "¡No podrás revertir esto!", 
-    "Yes, unsubscribe me!": "Si, dame de baja!", 
-    "Unsubscribed!":"Desubscrito!",
+    "Are you sure?": "¿Seguro que quieres darte de baja?",
+    "You will not be able to reverse this !": "¡No podrás revertir esto!",
+    "Yes, unsubscribe me!": "Si, dame de baja!",
+    "Unsubscribed!": "Desubscrito!",
     "Your account has been deleted.": "Tu cuenta ha sido eliminada.",
-    "Current password modification":"Modificación contraseña actual" 
+    "Current password modification": "Modificación contraseña actual"
   }
 }

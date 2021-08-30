@@ -12,100 +12,102 @@ import { useStyles } from './AdvertDetailCSS';
 import classNames from 'classnames';
 import ShareAdvert from '../shareAdvert';
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2';
 import { Link, NavLink } from 'react-router-dom';
 import { GoBackButton } from '../../shared';
 import { addFavorites, deleteFavorites, getUserFav } from '../../../api/user';
 import {
-  Grid,
-  Button,
-  Card,
-  Paper,
-  IconButton,
-  CardActionArea,
-  CardActions,
-  CardMedia,
-  CardContent,
-  Typography,
-  Avatar,
-  Box,
+	Grid,
+	Button,
+	Card,
+	Paper,
+	IconButton,
+	CardActionArea,
+	CardActions,
+	CardMedia,
+	CardContent,
+	Typography,
+	Avatar,
+	Box,
 } from '@material-ui/core';
 import {
-  conversationLoadAction,
-  conversationCreatedAction,
-  setFavoritesUser,
+	conversationLoadAction,
+	conversationCreatedAction,
+	setFavoritesUser,
 } from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getIsLogged } from '../../../store/selectors';
 
 function AdvertDetail({
-  name,
-  transaction,
-  desc,
-  price,
-  tags,
-  image,
-  updatedAt,
-  createdAt,
-  userId,
-  onDelete,
-  onEdit,
-  _id,
+	name,
+	transaction,
+	desc,
+	price,
+	tags,
+	image,
+	updatedAt,
+	createdAt,
+	userId,
+	onDelete,
+	onEdit,
+	_id,
 }) {
-  const [t] = useTranslation('global');
-  const classes = useStyles();
-  const URLIMG = process.env.REACT_APP_API_BASE_URL;
-  const dispatch = useDispatch();
-  const user = useSelector(getUser);
-  const isLogged = useSelector(getIsLogged);
-  const history = useHistory();
-  const [fav, setFav] = React.useState(false);
+	const [t] = useTranslation('global');
+	const classes = useStyles();
+	const URLIMG = process.env.REACT_APP_API_BASE_URL;
+	const dispatch = useDispatch();
+	const user = useSelector(getUser);
+	const isLogged = useSelector(getIsLogged);
+	const history = useHistory();
+	const [fav, setFav] = React.useState(false);
 
-  React.useEffect(() => {
-    if (user && user._id) {
-      getUserFav(user._id).then((r) => {
-        const favorites = r.result.ads_favs;
-        dispatch(setFavoritesUser(favorites));
-        setFav(favorites.includes(_id));
-      });
-    }
-  }, [dispatch]);
+	React.useEffect(() => {
+		if (user && user._id) {
+			getUserFav(user._id).then((r) => {
+				const favorites = r.result.ads_favs;
+				dispatch(setFavoritesUser(favorites));
+				setFav(favorites.includes(_id));
+			});
+		}
+	}, [dispatch]);
 
-  const handleChat = async (e) => {
-    e.preventDefault();
-    const conversation = await dispatch(
-      conversationLoadAction(userId._id, _id)
-    );
-    //console.log('userId', userId._id, _id);
-    if (userId._id === user._id) {
-      console.log('el anuncio es tuyo');
-      return;
-    }
+	const handleChat = async (e) => {
+		e.preventDefault();
+		const conversation = await dispatch(
+			conversationLoadAction(userId._id, _id)
+		);
+		//console.log('userId', userId._id, _id);
+		if (userId._id === user._id) {
+			Swal.fire(t('adverts.This advert is yours!'));
+			//console.log('el anuncio es tuyo');
+			return;
+		}
 
-    if (conversation.length === 0) {
-      const newConversation = {
-        advertisementId: _id,
-        senderId: userId._id,
-        receiverId: user._id,
-      };
-      dispatch(conversationCreatedAction(newConversation));
-    }
-    history.push('/user/chat');
-  };
+		if (conversation.length === 0) {
+			const newConversation = {
+				advertisementId: _id,
+				senderId: userId._id,
+				receiverId: user._id,
+			};
+			dispatch(conversationCreatedAction(newConversation));
+		}
+		history.push('/user/chat');
+	};
 
-  const handleFavored = async (e) => {
-    e.preventDefault();
-    setFav(!fav);
+	const handleFavored = async (e) => {
+		e.preventDefault();
+		setFav(!fav);
 
-    if (!fav) {
-      await addFavorites(user._id, _id);
-      const favorites = user.ads_favs.push(_id);
-      dispatch(setFavoritesUser(favorites));
-    } else {
-      const favorites = user.ads_favs._id;
-      favorites && favorites.splice(favorites.indexOf(_id), 1);
-      await deleteFavorites(user._id, _id);
-    }
-  };
+		if (!fav) {
+			await addFavorites(user._id, _id);
+			const favorites = user.ads_favs.push(_id);
+			dispatch(setFavoritesUser(favorites));
+		} else {
+			const favorites = user.ads_favs._id;
+			favorites && favorites.splice(favorites.indexOf(_id), 1);
+			await deleteFavorites(user._id, _id);
+		}
+	};
 
 	return (
 		<Grid
@@ -177,43 +179,36 @@ function AdvertDetail({
 					alt="image advert"
 					src={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 				/>
-					
-					<Typography component="p" className={classes.priceDetailAdvert}>
-						{`${price} €`}
-					</Typography>
-					<Typography component="h2" className={classes.nameDetailAdvert}>
-						{name}
-					</Typography>
 
-					<Typography component="p" className={classes.descAdvert}>
-						{desc}
-					</Typography>
-					
+				<Typography component="p" className={classes.priceDetailAdvert}>
+					{`${price} €`}
+				</Typography>
+				<Typography component="h2" className={classes.nameDetailAdvert}>
+					{name}
+				</Typography>
+
+				<Typography component="p" className={classes.descAdvert}>
+					{desc}
+				</Typography>
+
 				<div>
-                  <p>
-                    <span
-						
-                    	className={ 
-                        	transaction ==='wanted' 
-                        	? classNames(classes.wanted) 
-                        	: classNames(classes.sale)}
-                    >
-                      {transaction}
-                      
-                    </span>
-                  </p>
-                  <p>
-                    <span className={classes.tagsAdvert}>
-                      {tags.join(' - ')}
-                    </span>
-                  </p>
-                
+					<p>
+						<span
+							className={
+								transaction === 'wanted'
+									? classNames(classes.wanted)
+									: classNames(classes.sale)
+							}
+						>
+							{transaction}
+						</span>
+					</p>
+					<p>
+						<span className={classes.tagsAdvert}>{tags.join(' - ')}</span>
+					</p>
 				</div>
 				<Box className={classes.updateAndDeleteDetailAdvert}>
-					<Link
-						 
-						to={`/adverts/edit/${_id}`}
-					>
+					<Link to={`/adverts/edit/${_id}`}>
 						<Button
 							variant="contained"
 							color="primary"
@@ -227,7 +222,7 @@ function AdvertDetail({
 						variant="contained"
 						color="secondary"
 						onClick={onDelete}
-						style={{marginLeft:'0.7rem'}}
+						style={{ marginLeft: '0.7rem' }}
 						startIcon={<DeleteIcon />}
 					>
 						{t('adverts.Delete')}
@@ -240,27 +235,24 @@ function AdvertDetail({
 					/>
 				</Box>
 			</Card>
-			<div className={classes.containerGoBack}> 
-				<GoBackButton
-						styleclassName={'goBack'}
-					>
-						{t('page404.GO BACK')}
+			<div className={classes.containerGoBack}>
+				<GoBackButton styleclassName={'goBack'}>
+					{t('page404.GO BACK')}
 				</GoBackButton>
-
 			</div>
 		</Grid>
 	);
 }
 
 AdvertDetail.propTypes = {
-  ...advert,
-  image: T.string,
-  onDelete: T.func.isRequired,
-  onEdit: T.func.isRequired,
+	...advert,
+	image: T.string,
+	onDelete: T.func.isRequired,
+	onEdit: T.func.isRequired,
 };
 
 AdvertDetail.defaultProps = {
-  image: null,
+	image: null,
 };
 
 export default AdvertDetail;
