@@ -17,7 +17,11 @@ const UserOwnAdvertChat = ({ currentChat, user }) => {
 	return (
 		<div className="userOwnBox">
 			<div className="userOwnInfo">
-				<Avatar className="UserOwnAdvertChatImg" src="" alt="" />
+				<Avatar
+					className="UserOwnAdvertChatImg"
+					src={`${process.env.REACT_APP_API_BASE_URL}images/adverts/${userInChat[0].image}`}
+					alt=""
+				/>
 				<p className="userOwnName">{userInChat[0].username}</p>
 			</div>
 		</div>

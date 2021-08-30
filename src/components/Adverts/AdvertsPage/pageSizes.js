@@ -1,1 +1,0 @@
-export const PAGESIZES = [3, 6, 9, 12, 15, 18];

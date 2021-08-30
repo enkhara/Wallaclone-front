@@ -3,8 +3,10 @@ import T from 'prop-types';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useTranslation } from 'react-i18next';
+import { useStyles } from '../authCSS';
 
 const ForgotPasswordForm = ({ onSubmit }) => {
+  const classes = useStyles();
   const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({
     email: '',
@@ -21,7 +23,6 @@ const ForgotPasswordForm = ({ onSubmit }) => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    //credentials.remember = isChecked;
     onSubmit(credentials);
   };
 
@@ -30,15 +31,10 @@ const ForgotPasswordForm = ({ onSubmit }) => {
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: 30,
-            height: '500px',
-            margin: '100px auto',
-            width: 350,
-          }}
+          className={classes.containerPaper}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+          <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('forgot.You have problems to enter?')}</h2>
@@ -57,11 +53,12 @@ const ForgotPasswordForm = ({ onSubmit }) => {
             name="email"
             value={email}
             onChange={handleChange}
+            autoFocus={true}
           />
 
           <Button
             type="submit"
-            style={{ margin: '30px 0' }}
+            className={classes.buttonForm}
             color="primary"
             fullWidth
             variant="contained"

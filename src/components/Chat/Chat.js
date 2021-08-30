@@ -117,71 +117,70 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 	return (
-		<React.Fragment>
-			<SideBar />
-			<div className="chat">
-				<div className="chatMenu">
-					<div className="chatMenuWrapper">
-						<input placeholder="Search for friends"></input>
-						{conversations?.map((conversation) => (
-							<div
-								key={conversation._id}
-								onClick={() => setCurrentChat(conversation)}
-							>
-								<Conversation conversation={conversation} />
-							</div>
-						))}
-					</div>
-				</div>
-				<div className="chatBox">
-					<div>
-						{currentChat && (
-							<UserOwnAdvertChat currentChat={currentChat} user={user} />
-						)}
-					</div>
-					<div className="chatBoxWrapper">
-						{!!currentChat ? (
-							<>
-								<div className="chatBoxTop">
-									{messages?.map((message) => (
-										<div key={message._id} ref={scrollRef}>
-											<Message
-												message={message}
-												own={message.sender === user._id}
-											/>
-										</div>
-									))}
-								</div>
-								<div className="chatBoxBottom">
-									<textarea
-										className="chatMessageInput"
-										placeholder={t('chat.type your message')}
-										onChange={(e) => setNewMessages(e.target.value)}
-										value={newMessages}
-									></textarea>
-									<button className="chatSubmitButton" onClick={handleSubmit}>
-										{t('chat.Send')}
-									</button>
-								</div>
-							</>
-						) : (
-							<span className="noConversationText">
-								{t('chat.Open a conversation to start a chat.')}
-							</span>
-						)}
-					</div>
-				</div>
-				<div className="chatOnline">
-					<div className="chatOnlineWrapper">
-						<ChatUserOnline
-							onlineUsers={onlineUsers}
-							currentId={user._id}
-							setCurrentChat={setCurrentChat}
-						/>
-					</div>
+		<main className="main">
+			<div className="chatMenu">
+				<div className="chatMenuWrapper">
+					<input placeholder="Search for friends"></input>
+					{conversations?.map((conversation) => (
+						<div
+							key={conversation._id}
+							onClick={() => setCurrentChat(conversation)}
+						>
+							<Conversation conversation={conversation} />
+						</div>
+					))}
 				</div>
 			</div>
-		</React.Fragment>
+			<div className="chatBox">
+				<div>
+					{currentChat && (
+						<UserOwnAdvertChat currentChat={currentChat} user={user} />
+					)}
+				</div>
+				<div className="chatBoxWrapper">
+					{!!currentChat ? (
+						<>
+							<div className="chatBoxTop">
+								{messages?.map((message) => (
+									<div key={message._id} ref={scrollRef}>
+										<Message
+											message={message}
+											own={message.sender === user._id}
+											currentChat={currentChat}
+											user={user}
+										/>
+									</div>
+								))}
+							</div>
+							<div className="chatBoxBottom">
+								<textarea
+									className="chatMessageInput"
+									placeholder={t('chat.type your message')}
+									onChange={(e) => setNewMessages(e.target.value)}
+									value={newMessages}
+								></textarea>
+								<button className="chatSubmitButton" onClick={handleSubmit}>
+									{t('chat.Send')}
+								</button>
+							</div>
+						</>
+					) : (
+						<span className="noConversationText">
+							{t('chat.Open a conversation to start a chat.')}
+						</span>
+					)}
+				</div>
+			</div>
+			<div className="chatOnline">
+				<div className="chatOnlineWrapper">
+					<ChatUserOnline
+						onlineUsers={onlineUsers}
+						currentId={user._id}
+						setCurrentChat={setCurrentChat}
+					/>
+				</div>
+			</div>
+		</main>
 	);
 };
 

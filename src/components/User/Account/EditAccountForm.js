@@ -21,11 +21,12 @@ import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
+import { useStyles } from './editAccountFormCSS';
 
 
 const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete }) => {
   const [t] = useTranslation('global');
-    
+  const classes = useStyles();
   const [credentials, setCredentials] = useState({
     usernameNew: username,
     emailNew: email,
@@ -207,15 +208,10 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: 30,
-            height: '700px',
-            margin: '50px auto',
-            width: 500,
-          }}
+          className={classes.containerPaper}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+          <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('account.Account Information')}</h2>
@@ -228,6 +224,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
             name="usernameNew"
             defaultValue={username}
             onChange={handleChange}
+            autoFocus={true}
           />
           <TextField
             type="email"
@@ -236,7 +233,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
             fullWidth
             required
             name="emailNew"
-            style={{marginBottom:'1rem'}}
+            style={{marginBottom:'1rem',marginTop:'1rem'}}
             defaultValue={email}
             onChange={handleChange}
           />
@@ -260,6 +257,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
               name="currentPassword"
               value={currentPassword.currentPassword}
               onChange={handleChangePass}
+              style={{width:'260px'}}
             
             endAdornment={
               <InputAdornment position="end">
@@ -282,6 +280,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
               name="newPassword"
               value={newPassword.newPassword}
               onChange={handleChangePass}
+              style={{width:'260px'}}
               
             endAdornment={
               <InputAdornment position="end">
@@ -304,6 +303,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
               name="repeatPassword"
               value={repeatPassword.repeatPassword}
               onChange={handleChangePass}
+              style={{width:'260px'}}
             
             endAdornment={
               <InputAdornment position="end">
@@ -321,7 +321,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
         
           <Button
             type="submit"
-            style={{ margin: '30px 0' }}
+            className={classes.buttonForm}
             color="primary"
             fullWidth
             variant="contained"
@@ -334,6 +334,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
           <Link
 						variant="contained"
 						color="secondary"
+            style={{cursor:'pointer'}}
 						onClick={onDelete}
 						startIcon={<DeleteIcon />}
 					>

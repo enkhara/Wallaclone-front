@@ -3,8 +3,6 @@ import T from 'prop-types';
 import Advert from './Advert';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
-import { useTranslation } from 'react-i18next';
-import { PAGESIZES } from './pageSizes';
 import { useStyles } from './advertsListCSS';
 import {
 	Grid,
@@ -18,7 +16,6 @@ import {
 const AdvertsList = ({ adverts }) => {
 	const classes = useStyles();
 	const ADS_PER_PAGE = 3
-	const [t] = useTranslation('global');
 	const [page, setPage] = useState(1);
 	const [pageSize, setPageSize] = useState(ADS_PER_PAGE);
 	const count = Math.ceil(adverts.length / pageSize);
@@ -48,23 +45,6 @@ const AdvertsList = ({ adverts }) => {
 			<div
 				className={classes.containerAdvertList}
 			>
-				 
-        		<InputLabel style={{fontWeight:'700'}}>{t('adverts.Adverts/Page')}</InputLabel>
-				<FormControl className={classes.formControl}>
-					<Select
-						native
-						value={pageSize}
-						onChange={handlePageSizeChange}
-						className={classes.selectControl}
-					>
-          				{PAGESIZES.map((size) => (
-							<option key={size} value={size} >
-								{size}
-							</option>
-						))}
-           
-        			</Select>
-      			</FormControl>
 				<Pagination
 					count={count}
 					size="large"

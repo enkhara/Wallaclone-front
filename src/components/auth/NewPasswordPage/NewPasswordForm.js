@@ -12,8 +12,10 @@ import {
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useTranslation } from 'react-i18next';
+import { useStyles } from '../authCSS';
 
 const NewPasswordForm = ({ onSubmit }) => {
+  const classes = useStyles();
   const [t] = useTranslation('global');
   const [credentials, setCredentials] = React.useState({});
   const [comparisonPass, setComparisonPass] = React.useState(false);
@@ -42,15 +44,10 @@ const NewPasswordForm = ({ onSubmit }) => {
       <form onSubmit={handleSubmit}>
         <Paper
           elevation={10}
-          style={{
-            padding: 30,
-            height: '500px',
-            margin: '100px auto',
-            width: 350,
-          }}
+          className={classes.containerPaper}
         >
           <Grid align="center">
-            <Avatar style={{ backgroundColor: '#1dba849e' }}>
+          <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <h2>{t('newpassword.Register your new password')}</h2>
@@ -64,6 +61,7 @@ const NewPasswordForm = ({ onSubmit }) => {
             name="newpassword"
             value={newpassword}
             onChange={handleChange}
+            autoFocus={true}
           />
           <TextField
             label={t('newpassword.Repeat Password')}
@@ -78,7 +76,7 @@ const NewPasswordForm = ({ onSubmit }) => {
 
           <Button
             type="submit"
-            style={{ margin: '30px 0' }}
+            className={classes.buttonForm}
             color="primary"
             fullWidth
             variant="contained"

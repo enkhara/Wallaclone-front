@@ -35,8 +35,8 @@ const ChatUserOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
 					<div className="chatUserOnlineImgContainer">
 						<Avatar
 							className="chatUserOnlineImg"
-							src={onlineSpeaker.image}
-							alt=""
+							src={`${process.env.REACT_APP_API_BASE_URL}images/adverts/${onlineSpeaker.image}`}
+							alt={onlineSpeaker.username}
 						/>
 						<div className="chatUserOnlineBadge"></div>
 					</div>
