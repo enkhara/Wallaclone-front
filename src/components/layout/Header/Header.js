@@ -46,12 +46,12 @@ const Header = () => {
         <LenguageMenu />
       </section>
 
-      <Toolbar
+      <AppBar
         position="static"
         style={{ background: 'var(--color-principal)' }}
       >
-        {isMatch ? <ResponsiveMenu /> : <Navbar />}
-      </Toolbar>
+        <Toolbar>{isMatch ? <ResponsiveMenu /> : <Navbar />}</Toolbar>
+      </AppBar>
     </header>
   );
 };

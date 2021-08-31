@@ -86,23 +86,22 @@ const Advert = ({
                     ? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
                     : placeholder
                 }
-                alt="image advert"
+                alt="advert"
                 className={classes.media}
               />
 
               <CardContent className={classes.cardContent}>
                 <section className={classes.container_price_favorite}>
                   {isLogged && (
-                    <IconButton
+                    <FavoriteBorderIcon
                       className={
                         fav
                           ? classNames(classes.favoriteIconSel)
                           : classNames(classes.favoriteIcon)
                       }
                       onClick={handleFavored}
-                    >
-                      <FavoriteBorderIcon style={{ fontSize: '2rem' }} />
-                    </IconButton>
+                      style={{ fontSize: '2rem' }}
+                    />
                   )}
 
                   <p className={classes.priceAdvert}>{`${price} €`}</p>
@@ -115,11 +114,12 @@ const Advert = ({
                     <span
                       className={
                         transaction === 'wanted'
+                      
                           ? classNames(classes.wanted)
                           : classNames(classes.sale)
                       }
                     >
-                      {transaction}
+                      {transaction === 'wanted'? (`${t('adverts.Wanted')}`):(`${t('adverts.Sell')}`)}
                     </span>
                   </p>
                   <p>
