@@ -37,7 +37,16 @@ const Chat = ({ user, ...props }) => {
 	/******************SOCKET CLIENT******************************/
 
 	useEffect(() => {
-		socket.current = io(process.env.REACT_APP_SOCKET_SERVER);
+		socket.current = io(process.env.REACT_APP_SOCKET_SERVER, {
+			withCredentials: true,
+			transportOptions: {
+				polling: {
+					extraHeaders: {
+						Authorization: 'Bearer <TOKEN JWT>',
+					},
+				},
+			},
+		});
 	}, []);
 
 	useEffect(() => {
@@ -135,7 +144,7 @@ const Chat = ({ user, ...props }) => {
 					</div>
 				</div>
 				<div className="chatBox">
-					<div style={{padding:'0.5rem'}}>
+					<div style={{ padding: '0.5rem' }}>
 						{currentChat && (
 							<UserOwnAdvertChat currentChat={currentChat} user={user} />
 						)}
@@ -151,17 +160,16 @@ const Chat = ({ user, ...props }) => {
 												own={message.sender === user._id}
 												currentChat={currentChat}
 												user={user}
-												/>
+											/>
 										</div>
 									))}
 								</div>
 								<div className="chatBoxBottom">
 									<textarea
-										
 										placeholder={t('chat.type your message')}
 										onChange={(e) => setNewMessages(e.target.value)}
 										value={newMessages}
-										></textarea>
+									></textarea>
 									<button className="chatSubmitButton" onClick={handleSubmit}>
 										{t('chat.Send')}
 									</button>
