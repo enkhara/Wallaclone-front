@@ -186,9 +186,9 @@ function EditAdvertForm({
 							<FormControl component="fieldset">
 								<RadioGroup
 									aria-label="transaction"
-									name="transaction"
+									name="transactionNew"
 									required
-									value={transaction}
+									defaultValue={transaction}
 									onChange={handleChange}
 									row
 									>
