@@ -94,7 +94,12 @@ textarea:focus, input[type="number"]:focus{
     color: #fff;
     cursor: pointer;
     margin-top: 1rem;
-    
+}
+
+input[type="submit"][disabled]:active,
+input[type="submit"][disabled]  {
+    background: #cccccc;
+    color:gray;
 }
 
 .mediaEditAdvert{
