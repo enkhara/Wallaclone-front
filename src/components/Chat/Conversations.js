@@ -28,7 +28,7 @@ const Conversation = ({ conversation }) => {
 							? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${conversation.advertisementId.image}`
 							: placeholder
 						}
-						alt=""
+						alt="user"
 					/>
 					<span>
 						<p style={{color:'#fff'}}>{advert?.userId.username}</p>
