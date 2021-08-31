@@ -1,4 +1,4 @@
-import './Chat.js';
+import './Chat.css';
 import Avatar from '@material-ui/core/Avatar';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,21 +21,25 @@ const Conversation = ({ conversation }) => {
 	return (
 		conversation && (
 			<div className="conversation">
-				<Avatar
-					className="conversationImg"
-					src={
-						conversation.advertisementId.image
+				<div>
+					<Avatar
+						src={
+							conversation.advertisementId.image
 							? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${conversation.advertisementId.image}`
 							: placeholder
-					}
-					alt=""
-				/>
-				<span className="advertisementName">
-					<p> {conversation.advertisementId.name} </p>
-					<p> {conversation.advertisementId.price} </p>
-					<p> {conversation.advertisementId.transaction} </p>
-				</span>
-				<span className="conversationName">{advert?.userId.username}</span>
+						}
+						alt=""
+					/>
+					<span>
+						<p style={{color:'#fff'}}>{advert?.userId.username}</p>
+						<p> {conversation.advertisementId.name} </p>
+						<p> {conversation.advertisementId.price} € </p>
+						<p> {conversation.advertisementId.transaction} </p>
+					</span>
+				</div>
+
+
+			 
 			</div>
 		)
 	);
