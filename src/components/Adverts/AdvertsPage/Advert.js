@@ -12,12 +12,10 @@ import {
   Card,
   CardActionArea,
   CardActions,
-  CardMedia,
   CardContent,
   Typography,
   Box,
   Avatar,
-  IconButton,
 } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import classNames from 'classnames';
@@ -58,7 +56,7 @@ const Advert = ({
     if (user) {
       setFav(getUserAdvertFavorite(user, user._id, _id));
     }
-  }, [user, fav]);
+  }, [user, fav, _id]);
 
   const handleFavored = async (e) => {
     e.preventDefault();

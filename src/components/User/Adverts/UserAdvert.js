@@ -19,9 +19,9 @@ import {
   ButtonBase, 
   Typography,
   IconButton,
-  Button, 
+  Tooltip
 } from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
+//import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
 
 //import { useHistory } from 'react-router';
@@ -32,7 +32,7 @@ import {
 	advertUpdateReservedAction,
 	advertUpdateSoldAction
 } from '../../../store/actions';
-import { getAdvertDetail, getAdverts } from '../../../store/selectors';
+import { getAdvertDetail} from '../../../store/selectors';
 
 const UserAdvert = ({
   _id,
@@ -50,16 +50,17 @@ const UserAdvert = ({
   favs
 }) => {
   const classes = useStyles();
+  const URLIMG = process.env.REACT_APP_API_BASE_URL;
   const dispatch = useDispatch();
   const advert = useSelector((state) => getAdvertDetail(state, _id));
-  //const adverts = useSelector(getAdverts);
+  
   const [t] = useTranslation('global');
   const [statusReserved, setStatusReserved] = useState(reserved);
   const [statusSold, setStatusSold] = useState(sold);
 
   useEffect(() => {
     console.log('entro en useEfect de reserved UserAdvert')
-    //dispatch(advertsLoadAction());
+    dispatch(advertsLoadAction());
    // getAdvertDetail(state.adverts.data, _id);
     // seteamos el estado con los datos almacenados en redux (actualizados)
     setStatusReserved(reserved);
@@ -67,6 +68,7 @@ const UserAdvert = ({
 
   useEffect(() => {
     console.log('entro en useEfect de sold UserAdvert')
+    dispatch(advertsLoadAction());
     setStatusSold(sold);
   }, [sold]);
 
@@ -90,15 +92,15 @@ const UserAdvert = ({
 	};
   
   const handleReserved = async (_id, reserved) => {
-    console.log('entro en handleReserved de UserAdvert _id', _id);
-    console.log('entro en handleReserved de UserAdvert reserved', reserved, !reserved);
-    // le pasamos el dato negado
+    //console.log('entro en handleReserved de UserAdvert _id', _id);
+    //console.log('entro en handleReserved de UserAdvert reserved', reserved, !reserved);
+    // le pasamos el dato negado para que lo actualice
 		await dispatch(advertUpdateReservedAction(_id, !reserved));
 	}
 
 
   const handleSold = async (_id, sold) => {
-    console.log('entro en handleSold de UserAdvert');
+   // console.log('entro en handleSold de UserAdvert');
 		await dispatch(advertUpdateSoldAction(_id, !sold));
   }
   
@@ -113,7 +115,7 @@ const UserAdvert = ({
               <img className={classes.img}
                 alt="Imagen del anuncio"
                 src={image
-                     ? `${process.env.REACT_APP_API_BASE_URL}images/adverts/${image}`
+                     ? `${URLIMG}images/adverts/${image}`
                      : placeholder } 
                   />
               </ButtonBase>
@@ -170,12 +172,8 @@ const UserAdvert = ({
             {!favs && <div className={classes.root}>
               
               <Tooltip title="Editar" placement="top" arrow>
-                <IconButton aria-label="create" color="primary">
-                  <Link className={classes.containerNewAdvert}
-                    to={`/adverts/edit/${_id}`}
-                  >
-                    <CreateIcon />
-                  </Link>
+                <IconButton aria-label="create" color="primary" component={Link} to={`/adverts/edit/${_id}`}>
+                    <CreateIcon />                  
                 </IconButton>
               </Tooltip>
               <Tooltip title="Eliminar" placement="top" arrow>

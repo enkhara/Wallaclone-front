@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 import {
 	getAdvertsLoaded,
 	getUserLoaded,
-	getUser,
 	getAdvertDetail,
 	getTagsLoaded,
 } from './selectors';

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
 import { advert } from '../propTypes';
-import { formatDistanceToNow, format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -20,13 +20,9 @@ import { GoBackButton } from '../../shared';
 import {
 	Grid,
 	Button,
-	Card,
-	Paper,
+	Card, 
 	IconButton,
-	CardActionArea,
 	CardActions,
-	CardMedia,
-	//CardContent,
 	Typography,
 	Avatar,
 	Box,
@@ -68,7 +64,7 @@ function AdvertDetail({
 			//console.log('estoy en el efecto')
 			setFav(getUserAdvertFavorite(user, user._id, _id));
 		}
-	}, [user, fav]);
+	}, [user, fav, _id]);
 
 	
 	const handleChat = async (e) => {
@@ -173,7 +169,7 @@ function AdvertDetail({
 				</CardActions>
 				<img
 					className={classes.mediaDetailAdvert}
-					alt="image advert"
+					alt="advert pic"
 					src={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 				/>
 

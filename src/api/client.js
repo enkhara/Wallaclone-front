@@ -30,7 +30,7 @@ client.interceptors.request.use(
 	function(config) {
 		const token = storage.get("auth");
 		//console.log('token client interceptors request', token)
-		if (token != null && token != undefined) {
+		if (token != null && token !== undefined) { // token != undefined
 			config.headers["Authorization"] = 'Bearer ' + token
 		}
 		//console.log('config client interceptors request', config);

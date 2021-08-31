@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../shared';
 import { useTranslation } from 'react-i18next';
 
-const EmptyList = (...props) => {
+const EmptyList = (props) => {
   const [t] = useTranslation('global');
 
   if (props.favs) {
@@ -26,6 +26,7 @@ const EmptyList = (...props) => {
       </div>
     )
   }
+  
 };
   
 export default EmptyList;

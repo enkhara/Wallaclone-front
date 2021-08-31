@@ -6,11 +6,10 @@ import {
   Paper,
   Avatar,
   TextField,
-  Button,
   Radio,
 } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { FormLabel, FormControl } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SelectTags from '../SelectTags';

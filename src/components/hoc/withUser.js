@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import T from 'prop-types';
+//import T from 'prop-types';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { userLoggedAction } from '../../store/actions';
@@ -15,7 +15,7 @@ function withUser(WrappedComponent) {
 	const WithUserComponent = (props) => {
 		const dispatch = useDispatch();
 		const user = useSelector(getUser);
-		console.log('en withUser component', user);
+		//console.log('en withUser component', user);
 
 		useEffect(() => {
 			dispatch(userLoggedAction());

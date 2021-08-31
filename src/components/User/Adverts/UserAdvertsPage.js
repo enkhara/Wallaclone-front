@@ -5,7 +5,7 @@ import UserEmptyList from './UserEmptyList';
 import UserAdvertsList from './UserAdvertsList';
 import withUser from '../../hoc/withUser';
 import { SideBar } from '../../layout';
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 // import {
 // 	advertDeletedAction,
@@ -32,7 +32,7 @@ const UserAdvertsPage = ({ user, props }) => {
 	}, [dispatch]);
 
     React.useEffect(() => {
-		//console.log('entro en use effect de userAdvertsPage');
+		console.log('entro en use effect de userAdvertsPage', user.username);
         if (user.username !== undefined) {
         
             setUserAdverts(adverts.filter(advert => {

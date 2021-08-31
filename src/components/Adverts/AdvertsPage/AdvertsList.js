@@ -4,14 +4,7 @@ import Advert from './Advert';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../hooks/usePagination';
 import { useStyles } from './advertsListCSS';
-import {
-	Grid,
-	InputLabel,
-	//FormHelperText,
-	FormControl,
-	Select,
-	//NativeSelect
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const AdvertsList = ({ adverts }) => {
 	const classes = useStyles();

@@ -5,12 +5,11 @@ import {
 	Paper,
 	Avatar,
 	TextField,
-	Button,
 	Radio,
 	CardMedia,
 } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { FormLabel, FormControl } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import { cyan } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
@@ -61,9 +60,7 @@ function EditAdvertForm({
 	
 	const { nameNew, descNew, priceNew, transactionNew, tagsNew } = advertEdit;
 	const [newImage, setNewImage] = useState();
-
-	const urlImage = `${URLIMG}images/adverts/${image}`;
-
+	
 	const [stateReserved, setStateReserved] = React.useState({ reservedNew: reserved });
 	const [stateSold, setStateSold] = React.useState({ soldNew: sold });
 	
@@ -232,7 +229,7 @@ function EditAdvertForm({
 						<p>{t('adverts.Advert Actual Image')} </p>
 						<CardMedia 
 							className="mediaEditAdvert"
-							image={urlImage} 
+							image={image ? `${URLIMG}images/adverts/${image}` : placeholder}
 						/>
 						<p>{t('adverts.Change image')}</p>
 						<InputFile name = "imageNew"
@@ -250,7 +247,7 @@ function EditAdvertForm({
 								type="checkbox"
 								label='Reservado'
 								onChange={handleToggleReserved}
-								key={1}
+								// key={1}
 								name={key}
 								checked={stateReserved[key]}
 								/>}
@@ -262,7 +259,7 @@ function EditAdvertForm({
 								control={<GreenCheckbox
 									type="checkbox"
 									onChange={handleToggleSold}
-									key={2}
+									// key={2}
 									name={key}
 									checked={stateSold[key]}
 								/>}

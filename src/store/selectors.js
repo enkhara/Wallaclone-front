@@ -10,6 +10,21 @@ export const getAdverts = (state) =>
 		return -1;
 	});
 
+// Selector por fecha de creación Ascendente
+export const getAdvertsAsc = (state) =>
+	state.adverts.data.sort((t1, t2) => {
+		if (t1.createdAt < t2.createdAt) return 1;
+		return -1;
+	});
+
+// Selector por fecha de creación Descendente
+export const getAdvertsDesc = (state) =>
+	state.adverts.data.sort((t1, t2) => {
+		if (t1.createdAt < t2.createdAt) return -1;
+		return 1;
+	});
+
+
 export const getAdvertsLoaded = (state) => state.adverts.loaded;
 
 export const getUser = (state) => state.user;

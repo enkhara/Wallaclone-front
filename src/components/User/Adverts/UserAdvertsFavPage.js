@@ -17,18 +17,21 @@ const UserAdvertsPage = ({ user, props }) => {
     const [userAdverts,setUserAdverts] = React.useState(adverts);
    
     React.useEffect(() => {
-
-        if (user.ads_favs.length > 0) {
+		
+		if (user.ads_favs.length > 0) {
 			
-            setUserAdverts(adverts.filter(advert => {
+			setUserAdverts(adverts.filter(advert => {
             
 				return (user.ads_favs.includes(advert._id));
 				
-            }));
-        }
+			}));
+		}
+		else { // no hay favoritos en el usuario 
+			setUserAdverts({});
+		}
+			
 	}, [user.ads_favs]);
 
-	
 	return (
 		
 		<main 
@@ -36,7 +39,7 @@ const UserAdvertsPage = ({ user, props }) => {
         >
             <React.Fragment>
 				<SideBar {...props} />
-				{userAdverts.length ? (
+				{(userAdverts.length > 0) ? (
 					<section>
 						<UserAdvertsList
 							adverts={userAdverts}
