@@ -6,7 +6,7 @@ import UserAdvertsList from './UserAdvertsList';
 import withUser from '../../hoc/withUser';
 import { SideBar } from '../../layout';
 import { useTranslation } from 'react-i18next';
-
+import './User.css';
  
 const UserAdvertsPage = ({ user, props }) => {
 	const dispatch = useDispatch();
@@ -34,23 +34,23 @@ const UserAdvertsPage = ({ user, props }) => {
 
 	return (
 		
-		<main 
-			style={{marginTop:'0.5rem', marginBottom:'2rem' , width:'100%', height:'auto'}}
-        >
-            <React.Fragment>
+		<main className='main'>
+            <aside className="aside">
 				<SideBar {...props} />
+			</aside>
+			<section className="userAdverts">
 				{(userAdverts.length > 0) ? (
-					<section>
-						<UserAdvertsList
-							adverts={userAdverts}
-							username={user.username}
-							favs = {favs}
-						/>
-					</section>
-				) : (
+					
+					<UserAdvertsList
+					adverts={userAdverts}
+					username={user.username}
+					favs = {favs}
+					/>
+					
+					) : (
 						<UserEmptyList favs={favs}/>
-					)}
-            </React.Fragment>
+						)} 
+			</section>
 		</main>
 	);
 };

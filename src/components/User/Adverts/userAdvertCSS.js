@@ -5,15 +5,19 @@ export const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: '0.5rem',
-    width: '100%',
+    width: '98%',
     display:'flex',
     flexDirection:'column',
     alignItems:'center',
     justifyContent:'center',   
     marginLeft:'2rem',
+    [theme.breakpoints.only('md')]:{
+      width: '96%',
+ 
+    },
     [theme.breakpoints.down('sm')]:{
       marginLeft:'1rem',
-      width: '92%',
+      width: '94%',
  
 
     },
