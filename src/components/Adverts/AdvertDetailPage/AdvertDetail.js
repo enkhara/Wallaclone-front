@@ -197,7 +197,9 @@ function AdvertDetail({
 									: classNames(classes.sale)
 							}
 						>
-							{transaction}
+							{/* {transaction} */}
+							{transaction === 'wanted'? (`${t('adverts.Wanted')}`):(`${t('adverts.Sell')}`)}
+
 						</span>
 					</p>
 					<p>
