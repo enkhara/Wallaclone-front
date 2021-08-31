@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
         height:'auto',
         [theme.breakpoints.between('sm','md')]:{
             height: '700px',
-            width: '400px',
+            width: '400px', 
         },
         [theme.breakpoints.up('md')]:{
             width: '450px',

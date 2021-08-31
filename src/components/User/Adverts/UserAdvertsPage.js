@@ -89,7 +89,8 @@ const UserAdvertsPage = ({ user, props }) => {
 					<div style={{
 							display:'flex',width:'100%',
 							alignItems:'center',
-							justifyContent:'center'
+							justifyContent:'center',
+							
 						}}>
 						<UserEmptyList />
 

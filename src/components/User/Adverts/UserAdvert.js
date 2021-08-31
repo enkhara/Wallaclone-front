@@ -106,10 +106,10 @@ const UserAdvert = ({
   
 
   return (
-    <div className={classes.root}>
+    <div>
       <Paper className={classes.paper}>
         <Grid container spacing={2} >
-          <Grid item>
+         
           <NavLink to={`/adverts/${name.replace(/\/+/g,'-')}/${_id}`} style={{ textDecoration: 'none' }}>
             <ButtonBase className={classes.image}>
               <img className={classes.img}
@@ -120,11 +120,14 @@ const UserAdvert = ({
                   />
               </ButtonBase>
             </NavLink>
-          </Grid>
-          <Grid item xs={8} sm container>
+       
+          <Grid item xs={12} sm={12} md={12} lg spacing={2} container>
             <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="h6">
+              <Grid style={{paddingTop:'0.3rem'}} item xs>
+                <Typography gutterBottom 
+                  variant="h6"
+                  
+                >
                  <strong>{price} €</strong>
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -137,8 +140,8 @@ const UserAdvert = ({
             
             </Grid>
           
-            <Grid item xs>
-                <Typography gutterBottom variant="subtitle2">
+            <Grid item xs >
+                <Typography gutterBottom variant="subtitle2" >
                   {t('userzone.Published at')}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -169,9 +172,9 @@ const UserAdvert = ({
                 </Typography> 
                </Grid> 
             
-            {!favs && <div className={classes.root}>
+            {!favs && <div>
               
-              <Tooltip title="Editar" placement="top" arrow>
+              <Tooltip title="Editar" placement="top" arrow style={{paddingLeft:'2rem'}}>
                 <IconButton aria-label="create" color="primary" component={Link} to={`/adverts/edit/${_id}`}>
                     <CreateIcon />                  
                 </IconButton>

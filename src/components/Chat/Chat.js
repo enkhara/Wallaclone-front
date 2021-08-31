@@ -126,7 +126,7 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 	return (
-		<main className="main">
+		<main className="main" style={{height: '100%'}}>
 			<aside className="aside">
 				<SideBar />
 			</aside>
