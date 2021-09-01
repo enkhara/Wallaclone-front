@@ -21,16 +21,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     copyright: {
         fontSize:'0.7rem',
-        fontWeight:'700',
-        letterSpacing:'0.1rem',
-        color:'#42aff8',
-        width:'100%',
-        padding:'0 3rem',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
         [theme.breakpoints.up('sm')]: {
             fontSize: '0.9rem',
+            fontWeight:'700',
+            letterSpacing:'0.1rem',
         },
       
     }
