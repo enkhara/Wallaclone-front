@@ -37,36 +37,14 @@ const Chat = ({ user, ...props }) => {
 	/******************SOCKET CLIENT******************************/
 
 	useEffect(() => {
-		socket.current = io(process.env.REACT_APP_SOCKET_SERVER, {
-			withCredentials: true,
-			transportOptions: {
-				polling: {
-					extraHeaders: {
-						Authorization: 'Bearer <TOKEN JWT>',
-					},
-				},
-			},
-		});
-	}, []);
-
-	useEffect(() => {
-		socket.current.emit('addUser', user._id);
-		socket.current.on('getUsers', (users) => {
-			console.log('socket io users conected', users);
-			setOnlineUser(users);
-			//setOnlineUser(users.filter((u) => u.userId !== user._id));
-			console.log('USUARIOS ONLINE', onlineUsers);
-		});
-	}, [user]);
-
-	useEffect(() => {
-		//.on => receiver message
+		socket.current = io(process.env.REACT_APP_SOCKET_SERVER);
 		socket.current.on('getMessage', (data) => {
 			setArrivalMessages({
 				sender: data.senderId,
 				text: data.text,
 				createdAt: Date.now(),
 			});
+			console.log(`ArrivalMessage sender ${data.senderId}, texto ${data.text}`);
 		});
 	}, []);
 
@@ -75,6 +53,13 @@ const Chat = ({ user, ...props }) => {
 			currentChat?.members.includes(arrivalMessages.sender) &&
 			setMessages((prev) => [...prev, arrivalMessages]);
 	}, [arrivalMessages, currentChat]);
+
+	useEffect(() => {
+		socket.current.emit('addUser', user._id);
+		socket.current.on('getUsers', (users) => {
+			setOnlineUser(users);
+		});
+	}, [user]);
 
 	/**************************************************************/
 
@@ -106,17 +91,20 @@ const Chat = ({ user, ...props }) => {
 			text: newMessages,
 			conversationId: currentChat._id,
 		};
+
 		const receiverId = currentChat.members.find(
-			(member) => member !== user._id
+			(member) => member._id !== user._id
+		);
+		console.log(
+			`el que manda el mensaje es georgi con id ${user._id}, el que recibe el mensaje es receiver ${receiverId.username} con el id ${receiverId._id}`
 		);
 
-		if (onlineUsers.find((onlineUser) => onlineUser.userId === receiverId)) {
-			console.log(
-				'***********************ENTRA EN EL IF DE USUARIO CONECTADO**************************'
-			);
+		if (
+			onlineUsers.find((onlineUser) => onlineUser.userId === receiverId._id)
+		) {
 			socket.current.emit('sendMessage', {
 				senderId: user._id,
-				receiverId,
+				receiverId: receiverId._id,
 				text: newMessages,
 			});
 		}
