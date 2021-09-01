@@ -5,13 +5,11 @@ import UserEmptyList from './UserEmptyList';
 import UserAdvertsList from './UserAdvertsList';
 import withUser from '../../hoc/withUser';
 import { SideBar } from '../../layout';
-import { useTranslation } from 'react-i18next';
 import './User.css';
  
 const UserAdvertsPage = ({ user, props }) => {
 	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
-	const { t } = useTranslation(['global']);
 	const favs = true;
 	
     const [userAdverts,setUserAdverts] = React.useState(adverts);
@@ -30,7 +28,7 @@ const UserAdvertsPage = ({ user, props }) => {
 			setUserAdverts({});
 		}
 			
-	}, [user.ads_favs]);
+	}, [user.ads_favs,dispatch,adverts]);
 
 	return (
 		

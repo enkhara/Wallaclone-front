@@ -3,8 +3,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
   Accordion,
   AccordionSummary,
-  AccordionDetails,
-  TextField
+  AccordionDetails
 } from '@material-ui/core';
 import { SelectTags } from '../Adverts';
 import SelectRange from './SelectRange';

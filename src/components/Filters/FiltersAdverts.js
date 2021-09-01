@@ -2,7 +2,7 @@ import React from 'react';
 import AdvertsList from '../Adverts/AdvertsPage/AdvertsList';
 import FiltersForm from './FiltersForm';
 import { minAndMaxRange } from './minAndMaxRange';
-let advertsUser = {};
+ 
 
 const FiltersAdverts = ({ adverts, username }) => {
     
@@ -20,7 +20,7 @@ const FiltersAdverts = ({ adverts, username }) => {
             
             }));
         }
-	}, [username]);
+	}, [username,adverts]);
 
     const filteredRange = selectedRange =>(setPriceRange(selectedRange));
     
@@ -45,7 +45,10 @@ const FiltersAdverts = ({ adverts, username }) => {
             })
                 
         );
-            
+          adverts.sort((t1, t2) => {
+		if (t1.createdAt < t2.createdAt) return 1;
+		return -1;
+	}); 
     }
    
     return (
