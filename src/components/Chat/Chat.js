@@ -55,7 +55,7 @@ const Chat = ({ user, ...props }) => {
 			console.log('socket io users conected', users);
 			setOnlineUser(users);
 			//setOnlineUser(users.filter((u) => u.userId !== user._id));
-			console.log(onlineUsers);
+			console.log('USUARIOS ONLINE', onlineUsers);
 		});
 	}, [user]);
 
@@ -111,6 +111,9 @@ const Chat = ({ user, ...props }) => {
 		);
 
 		if (onlineUsers.find((onlineUser) => onlineUser.userId === receiverId)) {
+			console.log(
+				'***********************ENTRA EN EL IF DE USUARIO CONECTADO**************************'
+			);
 			socket.current.emit('sendMessage', {
 				senderId: user._id,
 				receiverId,
@@ -126,7 +129,7 @@ const Chat = ({ user, ...props }) => {
 		}
 	};
 	return (
-		<main className="main" style={{height: '100%'}}>
+		<main className="main" style={{ height: '100%' }}>
 			<aside className="aside">
 				<SideBar />
 			</aside>
