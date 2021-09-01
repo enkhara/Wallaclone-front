@@ -16,12 +16,9 @@ import SelectTags from '../SelectTags';
 import { useTranslation } from 'react-i18next';
 
 import '../NewAndEditAdvert.css';
-import { InputBase } from '@material-ui/core';
+
 
 function NewAdvertForm({ onSubmit }) {
-
-  const inputNameRef = React.useRef(null);
-
   const [t] = useTranslation('global');
   const [advert, setAdvert] = React.useState({
     name: '',

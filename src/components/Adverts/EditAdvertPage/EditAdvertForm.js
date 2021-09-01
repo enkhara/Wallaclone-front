@@ -73,7 +73,7 @@ function EditAdvertForm({
 		// Obtenemos los tags del backend para mostrarlos
 		getAllTags().then(setListaTags);
 		dispatch(tagsLoadedAction());
-	}, []);
+	}, [dispatch]);
 		
 	const handleToggleReserved = ({ target }) => {
 		setStateReserved(s => ({ ...s, [target.name]: !s[target.name] }));

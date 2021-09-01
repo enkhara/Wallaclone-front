@@ -33,10 +33,8 @@ const Footer = () => {
                     className={classes.icons}
                 />
             </div>
-            <div 
-                className={classes.copyright}>
-                <p>&copy; {new Date().getFullYear()} Wallaclone App.{t('footer.All rights reserved')}</p>
-            </div>
+            <p className={classes.copyright}>&copy; {new Date().getFullYear()} Wallaclone App.{t('footer.All rights reserved')}</p>
+           
         </footer>
     );
 }

@@ -24,17 +24,25 @@ const Header = () => {
           justifyContent: 'space-between',
           margin: '0px',
           marginTop: '0.5rem',
+          marginBottom: '0.5rem',
         }}
       >
         <Typography variant="h6">
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="/logo_wallaclone2.png" alt="Wallaclone app" />
+            <div style={{ display: 'flex', alignItems: 'center', marginRight:'2rem'}}>
+              <img 
+                src="/logo_wallaclone2.png" 
+                alt="Wallaclone app" 
+                style={{
+                  width:'100px'
+                }}
+              />
               <h1
                 style={{
                   display: 'inline',
                   margin: 'auto',
                   color: 'rgb(16,182,189)',
+                  fontSize:'1.5rem',
                 }}
               >
                 Wallaclone
