@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     margin: '0',
     color: 'white',
-    width:'20%',
+    width:'25%',
     height:'2rem',
     borderRadius: '5px',
     background: 'rgba(2, 136, 31, 0.931)',
@@ -51,7 +51,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     margin: '0',
     color: 'white',
-    width:'25%',
+    width:'40%',
     height:'2rem',
     borderRadius: '5px',
     background: 'rgba(175, 11, 33, 0.89)',
@@ -90,9 +90,6 @@ export const useStyles = makeStyles((theme) => ({
 	
 	},
   cardContent: {
-    
-    width:'100%',
-    height: 'auto',
     padding:'0.5rem',
     paddingTop:'0.5rem',
     height:'auto',
