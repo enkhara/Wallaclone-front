@@ -246,7 +246,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
             name="password"
             defaultValue={password?.substr(10, 10)}
           />
-         <Typography variant="overline" display="block" gutterBottom>
+         <Typography variant="subtitle2" display="block" gutterBottom>
             { t('account.Current password modification')}
         </Typography>
            <FormControl >
