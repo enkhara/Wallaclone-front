@@ -44,13 +44,12 @@ const Chat = ({ user, ...props }) => {
 				text: data.text,
 				createdAt: Date.now(),
 			});
-			console.log(`ArrivalMessage sender ${data.senderId}, texto ${data.text}`);
 		});
 	}, []);
 
 	useEffect(() => {
 		arrivalMessages &&
-			currentChat?.members.includes(arrivalMessages.sender) &&
+			currentChat?.members.map((m) => m._id.includes(arrivalMessages.sender)) &&
 			setMessages((prev) => [...prev, arrivalMessages]);
 	}, [arrivalMessages, currentChat]);
 
@@ -94,9 +93,6 @@ const Chat = ({ user, ...props }) => {
 
 		const receiverId = currentChat.members.find(
 			(member) => member._id !== user._id
-		);
-		console.log(
-			`el que manda el mensaje es georgi con id ${user._id}, el que recibe el mensaje es receiver ${receiverId.username} con el id ${receiverId._id}`
 		);
 
 		if (
