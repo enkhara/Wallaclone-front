@@ -17,6 +17,7 @@ import {
 	advertUpdateReservedAction,
 	advertUpdateSoldAction
 } from '../../../store/actions';
+ 
 
 import {
   Grid,
@@ -27,7 +28,6 @@ import {
   Tooltip
 } from '@material-ui/core';
 import Swal from 'sweetalert2';
-
 
 
 const UserAdvert = ({
@@ -54,19 +54,17 @@ const UserAdvert = ({
   const [statusReserved, setStatusReserved] = useState(reserved);
   const [statusSold, setStatusSold] = useState(sold);
 
-  useEffect(() => {
-    
+  useEffect(() => {    
+  // seteamos el estado con los datos almacenados en redux (actualizados)
     dispatch(advertsLoadAction());
-   
-    // seteamos el estado con los datos almacenados en redux (actualizados)
     setStatusReserved(reserved);
-  }, [reserved]);
+  }, [reserved,dispatch]);
 
   useEffect(() => {
     
     dispatch(advertsLoadAction());
     setStatusSold(sold);
-  }, [sold]);
+  }, [sold,dispatch]);
 
    const handleDelete = () => {
     
@@ -125,7 +123,7 @@ const UserAdvert = ({
                 {name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                {desc.substr(0, 20)+' ...'}
+                {desc ? desc.substr(0, 20)+' ...': ''}
                 </Typography>
               </Grid>
             
@@ -171,8 +169,8 @@ const UserAdvert = ({
                 </IconButton>
               </Tooltip>
               <Tooltip title="Eliminar" placement="top" arrow>
-                <IconButton aria-label="delete" color="primary" type="submit">
-                  <DeleteIcon onClick={()=>handleDelete()} /> 
+                <IconButton aria-label="delete" color="primary" type="submit" onClick={()=>handleDelete()}>
+                  <DeleteIcon  /> 
                 </IconButton>
                 </Tooltip>
                
@@ -203,7 +201,7 @@ UserAdvert.prototype = {
   name: T.string.isRequired,
   transaction: T.string.isRequired,
   price: T.number.isRequired,
-  desc: T.string.isRequired,
+  desc: T.string,
   tags: T.arrayOf(T.string.isRequired).isRequired,  
   image: T.string,
   reserved: T.bool,

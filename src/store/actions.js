@@ -114,8 +114,7 @@ export const loginAction = (credentials) => {
 		try {
 			await api.auth.login(credentials);
 			dispatch(authLoginSuccess());
-			//dispatch(userLoggedAction());
-
+	
 			const { from } = history.location.state || { from: { pathname: '/' } };
 			history.replace(from);
 		} catch (error) {
@@ -233,8 +232,7 @@ export const updateAccountAction = (userId, credentials) => {
 		try {
 			const response = await api.auth.updateAccountUser(userId, credentials);
 			dispatch(authUpdateSuccess(response.result));
-			
-			//console.log('updateAccount result', response.result);
+		
 			if (response.error) {
 				Swal.fire(
 					'Error',
@@ -284,7 +282,7 @@ export const advertsLoadAction = () => {
 
 		dispatch(advertsLoadedRequest());
 		try {
-			const adverts = await api.adverts.getAllAdverts(); //antes getLatestAdverts(filters, limit, skip);
+			const adverts = await api.adverts.getAllAdverts(); 
 			dispatch(advertsLoadedSuccess(adverts));
 		} catch (error) {
 			dispatch(advertsLoadedFailure(error));
@@ -330,8 +328,7 @@ export const advertDetailAction = (advertId) => {
 		dispatch(advertDetailRequest());
 		try {
 			const advert = await api.adverts.getAdvert(advertId);
-			//console.log(`advert ACTION ${advert}`);
-			console.log(`advert ACTION ${advert.result}`);
+			
 			dispatch(advertDetailSuccess(advert.result));
 			return advert.result;
 		} catch (error) {
@@ -373,7 +370,7 @@ export const tagsLoadedAction = () => {
 			const tags = await api.adverts.getAllTags();
 			dispatch(tagsLoadedSuccess(tags));
 		} catch (error) {
-			//TODO: pasarle el history y manejar en caso de rror la redireccion para quitarla del componente
+			
 			dispatch(tagsLoadedFailure(error));
 		}
 	};
@@ -448,8 +445,6 @@ export const advertEditFailure = (error) => {
 
 export const advertEditAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
-	//	const advertEdited = getAdvertDetail(getState(), advertId);
-	//	const user = getUser(getState());
 	
 		dispatch(advertEditRequest());
 		try {
@@ -541,22 +536,18 @@ export const advertUpdateSoldFailure = (error) => {
 };
 
 export const advertUpdateReservedAction = (advertId, reserved) => {
-	console.log('action reserved', reserved);
+	
 	return async function (dispatch, getState, { api, history }) {
 		
 		try {
-			console.log('reserved pasado a actions', reserved)
+			
 			const updateAdvert = await api.adverts.changeReserved(advertId, reserved);
 
 			dispatch(advertUpdateReservedSuccess(updateAdvert.result));
-			// history.push(
-			// 	`/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
-			// );
+			
 		} catch (error) {
 			dispatch(advertUpdateReservedFailure(error));
-		//	if (error?.statusCode === 401) {
-		//		history.push('/login');
-		//		}
+		
 		}
 	};
 };
@@ -568,20 +559,13 @@ export const advertUpdateSoldAction = (advertId, sold) => {
 			const updateAdvert = await api.adverts.changeSold(advertId, sold);
 
 			dispatch(advertUpdateSoldSuccess(updateAdvert.result));
-			// history.push(
-			// 	`/adverts/${updateAdvert.result.name}/${updateAdvert.result._id}`
-			// );
+		
 		} catch (error) {
 			dispatch(advertUpdateSoldFailure(error));
-		//	if (error?.statusCode === 401) {
-		//		history.push('/login');
-		//		}
+		
 		}
 	};
 };
-
-
-
 
 
 /*******************ADVERT DELETE ************************* */
@@ -611,12 +595,11 @@ export const advertDeletedAction = (advertId) => {
 	return async function (dispatch, getState, { api, history }) {
 		dispatch(advertDeletedRequest());
 		try {
-			// const advert = await api.adverts.deleteAdvert(advertId);
-			// dispatch(advertDeletedSuccess(advert));
+			
 			await api.adverts.deleteAdvert(advertId);
 			dispatch(advertDeletedSuccess(advertId));
 			history.push('/adverts');
-			//Swal.fire('Deleted!', 'Your advert has been deleted.', 'success');
+			
 		} catch (error) {
 			dispatch(advertDeletedFailure(error));
 			const errorMessage = JSON.stringify(error.conversation);
@@ -703,14 +686,11 @@ export const newPasswordAction = (
 			await Swal.fire('Updated password!!');
 			window.open('about:blank', '_self');
 			window.close();
-			// Redirect
-			// const { from } = location.state || { from: { pathname: '/login' } };
-			// history.replace(from);
+			
 			dispatch(newPasswordSuccess());
 		} catch (error) {
 			dispatch(newPasswordFailure(error));
-			// const errorMessage = JSON.stringify(error.message);
-			// Swal.fire(`${errorMessage}`);
+			
 		}
 	};
 };
@@ -807,10 +787,8 @@ export const userDeleteFavoritesAction = (userId, advertId) => {
 export const userLoggedAction = () => {
 	return async function (dispatch, getState, { api }) {
 		const user = getUserLoaded(getState());
-		//console.log('user userLoggedAction', user);
-		//const tagsLoaded = getTagsLoaded(getState());
+	
 		if (user) {
-			//console.log('if user entro');
 			return;
 		}
 		dispatch(userLoggedRequest());
@@ -819,7 +797,7 @@ export const userLoggedAction = () => {
 			dispatch(userLoggedSuccess(user));
 		} catch (error) {
 			dispatch(userLoggedFailure(error));
-			//console.error('error en user token', error);
+			
 		}
 	};
 };
@@ -922,7 +900,7 @@ export const conversationLoadAction = (userId, advertisementId) => {
 			const conversations = await api.chat.getConversation(
 				userId,
 				advertisementId
-			); //antes getLatestAdverts(filters, limit, skip);
+			); 
 			dispatch(conversationLoadedSuccess(conversations));
 			return conversations;
 		} catch (error) {
@@ -957,7 +935,7 @@ export const messagesLoadAction = (conversationId) => {
 	return async function (dispatch, getState, { api }) {
 		dispatch(messagesLoadedRequest());
 		try {
-			const messages = await api.chat.getMessages(conversationId); //antes getLatestAdverts(filters, limit, skip);
+			const messages = await api.chat.getMessages(conversationId); 
 			dispatch(messagesLoadedSuccess(messages));
 			return messages;
 		} catch (error) {
@@ -993,7 +971,7 @@ export const messagesCreatedAction = (newMessage) => {
 	return async function (dispatch, getState, { api }) {
 		dispatch(messagesCreatedRequest());
 		try {
-			const conversation = await api.chat.createdNewMessage(newMessage); //antes getLatestAdverts(filters, limit, skip);
+			const conversation = await api.chat.createdNewMessage(newMessage); 
 			dispatch(messagesCreatedSuccess(conversation));
 			return conversation;
 		} catch (error) {

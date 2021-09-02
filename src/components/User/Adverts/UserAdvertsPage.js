@@ -21,12 +21,12 @@ const UserAdvertsPage = ({ user, props }) => {
     const [userAdverts,setUserAdverts] = React.useState(adverts);
 	
 	React.useEffect(() => {
-		console.log('entro en use effect de userAdvertsPage 2');
+		 
 		dispatch(advertsLoadAction());
 	}, [dispatch]);
 
     React.useEffect(() => {
-		console.log('entro en use effect de userAdvertsPage', user.username);
+ 
         if (user.username !== undefined) {
         
             setUserAdverts(adverts.filter(advert => {
@@ -35,8 +35,10 @@ const UserAdvertsPage = ({ user, props }) => {
             
             }));
         }
-	}, [user.username]);
 
+	}, [user.username,adverts]);
+
+	 
 
 	return (
 		<main className='main'>
@@ -48,8 +50,7 @@ const UserAdvertsPage = ({ user, props }) => {
 					<UserAdvertsList
 						adverts={userAdverts}
 						username={user.username}
-						//onDelete={handleDelete}
-						//onChangeReserved={handleReserved}
+					 
 						
 					/>
 					

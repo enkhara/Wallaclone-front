@@ -6,13 +6,13 @@ import { getAdvertDetail } from '../../store/selectors.js';
 import React from 'react';
 
 const UserOwnAdvertChat = ({ currentChat, user }) => {
-	console.log('currentChat', currentChat);
-	console.log('user', user);
+	//console.log('currentChat', currentChat);
+	//console.log('user', user);
 
 	const userInChat = currentChat.members.filter(
 		(member) => member._id !== user._id
 	);
-	console.log('user filtrado', userInChat[0]);
+	//console.log('user filtrado', userInChat[0]);
 
 	return (
 		<div className="userOwnBox">

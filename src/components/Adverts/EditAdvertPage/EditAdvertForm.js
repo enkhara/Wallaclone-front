@@ -64,16 +64,15 @@ function EditAdvertForm({
 	const [stateReserved, setStateReserved] = React.useState({ reservedNew: reserved });
 	const [stateSold, setStateSold] = React.useState({ soldNew: sold });
 	
-	// Obtengo los tags del backend para pintarlos en el select multiple 
 	const [listaTags, setListaTags] = React.useState([]);
 	const [tagsNews, setTagsNews] = React.useState(tags);
-	//console.log('tagsNews', tagsNews);
+	
 	
 	useEffect(() => {
 		// Obtenemos los tags del backend para mostrarlos
 		getAllTags().then(setListaTags);
 		dispatch(tagsLoadedAction());
-	}, []);
+	}, [dispatch]);
 		
 	const handleToggleReserved = ({ target }) => {
 		setStateReserved(s => ({ ...s, [target.name]: !s[target.name] }));
@@ -125,7 +124,7 @@ function EditAdvertForm({
 		updateAdvert.append('tags', tagsNews);
 		
 		if (newImage !== undefined && (newImage !== `${URLIMG}images/adverts/${image}`)) {
-			//console.log('entro en imagen cambiada');
+			
 			updateAdvert.append('image', newImage);
 		}
 		
@@ -241,29 +240,33 @@ function EditAdvertForm({
 					</section>			
 														
 				 	<p>{t('adverts.Change status adverts')}</p>
-						{Object.keys(stateReserved).map(key => (
+					{Object.keys(stateReserved).map(key => (
+						
 							<FormControlLabel
 								control={<GreenCheckbox
 								type="checkbox"
 								label='Reservado'
 								onChange={handleToggleReserved}
-								// key={1}
+								key={1}
 								name={key}
 								checked={stateReserved[key]}
 								/>}
-							label= {t('adverts.Reserved')}
+							label={t('adverts.Reserved')}
+							key={1}
 							/>
 						))}
-						{Object.keys(stateSold).map(key => (
+					{Object.keys(stateSold).map(key => (
+							
 							<FormControlLabel
 								control={<GreenCheckbox
 									type="checkbox"
 									onChange={handleToggleSold}
-									// key={2}
+									key={2}
 									name={key}
 									checked={stateSold[key]}
 								/>}
-								label={t('adverts.Sold')}
+							label={t('adverts.Sold')}
+							key={2}
 							/>
 						))}
 					<input

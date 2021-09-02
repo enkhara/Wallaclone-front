@@ -41,9 +41,6 @@ export const createdAdvert = (newAdvert) => {
 	return client.post(`${BASE_URL}/advertisements`, newAdvert);
 };
 
-const getToken = async function () {
-	return localStorage.getItem('token');
-};
 
 export const updateAdvert = (advertId, advert) => {
 	 return client.put(`${BASE_URL}/advertisements/${advertId}`, advert);
@@ -56,8 +53,7 @@ export const getUserAdvertsFav = (userId) => {
 };
 
 export const changeReserved = (advertId, reserved) => {
-	console.log('reserved pasado a la api', reserved)
-			
+		
 	return client.put(`${BASE_URL}/advertisements/changereserved/${advertId}`,
 		{ reserved: reserved });
 };

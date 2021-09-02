@@ -20,13 +20,7 @@ const AdvertsList = ({ adverts }) => {
 		_advertsData.jump(value);
 	};
 
-	const handlePageSizeChange = (event) => {
-		setPageSize(event.target.value);
-		setPage(1);
-	};
 	
-	
-
 	return (
 		<Fragment>
 			<Grid container spacing={7} className={classes.principalGrid}>

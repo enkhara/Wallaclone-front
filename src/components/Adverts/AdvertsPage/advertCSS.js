@@ -16,7 +16,8 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection:'row-reverse',
     alignItems:'center', 
     justifyContent:'space-between',
-    margin:'0px'
+    margin:'0px',
+    color: '#fff',
 
   },
   priceAdvert: {

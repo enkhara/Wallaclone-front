@@ -242,6 +242,7 @@ function AdvertDetail({
 AdvertDetail.propTypes = {
 	...advert,
 	image: T.string,
+	desc:  T.string,
 	onDelete: T.func.isRequired,
 	onEdit: T.func.isRequired,
 };

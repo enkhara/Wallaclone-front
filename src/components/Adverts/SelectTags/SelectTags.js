@@ -11,7 +11,7 @@ function SelectTags(props) {
 
 	React.useEffect(() => {
 		dispatch(tagsLoadedAction());
-	}, []);
+	}, [dispatch]);
 
 	return <CheckboxGroup options={tags} {...props} />;
 }
