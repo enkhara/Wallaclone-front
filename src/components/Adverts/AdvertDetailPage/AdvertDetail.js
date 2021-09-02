@@ -61,7 +61,7 @@ function AdvertDetail({
 
 	useEffect(() => {
 		if (user) {
-			//console.log('estoy en el efecto')
+			
 			setFav(getUserAdvertFavorite(user, user._id, _id));
 		}
 	}, [user, fav, _id]);
@@ -72,10 +72,9 @@ function AdvertDetail({
 		const conversation = await dispatch(
 			conversationLoadAction(userId._id, _id)
 		);
-		//console.log('userId', userId._id, _id);
+		
 		if (userId._id === user._id) {
 			Swal.fire(t('adverts.This advert is yours!'));
-			//console.log('el anuncio es tuyo');
 			return;
 		}
 
@@ -93,11 +92,11 @@ function AdvertDetail({
 	const handleFavored = async (e) => {
 		e.preventDefault();
 		if (!fav) {
-			//console.log('añadimos favorito')
+		
 			dispatch(userAddFavoritesAction(user._id, _id));
 		}
 		else {
-			//console.log('borramos favorito')
+		
 			dispatch(userDeleteFavoritesAction(user._id, _id));
 		}
 	};
@@ -132,8 +131,7 @@ function AdvertDetail({
 									component="p"
 								>
 									{formatDistanceToNow(new Date(createdAt))}
-									{/* <span>  </span>
-									Ult. Actualización {formatDistanceToNow(new Date(updatedAt))} */}
+								
 								</Typography>
 							</Box>
 						</Box>
@@ -193,7 +191,6 @@ function AdvertDetail({
 									: classNames(classes.sale)
 							}
 						>
-							{/* {transaction} */}
 							{transaction === 'wanted'? (`${t('adverts.Wanted')}`):(`${t('adverts.Sell')}`)}
 
 						</span>

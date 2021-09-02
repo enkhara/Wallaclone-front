@@ -116,21 +116,18 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
     setErrorNewPass(null);
     setErrorConfPass(null);
     let isValid = true;
-    // console.log('Password', currentPassword.currentPassword);
-    // console.log('newPassword', newPassword.newPassword);
-    // console.log('ConfPassword', repeatPassword.repeatPassword);
-
+    
     if (credentials.usernameNew === undefined || credentials.usernameNew === '') {
       setErrorUsernameNew('Debera introducir un nombre de usuario');
       Swal.fire(`${errorUsernameNew}`, t('message.Try again!'), "warning");
-      //console.log('1')
+     
       isValid = false;
     }
     
     if (credentials.emailNew === undefined || credentials.emailNew === '') {
       setErrorEmailNew('Debera introducir un email');
       Swal.fire(`${errorEmailNew}`, t('message.Try again!'),"warning");
-      //console.log('2')
+     
       isValid = false;
     }
 
@@ -139,7 +136,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
       && (currentPassword.currentPassword === undefined && currentPassword.currentPassword === '')) {
       setErrorCurPass('Deberá introducir la contraseña actual');
       Swal.fire(`${errorCurPass}`, t('message.Try again!'),"warning");
-      //console.log('3')
+     
       isValid = false
     }
 
@@ -149,7 +146,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
         setErrorNewPass('La nueva contraseña debe ser diferente a la actual');
         setErrorCurPass('La nueva contraseña debe ser diferente a la actual');
         setErrorConfPass('La nueva contraseña debe ser diferente a la actual');
-        //console.log('6')
+        
         Swal.fire(`${errorConfPass}`, t('message.Try again!'), "warning");
         isValid = false
       }
@@ -166,7 +163,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
           setErrorNewPass('La contraseña nueva y la contraseña de confirmación no coinciden');
           setErrorConfPass('La contraseña nueva y la contraseña de confirmación no coinciden');
           Swal.fire(`${errorConfPass}`, t('message.Try again!'), "warning");
-          //console.log('5')
+          
           isValid = false;
         }
       }
@@ -178,12 +175,10 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
   const handleSubmit = (ev) => {
     ev.preventDefault();
      if (!validateForm()) {
-          //console.log('no está valido el formulario')
+          
           return
     }
-   // console.log('datos del usuario modificados', credentials, newPassword.newPassword);
-   // console.log('newPassword.newPassword', newPassword.newPassword);
-
+   
     if (newPassword.newPassword !== undefined && newPassword.newPassword !== '') {
     
       if (newPassword.newPassword === repeatPassword.repeatPassword) {
@@ -325,7 +320,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
             color="primary"
             fullWidth
             variant="contained"
-            startIcon={<CreateIcon />}
+            starticon={<CreateIcon />}
             disabled={!username || !email || !newPassword}
           >
             {t('account.Change Information')}
@@ -336,7 +331,7 @@ const EditAccountForm = ({ username, email, password, _id, onSubmit, onDelete })
 						color="secondary"
             style={{cursor:'pointer'}}
 						onClick={onDelete}
-						startIcon={<DeleteIcon />}
+						starticon={<DeleteIcon />}
 					>
 						{t('account.Delete User')}
 		     </Link>
