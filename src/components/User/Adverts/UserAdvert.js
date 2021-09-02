@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 import T from 'prop-types';
 import placeholder from '../../../assets/images/placeholder.png';
 import { format } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getAdvertDetail} from '../../../store/selectors';
 import { useStyles } from './userAdvertCSS';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-//import BookmarkIcon from '@material-ui/icons/Bookmark';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-// import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
-// import ToggleIcon from "material-ui-toggle-icon";
+import {
+	advertDeletedAction,
+	advertsLoadAction,
+	advertUpdateReservedAction,
+	advertUpdateSoldAction
+} from '../../../store/actions';
 
 import {
   Grid,
@@ -21,18 +26,9 @@ import {
   IconButton,
   Tooltip
 } from '@material-ui/core';
-//import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
 
-//import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	advertDeletedAction,
-	advertsLoadAction,
-	advertUpdateReservedAction,
-	advertUpdateSoldAction
-} from '../../../store/actions';
-import { getAdvertDetail} from '../../../store/selectors';
+
 
 const UserAdvert = ({
   _id,
@@ -59,15 +55,15 @@ const UserAdvert = ({
   const [statusSold, setStatusSold] = useState(sold);
 
   useEffect(() => {
-    console.log('entro en useEfect de reserved UserAdvert')
+    
     dispatch(advertsLoadAction());
-   // getAdvertDetail(state.adverts.data, _id);
+   
     // seteamos el estado con los datos almacenados en redux (actualizados)
     setStatusReserved(reserved);
   }, [reserved]);
 
   useEffect(() => {
-    console.log('entro en useEfect de sold UserAdvert')
+    
     dispatch(advertsLoadAction());
     setStatusSold(sold);
   }, [sold]);
@@ -92,19 +88,14 @@ const UserAdvert = ({
 	};
   
   const handleReserved = async (_id, reserved) => {
-    //console.log('entro en handleReserved de UserAdvert _id', _id);
-    //console.log('entro en handleReserved de UserAdvert reserved', reserved, !reserved);
     // le pasamos el dato negado para que lo actualice
 		await dispatch(advertUpdateReservedAction(_id, !reserved));
 	}
 
-
   const handleSold = async (_id, sold) => {
-   // console.log('entro en handleSold de UserAdvert');
 		await dispatch(advertUpdateSoldAction(_id, !sold));
   }
   
-
   return (
     <div>
       <Paper className={classes.paper}>

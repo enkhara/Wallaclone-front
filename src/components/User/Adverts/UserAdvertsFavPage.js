@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getAdverts} from '../../../store/selectors';
 import UserEmptyList from './UserEmptyList';
 import UserAdvertsList from './UserAdvertsList';
@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import './User.css';
  
 const UserAdvertsPage = ({ user, props }) => {
-	const dispatch = useDispatch();
 	const adverts = useSelector(getAdverts);
 	const { t } = useTranslation(['global']);
 	const favs = true;
