@@ -1,13 +1,11 @@
 .chat {
 	display: flex;
 	flex-direction: column;
-    margin-top: 1rem;
+	margin-top: 1rem;
 	min-height: 100%;
 	width: 100%;
 	border-radius: 2%;
 	margin-bottom: 10.5rem;
-	
-	
 }
 .chatMenu {
 	flex-basis: 25%;
@@ -22,8 +20,6 @@
 	width: 100%;
 	background-color: lightblue;
 	margin-bottom: 0.5rem;
-
-	
 }
 
 .conversation {
@@ -38,17 +34,14 @@
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	transition: all 300ms;
-	font-size: 1rem;	
+	font-size: 1rem;
 	border: 0.3rem solid #d6dadb;
- 
-	
 }
 
-.conversation:hover{
+.conversation:hover {
 	background-color: #06425c;
 	color: #fff;
 }
-
 
 .chatMenuInput {
 	width: 90%;
@@ -65,21 +58,18 @@
 	box-shadow: 1px 1px 4px #ddd;
 	margin-bottom: 2rem;
 }
- 
+
 .chatBoxWrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 65%;
+	height: 100%;
 	width: 100%;
-	 
 }
 .chatBoxTop {
 	height: auto;
 	padding-right: 1.5rem;
- 
 }
-
 
 .chatBoxBottom {
 	display: flex;
@@ -87,19 +77,18 @@
 	justify-content: space-between;
 	margin-top: 0.5rem;
 	height: auto;
-	
 }
-.chatBoxBottom textarea{
+.chatBoxBottom textarea {
 	flex-basis: 80%;
-	font-size:1rem;
+	font-size: 1rem;
 	padding: 0.5rem;
-	box-sizing:borderBox;
-	transition:.3s;
-	resize:vertical;
-	height:auto;
+	box-sizing: borderBox;
+	transition: 0.3s;
+	resize: vertical;
+	height: auto;
 	font-family: Roboto;
 }
- 
+
 .chatSubmitButton {
 	flex-basis: 20%;
 	height: 100%;
@@ -110,15 +99,20 @@
 	font-weight: 700;
 	font-size: 1.1rem;
 	color: white;
-	 
 }
 
 .chatOnline {
-	flex: 3;
-	
+	/* flex: 3; */
+	background-color: rgba(255, 255, 255, 0.479);
+	flex-basis: 20%;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	box-shadow: 1px 1px 4px #ddd;
+	margin-bottom: 2rem;
 }
 
-.noConversationText {	
+.noConversationText {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -134,7 +128,6 @@
 }
 
 .messageImg {
-	 
 	margin-right: 0.5rem;
 }
 
@@ -142,8 +135,8 @@
 	width: auto;
 	height: auto;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	/* align-items: center;
+	justify-content: center; */
 }
 .messageText {
 	padding: 10px;
@@ -155,7 +148,6 @@
 .messageBottom {
 	font-size: 0.9rem;
 	padding-right: 0.5rem;
-	 
 }
 
 .message.own {
@@ -189,7 +181,7 @@
 	right: 2px;
 }
 
-@media(min-width:600px){
+@media (min-width: 600px) {
 	.chat {
 		flex-flow: row wrap;
 		margin-left: 2rem;
@@ -197,9 +189,8 @@
 	}
 
 	.chatBox {
-	 	flex-basis: 60%; 
+		flex-basis: 60%;
 		margin-left: 2rem;
-		 
 	}
 
 	.conversation {
@@ -209,6 +200,4 @@
 		margin-bottom: 0px;
 		flex-basis: 30%;
 	}
-	 
-
 }
